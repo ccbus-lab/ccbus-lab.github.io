@@ -1383,7 +1383,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #7effff;
+    background: #ffff14;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2907,5 +2907,58 @@ header.header {
   }
   .comments {
     padding: 10px 12px;
+  }
+}
+.footer .languages {
+  display: none;
+}
+.header-inner {
+  position: relative;
+}
+.languages-header {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  z-index: 1000;
+  display: flex;
+  gap: 8px;
+}
+.languages-header .lang-btn {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--btn-default-color);
+  background: var(--btn-default-bg);
+  border: 1px solid var(--btn-default-border-color);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  line-height: 1;
+}
+.languages-header .lang-btn:hover {
+  color: var(--btn-default-hover-color);
+  background: var(--btn-default-hover-bg);
+  border-color: var(--btn-default-hover-border-color);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.languages-header .lang-btn.active {
+  color: #fff;
+  background: var(--btn-default-hover-bg);
+  border-color: var(--btn-default-hover-border-color);
+  font-weight: 700;
+  pointer-events: none;
+}
+@media (max-width: 767px) {
+  .languages-header {
+    top: 8px;
+    right: 10px;
+    gap: 5px;
+  }
+  .languages-header .lang-btn {
+    padding: 5px 10px;
+    font-size: 12px;
   }
 }
