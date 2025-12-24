@@ -1,0 +1,2416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/CCBus_B_T_64.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/CCBus_B_G_64.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/CCBus_B_T_64.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.ccbus.cc","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Chapter 2: Cryptography Fundamentals  Cryptography is the cornerstone of blockchain technology. This chapter delves deep into the core cryptographic concepts that underpin blockchain security, includi">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Chapter 2: Cryptography Fundamentals">
+<meta property="og:url" content="https://www.ccbus.cc/en/ccbook/chapters/chapter-2.html">
+<meta property="og:site_name" content="CCBus">
+<meta property="og:description" content="Chapter 2: Cryptography Fundamentals  Cryptography is the cornerstone of blockchain technology. This chapter delves deep into the core cryptographic concepts that underpin blockchain security, includi">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-10-27T06:00:00.000Z">
+<meta property="article:modified_time" content="2025-12-11T03:29:27.037Z">
+<meta property="article:author" content="CCBus Lab">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.ccbus.cc/en/ccbook/chapters/chapter-2">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://www.ccbus.cc/en/ccbook/chapters/chapter-2.html","path":"en/ccbook/chapters/chapter-2.html","title":"Chapter 2: Cryptography Fundamentals"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Chapter 2: Cryptography Fundamentals | CCBus
+</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+<link rel="stylesheet" href="/css/custom.css">
+<script src="/js/mermaid-loader.js"></script>
+<script src="/js/menu-lang-switcher.js"></script>
+<script src="/js/ccbook-breadcrumb-fix.js"></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main ccbook-three-column">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">CCBus</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+  <ul class="main-menu menu menu-lang-zh-CN" style="display: none;"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-ccbook"><a href="/ccbook/" rel="section"><i class="fa fa-book fa-fw"></i>CC宝典</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-articles"><a href="/articles/" rel="section"><i class="fa fa-file fa-fw"></i>Articles</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+
+  
+  <ul class="main-menu menu menu-lang-en"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-ccbook"><a href="/ccbook/" rel="section"><i class="fa fa-book fa-fw"></i>CC Bible</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-articles"><a href="/articles/" rel="section"><i class="fa fa-file fa-fw"></i>Articles</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+
+<div class="languages-header">
+  
+    <a href="/ccbook/chapters/chapter-2.html"
+       class="lang-btn "
+       title="切换到简体中文">
+      中文
+    </a>
+  
+    <a href="/en/ccbook/chapters/chapter-2.html"
+       class="lang-btn active"
+       title="Switch to English">
+      EN
+    </a>
+  
+</div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="CCBus Lab"
+      src="/images/CCBus_B_G_64.png">
+  <p class="site-author-name" itemprop="name">CCBus Lab</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ccbus-lab" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ccbus-lab" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ccbus-lab@gmail.com" title="E-Mail → mailto:ccbus-lab@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner page posts-expand ccbook-page ccbook-chapter-page">
+
+
+    
+    
+    
+    <div class="post-block ccbook-main-container" lang="en">
+
+      
+      <article class="ccbook-content-area"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">Chapter 2: Cryptography Fundamentals
+</h1>
+
+<div class="post-meta-container">
+  <ul class="breadcrumb">
+            <li><a href="/en/">EN</a></li>
+            <li><a href="/en/ccbook/">CCBOOK</a></li>
+            <li><a href="/en/ccbook/chapters/">CHAPTERS</a></li>
+            <li>CHAPTER-2</li>
+  </ul>
+</div>
+
+</header>
+
+
+        
+        
+        
+        <div class="post-body ccbook-content-body">
+          <h1>Chapter 2: Cryptography Fundamentals</h1>
+<div class="chapter-intro">
+<p>Cryptography is the cornerstone of blockchain technology. This chapter delves deep into the core cryptographic concepts that underpin blockchain security, including hash functions, public key cryptography, digital signatures, and other key technologies.</p>
+<p><strong>Chapter Objectives:</strong></p>
+<ul>
+<li>Understand the core role of cryptography in blockchain</li>
+<li>Master the characteristics and applications of hash functions</li>
+<li>Learn public/private key encryption mechanisms</li>
+<li>Understand how digital signatures work</li>
+<li>Explore advanced cryptographic structures like Merkle trees</li>
+</ul>
+</div>
+<h2 id="2-1-Introduction-to-Cryptography">2.1 Introduction to Cryptography</h2>
+<p><strong>Cryptography</strong> is the science of secure communication in adversarial environments. In blockchain, cryptography provides the following key functions:</p>
+<h3 id="Core-Goals-of-Cryptography">Core Goals of Cryptography</h3>
+<ol>
+<li>
+<p><strong>Confidentiality</strong></p>
+<ul>
+<li>Ensures information can only be read by authorized parties</li>
+<li>Prevents unauthorized access</li>
+</ul>
+</li>
+<li>
+<p><strong>Integrity</strong></p>
+<ul>
+<li>Detects whether data has been tampered with</li>
+<li>Ensures data has not been modified</li>
+</ul>
+</li>
+<li>
+<p><strong>Authentication</strong></p>
+<ul>
+<li>Verifies the identity of communicating parties</li>
+<li>Confirms message origin</li>
+</ul>
+</li>
+<li>
+<p><strong>Non-repudiation</strong></p>
+<ul>
+<li>Sender cannot deny having sent a message</li>
+<li>Provides evidence of actions</li>
+</ul>
+</li>
+</ol>
+<h3 id="Cryptographic-Applications-in-Blockchain">Cryptographic Applications in Blockchain</h3>
+<div style="background: rgba(32, 55, 76, 0.5); padding: 1.5em; border-radius: 8px; margin: 2em 0;">
+<svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 700px; display: block; margin: 0 auto;">
+  <defs>
+    <style>
+      .crypto-text { font-family: arial, sans-serif; font-size: 11px; fill: #fff; }
+      .crypto-text-dark { font-family: arial, sans-serif; font-size: 11px; fill: #222; }
+      .crypto-box-main { fill: #90EE90; stroke: #ccc; stroke-width: 0.5; }
+      .crypto-box-sub { fill: #1f2020; stroke: #4c9be8; stroke-width: 0.5; }
+      .crypto-arrow { fill: none; stroke: #4c9be8; stroke-width: 0.5; }
+    </style>
+    <marker id="crypto-arrow-1" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M 0 0 L 6 3 L 0 6 z" fill="#4c9be8"/>
+    </marker>
+  </defs>
+  <rect class="crypto-box-main" x="10" y="10" width="70" height="25" rx="2"/>
+  <text class="crypto-text-dark" x="45" y="26" text-anchor="middle">Hash Function</text>
+  <path class="crypto-arrow" d="M 80 22 L 130 22" marker-end="url(#crypto-arrow-1)"/>
+  <rect class="crypto-box-sub" x="130" y="10" width="70" height="25" rx="2"/>
+  <text class="crypto-text" x="165" y="26" text-anchor="middle">Block Linking</text>
+  <path class="crypto-arrow" d="M 80 22 L 105 22 Q 115 22 115 40 L 115 58 Q 115 68 125 68 L 130 68" marker-end="url(#crypto-arrow-1)"/>
+  <rect class="crypto-box-sub" x="130" y="55" width="80" height="25" rx="2"/>
+  <text class="crypto-text" x="170" y="71" text-anchor="middle">Proof of Work</text>
+  <path class="crypto-arrow" d="M 80 22 L 100 22 Q 115 22 115 50 Q 115 100 125 113 L 130 113" marker-end="url(#crypto-arrow-1)"/>
+  <rect class="crypto-box-sub" x="130" y="100" width="70" height="25" rx="2"/>
+  <text class="crypto-text" x="165" y="116" text-anchor="middle">Address Gen</text>
+  <rect class="crypto-box-main" x="230" y="10" width="80" height="25" rx="2"/>
+  <text class="crypto-text-dark" x="270" y="26" text-anchor="middle">Asymmetric</text>
+  <path class="crypto-arrow" d="M 310 22 L 360 22" marker-end="url(#crypto-arrow-1)"/>
+  <rect class="crypto-box-sub" x="360" y="10" width="70" height="25" rx="2"/>
+  <text class="crypto-text" x="395" y="26" text-anchor="middle">Account System</text>
+  <path class="crypto-arrow" d="M 310 22 L 335 22 Q 345 22 345 40 L 345 58 Q 345 68 355 68 L 360 68" marker-end="url(#crypto-arrow-1)"/>
+  <rect class="crypto-box-sub" x="360" y="55" width="70" height="25" rx="2"/>
+  <text class="crypto-text" x="395" y="71" text-anchor="middle">Tx Signing</text>
+  <path class="crypto-arrow" d="M 310 22 L 330 22 Q 345 22 345 50 Q 345 100 355 113 L 360 113" marker-end="url(#crypto-arrow-1)"/>
+  <rect class="crypto-box-sub" x="360" y="100" width="70" height="25" rx="2"/>
+  <text class="crypto-text" x="395" y="116" text-anchor="middle">Identity</text>
+  <rect class="crypto-box-main" x="10" y="145" width="70" height="25" rx="2"/>
+  <text class="crypto-text-dark" x="45" y="161" text-anchor="middle">Digital Sig</text>
+  <path class="crypto-arrow" d="M 80 157 L 130 157" marker-end="url(#crypto-arrow-1)"/>
+  <rect class="crypto-box-sub" x="130" y="145" width="70" height="25" rx="2"/>
+  <text class="crypto-text" x="165" y="161" text-anchor="middle">Tx Authorization</text>
+  <path class="crypto-arrow" d="M 80 157 L 105 157 Q 115 157 115 165 L 115 173 Q 115 180 125 180 L 230 180" marker-end="url(#crypto-arrow-1)"/>
+  <rect class="crypto-box-sub" x="230" y="168" width="70" height="25" rx="2"/>
+  <text class="crypto-text" x="265" y="184" text-anchor="middle">MultiSig</text>
+  <path class="crypto-arrow" d="M 200 157 L 360 157" marker-end="url(#crypto-arrow-1)"/>
+  <rect class="crypto-box-sub" x="360" y="145" width="80" height="25" rx="2"/>
+  <text class="crypto-text" x="400" y="161" text-anchor="middle">Message Auth</text>
+  <rect class="crypto-box-main" x="460" y="145" width="80" height="25" rx="2"/>
+  <text class="crypto-text-dark" x="500" y="161" text-anchor="middle">Merkle Tree</text>
+  <path class="crypto-arrow" d="M 460 157 Q 450 157 450 165 L 450 55 L 440 55" marker-end="url(#crypto-arrow-1)"/>
+  <rect class="crypto-box-sub" x="370" y="42" width="70" height="25" rx="2"/>
+  <text class="crypto-text" x="405" y="58" text-anchor="middle">Data Verify</text>
+  <path class="crypto-arrow" d="M 540 157 Q 560 157 560 135 L 560 90" marker-end="url(#crypto-arrow-1)"/>
+  <rect class="crypto-box-sub" x="490" y="77" width="70" height="25" rx="2"/>
+  <text class="crypto-text" x="525" y="93" text-anchor="middle">Light Node</text>
+  <path class="crypto-arrow" d="M 540 157 Q 565 157 565 125 L 565 23" marker-end="url(#crypto-arrow-1)"/>
+  <rect class="crypto-box-sub" x="490" y="10" width="75" height="25" rx="2"/>
+  <text class="crypto-text" x="527" y="26" text-anchor="middle">State Proof</text>
+</svg>
+</div>
+<h2 id="2-2-Hash-Functions">2.2 Hash Functions</h2>
+<h3 id="What-is-a-Hash-Function">What is a Hash Function?</h3>
+<p>A <strong>Hash Function</strong> is a one-way function that maps input data of arbitrary length to fixed-length output.</p>
+<h4 id="Key-Properties-of-Hash-Functions">Key Properties of Hash Functions</h4>
+<ol>
+<li>
+<p><strong>Deterministic</strong></p>
+<ul>
+<li>Same input always produces same output</li>
+<li>Reproducible and verifiable</li>
+</ul>
+</li>
+<li>
+<p><strong>Fast Computation</strong></p>
+<ul>
+<li>Can quickly compute hash values</li>
+<li>Efficient verification process</li>
+</ul>
+</li>
+<li>
+<p><strong>One-way</strong></p>
+<ul>
+<li>Cannot reverse engineer original data from hash</li>
+<li>Pre-image resistance</li>
+</ul>
+</li>
+<li>
+<p><strong>Avalanche Effect</strong></p>
+<ul>
+<li>Small input changes cause massive output changes</li>
+<li>Enhances security</li>
+</ul>
+</li>
+<li>
+<p><strong>Collision Resistance</strong></p>
+<ul>
+<li>Extremely difficult to find two different inputs producing same output</li>
+<li>Prevents forgery attacks</li>
+</ul>
+</li>
+</ol>
+<h3 id="SHA-256-Algorithm">SHA-256 Algorithm</h3>
+<p><strong>SHA-256</strong> (Secure Hash Algorithm 256-bit) is the primary hash algorithm used by Bitcoin.</p>
+<h4 id="SHA-256-Characteristics">SHA-256 Characteristics</h4>
+<ul>
+<li>Output length: 256 bits (32 bytes)</li>
+<li>Typically represented as 64 hexadecimal characters</li>
+<li>Fast computation, high security</li>
+</ul>
+<h4 id="Example">Example</h4>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SHA-256 hash example</span></span><br><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sha256</span>(<span class="params">data</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> crypto.<span class="title function_">createHash</span>(<span class="string">&#x27;sha256&#x27;</span>)</span><br><span class="line">        .<span class="title function_">update</span>(data)</span><br><span class="line">        .<span class="title function_">digest</span>(<span class="string">&#x27;hex&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Example 1: Plain text</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">sha256</span>(<span class="string">&#x27;Hello, Blockchain!&#x27;</span>));</span><br><span class="line"><span class="comment">// Output: 7f83b1657ff1fc53b92dc18148a1d65dfc2d4b1fa3d677284addd200126d9069</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Example 2: Small change leads to completely different hash</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">sha256</span>(<span class="string">&#x27;Hello, blockchain!&#x27;</span>));  <span class="comment">// Note lowercase b</span></span><br><span class="line"><span class="comment">// Output: 93a0f1d4f8e8e8c4... (completely different)</span></span><br></pre></td></tr></table></figure>
+<h3 id="Hash-Applications-in-Blockchain">Hash Applications in Blockchain</h3>
+<h4 id="1-Block-Linking">1. Block Linking</h4>
+<div style="background: rgba(32, 55, 76, 0.5); padding: 1.5em; border-radius: 8px; margin: 2em 0;">
+<svg viewBox="0 0 350 45" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 450px; display: block; margin: 0 auto;">
+  <defs>
+    <style>
+      .chain-text { font-family: arial, sans-serif; font-size: 11px; fill: #fff; }
+      .chain-text-dark { font-family: arial, sans-serif; font-size: 11px; fill: #222; }
+      .chain-box1 { fill: #90EE90; stroke: #ccc; stroke-width: 0.5; }
+      .chain-box2 { fill: #87CEEB; stroke: #ccc; stroke-width: 0.5; }
+      .chain-box3 { fill: #FFD700; stroke: #333; stroke-width: 0.5; }
+      .chain-arrow { fill: none; stroke: #4c9be8; stroke-width: 0.5; }
+    </style>
+    <marker id="chain-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M 0 0 L 6 3 L 0 6 z" fill="#4c9be8"/>
+    </marker>
+  </defs>
+  <rect class="chain-box1" x="10" y="10" width="85" height="25" rx="2"/>
+  <text class="chain-text-dark" x="52" y="26" text-anchor="middle">Block N-1</text>
+  <path class="chain-arrow" d="M 95 22 L 130 22" marker-end="url(#chain-arrow)"/>
+  <rect class="chain-box2" x="130" y="10" width="75" height="25" rx="2"/>
+  <text class="chain-text-dark" x="167" y="26" text-anchor="middle">Block N</text>
+  <path class="chain-arrow" d="M 205 22 L 240 22" marker-end="url(#chain-arrow)"/>
+  <rect class="chain-box3" x="240" y="10" width="95" height="25" rx="2"/>
+  <text class="chain-text-dark" x="287" y="26" text-anchor="middle">Block N+1</text>
+</svg>
+</div>
+<h4 id="2-Proof-of-Work-PoW">2. Proof of Work (PoW)</h4>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Simplified PoW example</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">proofOfWork</span>(<span class="params">blockData, difficulty</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> nonce = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">const</span> target = <span class="string">&#x27;0&#x27;</span>.<span class="title function_">repeat</span>(difficulty);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> hash = <span class="title function_">sha256</span>(blockData + nonce);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (hash.<span class="title function_">startsWith</span>(target)) &#123;</span><br><span class="line">            <span class="keyword">return</span> &#123; nonce, hash &#125;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        nonce++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Find hash starting with 4 zeros</span></span><br><span class="line"><span class="keyword">const</span> result = <span class="title function_">proofOfWork</span>(<span class="string">&#x27;Block Data&#x27;</span>, <span class="number">4</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Found: <span class="subst">$&#123;result.hash&#125;</span> with nonce <span class="subst">$&#123;result.nonce&#125;</span>`</span>);</span><br><span class="line"><span class="comment">// Output: Found: 0000a3f2... with nonce 157392</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-Address-Generation">3. Address Generation</h4>
+<div style="background: rgba(32, 55, 76, 0.5); padding: 1.5em; border-radius: 8px; margin: 2em 0;">
+<svg viewBox="0 0 480 60" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 550px; display: block; margin: 0 auto;">
+  <defs>
+    <style>
+      .addr-text { font-family: arial, sans-serif; font-size: 11px; fill: #fff; }
+      .addr-text-sm { font-family: arial, sans-serif; font-size: 9px; fill: #fff; }
+      .addr-text-dark { font-family: arial, sans-serif; font-size: 11px; fill: #222; }
+      .addr-box-start { fill: #90EE90; stroke: #ccc; stroke-width: 0.5; }
+      .addr-box-mid { fill: #87CEEB; stroke: #ccc; stroke-width: 0.5; }
+      .addr-box-end { fill: #FFD700; stroke: #333; stroke-width: 0.5; }
+      .addr-arrow { fill: none; stroke: #4c9be8; stroke-width: 0.5; }
+    </style>
+    <marker id="addr-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M 0 0 L 6 3 L 0 6 z" fill="#4c9be8"/>
+    </marker>
+  </defs>
+  <rect class="addr-box-start" x="10" y="18" width="50" height="25" rx="2"/>
+  <text class="addr-text-dark" x="35" y="34" text-anchor="middle">Public Key</text>
+  <path class="addr-arrow" d="M 60 30 L 95 30" marker-end="url(#addr-arrow)"/>
+  <rect class="addr-box-mid" x="95" y="18" width="70" height="25" rx="2"/>
+  <text class="addr-text-dark" x="130" y="34" text-anchor="middle">SHA-256</text>
+  <path class="addr-arrow" d="M 165 30 L 200 30" marker-end="url(#addr-arrow)"/>
+  <rect class="addr-box-mid" x="200" y="10" width="70" height="40" rx="2"/>
+  <text class="addr-text-dark" x="235" y="27" text-anchor="middle">RIPEMD</text>
+  <text class="addr-text-dark" x="235" y="40" text-anchor="middle">-160</text>
+  <path class="addr-arrow" d="M 270 30 L 305 30" marker-end="url(#addr-arrow)"/>
+  <rect class="addr-box-mid" x="305" y="10" width="70" height="40" rx="2"/>
+  <text class="addr-text-dark" x="340" y="27" text-anchor="middle">Base58</text>
+  <text class="addr-text-dark" x="340" y="40" text-anchor="middle">Check</text>
+  <path class="addr-arrow" d="M 375 30 L 410 30" marker-end="url(#addr-arrow)"/>
+  <rect class="addr-box-end" x="410" y="18" width="60" height="25" rx="2"/>
+  <text class="addr-text-dark" x="440" y="34" text-anchor="middle">Address</text>
+</svg>
+</div>
+<h3 id="Other-Important-Hash-Algorithms">Other Important Hash Algorithms</h3>
+<h4 id="RIPEMD-160">RIPEMD-160</h4>
+<ul>
+<li>Output: 160 bits (20 bytes)</li>
+<li>Use: Bitcoin address generation</li>
+<li>Feature: Shorter output, saves space</li>
+</ul>
+<h4 id="Keccak-256">Keccak-256</h4>
+<ul>
+<li>Used in: Ethereum</li>
+<li>Output: 256 bits</li>
+<li>Feature: SHA-3 variant</li>
+</ul>
+<h4 id="Blake2">Blake2</h4>
+<ul>
+<li>Used in: Some emerging blockchains</li>
+<li>Feature: Faster than SHA-256</li>
+<li>Security: Comparable to SHA-3</li>
+</ul>
+<h2 id="2-3-Symmetric-and-Asymmetric-Encryption">2.3 Symmetric and Asymmetric Encryption</h2>
+<h3 id="Symmetric-Encryption">Symmetric Encryption</h3>
+<p>Uses the <strong>same key</strong> for encryption and decryption.</p>
+<h4 id="How-It-Works">How It Works</h4>
+<div style="background: rgba(32, 55, 76, 0.5); padding: 1.5em; border-radius: 8px; margin: 2em 0;">
+<svg viewBox="0 0 320 195" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 400px; display: block; margin: 0 auto;">
+  <defs>
+    <style>
+      .seq-text { font-family: arial, sans-serif; font-size: 11px; fill: #fff; }
+      .seq-label { font-size: 10px; fill: #ccc; }
+      .seq-box { fill: #1f2020; stroke: #ccc; stroke-width: 0.5; }
+      .seq-line { stroke: #999; stroke-width: 0.5; }
+      .seq-arrow { fill: #4c9be8; stroke: #4c9be8; stroke-width: 0.5; }
+      .seq-note { fill: #4e5d6c; stroke: #666; stroke-width: 0.5; }
+    </style>
+    <marker id="arrowhead-compact" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M 0 0 L 6 3 L 0 6 z" class="seq-arrow"/>
+    </marker>
+  </defs>
+  <rect class="seq-box" x="10" y="3" width="50" height="20" rx="2"/>
+  <text class="seq-text" x="35" y="17" text-anchor="middle">Sender</text>
+  <rect class="seq-box" x="260" y="3" width="50" height="20" rx="2"/>
+  <text class="seq-text" x="285" y="17" text-anchor="middle">Receiver</text>
+  <line class="seq-line" x1="35" y1="25" x2="35" y2="175"/>
+  <line class="seq-line" x1="285" y1="25" x2="285" y2="175"/>
+  <rect class="seq-note" x="80" y="35" width="160" height="18" rx="2"/>
+  <text class="seq-label" x="160" y="47" text-anchor="middle" fill="#f0e6d2">Shared Key K</text>
+  <text class="seq-label" x="35" y="73" text-anchor="middle">Encrypt(M, K)</text>
+  <path class="seq-line" d="M 35 78 Q 60 78 60 88 Q 60 98 35 98" fill="none" marker-end="url(#arrowhead-compact)"/>
+  <text class="seq-label" x="160" y="118" text-anchor="middle">Ciphertext C</text>
+  <line class="seq-line" x1="35" y1="123" x2="285" y2="123" marker-end="url(#arrowhead-compact)"/>
+  <text class="seq-label" x="285" y="143" text-anchor="middle">Decrypt(C, K)</text>
+  <path class="seq-line" d="M 285 148 Q 310 148 310 158 Q 310 168 285 168" fill="none" marker-end="url(#arrowhead-compact)"/>
+  <rect class="seq-box" x="10" y="173" width="50" height="20" rx="2"/>
+  <text class="seq-text" x="35" y="187" text-anchor="middle">Sender</text>
+  <rect class="seq-box" x="260" y="173" width="50" height="20" rx="2"/>
+  <text class="seq-text" x="285" y="187" text-anchor="middle">Receiver</text>
+</svg>
+</div>
+<h4 id="Common-Symmetric-Encryption-Algorithms">Common Symmetric Encryption Algorithms</h4>
+<ul>
+<li>
+<p><strong>AES (Advanced Encryption Standard)</strong></p>
+<ul>
+<li>Most widely used</li>
+<li>Supports 128, 192, 256-bit keys</li>
+</ul>
+</li>
+<li>
+<p><strong>DES/3DES</strong></p>
+<ul>
+<li>Older standard</li>
+<li>No longer recommended</li>
+</ul>
+</li>
+</ul>
+<h4 id="Pros-and-Cons">Pros and Cons</h4>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Fast encryption speed</li>
+<li>Suitable for large data volumes</li>
+<li>Low computational resource consumption</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Difficult key distribution</li>
+<li>Complex key management</li>
+<li>Not suitable for public networks</li>
+</ul>
+<h3 id="Asymmetric-Encryption">Asymmetric Encryption</h3>
+<p>Uses a <strong>key pair</strong>: Public Key and Private Key.</p>
+<h4 id="Core-Concept">Core Concept</h4>
+<div style="background: rgba(32, 55, 76, 0.5); padding: 1.5em; border-radius: 8px; margin: 2em 0;">
+<svg viewBox="0 0 380 110" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 450px; display: block; margin: 0 auto;">
+  <defs>
+    <style>
+      .key-text { font-family: arial, sans-serif; font-size: 11px; fill: #fff; }
+      .key-text-sm { font-family: arial, sans-serif; font-size: 9px; fill: #fff; }
+      .key-text-dark { font-family: arial, sans-serif; font-size: 11px; fill: #222; }
+      .key-box-gen { fill: #4c9be8; stroke: #ccc; stroke-width: 0.5; }
+      .key-box-pk { fill: #90EE90; stroke: #ccc; stroke-width: 0.5; }
+      .key-box-sk { fill: #FFD700; stroke: #333; stroke-width: 0.5; }
+      .key-box-rel { fill: #87CEEB; stroke: #ccc; stroke-width: 0.5; }
+      .key-arrow { fill: none; stroke: #4c9be8; stroke-width: 0.5; }
+      .key-dash { fill: none; stroke: #999; stroke-width: 0.5; stroke-dasharray: 3,2; }
+    </style>
+    <marker id="key-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M 0 0 L 6 3 L 0 6 z" fill="#4c9be8"/>
+    </marker>
+  </defs>
+  <rect class="key-box-gen" x="10" y="40" width="90" height="30" rx="2"/>
+  <text class="key-text" x="55" y="59" text-anchor="middle">Key Pair Gen</text>
+  <path class="key-arrow" d="M 100 55 L 150 25" marker-end="url(#key-arrow)"/>
+  <rect class="key-box-pk" x="150" y="10" width="100" height="30" rx="2"/>
+  <text class="key-text-dark" x="200" y="29" text-anchor="middle">Public Key</text>
+  <path class="key-arrow" d="M 100 55 L 150 80" marker-end="url(#key-arrow)"/>
+  <rect class="key-box-sk" x="150" y="65" width="90" height="30" rx="2"/>
+  <text class="key-text-dark" x="195" y="84" text-anchor="middle">Private Key</text>
+  <path class="key-dash" d="M 250 25 L 280 25 Q 290 25 290 35 L 290 45 Q 290 55 300 55 L 310 55"/>
+  <rect class="key-box-rel" x="270" y="40" width="100" height="30" rx="2"/>
+  <text class="key-text-dark" x="320" y="52" text-anchor="middle">Mathematical</text>
+  <text class="key-text-dark" x="320" y="65" text-anchor="middle">One-way Link</text>
+  <path class="key-dash" d="M 240 80 L 280 80 Q 290 80 290 70 L 290 60 Q 290 55 300 55 L 310 55"/>
+</svg>
+</div>
+<h4 id="Encrypted-Communication-Flow">Encrypted Communication Flow</h4>
+<div style="background: rgba(32, 55, 76, 0.5); padding: 1.5em; border-radius: 8px; margin: 2em 0;">
+<svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 350px; display: block; margin: 0 auto;">
+  <defs>
+    <style>
+      .enc-text { font-family: arial, sans-serif; font-size: 11px; fill: #fff; }
+      .enc-label { font-size: 10px; fill: #ccc; }
+      .enc-box { fill: #1f2020; stroke: #ccc; stroke-width: 0.5; }
+      .enc-line { stroke: #999; stroke-width: 0.5; }
+      .enc-arrow { fill: #4c9be8; stroke: #4c9be8; stroke-width: 0.5; }
+    </style>
+    <marker id="enc-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M 0 0 L 6 3 L 0 6 z" class="enc-arrow"/>
+    </marker>
+  </defs>
+  <rect class="enc-box" x="10" y="3" width="50" height="20" rx="2"/>
+  <text class="enc-text" x="35" y="17" text-anchor="middle">Alice</text>
+  <rect class="enc-box" x="220" y="3" width="50" height="20" rx="2"/>
+  <text class="enc-text" x="245" y="17" text-anchor="middle">Bob</text>
+  <line class="enc-line" x1="35" y1="25" x2="35" y2="140"/>
+  <line class="enc-line" x1="245" y1="25" x2="245" y2="140"/>
+  <text class="enc-label" x="140" y="43" text-anchor="middle">Public Key pk_Bob</text>
+  <line class="enc-arrow" x1="245" y1="48" x2="35" y2="48" marker-end="url(#enc-arrow)"/>
+  <text class="enc-label" x="35" y="68" text-anchor="middle">Encrypt(M, pk_Bob)</text>
+  <path class="enc-line" d="M 35 73 Q 60 73 60 83 Q 60 93 35 93" fill="none" marker-end="url(#enc-arrow)"/>
+  <text class="enc-label" x="140" y="113" text-anchor="middle">Ciphertext C</text>
+  <line class="enc-arrow" x1="35" y1="118" x2="245" y2="118" marker-end="url(#enc-arrow)"/>
+  <text class="enc-label" x="245" y="133" text-anchor="middle">Decrypt(C, sk_Bob)</text>
+  <path class="enc-line" d="M 245 138 Q 270 138 270 148 Q 270 158 245 158" fill="none" marker-end="url(#enc-arrow)"/>
+  <rect class="enc-box" x="10" y="138" width="50" height="20" rx="2"/>
+  <text class="enc-text" x="35" y="152" text-anchor="middle">Alice</text>
+  <rect class="enc-box" x="220" y="138" width="50" height="20" rx="2"/>
+  <text class="enc-text" x="245" y="152" text-anchor="middle">Bob</text>
+</svg>
+</div>
+<h4 id="Common-Asymmetric-Encryption-Algorithms">Common Asymmetric Encryption Algorithms</h4>
+<p><strong>1. RSA</strong></p>
+<ul>
+<li>Based on integer factorization problem</li>
+<li>Key length: 2048-4096 bits</li>
+<li>Use: TLS/SSL, digital signatures</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// RSA concept example (simplified)</span></span><br><span class="line"><span class="comment">// Key generation</span></span><br><span class="line"><span class="keyword">const</span> &#123; publicKey, privateKey &#125; = <span class="title function_">generateRSAKeyPair</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Encryption</span></span><br><span class="line"><span class="keyword">const</span> encrypted = <span class="title function_">rsaEncrypt</span>(message, publicKey);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Decryption</span></span><br><span class="line"><span class="keyword">const</span> decrypted = <span class="title function_">rsaDecrypt</span>(encrypted, privateKey);</span><br></pre></td></tr></table></figure>
+<p><strong>2. ECC (Elliptic Curve Cryptography)</strong></p>
+<ul>
+<li>Based on elliptic curve discrete logarithm problem</li>
+<li>Key length: 256 bits (equivalent to RSA 3072-bit security)</li>
+<li>Advantage: Shorter keys, more efficient</li>
+</ul>
+<p><strong>Common Curves in Blockchain:</strong></p>
+<ul>
+<li><strong>secp256k1</strong>: Used by Bitcoin, Ethereum</li>
+<li><strong>Ed25519</strong>: Used by Solana, Polkadot</li>
+<li><strong>secp256r1</strong>: Some enterprise blockchains</li>
+</ul>
+<h4 id="How-ECC-Works">How ECC Works</h4>
+<div style="background: rgba(32, 55, 76, 0.5); padding: 1.5em; border-radius: 8px; margin: 2em 0;">
+<svg viewBox="0 0 520 60" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 600px; display: block; margin: 0 auto;">
+  <defs>
+    <style>
+      .ecc-text { font-family: arial, sans-serif; font-size: 10px; fill: #fff; }
+      .ecc-text-dark { font-family: arial, sans-serif; font-size: 10px; fill: #222; }
+      .ecc-box1 { fill: #4c9be8; stroke: #ccc; stroke-width: 0.5; }
+      .ecc-box2 { fill: #87CEEB; stroke: #ccc; stroke-width: 0.5; }
+      .ecc-box3 { fill: #90EE90; stroke: #ccc; stroke-width: 0.5; }
+      .ecc-box4 { fill: #FFD700; stroke: #333; stroke-width: 0.5; }
+      .ecc-arrow { fill: none; stroke: #4c9be8; stroke-width: 0.5; }
+    </style>
+    <marker id="ecc-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M 0 0 L 6 3 L 0 6 z" fill="#4c9be8"/>
+    </marker>
+  </defs>
+  <rect class="ecc-box1" x="10" y="10" width="70" height="40" rx="2"/>
+  <text class="ecc-text" x="45" y="26" text-anchor="middle">Elliptic Curve</text>
+  <text class="ecc-text" x="45" y="40" text-anchor="middle">y²=x³+ax+b</text>
+  <path class="ecc-arrow" d="M 80 30 L 110 30" marker-end="url(#ecc-arrow)"/>
+  <rect class="ecc-box2" x="110" y="10" width="75" height="40" rx="2"/>
+  <text class="ecc-text-dark" x="147" y="26" text-anchor="middle">secp256k1</text>
+  <text class="ecc-text-dark" x="147" y="40" text-anchor="middle">y²=x³+7</text>
+  <path class="ecc-arrow" d="M 185 30 L 215 30" marker-end="url(#ecc-arrow)"/>
+  <rect class="ecc-box3" x="215" y="10" width="60" height="40" rx="2"/>
+  <text class="ecc-text-dark" x="245" y="26" text-anchor="middle">Point Add</text>
+  <text class="ecc-text-dark" x="245" y="40" text-anchor="middle">P+Q=R</text>
+  <path class="ecc-arrow" d="M 275 30 L 305 30" marker-end="url(#ecc-arrow)"/>
+  <rect class="ecc-box4" x="305" y="10" width="70" height="40" rx="2"/>
+  <text class="ecc-text-dark" x="340" y="26" text-anchor="middle">Private Key</text>
+  <text class="ecc-text-dark" x="340" y="40" text-anchor="middle">Random 256bit</text>
+  <path class="ecc-arrow" d="M 375 30 L 405 30" marker-end="url(#ecc-arrow)"/>
+  <rect class="ecc-box4" x="405" y="10" width="65" height="40" rx="2"/>
+  <text class="ecc-text-dark" x="437" y="26" text-anchor="middle">Public Key</text>
+  <text class="ecc-text-dark" x="437" y="40" text-anchor="middle">pk=sk×G</text>
+</svg>
+</div>
+<h4 id="Example-Ethereum-Key-Pair">Example: Ethereum Key Pair</h4>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Ethereum key pair generation example</span></span><br><span class="line"><span class="keyword">const</span> &#123; randomBytes &#125; = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> secp256k1 = <span class="built_in">require</span>(<span class="string">&#x27;secp256k1&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. Generate private key (256-bit random number)</span></span><br><span class="line"><span class="keyword">let</span> privateKey;</span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    privateKey = <span class="title function_">randomBytes</span>(<span class="number">32</span>);</span><br><span class="line">&#125; <span class="keyword">while</span> (!secp256k1.<span class="title function_">privateKeyVerify</span>(privateKey));</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Private Key:&#x27;</span>, privateKey.<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>));</span><br><span class="line"><span class="comment">// Output: 7c4e8... (64 hex chars = 32 bytes = 256 bits)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. Derive public key from private key</span></span><br><span class="line"><span class="keyword">const</span> publicKey = secp256k1.<span class="title function_">publicKeyCreate</span>(privateKey, <span class="literal">false</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Public Key:&#x27;</span>, publicKey.<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>));</span><br><span class="line"><span class="comment">// Output: 04b8a... (130 hex chars = 65 bytes, uncompressed format)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. Generate Ethereum address (last 20 bytes of Keccak-256 hash of public key)</span></span><br><span class="line"><span class="keyword">const</span> keccak256 = <span class="built_in">require</span>(<span class="string">&#x27;keccak256&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> address = <span class="title function_">keccak256</span>(publicKey.<span class="title function_">slice</span>(<span class="number">1</span>)).<span class="title function_">slice</span>(-<span class="number">20</span>).<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Address: 0x&#x27;</span> + address);</span><br><span class="line"><span class="comment">// Output: 0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb0</span></span><br></pre></td></tr></table></figure>
+<h3 id="Symmetric-vs-Asymmetric-Encryption-Comparison">Symmetric vs Asymmetric Encryption Comparison</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Symmetric</th>
+<th>Asymmetric</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keys</td>
+<td>Single key</td>
+<td>Public + Private</td>
+</tr>
+<tr>
+<td>Speed</td>
+<td>Fast</td>
+<td>Slow (10-1000x)</td>
+</tr>
+<tr>
+<td>Key Distribution</td>
+<td>Difficult</td>
+<td>Easy</td>
+</tr>
+<tr>
+<td>Use Case</td>
+<td>Large data encryption</td>
+<td>Key exchange, signatures</td>
+</tr>
+<tr>
+<td>Examples</td>
+<td>AES, DES</td>
+<td>RSA, ECC</td>
+</tr>
+<tr>
+<td>Blockchain App</td>
+<td>Wallet encryption</td>
+<td>Transaction signing</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-4-Digital-Signatures">2.4 Digital Signatures</h2>
+<p><strong>Digital Signatures</strong> use a private key to sign data, and anyone can verify the signature’s authenticity using the corresponding public key.</p>
+<h3 id="Purpose-of-Digital-Signatures">Purpose of Digital Signatures</h3>
+<ol>
+<li><strong>Authentication</strong>: Proves message truly comes from private key holder</li>
+<li><strong>Data Integrity</strong>: Proves message hasn’t been tampered with</li>
+<li><strong>Non-repudiation</strong>: Signer cannot deny having signed</li>
+</ol>
+<h3 id="Digital-Signature-Workflow">Digital Signature Workflow</h3>
+<div style="background: rgba(32, 55, 76, 0.5); padding: 1.5em; border-radius: 8px; margin: 2em 0;">
+<svg viewBox="0 0 580 90" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 650px; display: block; margin: 0 auto;">
+  <defs>
+    <style>
+      .digsig-text { font-family: arial, sans-serif; font-size: 11px; fill: #fff; }
+      .digsig-text-dark { font-family: arial, sans-serif; font-size: 11px; fill: #222; }
+      .digsig-box-msg { fill: #90EE90; stroke: #ccc; stroke-width: 0.5; }
+      .digsig-box-hash { fill: #1f2020; stroke: #4c9be8; stroke-width: 0.5; }
+      .digsig-box-sign { fill: #1f2020; stroke: #4c9be8; stroke-width: 0.5; }
+      .digsig-box-sig { fill: #FFD700; stroke: #333; stroke-width: 0.5; }
+      .digsig-box-verify { fill: #1f2020; stroke: #4c9be8; stroke-width: 0.5; }
+      .digsig-box-valid { fill: #90EE90; stroke: #ccc; stroke-width: 0.5; }
+      .digsig-box-invalid { fill: #FF6B6B; stroke: #333; stroke-width: 0.5; }
+      .digsig-arrow { fill: none; stroke: #4c9be8; stroke-width: 0.5; }
+      .digsig-arrow-dash { fill: none; stroke: #4c9be8; stroke-width: 0.5; stroke-dasharray: 3,2; }
+    </style>
+    <marker id="digsig-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M 0 0 L 6 3 L 0 6 z" fill="#4c9be8"/>
+    </marker>
+  </defs>
+  <rect class="digsig-box-msg" x="10" y="10" width="60" height="25" rx="2"/>
+  <text class="digsig-text-dark" x="40" y="26" text-anchor="middle">Message M</text>
+  <path class="digsig-arrow" d="M 70 22 L 100 22" marker-end="url(#digsig-arrow)"/>
+  <rect class="digsig-box-hash" x="100" y="10" width="50" height="25" rx="2"/>
+  <text class="digsig-text" x="125" y="26" text-anchor="middle">Hash</text>
+  <path class="digsig-arrow" d="M 150 22 L 180 22" marker-end="url(#digsig-arrow)"/>
+  <rect class="digsig-box-sign" x="180" y="10" width="60" height="25" rx="2"/>
+  <text class="digsig-text" x="210" y="26" text-anchor="middle">Sign sk</text>
+  <path class="digsig-arrow" d="M 240 22 L 270 22" marker-end="url(#digsig-arrow)"/>
+  <rect class="digsig-box-sig" x="270" y="10" width="60" height="25" rx="2"/>
+  <text class="digsig-text-dark" x="300" y="26" text-anchor="middle">Signature σ</text>
+  <path class="digsig-arrow" d="M 330 22 L 360 22" marker-end="url(#digsig-arrow)"/>
+  <rect class="digsig-box-verify" x="360" y="10" width="60" height="25" rx="2"/>
+  <text class="digsig-text" x="390" y="26" text-anchor="middle">Verify pk</text>
+  <path class="digsig-arrow-dash" d="M 40 35 Q 40 55 225 55 Q 390 55 390 35" marker-end="url(#digsig-arrow)"/>
+  <path class="digsig-arrow" d="M 390 35 L 390 55 L 450 55" marker-end="url(#digsig-arrow)"/>
+  <rect class="digsig-box-valid" x="450" y="42" width="60" height="25" rx="2"/>
+  <text class="digsig-text-dark" x="480" y="58" text-anchor="middle">Valid</text>
+  <rect class="digsig-box-invalid" x="450" y="10" width="60" height="25" rx="2"/>
+  <text class="digsig-text" x="480" y="26" text-anchor="middle">Invalid</text>
+  <path class="digsig-arrow" d="M 420 22 L 450 22" marker-end="url(#digsig-arrow)"/>
+</svg>
+</div>
+<h3 id="ECDSA-Elliptic-Curve-Digital-Signature-Algorithm">ECDSA (Elliptic Curve Digital Signature Algorithm)</h3>
+<p>The signature algorithm used by Bitcoin and Ethereum.</p>
+<h4 id="Signature-Generation">Signature Generation</h4>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Ethereum transaction signing example</span></span><br><span class="line"><span class="keyword">const</span> secp256k1 = <span class="built_in">require</span>(<span class="string">&#x27;secp256k1&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> keccak256 = <span class="built_in">require</span>(<span class="string">&#x27;keccak256&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Transaction data</span></span><br><span class="line"><span class="keyword">const</span> txData = &#123;</span><br><span class="line">    <span class="attr">nonce</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">gasPrice</span>: <span class="string">&#x27;20000000000&#x27;</span>,</span><br><span class="line">    <span class="attr">gasLimit</span>: <span class="string">&#x27;21000&#x27;</span>,</span><br><span class="line">    <span class="attr">to</span>: <span class="string">&#x27;0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb0&#x27;</span>,</span><br><span class="line">    <span class="attr">value</span>: <span class="string">&#x27;1000000000000000000&#x27;</span>,  <span class="comment">// 1 ETH</span></span><br><span class="line">    <span class="attr">data</span>: <span class="string">&#x27;0x&#x27;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. Serialize transaction data (RLP encoding)</span></span><br><span class="line"><span class="keyword">const</span> serialized = <span class="title function_">rlpEncode</span>(txData);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. Calculate hash</span></span><br><span class="line"><span class="keyword">const</span> txHash = <span class="title function_">keccak256</span>(serialized);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. Sign with private key</span></span><br><span class="line"><span class="keyword">const</span> &#123; signature, recid &#125; = secp256k1.<span class="title function_">ecdsaSign</span>(txHash, privateKey);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4. Signature result</span></span><br><span class="line"><span class="keyword">const</span> r = signature.<span class="title function_">slice</span>(<span class="number">0</span>, <span class="number">32</span>);</span><br><span class="line"><span class="keyword">const</span> s = signature.<span class="title function_">slice</span>(<span class="number">32</span>, <span class="number">64</span>);</span><br><span class="line"><span class="keyword">const</span> v = recid + <span class="number">27</span>;  <span class="comment">// Ethereum&#x27;s v value</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Signature - r:&#x27;</span>, r.<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Signature - s:&#x27;</span>, s.<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Signature - v:&#x27;</span>, v);</span><br></pre></td></tr></table></figure>
+<h4 id="Signature-Verification">Signature Verification</h4>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Verify signature</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">verifySignature</span>(<span class="params">txHash, signature, publicKey</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> secp256k1.<span class="title function_">ecdsaVerify</span>(signature, txHash, publicKey);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Usage</span></span><br><span class="line"><span class="keyword">const</span> isValid = <span class="title function_">verifySignature</span>(txHash, signature, publicKey);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Signature valid:&#x27;</span>, isValid);  <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h3 id="Bitcoin-Transaction-Signing">Bitcoin Transaction Signing</h3>
+<div style="background: rgba(32, 55, 76, 0.5); padding: 1.5em; border-radius: 8px; margin: 2em 0;">
+<svg viewBox="0 0 480 45" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 550px; display: block; margin: 0 auto;">
+  <defs>
+    <style>
+      .btc-sig-text { font-family: arial, sans-serif; font-size: 11px; fill: #fff; }
+      .btc-sig-text-dark { font-family: arial, sans-serif; font-size: 11px; fill: #222; }
+      .btc-sig-box1 { fill: #90EE90; stroke: #ccc; stroke-width: 0.5; }
+      .btc-sig-box2 { fill: #1f2020; stroke: #ccc; stroke-width: 0.5; }
+      .btc-sig-box3 { fill: #87CEEB; stroke: #ccc; stroke-width: 0.5; }
+      .btc-sig-box4 { fill: #FFD700; stroke: #333; stroke-width: 0.5; }
+      .btc-sig-box5 { fill: #4c9be8; stroke: #ccc; stroke-width: 0.5; }
+      .btc-sig-arrow { fill: none; stroke: #4c9be8; stroke-width: 0.5; }
+    </style>
+    <marker id="btc-sig-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M 0 0 L 6 3 L 0 6 z" fill="#4c9be8"/>
+    </marker>
+  </defs>
+  <rect class="btc-sig-box1" x="10" y="10" width="70" height="25" rx="2"/>
+  <text class="btc-sig-text-dark" x="45" y="26" text-anchor="middle">Build Tx</text>
+  <path class="btc-sig-arrow" d="M 80 22 L 110 22" marker-end="url(#btc-sig-arrow)"/>
+  <rect class="btc-sig-box2" x="110" y="10" width="60" height="25" rx="2"/>
+  <text class="btc-sig-text" x="140" y="26" text-anchor="middle">Serialize</text>
+  <path class="btc-sig-arrow" d="M 170 22 L 200 22" marker-end="url(#btc-sig-arrow)"/>
+  <rect class="btc-sig-box3" x="200" y="10" width="80" height="25" rx="2"/>
+  <text class="btc-sig-text-dark" x="240" y="26" text-anchor="middle">Double SHA-256</text>
+  <path class="btc-sig-arrow" d="M 280 22 L 310 22" marker-end="url(#btc-sig-arrow)"/>
+  <rect class="btc-sig-box4" x="310" y="10" width="75" height="25" rx="2"/>
+  <text class="btc-sig-text-dark" x="347" y="26" text-anchor="middle">ECDSA Sign</text>
+  <path class="btc-sig-arrow" d="M 385 22 L 415 22" marker-end="url(#btc-sig-arrow)"/>
+  <rect class="btc-sig-box5" x="415" y="10" width="65" height="25" rx="2"/>
+  <text class="btc-sig-text" x="447" y="26" text-anchor="middle">Complete Tx</text>
+</svg>
+</div>
+<h3 id="Multi-Signature-MultiSig">Multi-Signature (MultiSig)</h3>
+<p>Requires multiple private keys to sign together to complete a transaction.</p>
+<h4 id="M-of-N-MultiSig">M-of-N MultiSig</h4>
+<div style="background: rgba(32, 55, 76, 0.5); padding: 1.5em; border-radius: 8px; margin: 2em 0;">
+<svg viewBox="0 0 470 140" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 500px; display: block; margin: 0 auto;">
+  <defs>
+    <style>
+      .multisig-text { font-family: arial, sans-serif; font-size: 11px; fill: #fff; }
+      .multisig-text-sm { font-family: arial, sans-serif; font-size: 10px; fill: #fff; }
+      .multisig-text-dark { font-family: arial, sans-serif; font-size: 11px; fill: #222; }
+      .multisig-text-sm-dark { font-family: arial, sans-serif; font-size: 10px; fill: #222; }
+      .multisig-box-main { fill: #4c9be8; stroke: #ccc; stroke-width: 0.5; }
+      .multisig-box-user { fill: #90EE90; stroke: #ccc; stroke-width: 0.5; }
+      .multisig-box-tx { fill: #1f2020; stroke: #ccc; stroke-width: 0.5; }
+      .multisig-box-sign { fill: #87CEEB; stroke: #ccc; stroke-width: 0.5; }
+      .multisig-box-valid { fill: #FFD700; stroke: #333; stroke-width: 0.5; }
+      .multisig-arrow { fill: none; stroke: #4c9be8; stroke-width: 0.5; }
+    </style>
+    <marker id="multisig-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M 0 0 L 6 3 L 0 6 z" fill="#4c9be8"/>
+    </marker>
+  </defs>
+  <rect class="multisig-box-main" x="10" y="50" width="85" height="30" rx="2"/>
+  <text class="multisig-text" x="52" y="69" text-anchor="middle">2-of-3 MultiSig</text>
+  <path class="multisig-arrow" d="M 95 65 L 150 20" marker-end="url(#multisig-arrow)"/>
+  <rect class="multisig-box-user" x="150" y="5" width="50" height="30" rx="2"/>
+  <text class="multisig-text-dark" x="175" y="24" text-anchor="middle">Alice</text>
+  <path class="multisig-arrow" d="M 95 65 L 150 65" marker-end="url(#multisig-arrow)"/>
+  <rect class="multisig-box-user" x="150" y="50" width="50" height="30" rx="2"/>
+  <text class="multisig-text-dark" x="175" y="69" text-anchor="middle">Bob</text>
+  <path class="multisig-arrow" d="M 95 65 L 150 110" marker-end="url(#multisig-arrow)"/>
+  <rect class="multisig-box-user" x="150" y="95" width="55" height="30" rx="2"/>
+  <text class="multisig-text-dark" x="177" y="114" text-anchor="middle">Charlie</text>
+  <rect class="multisig-box-tx" x="240" y="50" width="45" height="30" rx="2"/>
+  <text class="multisig-text" x="262" y="69" text-anchor="middle">Tx</text>
+  <path class="multisig-arrow" d="M 285 65 L 315 65" marker-end="url(#multisig-arrow)"/>
+  <rect class="multisig-box-sign" x="315" y="50" width="55" height="30" rx="2"/>
+  <text class="multisig-text-sm-dark" x="342" y="69" text-anchor="middle">Sig A</text>
+  <path class="multisig-arrow" d="M 370 65 L 400 65" marker-end="url(#multisig-arrow)"/>
+  <rect class="multisig-box-sign" x="400" y="50" width="55" height="30" rx="2"/>
+  <text class="multisig-text-sm-dark" x="427" y="69" text-anchor="middle">Sig B</text>
+  <rect class="multisig-box-valid" x="320" y="100" width="70" height="30" rx="2"/>
+  <text class="multisig-text-dark" x="355" y="119" text-anchor="middle">Valid</text>
+  <path class="multisig-arrow" d="M 427 80 Q 427 90 420 90 L 390 90 Q 380 90 370 95 Q 355 100 355 100" marker-end="url(#multisig-arrow)"/>
+</svg>
+</div>
+<h4 id="Bitcoin-P2SH-MultiSig-Script">Bitcoin P2SH MultiSig Script</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 2-of-3 multisig script</span><br><span class="line">OP_2</span><br><span class="line">&lt;Public Key A&gt; &lt;Public Key B&gt; &lt;Public Key C&gt;</span><br><span class="line">OP_3</span><br><span class="line">OP_CHECKMULTISIG</span><br></pre></td></tr></table></figure>
+<h2 id="2-5-Merkle-Trees">2.5 Merkle Trees</h2>
+<p>A <strong>Merkle Tree</strong>, also known as a hash tree, is a tree data structure used to efficiently verify the integrity of large datasets.</p>
+<h3 id="Merkle-Tree-Structure">Merkle Tree Structure</h3>
+<div style="background: rgba(32, 55, 76, 0.5); padding: 1.5em; border-radius: 8px; margin: 2em 0;">
+<svg viewBox="0 0 380 180" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 450px; display: block; margin: 0 auto;">
+  <defs>
+    <style>
+      .merkle-text { font-family: arial, sans-serif; font-size: 10px; fill: #fff; }
+      .merkle-text-sm { font-family: arial, sans-serif; font-size: 9px; fill: #fff; }
+      .merkle-text-dark { font-family: arial, sans-serif; font-size: 10px; fill: #222; }
+      .merkle-text-sm-dark { font-family: arial, sans-serif; font-size: 9px; fill: #222; }
+      .merkle-box-root { fill: #FFD700; stroke: #333; stroke-width: 0.5; }
+      .merkle-box-mid { fill: #87CEEB; stroke: #ccc; stroke-width: 0.5; }
+      .merkle-box-leaf { fill: #90EE90; stroke: #ccc; stroke-width: 0.5; }
+      .merkle-box-tx { fill: #1f2020; stroke: #4c9be8; stroke-width: 0.5; }
+      .merkle-line { stroke: #4c9be8; stroke-width: 0.5; }
+    </style>
+  </defs>
+  <rect class="merkle-box-root" x="145" y="5" width="90" height="25" rx="2"/>
+  <text class="merkle-text-dark" x="190" y="21" text-anchor="middle">Merkle Root</text>
+  <line class="merkle-line" x1="190" y1="30" x2="100" y2="50"/>
+  <line class="merkle-line" x1="190" y1="30" x2="280" y2="50"/>
+  <rect class="merkle-box-mid" x="55" y="50" width="90" height="25" rx="2"/>
+  <text class="merkle-text-dark" x="100" y="66" text-anchor="middle">Hash 0-1</text>
+  <rect class="merkle-box-mid" x="235" y="50" width="90" height="25" rx="2"/>
+  <text class="merkle-text-dark" x="280" y="66" text-anchor="middle">Hash 2-3</text>
+  <line class="merkle-line" x1="100" y1="75" x2="55" y2="95"/>
+  <line class="merkle-line" x1="100" y1="75" x2="145" y2="95"/>
+  <line class="merkle-line" x1="280" y1="75" x2="235" y2="95"/>
+  <line class="merkle-line" x1="280" y1="75" x2="325" y2="95"/>
+  <rect class="merkle-box-leaf" x="10" y="95" width="60" height="25" rx="2"/>
+  <text class="merkle-text-sm-dark" x="40" y="111" text-anchor="middle">Hash 0</text>
+  <rect class="merkle-box-leaf" x="115" y="95" width="60" height="25" rx="2"/>
+  <text class="merkle-text-sm-dark" x="145" y="111" text-anchor="middle">Hash 1</text>
+  <rect class="merkle-box-leaf" x="205" y="95" width="60" height="25" rx="2"/>
+  <text class="merkle-text-sm-dark" x="235" y="111" text-anchor="middle">Hash 2</text>
+  <rect class="merkle-box-leaf" x="310" y="95" width="60" height="25" rx="2"/>
+  <text class="merkle-text-sm-dark" x="340" y="111" text-anchor="middle">Hash 3</text>
+  <line class="merkle-line" x1="40" y1="120" x2="40" y2="140"/>
+  <line class="merkle-line" x1="145" y1="120" x2="145" y2="140"/>
+  <line class="merkle-line" x1="235" y1="120" x2="235" y2="140"/>
+  <line class="merkle-line" x1="340" y1="120" x2="340" y2="140"/>
+  <rect class="merkle-box-tx" x="15" y="140" width="50" height="25" rx="2"/>
+  <text class="merkle-text-sm" x="40" y="156" text-anchor="middle">Tx 0</text>
+  <rect class="merkle-box-tx" x="120" y="140" width="50" height="25" rx="2"/>
+  <text class="merkle-text-sm" x="145" y="156" text-anchor="middle">Tx 1</text>
+  <rect class="merkle-box-tx" x="210" y="140" width="50" height="25" rx="2"/>
+  <text class="merkle-text-sm" x="235" y="156" text-anchor="middle">Tx 2</text>
+  <rect class="merkle-box-tx" x="315" y="140" width="50" height="25" rx="2"/>
+  <text class="merkle-text-sm" x="340" y="156" text-anchor="middle">Tx 3</text>
+</svg>
+</div>
+<h3 id="Building-a-Merkle-Tree">Building a Merkle Tree</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Merkle tree implementation example</span></span><br><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">&#x27;crypto&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MerkleTree</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">leaves</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">leaves</span> = leaves.<span class="title function_">map</span>(<span class="function"><span class="params">l</span> =&gt;</span> <span class="variable language_">this</span>.<span class="title function_">hash</span>(l));</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">root</span> = <span class="variable language_">this</span>.<span class="title function_">buildTree</span>(<span class="variable language_">this</span>.<span class="property">leaves</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">hash</span>(<span class="params">data</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> crypto.<span class="title function_">createHash</span>(<span class="string">&#x27;sha256&#x27;</span>)</span><br><span class="line">            .<span class="title function_">update</span>(data)</span><br><span class="line">            .<span class="title function_">digest</span>(<span class="string">&#x27;hex&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">buildTree</span>(<span class="params">nodes</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nodes.<span class="property">length</span> === <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> nodes[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">const</span> parents = [];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nodes.<span class="property">length</span>; i += <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">const</span> left = nodes[i];</span><br><span class="line">            <span class="keyword">const</span> right = nodes[i + <span class="number">1</span>] || nodes[i];  <span class="comment">// Duplicate last node if odd count</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">const</span> parent = <span class="variable language_">this</span>.<span class="title function_">hash</span>(left + right);</span><br><span class="line">            parents.<span class="title function_">push</span>(parent);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">buildTree</span>(parents);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">getRoot</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">root</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Usage example</span></span><br><span class="line"><span class="keyword">const</span> transactions = [<span class="string">&#x27;tx1&#x27;</span>, <span class="string">&#x27;tx2&#x27;</span>, <span class="string">&#x27;tx3&#x27;</span>, <span class="string">&#x27;tx4&#x27;</span>];</span><br><span class="line"><span class="keyword">const</span> tree = <span class="keyword">new</span> <span class="title class_">MerkleTree</span>(transactions);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Merkle Root:&#x27;</span>, tree.<span class="title function_">getRoot</span>());</span><br></pre></td></tr></table></figure>
+<h3 id="Merkle-Proof">Merkle Proof</h3>
+<p>Lightweight verification without downloading all data.</p>
+<div style="background: rgba(32, 55, 76, 0.5); padding: 1.5em; border-radius: 8px; margin: 2em 0;">
+<svg viewBox="0 0 550 100" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 600px; display: block; margin: 0 auto;">
+  <defs>
+    <style>
+      .merkle-proof-text { font-family: arial, sans-serif; font-size: 10px; fill: #fff; }
+      .merkle-proof-text-sm { font-family: arial, sans-serif; font-size: 9px; fill: #fff; }
+      .merkle-proof-text-dark { font-family: arial, sans-serif; font-size: 10px; fill: #222; }
+      .merkle-proof-text-sm-dark { font-family: arial, sans-serif; font-size: 9px; fill: #222; }
+      .merkle-proof-box-proof { fill: #87CEEB; stroke: #ccc; stroke-width: 0.5; }
+      .merkle-proof-box-proc { fill: #1f2020; stroke: #4c9be8; stroke-width: 0.5; }
+      .merkle-proof-box-cmp { fill: #4c9be8; stroke: #ccc; stroke-width: 0.5; }
+      .merkle-proof-box-valid { fill: #90EE90; stroke: #ccc; stroke-width: 0.5; }
+      .merkle-proof-box-invalid { fill: #FF6B6B; stroke: #333; stroke-width: 0.5; }
+      .merkle-proof-arrow { fill: none; stroke: #4c9be8; stroke-width: 0.5; }
+    </style>
+    <marker id="merkle-proof-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M 0 0 L 6 3 L 0 6 z" fill="#4c9be8"/>
+    </marker>
+  </defs>
+  <rect class="merkle-proof-box-proof" x="10" y="10" width="60" height="25" rx="2"/>
+  <text class="merkle-proof-text-dark" x="40" y="26" text-anchor="middle">Hash 3</text>
+  <path class="merkle-proof-arrow" d="M 70 22 L 100 47" marker-end="url(#merkle-proof-arrow)"/>
+  <rect class="merkle-proof-box-proof" x="10" y="47" width="70" height="25" rx="2"/>
+  <text class="merkle-proof-text-dark" x="45" y="63" text-anchor="middle">Hash 0-1</text>
+  <path class="merkle-proof-arrow" d="M 80 59 L 100 59" marker-end="url(#merkle-proof-arrow)"/>
+  <rect class="merkle-proof-box-proc" x="100" y="47" width="75" height="25" rx="2"/>
+  <text class="merkle-proof-text" x="137" y="63" text-anchor="middle">Hash Tx 2</text>
+  <path class="merkle-proof-arrow" d="M 175 59 L 205 59" marker-end="url(#merkle-proof-arrow)"/>
+  <rect class="merkle-proof-box-proc" x="205" y="47" width="75" height="25" rx="2"/>
+  <text class="merkle-proof-text" x="242" y="63" text-anchor="middle">Hash 2-3</text>
+  <path class="merkle-proof-arrow" d="M 280 59 L 310 59" marker-end="url(#merkle-proof-arrow)"/>
+  <rect class="merkle-proof-box-proc" x="310" y="47" width="70" height="25" rx="2"/>
+  <text class="merkle-proof-text-sm" x="345" y="63" text-anchor="middle">Calc Root</text>
+  <path class="merkle-proof-arrow" d="M 380 59 L 410 59" marker-end="url(#merkle-proof-arrow)"/>
+  <rect class="merkle-proof-box-cmp" x="410" y="47" width="50" height="25" rx="2"/>
+  <text class="merkle-proof-text" x="435" y="63" text-anchor="middle">Compare</text>
+  <path class="merkle-proof-arrow" d="M 435 47 L 435 30 L 460 30 L 470 30" marker-end="url(#merkle-proof-arrow)"/>
+  <rect class="merkle-proof-box-valid" x="470" y="10" width="75" height="25" rx="2"/>
+  <text class="merkle-proof-text-sm-dark" x="508" y="26" text-anchor="middle">Exists</text>
+  <path class="merkle-proof-arrow" d="M 435 72 L 435 85 L 440 85" marker-end="url(#merkle-proof-arrow)"/>
+  <rect class="merkle-proof-box-invalid" x="440" y="72" width="95" height="25" rx="2"/>
+  <text class="merkle-proof-text-sm" x="487" y="88" text-anchor="middle">Not Found</text>
+</svg>
+</div>
+<h3 id="Merkle-Proof-Code-Implementation">Merkle Proof Code Implementation</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MerkleTree</span> &#123;</span><br><span class="line">    <span class="comment">// ... previous code ...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Generate Merkle proof</span></span><br><span class="line">    <span class="title function_">getProof</span>(<span class="params">leaf</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> index = <span class="variable language_">this</span>.<span class="property">leaves</span>.<span class="title function_">indexOf</span>(<span class="variable language_">this</span>.<span class="title function_">hash</span>(leaf));</span><br><span class="line">        <span class="keyword">if</span> (index === -<span class="number">1</span>) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">const</span> proof = [];</span><br><span class="line">        <span class="keyword">let</span> nodes = <span class="variable language_">this</span>.<span class="property">leaves</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (nodes.<span class="property">length</span> &gt; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">const</span> parents = [];</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nodes.<span class="property">length</span>; i += <span class="number">2</span>) &#123;</span><br><span class="line">                <span class="keyword">const</span> left = nodes[i];</span><br><span class="line">                <span class="keyword">const</span> right = nodes[i + <span class="number">1</span>] || nodes[i];</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (i === index || i === index - <span class="number">1</span>) &#123;</span><br><span class="line">                    <span class="comment">// Record sibling node</span></span><br><span class="line">                    <span class="keyword">const</span> sibling = (i === index) ? right : left;</span><br><span class="line">                    <span class="keyword">const</span> position = (i === index) ? <span class="string">&#x27;right&#x27;</span> : <span class="string">&#x27;left&#x27;</span>;</span><br><span class="line">                    proof.<span class="title function_">push</span>(&#123; <span class="attr">hash</span>: sibling, position &#125;);</span><br><span class="line">                    index = <span class="title class_">Math</span>.<span class="title function_">floor</span>(index / <span class="number">2</span>);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                parents.<span class="title function_">push</span>(<span class="variable language_">this</span>.<span class="title function_">hash</span>(left + right));</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            nodes = parents;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> proof;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Verify Merkle proof</span></span><br><span class="line">    <span class="title function_">verifyProof</span>(<span class="params">leaf, proof, root</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> hash = <span class="variable language_">this</span>.<span class="title function_">hash</span>(leaf);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">const</span> &#123; <span class="attr">hash</span>: siblingHash, position &#125; <span class="keyword">of</span> proof) &#123;</span><br><span class="line">            <span class="keyword">if</span> (position === <span class="string">&#x27;left&#x27;</span>) &#123;</span><br><span class="line">                hash = <span class="variable language_">this</span>.<span class="title function_">hash</span>(siblingHash + hash);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                hash = <span class="variable language_">this</span>.<span class="title function_">hash</span>(hash + siblingHash);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> hash === root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Usage example</span></span><br><span class="line"><span class="keyword">const</span> tree = <span class="keyword">new</span> <span class="title class_">MerkleTree</span>([<span class="string">&#x27;tx1&#x27;</span>, <span class="string">&#x27;tx2&#x27;</span>, <span class="string">&#x27;tx3&#x27;</span>, <span class="string">&#x27;tx4&#x27;</span>]);</span><br><span class="line"><span class="keyword">const</span> proof = tree.<span class="title function_">getProof</span>(<span class="string">&#x27;tx2&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> isValid = tree.<span class="title function_">verifyProof</span>(<span class="string">&#x27;tx2&#x27;</span>, proof, tree.<span class="title function_">getRoot</span>());</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Merkle Proof:&#x27;</span>, proof);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Verification Result:&#x27;</span>, isValid);  <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h3 id="Applications-of-Merkle-Trees">Applications of Merkle Trees</h3>
+<h4 id="1-Bitcoin-Block-Structure">1. Bitcoin Block Structure</h4>
+<div style="background: rgba(32, 55, 76, 0.5); padding: 1.5em; border-radius: 8px; margin: 2em 0;">
+<svg viewBox="0 0 550 100" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 600px; display: block; margin: 0 auto;">
+  <defs>
+    <style>
+      .btc-block-text { font-family: arial, sans-serif; font-size: 10px; fill: #fff; }
+      .btc-block-text-sm { font-family: arial, sans-serif; font-size: 9px; fill: #fff; }
+      .btc-block-text-dark { font-family: arial, sans-serif; font-size: 10px; fill: #222; }
+      .btc-block-text-sm-dark { font-family: arial, sans-serif; font-size: 9px; fill: #222; }
+      .btc-block-box-std { fill: #87CEEB; stroke: #ccc; stroke-width: 0.5; }
+      .btc-block-box-mr { fill: #FFD700; stroke: #333; stroke-width: 0.5; }
+      .btc-block-box-tx { fill: #90EE90; stroke: #ccc; stroke-width: 0.5; }
+      .btc-block-arrow { fill: none; stroke: #4c9be8; stroke-width: 0.5; }
+      .btc-block-dash { fill: none; stroke: #999; stroke-width: 0.5; stroke-dasharray: 3,2; }
+    </style>
+    <marker id="btc-block-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M 0 0 L 6 3 L 0 6 z" fill="#4c9be8"/>
+    </marker>
+  </defs>
+  <rect class="btc-block-box-std" x="10" y="10" width="60" height="25" rx="2"/>
+  <text class="btc-block-text-dark" x="40" y="26" text-anchor="middle">Version</text>
+  <path class="btc-block-arrow" d="M 70 22 L 95 22" marker-end="url(#btc-block-arrow)"/>
+  <rect class="btc-block-box-std" x="95" y="10" width="90" height="25" rx="2"/>
+  <text class="btc-block-text-sm-dark" x="140" y="26" text-anchor="middle">Previous Hash</text>
+  <path class="btc-block-arrow" d="M 185 22 L 210 22" marker-end="url(#btc-block-arrow)"/>
+  <rect class="btc-block-box-mr" x="210" y="10" width="80" height="25" rx="2"/>
+  <text class="btc-block-text-sm-dark" x="250" y="26" text-anchor="middle">Merkle Root</text>
+  <path class="btc-block-arrow" d="M 290 22 L 315 22" marker-end="url(#btc-block-arrow)"/>
+  <rect class="btc-block-box-std" x="315" y="10" width="75" height="25" rx="2"/>
+  <text class="btc-block-text-sm-dark" x="352" y="26" text-anchor="middle">Timestamp</text>
+  <path class="btc-block-arrow" d="M 390 22 L 415 22" marker-end="url(#btc-block-arrow)"/>
+  <rect class="btc-block-box-std" x="415" y="10" width="60" height="25" rx="2"/>
+  <text class="btc-block-text-sm-dark" x="445" y="26" text-anchor="middle">Difficulty</text>
+  <path class="btc-block-arrow" d="M 445 35 L 445 50 L 485 50" marker-end="url(#btc-block-arrow)"/>
+  <rect class="btc-block-box-std" x="485" y="37" width="50" height="25" rx="2"/>
+  <text class="btc-block-text-dark" x="510" y="53" text-anchor="middle">Nonce</text>
+  <path class="btc-block-dash" d="M 250 35 L 250 70"/>
+  <rect class="btc-block-box-tx" x="200" y="70" width="100" height="25" rx="2"/>
+  <text class="btc-block-text-sm-dark" x="250" y="86" text-anchor="middle">Transactions</text>
+</svg>
+</div>
+<h4 id="2-SPV-Light-Nodes">2. SPV Light Nodes</h4>
+<p><strong>SPV (Simplified Payment Verification)</strong> nodes only download block headers, not all transactions.</p>
+<div style="background: rgba(32, 55, 76, 0.5); padding: 1.5em; border-radius: 8px; margin: 2em 0;">
+<svg viewBox="0 0 320 100" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 400px; display: block; margin: 0 auto;">
+  <defs>
+    <style>
+      .spv-text { font-family: arial, sans-serif; font-size: 10px; fill: #fff; }
+      .spv-text-sm { font-family: arial, sans-serif; font-size: 9px; fill: #fff; }
+      .spv-text-dark { font-family: arial, sans-serif; font-size: 10px; fill: #222; }
+      .spv-text-sm-dark { font-family: arial, sans-serif; font-size: 9px; fill: #222; }
+      .spv-box-full { fill: #87CEEB; stroke: #ccc; stroke-width: 0.5; }
+      .spv-box-full-verify { fill: #4c9be8; stroke: #ccc; stroke-width: 0.5; }
+      .spv-box-light { fill: #90EE90; stroke: #ccc; stroke-width: 0.5; }
+      .spv-box-light-verify { fill: #FFD700; stroke: #333; stroke-width: 0.5; }
+      .spv-arrow { fill: none; stroke: #4c9be8; stroke-width: 0.5; }
+    </style>
+    <marker id="spv-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M 0 0 L 6 3 L 0 6 z" fill="#4c9be8"/>
+    </marker>
+  </defs>
+  <rect class="spv-box-full" x="10" y="10" width="70" height="40" rx="2"/>
+  <text class="spv-text-dark" x="45" y="26" text-anchor="middle">Full Node</text>
+  <text class="spv-text-sm-dark" x="45" y="40" text-anchor="middle">~500GB</text>
+  <path class="spv-arrow" d="M 80 30 L 120 30" marker-end="url(#spv-arrow)"/>
+  <rect class="spv-box-full-verify" x="120" y="10" width="70" height="40" rx="2"/>
+  <text class="spv-text" x="155" y="34" text-anchor="middle">Full Verify</text>
+  <rect class="spv-box-light" x="10" y="60" width="70" height="40" rx="2"/>
+  <text class="spv-text-dark" x="45" y="76" text-anchor="middle">Light Node</text>
+  <text class="spv-text-sm-dark" x="45" y="90" text-anchor="middle">~100MB</text>
+  <path class="spv-arrow" d="M 80 80 L 120 80" marker-end="url(#spv-arrow)"/>
+  <rect class="spv-box-light-verify" x="120" y="60" width="90" height="40" rx="2"/>
+  <text class="spv-text-dark" x="165" y="84" text-anchor="middle">Merkle Proof</text>
+</svg>
+</div>
+<h4 id="3-State-Tree">3. State Tree</h4>
+<p>Ethereum uses <strong>Merkle Patricia Trie</strong> to store account state.</p>
+<div style="background: rgba(32, 55, 76, 0.5); padding: 1.5em; border-radius: 8px; margin: 2em 0;">
+<svg viewBox="0 0 360 70" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 450px; display: block; margin: 0 auto;">
+  <defs>
+    <style>
+      .state-tree-text { font-family: arial, sans-serif; font-size: 10px; fill: #fff; }
+      .state-tree-text-sm { font-family: arial, sans-serif; font-size: 9px; fill: #fff; }
+      .state-tree-text-dark { font-family: arial, sans-serif; font-size: 10px; fill: #222; }
+      .state-tree-text-sm-dark { font-family: arial, sans-serif; font-size: 9px; fill: #222; }
+      .state-tree-box1 { fill: #90EE90; stroke: #ccc; stroke-width: 0.5; }
+      .state-tree-box2 { fill: #87CEEB; stroke: #ccc; stroke-width: 0.5; }
+      .state-tree-box3 { fill: #FFD700; stroke: #333; stroke-width: 0.5; }
+    </style>
+  </defs>
+  <rect class="state-tree-box1" x="10" y="10" width="80" height="40" rx="2"/>
+  <text class="state-tree-text-dark" x="50" y="26" text-anchor="middle">State Tree</text>
+  <text class="state-tree-text-sm-dark" x="50" y="40" text-anchor="middle">Account State</text>
+  <rect class="state-tree-box2" x="140" y="10" width="80" height="40" rx="2"/>
+  <text class="state-tree-text-dark" x="180" y="26" text-anchor="middle">Tx Tree</text>
+  <text class="state-tree-text-sm-dark" x="180" y="40" text-anchor="middle">Tx Data</text>
+  <rect class="state-tree-box3" x="270" y="10" width="80" height="40" rx="2"/>
+  <text class="state-tree-text-dark" x="310" y="26" text-anchor="middle">Receipt Tree</text>
+  <text class="state-tree-text-sm-dark" x="310" y="40" text-anchor="middle">Tx Receipts</text>
+</svg>
+</div>
+<h2 id="2-6-Advanced-Cryptographic-Concepts">2.6 Advanced Cryptographic Concepts</h2>
+<h3 id="Zero-Knowledge-Proof-ZKP">Zero-Knowledge Proof (ZKP)</h3>
+<p><strong>Zero-Knowledge Proof</strong> allows a prover to convince a verifier that a statement is true without revealing any additional information.</p>
+<h4 id="Classic-Example-Ali-Baba’s-Cave">Classic Example: Ali Baba’s Cave</h4>
+<div style="background: rgba(32, 55, 76, 0.5); padding: 1.5em; border-radius: 8px; margin: 2em 0;">
+<svg viewBox="0 0 480 100" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 550px; display: block; margin: 0 auto;">
+  <defs>
+    <style>
+      .zkp-cave-text { font-family: arial, sans-serif; font-size: 10px; fill: #fff; }
+      .zkp-cave-text-sm { font-family: arial, sans-serif; font-size: 9px; fill: #fff; }
+      .zkp-cave-text-dark { font-family: arial, sans-serif; font-size: 10px; fill: #222; }
+      .zkp-cave-text-sm-dark { font-family: arial, sans-serif; font-size: 9px; fill: #222; }
+      .zkp-cave-box1 { fill: #90EE90; stroke: #ccc; stroke-width: 0.5; }
+      .zkp-cave-box2 { fill: #87CEEB; stroke: #ccc; stroke-width: 0.5; }
+      .zkp-cave-box3 { fill: #1f2020; stroke: #4c9be8; stroke-width: 0.5; }
+      .zkp-cave-box-know { fill: #FFD700; stroke: #333; stroke-width: 0.5; }
+      .zkp-cave-box-unkn { fill: #FF6B6B; stroke: #333; stroke-width: 0.5; }
+      .zkp-cave-arrow { fill: none; stroke: #4c9be8; stroke-width: 0.5; }
+    </style>
+    <marker id="zkp-cave-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M 0 0 L 6 3 L 0 6 z" fill="#4c9be8"/>
+    </marker>
+  </defs>
+  <rect class="zkp-cave-box1" x="10" y="37" width="90" height="25" rx="2"/>
+  <text class="zkp-cave-text-sm-dark" x="55" y="53" text-anchor="middle">Alice enters</text>
+  <path class="zkp-cave-arrow" d="M 100 49 L 130 49" marker-end="url(#zkp-cave-arrow)"/>
+  <rect class="zkp-cave-box2" x="130" y="37" width="90" height="25" rx="2"/>
+  <text class="zkp-cave-text-sm-dark" x="175" y="53" text-anchor="middle">Bob requests</text>
+  <path class="zkp-cave-arrow" d="M 220 49 L 250 49" marker-end="url(#zkp-cave-arrow)"/>
+  <rect class="zkp-cave-box3" x="250" y="30" width="110" height="40" rx="2"/>
+  <text class="zkp-cave-text-sm" x="305" y="46" text-anchor="middle">Alice exits</text>
+  <text class="zkp-cave-text-sm" x="305" y="60" text-anchor="middle">from requested side</text>
+  <path class="zkp-cave-arrow" d="M 360 50 L 390 25" marker-end="url(#zkp-cave-arrow)"/>
+  <rect class="zkp-cave-box-know" x="390" y="5" width="80" height="40" rx="2"/>
+  <text class="zkp-cave-text-sm-dark" x="430" y="21" text-anchor="middle">Knows secret</text>
+  <text class="zkp-cave-text-sm-dark" x="430" y="35" text-anchor="middle">100% success</text>
+  <path class="zkp-cave-arrow" d="M 360 50 L 390 75" marker-end="url(#zkp-cave-arrow)"/>
+  <rect class="zkp-cave-box-unkn" x="390" y="55" width="80" height="40" rx="2"/>
+  <text class="zkp-cave-text-sm" x="430" y="71" text-anchor="middle">Doesn't know</text>
+  <text class="zkp-cave-text-sm" x="430" y="85" text-anchor="middle">Prob 1/2^N</text>
+</svg>
+</div>
+<h4 id="zk-SNARKs">zk-SNARKs</h4>
+<p><strong>zk-SNARKs</strong> (Zero-Knowledge Succinct Non-Interactive Argument of Knowledge)</p>
+<p><strong>Applications:</strong></p>
+<ul>
+<li><strong>Zcash</strong>: Privacy transactions</li>
+<li><strong>Tornado Cash</strong>: Ethereum mixer</li>
+<li><strong>zkSync</strong>: Layer 2 scaling</li>
+</ul>
+<div style="background: rgba(32, 55, 76, 0.5); padding: 1.5em; border-radius: 8px; margin: 2em 0;">
+<svg viewBox="0 0 420 110" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 500px; display: block; margin: 0 auto;">
+  <defs>
+    <style>
+      .zksnark-text { font-family: arial, sans-serif; font-size: 10px; fill: #fff; }
+      .zksnark-text-sm { font-family: arial, sans-serif; font-size: 9px; fill: #fff; }
+      .zksnark-text-dark { font-family: arial, sans-serif; font-size: 10px; fill: #222; }
+      .zksnark-text-sm-dark { font-family: arial, sans-serif; font-size: 9px; fill: #222; }
+      .zksnark-box-feat { fill: #90EE90; stroke: #ccc; stroke-width: 0.5; }
+      .zksnark-box-proc { fill: #1f2020; stroke: #4c9be8; stroke-width: 0.5; }
+      .zksnark-box-verify { fill: #FFD700; stroke: #333; stroke-width: 0.5; }
+      .zksnark-arrow { fill: none; stroke: #4c9be8; stroke-width: 0.5; }
+    </style>
+    <marker id="zksnark-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M 0 0 L 6 3 L 0 6 z" fill="#4c9be8"/>
+    </marker>
+  </defs>
+  <rect class="zksnark-box-feat" x="10" y="10" width="70" height="40" rx="2"/>
+  <text class="zksnark-text-dark" x="45" y="26" text-anchor="middle">Succinct</text>
+  <text class="zksnark-text-sm-dark" x="45" y="40" text-anchor="middle">~200 bytes</text>
+  <path class="zksnark-arrow" d="M 80 30 L 140 55" marker-end="url(#zksnark-arrow)"/>
+  <rect class="zksnark-box-feat" x="10" y="60" width="70" height="40" rx="2"/>
+  <text class="zksnark-text-dark" x="45" y="84" text-anchor="middle">Non-Interactive</text>
+  <path class="zksnark-arrow" d="M 80 80 L 140 65" marker-end="url(#zksnark-arrow)"/>
+  <rect class="zksnark-box-proc" x="140" y="40" width="70" height="40" rx="2"/>
+  <text class="zksnark-text" x="175" y="64" text-anchor="middle">Setup</text>
+  <path class="zksnark-arrow" d="M 210 60 L 240 60" marker-end="url(#zksnark-arrow)"/>
+  <rect class="zksnark-box-proc" x="240" y="40" width="70" height="40" rx="2"/>
+  <text class="zksnark-text" x="275" y="64" text-anchor="middle">Prove</text>
+  <path class="zksnark-arrow" d="M 310 60 L 340 60" marker-end="url(#zksnark-arrow)"/>
+  <rect class="zksnark-box-verify" x="340" y="40" width="70" height="40" rx="2"/>
+  <text class="zksnark-text-dark" x="375" y="64" text-anchor="middle">Verify</text>
+</svg>
+</div>
+<h3 id="Homomorphic-Encryption">Homomorphic Encryption</h3>
+<p><strong>Homomorphic Encryption</strong> allows computation directly on ciphertext, with decryption yielding the result of operations on plaintext.</p>
+<div style="background: rgba(32, 55, 76, 0.5); padding: 1.5em; border-radius: 8px; margin: 2em 0;">
+<svg viewBox="0 0 420 80" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 500px; display: block; margin: 0 auto;">
+  <defs>
+    <style>
+      .homo-text { font-family: arial, sans-serif; font-size: 10px; fill: #fff; }
+      .homo-text-sm { font-family: arial, sans-serif; font-size: 9px; fill: #fff; }
+      .homo-text-dark { font-family: arial, sans-serif; font-size: 10px; fill: #222; }
+      .homo-text-sm-dark { font-family: arial, sans-serif; font-size: 9px; fill: #222; }
+      .homo-box-trad { fill: #FF6B6B; stroke: #333; stroke-width: 0.5; }
+      .homo-box-homo { fill: #90EE90; stroke: #ccc; stroke-width: 0.5; }
+      .homo-box-app { fill: #87CEEB; stroke: #ccc; stroke-width: 0.5; }
+      .homo-arrow { fill: none; stroke: #4c9be8; stroke-width: 0.5; }
+    </style>
+    <marker id="homo-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M 0 0 L 6 3 L 0 6 z" fill="#4c9be8"/>
+    </marker>
+  </defs>
+  <rect class="homo-box-trad" x="10" y="20" width="140" height="40" rx="2"/>
+  <text class="homo-text-sm" x="80" y="36" text-anchor="middle">Traditional:</text>
+  <text class="homo-text-sm" x="80" y="50" text-anchor="middle">E(a)+E(b)≠E(a+b)</text>
+  <path class="homo-arrow" d="M 150 40 L 180 40" marker-end="url(#homo-arrow)"/>
+  <rect class="homo-box-homo" x="180" y="20" width="140" height="40" rx="2"/>
+  <text class="homo-text-sm-dark" x="250" y="36" text-anchor="middle">Homomorphic:</text>
+  <text class="homo-text-sm-dark" x="250" y="50" text-anchor="middle">E(a)⊕E(b)=E(a+b)</text>
+  <path class="homo-arrow" d="M 320 40 L 350 40" marker-end="url(#homo-arrow)"/>
+  <rect class="homo-box-app" x="350" y="20" width="70" height="40" rx="2"/>
+  <text class="homo-text-dark" x="385" y="44" text-anchor="middle">Private Comp</text>
+</svg>
+</div>
+<h3 id="Threshold-Signature">Threshold Signature</h3>
+<p>Multiple parties jointly hold fragments of a private key, requiring t-of-n fragments to generate a valid signature.</p>
+<div style="background: rgba(32, 55, 76, 0.5); padding: 1.5em; border-radius: 8px; margin: 2em 0;">
+<svg viewBox="0 0 380 160" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 450px; display: block; margin: 0 auto;">
+  <defs>
+    <style>
+      .thresh-text { font-family: arial, sans-serif; font-size: 10px; fill: #fff; }
+      .thresh-text-sm { font-family: arial, sans-serif; font-size: 9px; fill: #fff; }
+      .thresh-text-dark { font-family: arial, sans-serif; font-size: 10px; fill: #222; }
+      .thresh-text-sm-dark { font-family: arial, sans-serif; font-size: 9px; fill: #222; }
+      .thresh-box-shard { fill: #90EE90; stroke: #ccc; stroke-width: 0.5; }
+      .thresh-box-success { fill: #FFD700; stroke: #333; stroke-width: 0.5; }
+      .thresh-box-fail { fill: #FF6B6B; stroke: #333; stroke-width: 0.5; }
+      .thresh-arrow { fill: none; stroke: #4c9be8; stroke-width: 0.5; }
+    </style>
+    <marker id="thresh-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M 0 0 L 6 3 L 0 6 z" fill="#4c9be8"/>
+    </marker>
+  </defs>
+  <rect class="thresh-box-shard" x="10" y="10" width="60" height="25" rx="2"/>
+  <text class="thresh-text-dark" x="40" y="26" text-anchor="middle">Shard 1</text>
+  <path class="thresh-arrow" d="M 70 22 L 130 37" marker-end="url(#thresh-arrow)"/>
+  <rect class="thresh-box-shard" x="10" y="45" width="60" height="25" rx="2"/>
+  <text class="thresh-text-dark" x="40" y="61" text-anchor="middle">Shard 2</text>
+  <path class="thresh-arrow" d="M 70 57 L 130 57" marker-end="url(#thresh-arrow)"/>
+  <rect class="thresh-box-shard" x="10" y="80" width="60" height="25" rx="2"/>
+  <text class="thresh-text-dark" x="40" y="96" text-anchor="middle">Shard 3</text>
+  <path class="thresh-arrow" d="M 70 92 L 130 77" marker-end="url(#thresh-arrow)"/>
+  <rect class="thresh-box-success" x="130" y="40" width="80" height="40" rx="2"/>
+  <text class="thresh-text-dark" x="170" y="56" text-anchor="middle">Any 3</text>
+  <text class="thresh-text-dark" x="170" y="70" text-anchor="middle">Combine Sig</text>
+  <rect class="thresh-box-shard" x="10" y="115" width="60" height="25" rx="2"/>
+  <text class="thresh-text-dark" x="40" y="131" text-anchor="middle">Shard 4</text>
+  <path class="thresh-arrow" d="M 70 127 L 130 117" marker-end="url(#thresh-arrow)"/>
+  <rect class="thresh-box-shard" x="10" y="150" width="60" height="25" rx="2"/>
+  <text class="thresh-text-dark" x="40" y="166" text-anchor="middle">Shard 5</text>
+  <path class="thresh-arrow" d="M 70 162 L 130 137" marker-end="url(#thresh-arrow)"/>
+  <rect class="thresh-box-fail" x="130" y="100" width="80" height="40" rx="2"/>
+  <text class="thresh-text-sm" x="170" y="116" text-anchor="middle">≤2</text>
+  <text class="thresh-text-sm" x="170" y="130" text-anchor="middle">Cannot sign</text>
+</svg>
+</div>
+<h2 id="Chapter-Summary">Chapter Summary</h2>
+<div class="chapter-footer">
+<p>Cryptography is the foundation of blockchain security. In this chapter, we learned about:</p>
+<ol>
+<li><strong>Hash Functions</strong>: One-way, deterministic, collision-resistant core security components</li>
+<li><strong>Asymmetric Encryption</strong>: Public/private key system, foundation of account systems</li>
+<li><strong>Digital Signatures</strong>: Key technology for transaction authorization and identity verification</li>
+<li><strong>Merkle Trees</strong>: Efficient data verification, supporting light nodes and SPV</li>
+<li><strong>Advanced Concepts</strong>: Zero-knowledge proofs, homomorphic encryption, and other cutting-edge technologies</li>
+</ol>
+<p>These cryptographic technologies together build the trust foundation of blockchain, enabling decentralized systems to operate securely without centralized authorities.</p>
+<p><strong>Next Chapter Preview:</strong><br>
+In Chapter 3, we will learn about cryptocurrency fundamentals, understanding the operation mechanisms of mainstream cryptocurrencies like Bitcoin and Ethereum, and how to securely acquire and store cryptocurrencies.</p>
+</div>
+<p><strong>Navigation:</strong></p>
+<ul>
+<li><strong>Previous Chapter:</strong> <a href="/en/ccbook/chapters/chapter-1.html">Chapter 1: Blockchain Fundamentals</a></li>
+<li><strong>Next Chapter:</strong> <a href="/en/ccbook/chapters/chapter-3.html">Chapter 3: Cryptocurrency Fundamentals</a></li>
+<li><strong>Back to Contents:</strong> <a href="/en/ccbook/">CCBook Contents</a></li>
+</ul>
+
+        </div>
+        
+        
+        
+
+        
+        
+          <div class="ccbook-chapter-nav-bottom">
+            
+            
+              
+              
+
+              
+                
+                  
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+
+              <div class="chapter-nav-buttons">
+                
+                  <a href="/en/ccbook/chapters/chapter-1.html" class="prev-chapter-btn">
+                    <i class="fa fa-arrow-left"></i>
+                    <span class="btn-text">
+                        <span class="nav-label">Previous</span>
+                      <span class="nav-title">Chapter 1: Blockchain Fundamentals</span>
+                    </span>
+                  </a>
+                
+
+                
+                  <a href="/en/ccbook/chapters/chapter-3.html" class="next-chapter-btn">
+                    <span class="btn-text">
+                        <span class="nav-label">Next</span>
+                      <span class="nav-title">Chapter 3: Cryptocurrency Fundamentals</span>
+                    </span>
+                    <i class="fa fa-arrow-right"></i>
+                  </a>
+                
+              </div>
+            
+          </div>
+        
+      </article>
+    </div>
+    
+    
+    
+
+
+</div>
+
+    
+    
+  <aside class="ccbook-sidebar-right">
+    
+    <div class="ccbook-lang-switcher">
+      <div class="languages-header">
+          <a href="/ccbook/chapters/chapter-2.html" class="lang-btn">中文</a>
+          <a href="/en/ccbook/chapters/chapter-2.html" class="lang-btn active">EN</a>
+      </div>
+    </div>
+
+    
+    <div class="ccbook-sidebar-content">
+      <div class="ccbook-nav-header">
+          <h3><i class="fa fa-book"></i> CCBook Contents</h3>
+          <a href="/en/ccbook/" class="ccbook-home-link">
+            <i class="fa fa-home"></i> Back to Index
+          </a>
+      </div>
+
+      <nav class="ccbook-nav-menu">
+        
+        
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-1.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="1">
+                <span class="chapter-icon">
+                  <i class="fa fa-cubes"></i>
+                </span>
+                <span class="chapter-title">Chapter 1: Blockchain Fundamentals</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-1.html#1-1-什么是区块链？"
+                       class="ccbook-section-link"
+                       data-section="#1-1-什么是区块链？">
+                      1.1 What is Blockchain?
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-1.html#1-2-区块链的历史与演进"
+                       class="ccbook-section-link"
+                       data-section="#1-2-区块链的历史与演进">
+                      1.2 History and Evolution
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-1.html#1-3-区块链的核心特性"
+                       class="ccbook-section-link"
+                       data-section="#1-3-区块链的核心特性">
+                      1.3 Core Characteristics
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-1.html#1-4-区块链如何工作"
+                       class="ccbook-section-link"
+                       data-section="#1-4-区块链如何工作">
+                      1.4 How Blockchain Works
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-1.html#1-5-区块链的类型"
+                       class="ccbook-section-link"
+                       data-section="#1-5-区块链的类型">
+                      1.5 Types of Blockchain
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-1.html#1-6-区块链-vs-传统数据库"
+                       class="ccbook-section-link"
+                       data-section="#1-6-区块链-vs-传统数据库">
+                      1.6 Blockchain vs Traditional Databases
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-1.html#1-7-真实世界的类比与应用场景"
+                       class="ccbook-section-link"
+                       data-section="#1-7-真实世界的类比与应用场景">
+                      1.7 Real-World Analogies and Use Cases
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-1.html#1-8-章节总结"
+                       class="ccbook-section-link"
+                       data-section="#1-8-章节总结">
+                      1.8 Chapter Summary
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group active-chapter">
+              <a href="/en/ccbook/chapters/chapter-2.html"
+                 class="ccbook-chapter-link active"
+                 data-chapter="2">
+                <span class="chapter-icon">
+                  <i class="fa fa-key"></i>
+                </span>
+                <span class="chapter-title">Chapter 2: Cryptography Essentials</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections show">
+                  
+                    <a href="/en/ccbook/chapters/chapter-2.html#2-1-密码学简介"
+                       class="ccbook-section-link"
+                       data-section="#2-1-密码学简介">
+                      2.1 Introduction to Cryptography
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-2.html#2-2-哈希函数"
+                       class="ccbook-section-link"
+                       data-section="#2-2-哈希函数">
+                      2.2 Hash Functions
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-2.html#2-3-对称加密与非对称加密"
+                       class="ccbook-section-link"
+                       data-section="#2-3-对称加密与非对称加密">
+                      2.3 Symmetric & Asymmetric Encryption
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-2.html#2-4-数字签名"
+                       class="ccbook-section-link"
+                       data-section="#2-4-数字签名">
+                      2.4 Digital Signatures
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-2.html#2-5-merkle-树"
+                       class="ccbook-section-link"
+                       data-section="#2-5-merkle-树">
+                      2.5 Merkle Trees
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-2.html#2-6-高级密码学概念"
+                       class="ccbook-section-link"
+                       data-section="#2-6-高级密码学概念">
+                      2.6 Advanced Cryptography Concepts
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-3.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="3">
+                <span class="chapter-icon">
+                  <i class="fa fa-bitcoin"></i>
+                </span>
+                <span class="chapter-title">Chapter 3: Cryptocurrency Fundamentals</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-3.html#3-1-什么是加密货币？"
+                       class="ccbook-section-link"
+                       data-section="#3-1-什么是加密货币？">
+                      3.1 What is Cryptocurrency?
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-3.html#3-2-比特币：第一个加密货币"
+                       class="ccbook-section-link"
+                       data-section="#3-2-比特币：第一个加密货币">
+                      3.2 Bitcoin: The First Cryptocurrency
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-3.html#3-3-以太坊和智能合约平台"
+                       class="ccbook-section-link"
+                       data-section="#3-3-以太坊和智能合约平台">
+                      3.3 Ethereum and Smart Contract Platforms
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-3.html#3-4-其他主流加密货币"
+                       class="ccbook-section-link"
+                       data-section="#3-4-其他主流加密货币">
+                      3.4 Other Major Cryptocurrencies
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-3.html#3-5-如何获得加密货币"
+                       class="ccbook-section-link"
+                       data-section="#3-5-如何获得加密货币">
+                      3.5 How to Acquire Cryptocurrency
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-3.html#3-6-加密货币钱包"
+                       class="ccbook-section-link"
+                       data-section="#3-6-加密货币钱包">
+                      3.6 Cryptocurrency Wallets
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-3.html#3-7-加密货币的风险与挑战"
+                       class="ccbook-section-link"
+                       data-section="#3-7-加密货币的风险与挑战">
+                      3.7 Risks and Challenges
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-4.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="4">
+                <span class="chapter-icon">
+                  <i class="fa fa-handshake"></i>
+                </span>
+                <span class="chapter-title">Chapter 4: Consensus Mechanisms</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-4.html#4-1-什么是共识机制？"
+                       class="ccbook-section-link"
+                       data-section="#4-1-什么是共识机制？">
+                      4.1 What is Consensus Mechanism?
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-4.html#4-2-工作量证明-pow"
+                       class="ccbook-section-link"
+                       data-section="#4-2-工作量证明-pow">
+                      4.2 Proof of Work (PoW)
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-4.html#4-3-权益证明-pos"
+                       class="ccbook-section-link"
+                       data-section="#4-3-权益证明-pos">
+                      4.3 Proof of Stake (PoS)
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-4.html#4-4-委托权益证明-dpos"
+                       class="ccbook-section-link"
+                       data-section="#4-4-委托权益证明-dpos">
+                      4.4 Delegated Proof of Stake (DPoS)
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-4.html#4-5-实用拜占庭容错-pbft"
+                       class="ccbook-section-link"
+                       data-section="#4-5-实用拜占庭容错-pbft">
+                      4.5 Practical Byzantine Fault Tolerance (PBFT)
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-4.html#4-6-其他共识机制"
+                       class="ccbook-section-link"
+                       data-section="#4-6-其他共识机制">
+                      4.6 Other Consensus Mechanisms
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-4.html#4-7-共识机制对比"
+                       class="ccbook-section-link"
+                       data-section="#4-7-共识机制对比">
+                      4.7 Consensus Comparison
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-4.html#4-8-共识机制的未来"
+                       class="ccbook-section-link"
+                       data-section="#4-8-共识机制的未来">
+                      4.8 Future of Consensus
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-5.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="5">
+                <span class="chapter-icon">
+                  <i class="fa fa-file-contract"></i>
+                </span>
+                <span class="chapter-title">Chapter 5: Smart Contracts</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-5.html#5-1-什么是智能合约？"
+                       class="ccbook-section-link"
+                       data-section="#5-1-什么是智能合约？">
+                      5.1 What are Smart Contracts?
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-5.html#5-2-以太坊虚拟机-evm"
+                       class="ccbook-section-link"
+                       data-section="#5-2-以太坊虚拟机-evm">
+                      5.2 Ethereum Virtual Machine (EVM)
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-5.html#5-3-solidity-编程基础"
+                       class="ccbook-section-link"
+                       data-section="#5-3-solidity-编程基础">
+                      5.3 Solidity Programming Basics
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-5.html#5-4-智能合约设计模式"
+                       class="ccbook-section-link"
+                       data-section="#5-4-智能合约设计模式">
+                      5.4 Smart Contract Design Patterns
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-5.html#5-5-智能合约安全"
+                       class="ccbook-section-link"
+                       data-section="#5-5-智能合约安全">
+                      5.5 Smart Contract Security
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-5.html#5-6-智能合约应用场景"
+                       class="ccbook-section-link"
+                       data-section="#5-6-智能合约应用场景">
+                      5.6 Smart Contract Use Cases
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-6.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="6">
+                <span class="chapter-icon">
+                  <i class="fa fa-sitemap"></i>
+                </span>
+                <span class="chapter-title">Chapter 6: Blockchain Architecture</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-6.html#6-1-区块链分层架构"
+                       class="ccbook-section-link"
+                       data-section="#6-1-区块链分层架构">
+                      6.1 Layered Architecture
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-6.html#6-2-p2p网络架构"
+                       class="ccbook-section-link"
+                       data-section="#6-2-p2p网络架构">
+                      6.2 P2P Network Architecture
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-6.html#6-3-数据结构设计"
+                       class="ccbook-section-link"
+                       data-section="#6-3-数据结构设计">
+                      6.3 Data Structure Design
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-6.html#6-4-状态存储与merkle树"
+                       class="ccbook-section-link"
+                       data-section="#6-4-状态存储与merkle树">
+                      6.4 State Storage & Merkle Trees
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-6.html#6-5-不同区块链架构对比"
+                       class="ccbook-section-link"
+                       data-section="#6-5-不同区块链架构对比">
+                      6.5 Architecture Comparison
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-6.html#6-6-高性能区块链设计"
+                       class="ccbook-section-link"
+                       data-section="#6-6-高性能区块链设计">
+                      6.6 High-Performance Design
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-7.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="7">
+                <span class="chapter-icon">
+                  <i class="fa fa-layer-group"></i>
+                </span>
+                <span class="chapter-title">Chapter 7: Layer 2 Scaling Solutions</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-7.html#7-1-为什么需要layer-2？"
+                       class="ccbook-section-link"
+                       data-section="#7-1-为什么需要layer-2？">
+                      7.1 Why Layer 2?
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-7.html#7-2-optimistic-rollup"
+                       class="ccbook-section-link"
+                       data-section="#7-2-optimistic-rollup">
+                      7.2 Optimistic Rollup
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-7.html#7-3-zk-rollup"
+                       class="ccbook-section-link"
+                       data-section="#7-3-zk-rollup">
+                      7.3 ZK Rollup
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-7.html#7-4-状态通道"
+                       class="ccbook-section-link"
+                       data-section="#7-4-状态通道">
+                      7.4 State Channels
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-7.html#7-5-侧链"
+                       class="ccbook-section-link"
+                       data-section="#7-5-侧链">
+                      7.5 Sidechains
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-7.html#7-6-layer-2生态全景"
+                       class="ccbook-section-link"
+                       data-section="#7-6-layer-2生态全景">
+                      7.6 Layer 2 Ecosystem Overview
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-7.html#7-7-layer-2未来趋势"
+                       class="ccbook-section-link"
+                       data-section="#7-7-layer-2未来趋势">
+                      7.7 Layer 2 Future Trends
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-8.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="8">
+                <span class="chapter-icon">
+                  <i class="fa fa-exchange-alt"></i>
+                </span>
+                <span class="chapter-title">Chapter 8: Interoperability & Cross-Chain</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-8.html#8-1-为什么需要互操作性？"
+                       class="ccbook-section-link"
+                       data-section="#8-1-为什么需要互操作性？">
+                      8.1 Why Interoperability?
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-8.html#8-2-跨链桥的工作原理"
+                       class="ccbook-section-link"
+                       data-section="#8-2-跨链桥的工作原理">
+                      8.2 How Cross-Chain Bridges Work
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-8.html#8-3-主流跨链协议"
+                       class="ccbook-section-link"
+                       data-section="#8-3-主流跨链协议">
+                      8.3 Major Cross-Chain Protocols
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-8.html#8-4-跨链桥安全风险"
+                       class="ccbook-section-link"
+                       data-section="#8-4-跨链桥安全风险">
+                      8.4 Bridge Security Risks
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-8.html#8-5-新兴跨链技术"
+                       class="ccbook-section-link"
+                       data-section="#8-5-新兴跨链技术">
+                      8.5 Emerging Cross-Chain Technologies
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-8.html#8-6-跨链未来展望"
+                       class="ccbook-section-link"
+                       data-section="#8-6-跨链未来展望">
+                      8.6 Future of Cross-Chain
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-9.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="9">
+                <span class="chapter-icon">
+                  <i class="fa fa-lock"></i>
+                </span>
+                <span class="chapter-title">Chapter 9: Advanced Cryptography</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-9.html#9-1-零知识证明-zero-knowledge-proof"
+                       class="ccbook-section-link"
+                       data-section="#9-1-零知识证明-zero-knowledge-proof">
+                      9.1 Zero-Knowledge Proof
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-9.html#9-2-zk-snark-与-zk-stark"
+                       class="ccbook-section-link"
+                       data-section="#9-2-zk-snark-与-zk-stark">
+                      9.2 zk-SNARK & zk-STARK
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-9.html#9-3-多方安全计算-mpc"
+                       class="ccbook-section-link"
+                       data-section="#9-3-多方安全计算-mpc">
+                      9.3 Multi-Party Computation (MPC)
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-9.html#9-4-同态加密-homomorphic-encryption"
+                       class="ccbook-section-link"
+                       data-section="#9-4-同态加密-homomorphic-encryption">
+                      9.4 Homomorphic Encryption
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-9.html#9-5-门限密码学与-vrf"
+                       class="ccbook-section-link"
+                       data-section="#9-5-门限密码学与-vrf">
+                      9.5 Threshold Cryptography & VRF
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-9.html#9-6-隐私保护技术对比"
+                       class="ccbook-section-link"
+                       data-section="#9-6-隐私保护技术对比">
+                      9.6 Privacy Technology Comparison
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-10.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="10">
+                <span class="chapter-icon">
+                  <i class="fa fa-coins"></i>
+                </span>
+                <span class="chapter-title">Chapter 10: DeFi - Decentralized Finance</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-10.html#10-1-什么是-defi？"
+                       class="ccbook-section-link"
+                       data-section="#10-1-什么是-defi？">
+                      10.1 What is DeFi?
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-10.html#10-2-自动化做市商-amm"
+                       class="ccbook-section-link"
+                       data-section="#10-2-自动化做市商-amm">
+                      10.2 Automated Market Maker (AMM)
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-10.html#10-3-借贷协议"
+                       class="ccbook-section-link"
+                       data-section="#10-3-借贷协议">
+                      10.3 Lending Protocols
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-10.html#10-4-稳定币设计模式"
+                       class="ccbook-section-link"
+                       data-section="#10-4-稳定币设计模式">
+                      10.4 Stablecoin Design Patterns
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-10.html#10-5-defi-创新应用"
+                       class="ccbook-section-link"
+                       data-section="#10-5-defi-创新应用">
+                      10.5 DeFi Innovations
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-11.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="11">
+                <span class="chapter-icon">
+                  <i class="fa fa-image"></i>
+                </span>
+                <span class="chapter-title">Chapter 11: NFTs & Digital Assets</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-11.html#11-1-什么是-nft？"
+                       class="ccbook-section-link"
+                       data-section="#11-1-什么是-nft？">
+                      11.1 What is NFT?
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-11.html#11-2-nft-标准"
+                       class="ccbook-section-link"
+                       data-section="#11-2-nft-标准">
+                      11.2 NFT Standards
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-11.html#11-3-nft-应用场景"
+                       class="ccbook-section-link"
+                       data-section="#11-3-nft-应用场景">
+                      11.3 NFT Use Cases
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-11.html#11-4-nft-的技术挑战"
+                       class="ccbook-section-link"
+                       data-section="#11-4-nft-的技术挑战">
+                      11.4 Technical Challenges
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-11.html#11-5-nft-fi：金融化创新"
+                       class="ccbook-section-link"
+                       data-section="#11-5-nft-fi：金融化创新">
+                      11.5 NFT-Fi: Financial Innovations
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-11.html#11-6-nft-的未来趋势"
+                       class="ccbook-section-link"
+                       data-section="#11-6-nft-的未来趋势">
+                      11.6 Future Trends
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-12.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="12">
+                <span class="chapter-icon">
+                  <i class="fa fa-users-cog"></i>
+                </span>
+                <span class="chapter-title">Chapter 12: Governance & DAOs</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-12.html#12-1-什么是-dao？"
+                       class="ccbook-section-link"
+                       data-section="#12-1-什么是-dao？">
+                      12.1 What is DAO?
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-12.html#12-2-链上治理机制"
+                       class="ccbook-section-link"
+                       data-section="#12-2-链上治理机制">
+                      12.2 On-Chain Governance
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-12.html#12-3-链下治理：snapshot"
+                       class="ccbook-section-link"
+                       data-section="#12-3-链下治理：snapshot">
+                      12.3 Off-Chain Governance: Snapshot
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-12.html#12-4-代币经济学与激励设计"
+                       class="ccbook-section-link"
+                       data-section="#12-4-代币经济学与激励设计">
+                      12.4 Tokenomics & Incentive Design
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-12.html#12-5-多签钱包与治理安全"
+                       class="ccbook-section-link"
+                       data-section="#12-5-多签钱包与治理安全">
+                      12.5 Multi-Sig & Governance Security
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-12.html#12-6-dao-工具栈"
+                       class="ccbook-section-link"
+                       data-section="#12-6-dao-工具栈">
+                      12.6 DAO Tool Stack
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-13.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="13">
+                <span class="chapter-icon">
+                  <i class="fa fa-chart-bar"></i>
+                </span>
+                <span class="chapter-title">Chapter 13: Blockchain Platforms Comparison</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-13.html#13-1-区块链不可能三角"
+                       class="ccbook-section-link"
+                       data-section="#13-1-区块链不可能三角">
+                      13.1 Blockchain Trilemma
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-13.html#13-2-layer-1-主流平台对比"
+                       class="ccbook-section-link"
+                       data-section="#13-2-layer-1-主流平台对比">
+                      13.2 Layer 1 Platform Comparison
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-13.html#13-3-evm-兼容链-vs-非-evm-链"
+                       class="ccbook-section-link"
+                       data-section="#13-3-evm-兼容链-vs-非-evm-链">
+                      13.3 EVM Compatible vs Non-EVM Chains
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-13.html#13-4-layer-2-解决方案"
+                       class="ccbook-section-link"
+                       data-section="#13-4-layer-2-解决方案">
+                      13.4 Layer 2 Solutions
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-13.html#13-5-新兴公链"
+                       class="ccbook-section-link"
+                       data-section="#13-5-新兴公链">
+                      13.5 Emerging Chains
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-13.html#13-6-如何选择区块链平台？"
+                       class="ccbook-section-link"
+                       data-section="#13-6-如何选择区块链平台？">
+                      13.6 How to Choose Blockchain Platforms?
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-13.html#13-7-多链未来"
+                       class="ccbook-section-link"
+                       data-section="#13-7-多链未来">
+                      13.7 Multi-Chain Future
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-14.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="14">
+                <span class="chapter-icon">
+                  <i class="fa fa-building"></i>
+                </span>
+                <span class="chapter-title">Chapter 14: Enterprise Blockchain</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-14.html#14-1-企业区块链-vs-公链"
+                       class="ccbook-section-link"
+                       data-section="#14-1-企业区块链-vs-公链">
+                      14.1 Enterprise Blockchain vs Public Chains
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-14.html#14-2-主流企业区块链平台"
+                       class="ccbook-section-link"
+                       data-section="#14-2-主流企业区块链平台">
+                      14.2 Mainstream Enterprise Blockchain Platforms
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-14.html#14-3-企业区块链隐私保护"
+                       class="ccbook-section-link"
+                       data-section="#14-3-企业区块链隐私保护">
+                      14.3 Enterprise Blockchain Privacy Protection
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-14.html#14-4-企业区块链应用案例"
+                       class="ccbook-section-link"
+                       data-section="#14-4-企业区块链应用案例">
+                      14.4 Enterprise Blockchain Use Cases
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-14.html#14-5-企业区块链部署实践"
+                       class="ccbook-section-link"
+                       data-section="#14-5-企业区块链部署实践">
+                      14.5 Enterprise Blockchain Deployment Practices
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-14.html#14-6-企业区块链挑战与未来"
+                       class="ccbook-section-link"
+                       data-section="#14-6-企业区块链挑战与未来">
+                      14.6 Challenges and Future of Enterprise Blockchain
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-15.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="15">
+                <span class="chapter-icon">
+                  <i class="fa fa-shield-alt"></i>
+                </span>
+                <span class="chapter-title">Chapter 15: Security & Best Practices</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-15.html#15-1-区块链安全威胁模型"
+                       class="ccbook-section-link"
+                       data-section="#15-1-区块链安全威胁模型">
+                      15.1 Blockchain Security Threat Model
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-15.html#15-2-智能合约安全最佳实践"
+                       class="ccbook-section-link"
+                       data-section="#15-2-智能合约安全最佳实践">
+                      15.2 Smart Contract Security Best Practices
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-15.html#15-3-智能合约审计"
+                       class="ccbook-section-link"
+                       data-section="#15-3-智能合约审计">
+                      15.3 Smart Contract Auditing
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-15.html#15-4-私钥与钱包安全"
+                       class="ccbook-section-link"
+                       data-section="#15-4-私钥与钱包安全">
+                      15.4 Private Key & Wallet Security
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-15.html#15-5-dapp-前端安全"
+                       class="ccbook-section-link"
+                       data-section="#15-5-dapp-前端安全">
+                      15.5 DApp Frontend Security
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-15.html#15-6-应急响应与事件处理"
+                       class="ccbook-section-link"
+                       data-section="#15-6-应急响应与事件处理">
+                      15.6 Incident Response & Emergency Handling
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-16.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="16">
+                <span class="chapter-icon">
+                  <i class="fa fa-rocket"></i>
+                </span>
+                <span class="chapter-title">Chapter 16: Future of Blockchain</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-16.html#16-1-技术演进路线图"
+                       class="ccbook-section-link"
+                       data-section="#16-1-技术演进路线图">
+                      16.1 Technology Evolution Roadmap
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-16.html#16-2-扩展性突破"
+                       class="ccbook-section-link"
+                       data-section="#16-2-扩展性突破">
+                      16.2 Scalability Breakthroughs
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-16.html#16-3-ai-区块链融合"
+                       class="ccbook-section-link"
+                       data-section="#16-3-ai-区块链融合">
+                      16.3 AI + Blockchain Convergence
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-16.html#16-4-rwa（真实世界资产）代币化"
+                       class="ccbook-section-link"
+                       data-section="#16-4-rwa（真实世界资产）代币化">
+                      16.4 RWA (Real World Assets) Tokenization
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-16.html#16-5-监管演进"
+                       class="ccbook-section-link"
+                       data-section="#16-5-监管演进">
+                      16.5 Regulatory Evolution
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-16.html#16-6-web3-大规模采用"
+                       class="ccbook-section-link"
+                       data-section="#16-6-web3-大规模采用">
+                      16.6 Web3 Mass Adoption
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-16.html#16-7-本章小结"
+                       class="ccbook-section-link"
+                       data-section="#16-7-本章小结">
+                      16.7 Chapter Summary
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+        
+      </nav>
+
+      
+      <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const chapterLinks = document.querySelectorAll('.ccbook-chapter-link');
+
+        chapterLinks.forEach(link => {
+          const toggle = link.querySelector('.chapter-toggle');
+          if (toggle) {
+            link.addEventListener('click', function(e) {
+              // Only toggle if clicking the chevron icon
+              if (e.target.closest('.chapter-toggle')) {
+                e.preventDefault();
+                const group = this.closest('.ccbook-chapter-group');
+                const sections = group.querySelector('.ccbook-sections');
+                const icon = toggle.querySelector('i');
+
+                sections.classList.toggle('show');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+              }
+            });
+          }
+        });
+      });
+      </script>
+    </div>
+    
+  </aside>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+  <div class="languages">
+    <label class="lang-select-label">
+      <i class="fa fa-language"></i>
+      <span>English</span>
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </label>
+    <select class="lang-select" data-canonical="" aria-label="Select language">
+      
+        <option value="zh-CN" data-href="/ccbook/chapters/chapter-2.html" selected="">
+          简体中文
+        </option>
+      
+        <option value="en" data-href="/en/ccbook/chapters/chapter-2.html" selected="">
+          English
+        </option>
+      
+    </select>
+  </div>
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">CCBus Lab</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+
+</body>
+</html>

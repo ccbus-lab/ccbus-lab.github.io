@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/CCBus_B_T_64.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/CCBus_B_G_64.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/CCBus_B_T_64.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.ccbus.cc","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="基于下面的例子, 我们会画一个完整的「Uniswap V2 交易曲线」示意图:  初始池：1000 A + 2000 B 用户：用 100 A 兑换 B 手续费：0.3% 实际输出：≈ 181.64 B 恒定积 ( k &#x3D; 2{,}000{,}000 )   🧮 一、恒定积模型原理 Uniswap V2 的价格机制遵循： [ x \times y &#x3D; k ] 在坐标平面上：  x 轴 &#x3D; Tok">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Price Curve Slippage Point and Constant Product (k) Line">
+<meta property="og:url" content="https://www.ccbus.cc/en/2025/10/27/Price-Curve-Slippage-Point-and-Constant-Product-k-Line/index.html">
+<meta property="og:site_name" content="CCBus">
+<meta property="og:description" content="基于下面的例子, 我们会画一个完整的「Uniswap V2 交易曲线」示意图:  初始池：1000 A + 2000 B 用户：用 100 A 兑换 B 手续费：0.3% 实际输出：≈ 181.64 B 恒定积 ( k &#x3D; 2{,}000{,}000 )   🧮 一、恒定积模型原理 Uniswap V2 的价格机制遵循： [ x \times y &#x3D; k ] 在坐标平面上：  x 轴 &#x3D; Tok">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-10-27T21:43:52.000Z">
+<meta property="article:modified_time" content="2025-11-04T21:52:58.066Z">
+<meta property="article:author" content="CCBus Lab">
+<meta property="article:tag" content="Uniswap">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.ccbus.cc/en/2025/10/27/Price-Curve-Slippage-Point-and-Constant-Product-k-Line/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://www.ccbus.cc/2025/10/27/Price-Curve-Slippage-Point-and-Constant-Product-k-Line/","path":"en/2025/10/27/Price-Curve-Slippage-Point-and-Constant-Product-k-Line/","title":"Price Curve Slippage Point and Constant Product (k) Line"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Price Curve Slippage Point and Constant Product (k) Line | CCBus</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+<link rel="stylesheet" href="/css/custom.css">
+<script src="/js/mermaid-loader.js"></script>
+<script src="/js/menu-lang-switcher.js"></script>
+<script src="/js/ccbook-breadcrumb-fix.js"></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">CCBus</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+  <ul class="main-menu menu menu-lang-zh-CN" style="display: none;"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-ccbook"><a href="/ccbook/" rel="section"><i class="fa fa-book fa-fw"></i>CC宝典</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-articles"><a href="/articles/" rel="section"><i class="fa fa-file fa-fw"></i>Articles</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+
+  
+  <ul class="main-menu menu menu-lang-en"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-ccbook"><a href="/ccbook/" rel="section"><i class="fa fa-book fa-fw"></i>CC Bible</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-articles"><a href="/articles/" rel="section"><i class="fa fa-file fa-fw"></i>Articles</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+
+<div class="languages-header">
+  
+    <a href="/2025/10/27/Price-Curve-Slippage-Point-and-Constant-Product-k-Line/"
+       class="lang-btn "
+       title="切换到简体中文">
+      中文
+    </a>
+  
+    <a href="/en/2025/10/27/Price-Curve-Slippage-Point-and-Constant-Product-k-Line/"
+       class="lang-btn active"
+       title="Switch to English">
+      EN
+    </a>
+  
+</div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%AE-%E4%B8%80%E3%80%81%E6%81%92%E5%AE%9A%E7%A7%AF%E6%A8%A1%E5%9E%8B%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">🧮 一、恒定积模型原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%88-%E4%BA%8C%E3%80%81%E4%BA%A4%E6%98%93%E5%89%8D%E5%90%8E%E7%9A%84%E5%82%A8%E5%A4%87%E4%B8%8E%E4%BB%B7%E6%A0%BC%E5%8F%98%E5%8C%96%E7%A4%BA%E6%84%8F%E5%9B%BE"><span class="nav-number">2.</span> <span class="nav-text">📈 二、交易前后的储备与价格变化示意图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%9F%A2-%E7%82%B9-P%E2%82%80%EF%BC%9A%E5%88%9D%E5%A7%8B%E7%8A%B6%E6%80%81"><span class="nav-number">2.1.</span> <span class="nav-text">🟢 点 P₀：初始状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%B5-%E7%82%B9-P%E2%82%81%EF%BC%9A%E4%BA%A4%E6%98%93%E5%90%8E%E7%8A%B6%E6%80%81"><span class="nav-number">2.2.</span> <span class="nav-text">🔵 点 P₁：交易后状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%89-%E4%B8%89%E3%80%81%E6%BB%91%E7%82%B9%EF%BC%88Slippage%EF%BC%89%E5%B1%95%E7%A4%BA"><span class="nav-number">3.</span> <span class="nav-text">📉 三、滑点（Slippage）展示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%94%84-%E5%9B%9B%E3%80%81k-%E6%81%92%E5%AE%9A%E7%BA%BF%E5%8F%98%E5%8C%96%E5%AF%B9%E6%AF%94"><span class="nav-number">4.</span> <span class="nav-text">🔄 四、k 恒定线变化对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%AA%99-%E4%BA%94%E3%80%81%E4%BA%A4%E6%98%93%E5%8A%A8%E6%80%81%E8%B7%AF%E5%BE%84%E8%AF%B4%E6%98%8E"><span class="nav-number">5.</span> <span class="nav-text">🪙 五、交易动态路径说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%AD-%E5%85%AD%E3%80%81%E5%9B%BE%E5%83%8F%E6%80%BB%E7%BB%93%EF%BC%88%E6%96%87%E5%AD%97%E7%89%88%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">🧭 六、图像总结（文字版思维导图）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%A9-%E4%B8%83%E3%80%81%E5%85%B3%E9%94%AE%E7%90%86%E8%A7%A3%E6%80%BB%E7%BB%93"><span class="nav-number">7.</span> <span class="nav-text">🧩 七、关键理解总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81ASCII-%E7%89%88%E6%9C%AC%EF%BC%88%E6%96%87%E5%AD%97%E7%A4%BA%E6%84%8F%E5%9B%BE%EF%BC%89"><span class="nav-number">8.</span> <span class="nav-text">一、ASCII 版本（文字示意图）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81SVG-%E7%89%88%E6%9C%AC%EF%BC%88%E5%8F%AF%E5%A4%8D%E5%88%B6%E4%B8%BA-svg-%E6%96%87%E4%BB%B6%E5%B9%B6%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%93%E5%BC%80%EF%BC%89"><span class="nav-number">9.</span> <span class="nav-text">二、SVG 版本（可复制为 .svg 文件并在浏览器打开）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%EF%B8%8F%E2%83%A3-%E6%95%B0%E5%AD%A6%E7%9C%9F%E5%AE%9E%E6%9B%B2%E7%BA%BF-SVG-%E5%9B%BE%E5%BD%A2%E7%89%88"><span class="nav-number">9.1.</span> <span class="nav-text">1️⃣ 数学真实曲线 (SVG&#x2F;图形版)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%EF%B8%8F%E2%83%A3-ASCII-%E6%96%87%E5%AD%97%E7%89%88%E7%A4%BA%E6%84%8F%E5%9B%BE"><span class="nav-number">9.2.</span> <span class="nav-text">2️⃣ ASCII 文字版示意图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E9%87%8A%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="nav-number">9.3.</span> <span class="nav-text">解释总结：</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="CCBus Lab"
+      src="/images/CCBus_B_G_64.png">
+  <p class="site-author-name" itemprop="name">CCBus Lab</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ccbus-lab" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ccbus-lab" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ccbus-lab@gmail.com" title="E-Mail → mailto:ccbus-lab@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://www.ccbus.cc/2025/10/27/Price-Curve-Slippage-Point-and-Constant-Product-k-Line/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/CCBus_B_G_64.png">
+      <meta itemprop="name" content="CCBus Lab">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CCBus">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Price Curve Slippage Point and Constant Product (k) Line | CCBus">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Price Curve Slippage Point and Constant Product (k) Line
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2025-10-27 17:43:52" itemprop="dateCreated datePublished" datetime="2025-10-27T17:43:52-04:00">2025-10-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-11-04 16:52:58" itemprop="dateModified" datetime="2025-11-04T16:52:58-05:00">2025-11-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Uniswap/" itemprop="url" rel="index"><span itemprop="name">Uniswap</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>基于下面的例子, 我们会画一个完整的「Uniswap V2 交易曲线」示意图:</p>
+<blockquote>
+<p>初始池：1000 A + 2000 B<br>
+用户：用 100 A 兑换 B<br>
+手续费：0.3%<br>
+实际输出：≈ 181.64 B<br>
+恒定积 ( k = 2{,}000{,}000 )</p>
+</blockquote>
+<hr>
+<h2 id="🧮-一、恒定积模型原理">🧮 一、恒定积模型原理</h2>
+<p>Uniswap V2 的价格机制遵循：</p>
+<p>[<br>
+x \times y = k<br>
+]</p>
+<p>在坐标平面上：</p>
+<ul>
+<li><strong>x 轴</strong> = Token A 储备</li>
+<li><strong>y 轴</strong> = Token B 储备</li>
+<li>曲线 ( y = \frac{k}{x} ) 是一条双曲线（即恒定积曲线）</li>
+</ul>
+<hr>
+<h2 id="📈-二、交易前后的储备与价格变化示意图">📈 二、交易前后的储备与价格变化示意图</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">   y轴: Token B 储备</span><br><span class="line">    ↑</span><br><span class="line">2000 |● 初始点 P₀ (x=1000, y=2000)</span><br><span class="line">     | \</span><br><span class="line">     |   \</span><br><span class="line">     |    \</span><br><span class="line">     |     \</span><br><span class="line">1818 |------● 新平衡点 P₁ (x=1099.7, y≈1818)</span><br><span class="line">     |       \</span><br><span class="line">     |        \</span><br><span class="line">     |         \</span><br><span class="line">     |          \</span><br><span class="line">     +----------------------------------------→ x轴: Token A 储备</span><br><span class="line">                1000         1099.7</span><br></pre></td></tr></table></figure>
+<h3 id="🟢-点-P₀：初始状态">🟢 点 P₀：初始状态</h3>
+<ul>
+<li>( reserveA = 1000 )</li>
+<li>( reserveB = 2000 )</li>
+<li>( P_A = reserveB / reserveA = 2.0 )</li>
+</ul>
+<hr>
+<h3 id="🔵-点-P₁：交易后状态">🔵 点 P₁：交易后状态</h3>
+<ul>
+<li>( reserveA’ = 1099.7 )</li>
+<li>( reserveB’ = 1818.36 )</li>
+<li>( P_A’ = 1818.36 / 1099.7 = 1.653 )</li>
+<li>实际成交均价约 1.8164（中间价格）</li>
+</ul>
+<hr>
+<h2 id="📉-三、滑点（Slippage）展示">📉 三、滑点（Slippage）展示</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>含义</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>初始价格</td>
+<td>( 1A = 2B )</td>
+<td>2.000</td>
+</tr>
+<tr>
+<td>交易后瞬时价格</td>
+<td>( 1A = 1.653B )</td>
+<td>1.653</td>
+</tr>
+<tr>
+<td>实际成交均价</td>
+<td>平均约 1.816B</td>
+<td>1.816</td>
+</tr>
+<tr>
+<td>滑点比例</td>
+<td>( (2 - 1.816) / 2 )</td>
+<td><strong>9.2%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>🧠 解释：<br>
+用户预期 1A=2B，但由于交易影响价格曲线，使池内的 <strong>A 增多、B 减少</strong>，价格被推低，<br>
+因此最终实际获得的平均兑换比例变差。</p>
+<hr>
+<h2 id="🔄-四、k-恒定线变化对比">🔄 四、k 恒定线变化对比</h2>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>reserveA</th>
+<th>reserveB</th>
+<th>A×B = k</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>交易前</td>
+<td>1000</td>
+<td>2000</td>
+<td>2,000,000</td>
+<td>初始状态</td>
+</tr>
+<tr>
+<td>交易后（理论恒定）</td>
+<td>1099.7</td>
+<td>1818.36</td>
+<td>≈2,000,000</td>
+<td>恒定积保持</td>
+</tr>
+<tr>
+<td>实际变化（含手续费）</td>
+<td>部分 k 增加</td>
+<td>→ 手续费流入池中，k 略增大</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>手续费 0.3% 进入池子，使得流动性提供者 (LP) 的 k 略上升，<br>
+相当于 LP 赚取了一点手续费收入。</p>
+<hr>
+<h2 id="🪙-五、交易动态路径说明">🪙 五、交易动态路径说明</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">交易过程（从 P₀ 到 P₁）：</span><br><span class="line">  用户输入 100 A -&gt;</span><br><span class="line">  扣除手续费 0.3 A -&gt;</span><br><span class="line">  实际进入池中 99.7 A -&gt;</span><br><span class="line">  曲线向右移动 -&gt;</span><br><span class="line">  池中 B 减少至 1818 -&gt;</span><br><span class="line">  用户获得 181.64 B -&gt;</span><br><span class="line">  曲线保持 k 恒定</span><br></pre></td></tr></table></figure>
+<p>在曲线上移动的轨迹表示价格逐渐变化的路径，<br>
+价格不是跳变，而是<strong>沿曲线连续变化</strong>的。</p>
+<hr>
+<h2 id="🧭-六、图像总结（文字版思维导图）">🧭 六、图像总结（文字版思维导图）</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">恒定积公式: x * y = k</span><br><span class="line">│</span><br><span class="line">├─ 初始点 P₀: (1000, 2000)</span><br><span class="line">│     └─ 初始价格 = 2</span><br><span class="line">│</span><br><span class="line">├─ 用户输入 100 A</span><br><span class="line">│     ├─ 扣手续费 -&gt; 实际输入 99.7 A</span><br><span class="line">│     ├─ 新A储备 = 1099.7</span><br><span class="line">│     ├─ 计算新B储备 = k / x&#x27; = 1818.36</span><br><span class="line">│     └─ 输出B = 2000 - 1818.36 = 181.64</span><br><span class="line">│</span><br><span class="line">├─ 新点 P₁: (1099.7, 1818.36)</span><br><span class="line">│     └─ 新价格 = 1.653</span><br><span class="line">│</span><br><span class="line">└─ 价格曲线滑动:</span><br><span class="line">      曲线右移 -&gt; 滑点上升 -&gt; 实际价格下降</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="🧩-七、关键理解总结">🧩 七、关键理解总结</h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>k 恒定曲线</strong></td>
+<td>确保交易自动计算价格，不需要订单簿</td>
+</tr>
+<tr>
+<td><strong>滑点</strong></td>
+<td>交易越大，占池子越多，价格偏离越明显</td>
+</tr>
+<tr>
+<td><strong>手续费</strong></td>
+<td>每笔 0.3% 计入流动性池，增强 LP 收益</td>
+</tr>
+<tr>
+<td><strong>价格动态性</strong></td>
+<td>交易沿曲线移动，而非线性固定价格</td>
+</tr>
+<tr>
+<td><strong>k 的微增</strong></td>
+<td>因手续费注入，流动性略微提升</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>好——下面我把之前的恒积曲线 (y=\dfrac{k}{x}) 用两种形式画出来：</p>
+<ul>
+<li>一份 <strong>ASCII 文字图</strong>（便于在终端或纯文本环境查看），</li>
+<li>一份 <strong>SVG 矢量图源码</strong>（可直接复制到 <code>.svg</code> 查看器 / 浏览器中，或嵌入 HTML，用于精确展示）。</li>
+</ul>
+<p>我会在图上<strong>明确标出</strong>：初始点 (P_0(1000,2000))、交易后点 (P_1(1099.7,;1818.6778))、滑点范围、以及曲线方向箭头。<br>
+下面先给出关键数值（逐位计算，便于复核）：</p>
+<ul>
+<li>初始储备：<code>reserveA = 1000</code>，<code>reserveB = 2000</code>。</li>
+<li>恒定积：(k = 1000 \times 2000 = 2{,}000{,}000)。</li>
+<li>用户输入：<code>amountIn = 100</code>（Token A）。</li>
+<li>手续费 0.3%，因此 <code>amountInWithFee = 100 × 0.997 = 99.7</code>。</li>
+<li>交易后 A 储备：(x’ = 1000 + 99.7 = 1099.7)。</li>
+<li>交易后 B 储备：(y’ = k / x’ = 2{,}000{,}000 / 1099.7 \approx 1818.67782122397)。</li>
+<li>用户获得 B：<code>amountOut = 2000 - y' ≈ 181.32217877603</code>。</li>
+<li>说明：交易使价格由 1A=2B 降到瞬时价格约 (1A \approx 1.653B)（池内瞬时比值），而用户成交的<strong>平均</strong>价格约 (1.816B)（见前述推导）。</li>
+</ul>
+<hr>
+<h2 id="一、ASCII-版本（文字示意图）">一、ASCII 版本（文字示意图）</h2>
+<blockquote>
+<p>说明：ASCII 用字符网格近似表示曲线位置、P₀、P₁ 与滑点区域（非精确图形，但能直观看出移动方向与相对位置）。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">                 Token B 储备 (y)</span><br><span class="line">     2200 +------------------------------------------------+</span><br><span class="line">          |                                                |</span><br><span class="line">          |                  *P0 (1000, 2000)              |</span><br><span class="line">     2000 +-----------------*-------------------------------+</span><br><span class="line">          |                /                               </span><br><span class="line">          |               /                                </span><br><span class="line">          |              /                                 </span><br><span class="line">          |             /                                  </span><br><span class="line">     1850 +----------*P1 (1099.7,1818.68)------------------+   ← 交易后点，y&#x27; ≈ 1818.68</span><br><span class="line">          |           /                                    |</span><br><span class="line">          |          /                                     |</span><br><span class="line">          |         /                                      |</span><br><span class="line">          |        /                                       |</span><br><span class="line">     1700 +-------/----------------------------------------+ </span><br><span class="line">          |      /                                         |</span><br><span class="line">          |     /                                          |</span><br><span class="line">          |    /                                           |</span><br><span class="line">          |   /                                            |</span><br><span class="line">     1500 +--/---------------------------------------------+</span><br><span class="line">          | /                                              |</span><br><span class="line">          |/                                               |</span><br><span class="line">          +------------------------------------------------+--&gt; Token A 储备 (x)</span><br><span class="line">             800   900  1000   1099.7   1200   1300   1400</span><br><span class="line"></span><br><span class="line">说明:</span><br><span class="line">- 曲线为 y = k / x（向右下方渐近）。初始点 P0 在 (1000,2000)。</span><br><span class="line">- 用户以 A 增加 99.7（含手续费后），曲线从 P0 沿恒积曲线向右移动到 P1 (1099.7,1818.68)。</span><br><span class="line">- 滑点体现在 P0 的切线价格（约 2.0）与 P1 的瞬时价格（约 1.653）之间的差距；用户实际成交均价介于二者（≈1.816）。</span><br><span class="line">- 曲线方向由上左指向下右（箭头方向表明当 x 增大时 y 减小）。</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="二、SVG-版本（可复制为-svg-文件并在浏览器打开）">二、SVG 版本（可复制为 <code>.svg</code> 文件并在浏览器打开）</h2>
+<p>下面是一个完整的 SVG 文本（宽 900px × 高 600px），它绘制了 (y=k/x) 的曲线（在 x 范围 600…1600），并标注了 P₀、P₁、滑点箭头与说明文字。你可直接把下列内容保存为 <code>uniswap_curve.svg</code> 然后在浏览器打开，或在 README/网页中嵌入 <code>&lt;svg&gt;...&lt;/svg&gt;</code>。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">width</span>=<span class="string">&quot;900&quot;</span> <span class="attr">height</span>=<span class="string">&quot;600&quot;</span> <span class="attr">viewBox</span>=<span class="string">&quot;0 0 900 600&quot;</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/2000/svg&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Background --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">&quot;0&quot;</span> <span class="attr">y</span>=<span class="string">&quot;0&quot;</span> <span class="attr">width</span>=<span class="string">&quot;900&quot;</span> <span class="attr">height</span>=<span class="string">&quot;600&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#ffffff&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Axes --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">g</span> <span class="attr">id</span>=<span class="string">&quot;axes&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;#444&quot;</span> <span class="attr">stroke-width</span>=<span class="string">&quot;1&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;none&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- X axis --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">&quot;80&quot;</span> <span class="attr">y1</span>=<span class="string">&quot;520&quot;</span> <span class="attr">x2</span>=<span class="string">&quot;820&quot;</span> <span class="attr">y2</span>=<span class="string">&quot;520&quot;</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Y axis --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">&quot;80&quot;</span> <span class="attr">y1</span>=<span class="string">&quot;520&quot;</span> <span class="attr">x2</span>=<span class="string">&quot;80&quot;</span> <span class="attr">y2</span>=<span class="string">&quot;80&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">g</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Axis labels --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;820&quot;</span> <span class="attr">y</span>=<span class="string">&quot;540&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;Arial&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;12&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#222&quot;</span>&gt;</span>Token A 储备 (x)<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;20&quot;</span> <span class="attr">y</span>=<span class="string">&quot;80&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;Arial&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;12&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#222&quot;</span> <span class="attr">transform</span>=<span class="string">&quot;rotate(-90 20,80)&quot;</span>&gt;</span>Token B 储备 (y)<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Tick marks and labels on X --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">g</span> <span class="attr">font-family</span>=<span class="string">&quot;Arial&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;11&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#333&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- We&#x27;ll map x in [600,1600] to svg x in [100,760] --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- ticks at 700,800,900,1000,1100,1200,1300,1400,1500 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- compute positions manually approximate --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">&quot;100&quot;</span> <span class="attr">y1</span>=<span class="string">&quot;520&quot;</span> <span class="attr">x2</span>=<span class="string">&quot;100&quot;</span> <span class="attr">y2</span>=<span class="string">&quot;525&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;#666&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;92&quot;</span> <span class="attr">y</span>=<span class="string">&quot;540&quot;</span>&gt;</span>700<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">&quot;160&quot;</span> <span class="attr">y1</span>=<span class="string">&quot;520&quot;</span> <span class="attr">x2</span>=<span class="string">&quot;160&quot;</span> <span class="attr">y2</span>=<span class="string">&quot;525&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;#666&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;152&quot;</span> <span class="attr">y</span>=<span class="string">&quot;540&quot;</span>&gt;</span>800<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">&quot;220&quot;</span> <span class="attr">y1</span>=<span class="string">&quot;520&quot;</span> <span class="attr">x2</span>=<span class="string">&quot;220&quot;</span> <span class="attr">y2</span>=<span class="string">&quot;525&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;#666&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;212&quot;</span> <span class="attr">y</span>=<span class="string">&quot;540&quot;</span>&gt;</span>900<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">&quot;280&quot;</span> <span class="attr">y1</span>=<span class="string">&quot;520&quot;</span> <span class="attr">x2</span>=<span class="string">&quot;280&quot;</span> <span class="attr">y2</span>=<span class="string">&quot;525&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;#666&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;272&quot;</span> <span class="attr">y</span>=<span class="string">&quot;540&quot;</span>&gt;</span>1000<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">&quot;340&quot;</span> <span class="attr">y1</span>=<span class="string">&quot;520&quot;</span> <span class="attr">x2</span>=<span class="string">&quot;340&quot;</span> <span class="attr">y2</span>=<span class="string">&quot;525&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;#666&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;332&quot;</span> <span class="attr">y</span>=<span class="string">&quot;540&quot;</span>&gt;</span>1100<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">&quot;400&quot;</span> <span class="attr">y1</span>=<span class="string">&quot;520&quot;</span> <span class="attr">x2</span>=<span class="string">&quot;400&quot;</span> <span class="attr">y2</span>=<span class="string">&quot;525&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;#666&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;392&quot;</span> <span class="attr">y</span>=<span class="string">&quot;540&quot;</span>&gt;</span>1200<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">&quot;460&quot;</span> <span class="attr">y1</span>=<span class="string">&quot;520&quot;</span> <span class="attr">x2</span>=<span class="string">&quot;460&quot;</span> <span class="attr">y2</span>=<span class="string">&quot;525&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;#666&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;452&quot;</span> <span class="attr">y</span>=<span class="string">&quot;540&quot;</span>&gt;</span>1300<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">&quot;520&quot;</span> <span class="attr">y1</span>=<span class="string">&quot;520&quot;</span> <span class="attr">x2</span>=<span class="string">&quot;520&quot;</span> <span class="attr">y2</span>=<span class="string">&quot;525&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;#666&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;512&quot;</span> <span class="attr">y</span>=<span class="string">&quot;540&quot;</span>&gt;</span>1400<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">&quot;580&quot;</span> <span class="attr">y1</span>=<span class="string">&quot;520&quot;</span> <span class="attr">x2</span>=<span class="string">&quot;580&quot;</span> <span class="attr">y2</span>=<span class="string">&quot;525&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;#666&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;572&quot;</span> <span class="attr">y</span>=<span class="string">&quot;540&quot;</span>&gt;</span>1500<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">g</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Tick marks and labels on Y --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">g</span> <span class="attr">font-family</span>=<span class="string">&quot;Arial&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;11&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#333&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- map y in [1400,2200] to svg y in [420,100] --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">&quot;80&quot;</span> <span class="attr">y1</span>=<span class="string">&quot;420&quot;</span> <span class="attr">x2</span>=<span class="string">&quot;75&quot;</span> <span class="attr">y2</span>=<span class="string">&quot;420&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;#666&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;40&quot;</span> <span class="attr">y</span>=<span class="string">&quot;424&quot;</span>&gt;</span>1400<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">&quot;80&quot;</span> <span class="attr">y1</span>=<span class="string">&quot;360&quot;</span> <span class="attr">x2</span>=<span class="string">&quot;75&quot;</span> <span class="attr">y2</span>=<span class="string">&quot;360&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;#666&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;40&quot;</span> <span class="attr">y</span>=<span class="string">&quot;364&quot;</span>&gt;</span>1600<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">&quot;80&quot;</span> <span class="attr">y1</span>=<span class="string">&quot;300&quot;</span> <span class="attr">x2</span>=<span class="string">&quot;75&quot;</span> <span class="attr">y2</span>=<span class="string">&quot;300&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;#666&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;40&quot;</span> <span class="attr">y</span>=<span class="string">&quot;304&quot;</span>&gt;</span>1800<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">&quot;80&quot;</span> <span class="attr">y1</span>=<span class="string">&quot;240&quot;</span> <span class="attr">x2</span>=<span class="string">&quot;75&quot;</span> <span class="attr">y2</span>=<span class="string">&quot;240&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;#666&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;40&quot;</span> <span class="attr">y</span>=<span class="string">&quot;244&quot;</span>&gt;</span>2000<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">&quot;80&quot;</span> <span class="attr">y1</span>=<span class="string">&quot;180&quot;</span> <span class="attr">x2</span>=<span class="string">&quot;75&quot;</span> <span class="attr">y2</span>=<span class="string">&quot;180&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;#666&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;40&quot;</span> <span class="attr">y</span>=<span class="string">&quot;184&quot;</span>&gt;</span>2200<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">g</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Draw y = k / x curve (sampled points) --&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- Map function: x in [600,1600] -&gt; sx in [100,760]; y in [1400,2200] -&gt; sy in [420,100] --&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- We&#x27;ll sample x values and compute y = 2,000,000 / x --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">&quot;</span></span></span><br><span class="line"><span class="string"><span class="tag">    M 100  ( $&#123; /* placeholder - will be replaced by computed points below */ &#x27;&#x27; &#125; )</span></span></span><br><span class="line"><span class="string"><span class="tag">  &quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;#ff6a00&quot;</span> <span class="attr">stroke-width</span>=<span class="string">&quot;2&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;none&quot;</span> <span class="attr">id</span>=<span class="string">&quot;curve&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Instead of trying to construct path via string interpolation here,</span></span><br><span class="line"><span class="comment">       we&#x27;ll include a precomputed path below for the range x=600..1600 sampled. --&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">&quot;</span></span></span><br><span class="line"><span class="string"><span class="tag">    M 100,351.666</span></span></span><br><span class="line"><span class="string"><span class="tag">    C 130,342 160,334 190,327</span></span></span><br><span class="line"><span class="string"><span class="tag">    C 220,320 250,314 280,309</span></span></span><br><span class="line"><span class="string"><span class="tag">    C 310,304 340,300 370,296</span></span></span><br><span class="line"><span class="string"><span class="tag">    C 400,292 430,289 460,286</span></span></span><br><span class="line"><span class="string"><span class="tag">    C 490,283 520,281 550,279</span></span></span><br><span class="line"><span class="string"><span class="tag">    C 580,277 610,275 640,274</span></span></span><br><span class="line"><span class="string"><span class="tag">    C 670,272 700,271 730,270</span></span></span><br><span class="line"><span class="string"><span class="tag">    C 760,269</span></span></span><br><span class="line"><span class="string"><span class="tag">  &quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;#ff6a00&quot;</span> <span class="attr">stroke-width</span>=<span class="string">&quot;3&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;none&quot;</span> <span class="attr">opacity</span>=<span class="string">&quot;0.95&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- <span class="doctag">Note:</span> 上面曲线路径是手工近似采样，以下再准确绘制并标注关键点 P0 和 P1 --&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Precise mapping helper lines &amp; compute positions (we will place points by computed coords) --&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- Mapping functions used to compute below:</span></span><br><span class="line"><span class="comment">       sx(x) = 100 + (x - 600) * (660 / 1000)   (maps 600..1600 to 100..760)</span></span><br><span class="line"><span class="comment">       sy(y) = 420 - (y - 1400) * (320 / 800)   (maps 1400..2200 to 420..100)</span></span><br><span class="line"><span class="comment">  --&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Compute P0: x=1000, y=2000 --&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- sx(1000) = 100 + (1000-600)*(660/1000) = 100 + 400*0.66 = 100 + 264 = 364 --&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- sy(2000) = 420 - (2000-1400)*(320/800) = 420 - 600*(0.4) = 420 - 240 = 180 --&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Compute P1: x=1099.7, y≈1818.67782122397 --&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- sx(1099.7) = 100 + (1099.7-600)*0.66 ≈ 100 + 499.7*0.66 ≈ 100 + 329.802 ≈ 429.802 --&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- sy(1818.6778) = 420 - (1818.6778-1400)*0.4 ≈ 420 - 418.6778*0.4 ≈ 420 - 167.47112 ≈ 252.52888 --&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Mark P0 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">&quot;364&quot;</span> <span class="attr">cy</span>=<span class="string">&quot;180&quot;</span> <span class="attr">r</span>=<span class="string">&quot;5&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#0055aa&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;374&quot;</span> <span class="attr">y</span>=<span class="string">&quot;176&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;Arial&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;12&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#0055aa&quot;</span>&gt;</span>P₀ (1000, 2000)<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Mark P1 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">&quot;429.8&quot;</span> <span class="attr">cy</span>=<span class="string">&quot;252.53&quot;</span> <span class="attr">r</span>=<span class="string">&quot;5&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#d9534f&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;440&quot;</span> <span class="attr">y</span>=<span class="string">&quot;248&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;Arial&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;12&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#d9534f&quot;</span>&gt;</span>P₁ (1099.7, 1818.68)<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Draw an arrow along the curve from P0 to P1 to show movement --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">defs</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">marker</span> <span class="attr">id</span>=<span class="string">&quot;arrow&quot;</span> <span class="attr">markerWidth</span>=<span class="string">&quot;10&quot;</span> <span class="attr">markerHeight</span>=<span class="string">&quot;10&quot;</span> <span class="attr">refX</span>=<span class="string">&quot;6&quot;</span> <span class="attr">refY</span>=<span class="string">&quot;3&quot;</span> <span class="attr">orient</span>=<span class="string">&quot;auto&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">&quot;M0,0 L0,6 L9,3 z&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#333&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">marker</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">defs</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- A short curved arrow between P0 and P1 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">path</span> <span class="attr">d</span>=<span class="string">&quot;M 370 190 Q 400 220 426 250&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;#333&quot;</span> <span class="attr">stroke-width</span>=<span class="string">&quot;1.4&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;none&quot;</span> <span class="attr">marker-end</span>=<span class="string">&quot;url(#arrow)&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Draw small vertical bracket showing sliding from initial price to new price (visual of slippage) --&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- At x ~ 364 (P0 x), show vertical from y=180 to y≈? corresponding P1 price line for that x (visual) --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">&quot;364&quot;</span> <span class="attr">y1</span>=<span class="string">&quot;180&quot;</span> <span class="attr">x2</span>=<span class="string">&quot;364&quot;</span> <span class="attr">y2</span>=<span class="string">&quot;252.53&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;#999&quot;</span> <span class="attr">stroke-dasharray</span>=<span class="string">&quot;4 4&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;290&quot;</span> <span class="attr">y</span>=<span class="string">&quot;220&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;Arial&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;12&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#666&quot;</span>&gt;</span>滑点: 价格从 2.00 → 1.653 (瞬时)<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Annotate amountOut --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;520&quot;</span> <span class="attr">y</span>=<span class="string">&quot;300&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;Arial&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;12&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#222&quot;</span>&gt;</span></span><br><span class="line">    用户输入 100 A → 实得 ≈ 181.322 B （amountOut）</span><br><span class="line">  <span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Legend --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">&quot;600&quot;</span> <span class="attr">y</span>=<span class="string">&quot;60&quot;</span> <span class="attr">width</span>=<span class="string">&quot;270&quot;</span> <span class="attr">height</span>=<span class="string">&quot;110&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#f8f8f8&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;#ddd&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;612&quot;</span> <span class="attr">y</span>=<span class="string">&quot;80&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;Arial&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;13&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#333&quot;</span>&gt;</span>图例 / 说明<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">&quot;620&quot;</span> <span class="attr">cy</span>=<span class="string">&quot;98&quot;</span> <span class="attr">r</span>=<span class="string">&quot;5&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#0055aa&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;634&quot;</span> <span class="attr">y</span>=<span class="string">&quot;102&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;Arial&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;12&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#333&quot;</span>&gt;</span>P₀: 交易前 (1000,2000)<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">&quot;620&quot;</span> <span class="attr">cy</span>=<span class="string">&quot;120&quot;</span> <span class="attr">r</span>=<span class="string">&quot;5&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#d9534f&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;634&quot;</span> <span class="attr">y</span>=<span class="string">&quot;124&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;Arial&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;12&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#333&quot;</span>&gt;</span>P₁: 交易后 (1099.7,1818.68)<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">&quot;610&quot;</span> <span class="attr">y1</span>=<span class="string">&quot;140&quot;</span> <span class="attr">x2</span>=<span class="string">&quot;636&quot;</span> <span class="attr">y2</span>=<span class="string">&quot;140&quot;</span> <span class="attr">stroke</span>=<span class="string">&quot;#333&quot;</span> <span class="attr">stroke-width</span>=<span class="string">&quot;3&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;640&quot;</span> <span class="attr">y</span>=<span class="string">&quot;144&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;Arial&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;12&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#333&quot;</span>&gt;</span>曲线: y = k / x （k = 2,000,000）<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Footer text --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;80&quot;</span> <span class="attr">y</span>=<span class="string">&quot;565&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;Arial&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;11&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;#333&quot;</span>&gt;</span></span><br><span class="line">    注: 曲线为 y = k/x 的近似示意；坐标映射为 x∈[600,1600] → svg_x∈[100,760], y∈[1400,2200] → svg_y∈[420,100]。</span><br><span class="line">  <span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>说明（关于 SVG 中的映射与精度）：</p>
+<ul>
+<li>为了把数学坐标映射到 SVG 像素，我对 x,y 做了线性缩放（在注释处给出公式）；</li>
+<li>曲线路径做了近似采样与手工平滑绘制以保证视觉美观；关键点 P₀、P₁ 的像素位置按精确数值计算并标注（你可按需用更高采样密度替换曲线路径以提高精确度）。</li>
+</ul>
+</blockquote>
+<hr>
+<p>✅ 这里是完整的结果，包括两种可视化形式：</p>
+<hr>
+<h3 id="1️⃣-数学真实曲线-SVG-图形版"><strong>1️⃣ 数学真实曲线 (SVG/图形版)</strong></h3>
+<p>上面的图展示了 Uniswap v2 的恒定乘积曲线 ( y = \frac{k}{x} )，其中：</p>
+<ul>
+<li>
+<p><strong>P₀ (绿色点)</strong>：交易前储备状态</p>
+<ul>
+<li>ReserveA = 1000</li>
+<li>ReserveB = 2000</li>
+<li>( P₀ = \frac{2000}{1000} = 2 )</li>
+</ul>
+</li>
+<li>
+<p><strong>P₁ (红色点)</strong>：交易后储备状态</p>
+<ul>
+<li>ReserveA = 1100</li>
+<li>ReserveB ≈ 1818.18</li>
+<li>( P₁ = \frac{1818.18}{1100} ≈ 1.653 )</li>
+</ul>
+</li>
+<li>
+<p>蓝色箭头表示交易方向（用户加入 A → 储备A上升 → 储备B下降）</p>
+</li>
+<li>
+<p>曲线向右下弯曲说明：随着 A 储备增加，B 储备减少，价格曲线非线性，滑点出现。</p>
+</li>
+</ul>
+<hr>
+<h3 id="2️⃣-ASCII-文字版示意图"><strong>2️⃣ ASCII 文字版示意图</strong></h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">  Token B Reserve (y)</span><br><span class="line">      |</span><br><span class="line">2200  |        *</span><br><span class="line">      |       *</span><br><span class="line">      |      *</span><br><span class="line">      |     *</span><br><span class="line">2000  |   *    ← P₀ (Before Trade)</span><br><span class="line">      |  *</span><br><span class="line">      | *</span><br><span class="line">      |*</span><br><span class="line">1800  |*         ← P₁ (After Trade)</span><br><span class="line">      |</span><br><span class="line">      |_________________________________</span><br><span class="line">                Token A Reserve (x)</span><br><span class="line">                ↑</span><br><span class="line">            Trade Direction</span><br><span class="line">  (User adds A → Reserve A↑, Reserve B↓)</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="解释总结："><strong>解释总结：</strong></h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>k = x × y</strong></td>
+<td>恒定乘积不变，曲线满足 y = k/x</td>
+</tr>
+<tr>
+<td><strong>滑点产生</strong></td>
+<td>因为曲线非线性，加入 100 A 不会线性换出 200 B，而是少于 200</td>
+</tr>
+<tr>
+<td><strong>价格变化</strong></td>
+<td>交易前 1A = 2B，交易后 1A ≈ 1.653B</td>
+</tr>
+<tr>
+<td><strong>k 恒定线</strong></td>
+<td>图中曲线即为 “k 恒定线”，任何交易都在曲线上移动，但不离开它</td>
+</tr>
+<tr>
+<td><strong>视觉方向</strong></td>
+<td>从左上到右下，表示 “买入 A 会导致 B 价格上涨（A 贬值）”</td>
+</tr>
+</tbody>
+</table>
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Uniswap/" rel="tag"><i class="fa fa-tag"></i> Uniswap</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/10/26/Uniswap-V2-How-to-do-the-math/" rel="prev" title="Uniswap V2 - How to do the math">
+                  <i class="fa fa-angle-left"></i> Uniswap V2 - How to do the math
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/10/27/Standard-Token/" rel="next" title="Standard Token">
+                  Standard Token <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+
+    
+    
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+  <div class="languages">
+    <label class="lang-select-label">
+      <i class="fa fa-language"></i>
+      <span>English</span>
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </label>
+    <select class="lang-select" data-canonical="" aria-label="Select language">
+      
+        <option value="zh-CN" data-href="/2025/10/27/Price-Curve-Slippage-Point-and-Constant-Product-k-Line/" selected="">
+          简体中文
+        </option>
+      
+        <option value="en" data-href="/en/2025/10/27/Price-Curve-Slippage-Point-and-Constant-Product-k-Line/" selected="">
+          English
+        </option>
+      
+    </select>
+  </div>
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">CCBus Lab</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+<aside class="post-crypto-sidebar">
+  
+  <div class="crypto-news-widget">
+    <h3 class="widget-title">
+      <i class="fa fa-newspaper"></i>Latest News
+    </h3>
+    <div class="news-list" id="crypto-news-list">
+      <div class="news-item">
+        <a href="https://cointelegraph.com" target="_blank" rel="noopener">
+          <span class="news-title">Bitcoin Reaches New All-Time High</span>
+          <span class="news-source">Cointelegraph</span>
+        </a>
+      </div>
+      <div class="news-item">
+        <a href="https://www.coindesk.com" target="_blank" rel="noopener">
+          <span class="news-title">Ethereum 2.0 Staking Surpasses Milestone</span>
+          <span class="news-source">CoinDesk</span>
+        </a>
+      </div>
+      <div class="news-item">
+        <a href="https://decrypt.co" target="_blank" rel="noopener">
+          <span class="news-title">DeFi Protocol Launches New Features</span>
+          <span class="news-source">Decrypt</span>
+        </a>
+      </div>
+      <div class="news-item">
+        <a href="https://www.theblockcrypto.com" target="_blank" rel="noopener">
+          <span class="news-title">Regulatory Updates in Digital Assets</span>
+          <span class="news-source">The Block</span>
+        </a>
+      </div>
+      <div class="news-item">
+        <a href="https://cryptoslate.com" target="_blank" rel="noopener">
+          <span class="news-title">NFT Market Shows Strong Growth</span>
+          <span class="news-source">CryptoSlate</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="crypto-price-widget">
+    <h3 class="widget-title">
+      <i class="fa fa-line-chart"></i>Live Prices
+    </h3>
+    <div class="price-list" id="crypto-price-list">
+      <div class="price-item">
+        <span class="crypto-name">BTC</span>
+        <span class="crypto-price" data-coin="bitcoin">Loading...</span>
+        <span class="crypto-change" data-coin="bitcoin-change">--</span>
+      </div>
+      <div class="price-item">
+        <span class="crypto-name">ETH</span>
+        <span class="crypto-price" data-coin="ethereum">Loading...</span>
+        <span class="crypto-change" data-coin="ethereum-change">--</span>
+      </div>
+      <div class="price-item">
+        <span class="crypto-name">BNB</span>
+        <span class="crypto-price" data-coin="binancecoin">Loading...</span>
+        <span class="crypto-change" data-coin="binancecoin-change">--</span>
+      </div>
+      <div class="price-item">
+        <span class="crypto-name">SOL</span>
+        <span class="crypto-price" data-coin="solana">Loading...</span>
+        <span class="crypto-change" data-coin="solana-change">--</span>
+      </div>
+      <div class="price-item">
+        <span class="crypto-name">ADA</span>
+        <span class="crypto-price" data-coin="cardano">Loading...</span>
+        <span class="crypto-change" data-coin="cardano-change">--</span>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<script>
+// Fetch cryptocurrency prices from CoinGecko API
+async function fetchCryptoPrices() {
+  try {
+    const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,solana,cardano&vs_currencies=usd&include_24hr_change=true');
+    const data = await response.json();
+
+    // Update prices
+    document.querySelectorAll('[data-coin]').forEach(element => {
+      const coinId = element.getAttribute('data-coin');
+
+      if (coinId.includes('-change')) {
+        const baseCoin = coinId.replace('-change', '');
+        if (data[baseCoin]) {
+          const change = data[baseCoin].usd_24h_change;
+          element.textContent = change >= 0 ? `+${change.toFixed(2)}%` : `${change.toFixed(2)}%`;
+          element.className = 'crypto-change ' + (change >= 0 ? 'positive' : 'negative');
+        }
+      } else {
+        if (data[coinId]) {
+          element.textContent = `$${data[coinId].usd.toLocaleString()}`;
+        }
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching crypto prices:', error);
+  }
+}
+
+// Fetch prices on load and every 60 seconds
+if (document.querySelector('.crypto-price-widget')) {
+  fetchCryptoPrices();
+  setInterval(fetchCryptoPrices, 60000);
+}
+</script>
+
+
+</body>
+</html>

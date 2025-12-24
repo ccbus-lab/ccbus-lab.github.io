@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/CCBus_B_T_64.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/CCBus_B_G_64.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/CCBus_B_T_64.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.ccbus.cc","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Chapter 12: Governance and DAOs  Difficulty Level: 🟡 Intermediate Estimated Learning Time: 4-5 hours Chapter Objectives:  Understand on-chain governance Master DAO structures Learn voting mechanisms">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Chapter 12: Governance and DAOs">
+<meta property="og:url" content="https://www.ccbus.cc/en/ccbook/chapters/chapter-12.html">
+<meta property="og:site_name" content="CCBus">
+<meta property="og:description" content="Chapter 12: Governance and DAOs  Difficulty Level: 🟡 Intermediate Estimated Learning Time: 4-5 hours Chapter Objectives:  Understand on-chain governance Master DAO structures Learn voting mechanisms">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-10-27T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-12-11T03:29:27.029Z">
+<meta property="article:author" content="CCBus Lab">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.ccbus.cc/en/ccbook/chapters/chapter-12">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://www.ccbus.cc/en/ccbook/chapters/chapter-12.html","path":"en/ccbook/chapters/chapter-12.html","title":"Chapter 12: Governance and DAOs"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Chapter 12: Governance and DAOs | CCBus
+</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+<link rel="stylesheet" href="/css/custom.css">
+<script src="/js/mermaid-loader.js"></script>
+<script src="/js/menu-lang-switcher.js"></script>
+<script src="/js/ccbook-breadcrumb-fix.js"></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main ccbook-three-column">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">CCBus</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+  <ul class="main-menu menu menu-lang-zh-CN" style="display: none;"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-ccbook"><a href="/ccbook/" rel="section"><i class="fa fa-book fa-fw"></i>CC宝典</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-articles"><a href="/articles/" rel="section"><i class="fa fa-file fa-fw"></i>Articles</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+
+  
+  <ul class="main-menu menu menu-lang-en"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-ccbook"><a href="/ccbook/" rel="section"><i class="fa fa-book fa-fw"></i>CC Bible</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-articles"><a href="/articles/" rel="section"><i class="fa fa-file fa-fw"></i>Articles</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+
+<div class="languages-header">
+  
+    <a href="/ccbook/chapters/chapter-12.html"
+       class="lang-btn "
+       title="切换到简体中文">
+      中文
+    </a>
+  
+    <a href="/en/ccbook/chapters/chapter-12.html"
+       class="lang-btn active"
+       title="Switch to English">
+      EN
+    </a>
+  
+</div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="CCBus Lab"
+      src="/images/CCBus_B_G_64.png">
+  <p class="site-author-name" itemprop="name">CCBus Lab</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ccbus-lab" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ccbus-lab" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ccbus-lab@gmail.com" title="E-Mail → mailto:ccbus-lab@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner page posts-expand ccbook-page ccbook-chapter-page">
+
+
+    
+    
+    
+    <div class="post-block ccbook-main-container" lang="en">
+
+      
+      <article class="ccbook-content-area"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">Chapter 12: Governance and DAOs
+</h1>
+
+<div class="post-meta-container">
+  <ul class="breadcrumb">
+            <li><a href="/en/">EN</a></li>
+            <li><a href="/en/ccbook/">CCBOOK</a></li>
+            <li><a href="/en/ccbook/chapters/">CHAPTERS</a></li>
+            <li>CHAPTER-12</li>
+  </ul>
+</div>
+
+</header>
+
+
+        
+        
+        
+        <div class="post-body ccbook-content-body">
+          <h1>Chapter 12: Governance and DAOs</h1>
+<div class="chapter-intro">
+<p><strong>Difficulty Level:</strong> 🟡 Intermediate<br>
+<strong>Estimated Learning Time:</strong> 4-5 hours</p>
+<p><strong>Chapter Objectives:</strong></p>
+<ul>
+<li>Understand on-chain governance</li>
+<li>Master DAO structures</li>
+<li>Learn voting mechanisms</li>
+<li>Explore treasury management</li>
+</ul>
+</div>
+<h2 id="12-1-On-Chain-Governance-Mechanisms">12.1 On-Chain Governance Mechanisms</h2>
+<p>Decision-making encoded in smart contracts.</p>
+<h2 id="12-2-Decentralized-Autonomous-Organizations-DAOs">12.2 Decentralized Autonomous Organizations (DAOs)</h2>
+<p><strong>DAOs</strong> are organizations governed by code and community voting.</p>
+<h3 id="DAO-Types">DAO Types</h3>
+<ul>
+<li>Protocol DAOs (Uniswap, Aave)</li>
+<li>Investment DAOs (The LAO)</li>
+<li>Social DAOs</li>
+<li>Collector DAOs</li>
+</ul>
+<h2 id="12-3-Governance-Token-Models">12.3 Governance Token Models</h2>
+<p>Tokens that grant voting rights and protocol ownership.</p>
+<h2 id="12-4-Voting-Mechanisms">12.4 Voting Mechanisms</h2>
+<h3 id="Token-Weighted-Voting">Token-Weighted Voting</h3>
+<ul>
+<li>One token = one vote</li>
+<li>Risk of plutocracy</li>
+</ul>
+<h3 id="Quadratic-Voting">Quadratic Voting</h3>
+<ul>
+<li>Cost increases quadratically</li>
+<li>Reduces whale influence</li>
+</ul>
+<h3 id="Delegation">Delegation</h3>
+<ul>
+<li>Delegate voting power to experts</li>
+</ul>
+<h2 id="12-5-Treasury-Management">12.5 Treasury Management</h2>
+<p>Managing DAO funds transparently and efficiently.</p>
+<h2 id="12-6-DAO-Tools-and-Frameworks">12.6 DAO Tools and Frameworks</h2>
+<ul>
+<li><strong>Snapshot</strong> - Off-chain voting</li>
+<li><strong>Tally</strong> - On-chain governance</li>
+<li><strong>Gnosis Safe</strong> - Multi-sig treasury</li>
+</ul>
+<h2 id="12-7-Legal-and-Regulatory-Considerations">12.7 Legal and Regulatory Considerations</h2>
+<p>DAOs navigate complex legal landscapes.</p>
+<h2 id="12-8-Successful-DAO-Case-Studies">12.8 Successful DAO Case Studies</h2>
+<ul>
+<li><strong>MakerDAO</strong> - Decentralized stablecoin governance</li>
+<li><strong>Compound</strong> - Lending protocol governance</li>
+<li><strong>Gitcoin</strong> - Public goods funding</li>
+</ul>
+<div class="chapter-footer">
+<h3 id="Key-Takeaways">Key Takeaways</h3>
+<ul>
+<li>DAOs enable decentralized coordination</li>
+<li>Governance mechanisms balance efficiency and fairness</li>
+<li>Legal frameworks are still evolving</li>
+</ul>
+</div>
+
+        </div>
+        
+        
+        
+
+        
+        
+          <div class="ccbook-chapter-nav-bottom">
+            
+            
+              
+              
+
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                  
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+
+              <div class="chapter-nav-buttons">
+                
+                  <a href="/en/ccbook/chapters/chapter-11.html" class="prev-chapter-btn">
+                    <i class="fa fa-arrow-left"></i>
+                    <span class="btn-text">
+                        <span class="nav-label">Previous</span>
+                      <span class="nav-title">Chapter 11: NFTs & Digital Assets</span>
+                    </span>
+                  </a>
+                
+
+                
+                  <a href="/en/ccbook/chapters/chapter-13.html" class="next-chapter-btn">
+                    <span class="btn-text">
+                        <span class="nav-label">Next</span>
+                      <span class="nav-title">Chapter 13: Blockchain Platforms Comparison</span>
+                    </span>
+                    <i class="fa fa-arrow-right"></i>
+                  </a>
+                
+              </div>
+            
+          </div>
+        
+      </article>
+    </div>
+    
+    
+    
+
+
+</div>
+
+    
+    
+  <aside class="ccbook-sidebar-right">
+    
+    <div class="ccbook-lang-switcher">
+      <div class="languages-header">
+          <a href="/ccbook/chapters/chapter-12.html" class="lang-btn">中文</a>
+          <a href="/en/ccbook/chapters/chapter-12.html" class="lang-btn active">EN</a>
+      </div>
+    </div>
+
+    
+    <div class="ccbook-sidebar-content">
+      <div class="ccbook-nav-header">
+          <h3><i class="fa fa-book"></i> CCBook Contents</h3>
+          <a href="/en/ccbook/" class="ccbook-home-link">
+            <i class="fa fa-home"></i> Back to Index
+          </a>
+      </div>
+
+      <nav class="ccbook-nav-menu">
+        
+        
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-1.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="1">
+                <span class="chapter-icon">
+                  <i class="fa fa-cubes"></i>
+                </span>
+                <span class="chapter-title">Chapter 1: Blockchain Fundamentals</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-1.html#1-1-什么是区块链？"
+                       class="ccbook-section-link"
+                       data-section="#1-1-什么是区块链？">
+                      1.1 What is Blockchain?
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-1.html#1-2-区块链的历史与演进"
+                       class="ccbook-section-link"
+                       data-section="#1-2-区块链的历史与演进">
+                      1.2 History and Evolution
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-1.html#1-3-区块链的核心特性"
+                       class="ccbook-section-link"
+                       data-section="#1-3-区块链的核心特性">
+                      1.3 Core Characteristics
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-1.html#1-4-区块链如何工作"
+                       class="ccbook-section-link"
+                       data-section="#1-4-区块链如何工作">
+                      1.4 How Blockchain Works
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-1.html#1-5-区块链的类型"
+                       class="ccbook-section-link"
+                       data-section="#1-5-区块链的类型">
+                      1.5 Types of Blockchain
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-1.html#1-6-区块链-vs-传统数据库"
+                       class="ccbook-section-link"
+                       data-section="#1-6-区块链-vs-传统数据库">
+                      1.6 Blockchain vs Traditional Databases
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-1.html#1-7-真实世界的类比与应用场景"
+                       class="ccbook-section-link"
+                       data-section="#1-7-真实世界的类比与应用场景">
+                      1.7 Real-World Analogies and Use Cases
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-1.html#1-8-章节总结"
+                       class="ccbook-section-link"
+                       data-section="#1-8-章节总结">
+                      1.8 Chapter Summary
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-2.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="2">
+                <span class="chapter-icon">
+                  <i class="fa fa-key"></i>
+                </span>
+                <span class="chapter-title">Chapter 2: Cryptography Essentials</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-2.html#2-1-密码学简介"
+                       class="ccbook-section-link"
+                       data-section="#2-1-密码学简介">
+                      2.1 Introduction to Cryptography
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-2.html#2-2-哈希函数"
+                       class="ccbook-section-link"
+                       data-section="#2-2-哈希函数">
+                      2.2 Hash Functions
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-2.html#2-3-对称加密与非对称加密"
+                       class="ccbook-section-link"
+                       data-section="#2-3-对称加密与非对称加密">
+                      2.3 Symmetric & Asymmetric Encryption
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-2.html#2-4-数字签名"
+                       class="ccbook-section-link"
+                       data-section="#2-4-数字签名">
+                      2.4 Digital Signatures
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-2.html#2-5-merkle-树"
+                       class="ccbook-section-link"
+                       data-section="#2-5-merkle-树">
+                      2.5 Merkle Trees
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-2.html#2-6-高级密码学概念"
+                       class="ccbook-section-link"
+                       data-section="#2-6-高级密码学概念">
+                      2.6 Advanced Cryptography Concepts
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-3.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="3">
+                <span class="chapter-icon">
+                  <i class="fa fa-bitcoin"></i>
+                </span>
+                <span class="chapter-title">Chapter 3: Cryptocurrency Fundamentals</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-3.html#3-1-什么是加密货币？"
+                       class="ccbook-section-link"
+                       data-section="#3-1-什么是加密货币？">
+                      3.1 What is Cryptocurrency?
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-3.html#3-2-比特币：第一个加密货币"
+                       class="ccbook-section-link"
+                       data-section="#3-2-比特币：第一个加密货币">
+                      3.2 Bitcoin: The First Cryptocurrency
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-3.html#3-3-以太坊和智能合约平台"
+                       class="ccbook-section-link"
+                       data-section="#3-3-以太坊和智能合约平台">
+                      3.3 Ethereum and Smart Contract Platforms
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-3.html#3-4-其他主流加密货币"
+                       class="ccbook-section-link"
+                       data-section="#3-4-其他主流加密货币">
+                      3.4 Other Major Cryptocurrencies
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-3.html#3-5-如何获得加密货币"
+                       class="ccbook-section-link"
+                       data-section="#3-5-如何获得加密货币">
+                      3.5 How to Acquire Cryptocurrency
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-3.html#3-6-加密货币钱包"
+                       class="ccbook-section-link"
+                       data-section="#3-6-加密货币钱包">
+                      3.6 Cryptocurrency Wallets
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-3.html#3-7-加密货币的风险与挑战"
+                       class="ccbook-section-link"
+                       data-section="#3-7-加密货币的风险与挑战">
+                      3.7 Risks and Challenges
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-4.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="4">
+                <span class="chapter-icon">
+                  <i class="fa fa-handshake"></i>
+                </span>
+                <span class="chapter-title">Chapter 4: Consensus Mechanisms</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-4.html#4-1-什么是共识机制？"
+                       class="ccbook-section-link"
+                       data-section="#4-1-什么是共识机制？">
+                      4.1 What is Consensus Mechanism?
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-4.html#4-2-工作量证明-pow"
+                       class="ccbook-section-link"
+                       data-section="#4-2-工作量证明-pow">
+                      4.2 Proof of Work (PoW)
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-4.html#4-3-权益证明-pos"
+                       class="ccbook-section-link"
+                       data-section="#4-3-权益证明-pos">
+                      4.3 Proof of Stake (PoS)
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-4.html#4-4-委托权益证明-dpos"
+                       class="ccbook-section-link"
+                       data-section="#4-4-委托权益证明-dpos">
+                      4.4 Delegated Proof of Stake (DPoS)
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-4.html#4-5-实用拜占庭容错-pbft"
+                       class="ccbook-section-link"
+                       data-section="#4-5-实用拜占庭容错-pbft">
+                      4.5 Practical Byzantine Fault Tolerance (PBFT)
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-4.html#4-6-其他共识机制"
+                       class="ccbook-section-link"
+                       data-section="#4-6-其他共识机制">
+                      4.6 Other Consensus Mechanisms
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-4.html#4-7-共识机制对比"
+                       class="ccbook-section-link"
+                       data-section="#4-7-共识机制对比">
+                      4.7 Consensus Comparison
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-4.html#4-8-共识机制的未来"
+                       class="ccbook-section-link"
+                       data-section="#4-8-共识机制的未来">
+                      4.8 Future of Consensus
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-5.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="5">
+                <span class="chapter-icon">
+                  <i class="fa fa-file-contract"></i>
+                </span>
+                <span class="chapter-title">Chapter 5: Smart Contracts</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-5.html#5-1-什么是智能合约？"
+                       class="ccbook-section-link"
+                       data-section="#5-1-什么是智能合约？">
+                      5.1 What are Smart Contracts?
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-5.html#5-2-以太坊虚拟机-evm"
+                       class="ccbook-section-link"
+                       data-section="#5-2-以太坊虚拟机-evm">
+                      5.2 Ethereum Virtual Machine (EVM)
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-5.html#5-3-solidity-编程基础"
+                       class="ccbook-section-link"
+                       data-section="#5-3-solidity-编程基础">
+                      5.3 Solidity Programming Basics
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-5.html#5-4-智能合约设计模式"
+                       class="ccbook-section-link"
+                       data-section="#5-4-智能合约设计模式">
+                      5.4 Smart Contract Design Patterns
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-5.html#5-5-智能合约安全"
+                       class="ccbook-section-link"
+                       data-section="#5-5-智能合约安全">
+                      5.5 Smart Contract Security
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-5.html#5-6-智能合约应用场景"
+                       class="ccbook-section-link"
+                       data-section="#5-6-智能合约应用场景">
+                      5.6 Smart Contract Use Cases
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-6.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="6">
+                <span class="chapter-icon">
+                  <i class="fa fa-sitemap"></i>
+                </span>
+                <span class="chapter-title">Chapter 6: Blockchain Architecture</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-6.html#6-1-区块链分层架构"
+                       class="ccbook-section-link"
+                       data-section="#6-1-区块链分层架构">
+                      6.1 Layered Architecture
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-6.html#6-2-p2p网络架构"
+                       class="ccbook-section-link"
+                       data-section="#6-2-p2p网络架构">
+                      6.2 P2P Network Architecture
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-6.html#6-3-数据结构设计"
+                       class="ccbook-section-link"
+                       data-section="#6-3-数据结构设计">
+                      6.3 Data Structure Design
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-6.html#6-4-状态存储与merkle树"
+                       class="ccbook-section-link"
+                       data-section="#6-4-状态存储与merkle树">
+                      6.4 State Storage & Merkle Trees
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-6.html#6-5-不同区块链架构对比"
+                       class="ccbook-section-link"
+                       data-section="#6-5-不同区块链架构对比">
+                      6.5 Architecture Comparison
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-6.html#6-6-高性能区块链设计"
+                       class="ccbook-section-link"
+                       data-section="#6-6-高性能区块链设计">
+                      6.6 High-Performance Design
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-7.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="7">
+                <span class="chapter-icon">
+                  <i class="fa fa-layer-group"></i>
+                </span>
+                <span class="chapter-title">Chapter 7: Layer 2 Scaling Solutions</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-7.html#7-1-为什么需要layer-2？"
+                       class="ccbook-section-link"
+                       data-section="#7-1-为什么需要layer-2？">
+                      7.1 Why Layer 2?
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-7.html#7-2-optimistic-rollup"
+                       class="ccbook-section-link"
+                       data-section="#7-2-optimistic-rollup">
+                      7.2 Optimistic Rollup
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-7.html#7-3-zk-rollup"
+                       class="ccbook-section-link"
+                       data-section="#7-3-zk-rollup">
+                      7.3 ZK Rollup
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-7.html#7-4-状态通道"
+                       class="ccbook-section-link"
+                       data-section="#7-4-状态通道">
+                      7.4 State Channels
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-7.html#7-5-侧链"
+                       class="ccbook-section-link"
+                       data-section="#7-5-侧链">
+                      7.5 Sidechains
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-7.html#7-6-layer-2生态全景"
+                       class="ccbook-section-link"
+                       data-section="#7-6-layer-2生态全景">
+                      7.6 Layer 2 Ecosystem Overview
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-7.html#7-7-layer-2未来趋势"
+                       class="ccbook-section-link"
+                       data-section="#7-7-layer-2未来趋势">
+                      7.7 Layer 2 Future Trends
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-8.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="8">
+                <span class="chapter-icon">
+                  <i class="fa fa-exchange-alt"></i>
+                </span>
+                <span class="chapter-title">Chapter 8: Interoperability & Cross-Chain</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-8.html#8-1-为什么需要互操作性？"
+                       class="ccbook-section-link"
+                       data-section="#8-1-为什么需要互操作性？">
+                      8.1 Why Interoperability?
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-8.html#8-2-跨链桥的工作原理"
+                       class="ccbook-section-link"
+                       data-section="#8-2-跨链桥的工作原理">
+                      8.2 How Cross-Chain Bridges Work
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-8.html#8-3-主流跨链协议"
+                       class="ccbook-section-link"
+                       data-section="#8-3-主流跨链协议">
+                      8.3 Major Cross-Chain Protocols
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-8.html#8-4-跨链桥安全风险"
+                       class="ccbook-section-link"
+                       data-section="#8-4-跨链桥安全风险">
+                      8.4 Bridge Security Risks
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-8.html#8-5-新兴跨链技术"
+                       class="ccbook-section-link"
+                       data-section="#8-5-新兴跨链技术">
+                      8.5 Emerging Cross-Chain Technologies
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-8.html#8-6-跨链未来展望"
+                       class="ccbook-section-link"
+                       data-section="#8-6-跨链未来展望">
+                      8.6 Future of Cross-Chain
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-9.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="9">
+                <span class="chapter-icon">
+                  <i class="fa fa-lock"></i>
+                </span>
+                <span class="chapter-title">Chapter 9: Advanced Cryptography</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-9.html#9-1-零知识证明-zero-knowledge-proof"
+                       class="ccbook-section-link"
+                       data-section="#9-1-零知识证明-zero-knowledge-proof">
+                      9.1 Zero-Knowledge Proof
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-9.html#9-2-zk-snark-与-zk-stark"
+                       class="ccbook-section-link"
+                       data-section="#9-2-zk-snark-与-zk-stark">
+                      9.2 zk-SNARK & zk-STARK
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-9.html#9-3-多方安全计算-mpc"
+                       class="ccbook-section-link"
+                       data-section="#9-3-多方安全计算-mpc">
+                      9.3 Multi-Party Computation (MPC)
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-9.html#9-4-同态加密-homomorphic-encryption"
+                       class="ccbook-section-link"
+                       data-section="#9-4-同态加密-homomorphic-encryption">
+                      9.4 Homomorphic Encryption
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-9.html#9-5-门限密码学与-vrf"
+                       class="ccbook-section-link"
+                       data-section="#9-5-门限密码学与-vrf">
+                      9.5 Threshold Cryptography & VRF
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-9.html#9-6-隐私保护技术对比"
+                       class="ccbook-section-link"
+                       data-section="#9-6-隐私保护技术对比">
+                      9.6 Privacy Technology Comparison
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-10.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="10">
+                <span class="chapter-icon">
+                  <i class="fa fa-coins"></i>
+                </span>
+                <span class="chapter-title">Chapter 10: DeFi - Decentralized Finance</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-10.html#10-1-什么是-defi？"
+                       class="ccbook-section-link"
+                       data-section="#10-1-什么是-defi？">
+                      10.1 What is DeFi?
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-10.html#10-2-自动化做市商-amm"
+                       class="ccbook-section-link"
+                       data-section="#10-2-自动化做市商-amm">
+                      10.2 Automated Market Maker (AMM)
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-10.html#10-3-借贷协议"
+                       class="ccbook-section-link"
+                       data-section="#10-3-借贷协议">
+                      10.3 Lending Protocols
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-10.html#10-4-稳定币设计模式"
+                       class="ccbook-section-link"
+                       data-section="#10-4-稳定币设计模式">
+                      10.4 Stablecoin Design Patterns
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-10.html#10-5-defi-创新应用"
+                       class="ccbook-section-link"
+                       data-section="#10-5-defi-创新应用">
+                      10.5 DeFi Innovations
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-11.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="11">
+                <span class="chapter-icon">
+                  <i class="fa fa-image"></i>
+                </span>
+                <span class="chapter-title">Chapter 11: NFTs & Digital Assets</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-11.html#11-1-什么是-nft？"
+                       class="ccbook-section-link"
+                       data-section="#11-1-什么是-nft？">
+                      11.1 What is NFT?
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-11.html#11-2-nft-标准"
+                       class="ccbook-section-link"
+                       data-section="#11-2-nft-标准">
+                      11.2 NFT Standards
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-11.html#11-3-nft-应用场景"
+                       class="ccbook-section-link"
+                       data-section="#11-3-nft-应用场景">
+                      11.3 NFT Use Cases
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-11.html#11-4-nft-的技术挑战"
+                       class="ccbook-section-link"
+                       data-section="#11-4-nft-的技术挑战">
+                      11.4 Technical Challenges
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-11.html#11-5-nft-fi：金融化创新"
+                       class="ccbook-section-link"
+                       data-section="#11-5-nft-fi：金融化创新">
+                      11.5 NFT-Fi: Financial Innovations
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-11.html#11-6-nft-的未来趋势"
+                       class="ccbook-section-link"
+                       data-section="#11-6-nft-的未来趋势">
+                      11.6 Future Trends
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group active-chapter">
+              <a href="/en/ccbook/chapters/chapter-12.html"
+                 class="ccbook-chapter-link active"
+                 data-chapter="12">
+                <span class="chapter-icon">
+                  <i class="fa fa-users-cog"></i>
+                </span>
+                <span class="chapter-title">Chapter 12: Governance & DAOs</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections show">
+                  
+                    <a href="/en/ccbook/chapters/chapter-12.html#12-1-什么是-dao？"
+                       class="ccbook-section-link"
+                       data-section="#12-1-什么是-dao？">
+                      12.1 What is DAO?
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-12.html#12-2-链上治理机制"
+                       class="ccbook-section-link"
+                       data-section="#12-2-链上治理机制">
+                      12.2 On-Chain Governance
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-12.html#12-3-链下治理：snapshot"
+                       class="ccbook-section-link"
+                       data-section="#12-3-链下治理：snapshot">
+                      12.3 Off-Chain Governance: Snapshot
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-12.html#12-4-代币经济学与激励设计"
+                       class="ccbook-section-link"
+                       data-section="#12-4-代币经济学与激励设计">
+                      12.4 Tokenomics & Incentive Design
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-12.html#12-5-多签钱包与治理安全"
+                       class="ccbook-section-link"
+                       data-section="#12-5-多签钱包与治理安全">
+                      12.5 Multi-Sig & Governance Security
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-12.html#12-6-dao-工具栈"
+                       class="ccbook-section-link"
+                       data-section="#12-6-dao-工具栈">
+                      12.6 DAO Tool Stack
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-13.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="13">
+                <span class="chapter-icon">
+                  <i class="fa fa-chart-bar"></i>
+                </span>
+                <span class="chapter-title">Chapter 13: Blockchain Platforms Comparison</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-13.html#13-1-区块链不可能三角"
+                       class="ccbook-section-link"
+                       data-section="#13-1-区块链不可能三角">
+                      13.1 Blockchain Trilemma
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-13.html#13-2-layer-1-主流平台对比"
+                       class="ccbook-section-link"
+                       data-section="#13-2-layer-1-主流平台对比">
+                      13.2 Layer 1 Platform Comparison
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-13.html#13-3-evm-兼容链-vs-非-evm-链"
+                       class="ccbook-section-link"
+                       data-section="#13-3-evm-兼容链-vs-非-evm-链">
+                      13.3 EVM Compatible vs Non-EVM Chains
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-13.html#13-4-layer-2-解决方案"
+                       class="ccbook-section-link"
+                       data-section="#13-4-layer-2-解决方案">
+                      13.4 Layer 2 Solutions
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-13.html#13-5-新兴公链"
+                       class="ccbook-section-link"
+                       data-section="#13-5-新兴公链">
+                      13.5 Emerging Chains
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-13.html#13-6-如何选择区块链平台？"
+                       class="ccbook-section-link"
+                       data-section="#13-6-如何选择区块链平台？">
+                      13.6 How to Choose Blockchain Platforms?
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-13.html#13-7-多链未来"
+                       class="ccbook-section-link"
+                       data-section="#13-7-多链未来">
+                      13.7 Multi-Chain Future
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-14.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="14">
+                <span class="chapter-icon">
+                  <i class="fa fa-building"></i>
+                </span>
+                <span class="chapter-title">Chapter 14: Enterprise Blockchain</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-14.html#14-1-企业区块链-vs-公链"
+                       class="ccbook-section-link"
+                       data-section="#14-1-企业区块链-vs-公链">
+                      14.1 Enterprise Blockchain vs Public Chains
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-14.html#14-2-主流企业区块链平台"
+                       class="ccbook-section-link"
+                       data-section="#14-2-主流企业区块链平台">
+                      14.2 Mainstream Enterprise Blockchain Platforms
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-14.html#14-3-企业区块链隐私保护"
+                       class="ccbook-section-link"
+                       data-section="#14-3-企业区块链隐私保护">
+                      14.3 Enterprise Blockchain Privacy Protection
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-14.html#14-4-企业区块链应用案例"
+                       class="ccbook-section-link"
+                       data-section="#14-4-企业区块链应用案例">
+                      14.4 Enterprise Blockchain Use Cases
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-14.html#14-5-企业区块链部署实践"
+                       class="ccbook-section-link"
+                       data-section="#14-5-企业区块链部署实践">
+                      14.5 Enterprise Blockchain Deployment Practices
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-14.html#14-6-企业区块链挑战与未来"
+                       class="ccbook-section-link"
+                       data-section="#14-6-企业区块链挑战与未来">
+                      14.6 Challenges and Future of Enterprise Blockchain
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-15.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="15">
+                <span class="chapter-icon">
+                  <i class="fa fa-shield-alt"></i>
+                </span>
+                <span class="chapter-title">Chapter 15: Security & Best Practices</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-15.html#15-1-区块链安全威胁模型"
+                       class="ccbook-section-link"
+                       data-section="#15-1-区块链安全威胁模型">
+                      15.1 Blockchain Security Threat Model
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-15.html#15-2-智能合约安全最佳实践"
+                       class="ccbook-section-link"
+                       data-section="#15-2-智能合约安全最佳实践">
+                      15.2 Smart Contract Security Best Practices
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-15.html#15-3-智能合约审计"
+                       class="ccbook-section-link"
+                       data-section="#15-3-智能合约审计">
+                      15.3 Smart Contract Auditing
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-15.html#15-4-私钥与钱包安全"
+                       class="ccbook-section-link"
+                       data-section="#15-4-私钥与钱包安全">
+                      15.4 Private Key & Wallet Security
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-15.html#15-5-dapp-前端安全"
+                       class="ccbook-section-link"
+                       data-section="#15-5-dapp-前端安全">
+                      15.5 DApp Frontend Security
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-15.html#15-6-应急响应与事件处理"
+                       class="ccbook-section-link"
+                       data-section="#15-6-应急响应与事件处理">
+                      15.6 Incident Response & Emergency Handling
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/en/ccbook/chapters/chapter-16.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="16">
+                <span class="chapter-icon">
+                  <i class="fa fa-rocket"></i>
+                </span>
+                <span class="chapter-title">Chapter 16: Future of Blockchain</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/en/ccbook/chapters/chapter-16.html#16-1-技术演进路线图"
+                       class="ccbook-section-link"
+                       data-section="#16-1-技术演进路线图">
+                      16.1 Technology Evolution Roadmap
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-16.html#16-2-扩展性突破"
+                       class="ccbook-section-link"
+                       data-section="#16-2-扩展性突破">
+                      16.2 Scalability Breakthroughs
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-16.html#16-3-ai-区块链融合"
+                       class="ccbook-section-link"
+                       data-section="#16-3-ai-区块链融合">
+                      16.3 AI + Blockchain Convergence
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-16.html#16-4-rwa（真实世界资产）代币化"
+                       class="ccbook-section-link"
+                       data-section="#16-4-rwa（真实世界资产）代币化">
+                      16.4 RWA (Real World Assets) Tokenization
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-16.html#16-5-监管演进"
+                       class="ccbook-section-link"
+                       data-section="#16-5-监管演进">
+                      16.5 Regulatory Evolution
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-16.html#16-6-web3-大规模采用"
+                       class="ccbook-section-link"
+                       data-section="#16-6-web3-大规模采用">
+                      16.6 Web3 Mass Adoption
+                    </a>
+                  
+                    <a href="/en/ccbook/chapters/chapter-16.html#16-7-本章小结"
+                       class="ccbook-section-link"
+                       data-section="#16-7-本章小结">
+                      16.7 Chapter Summary
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+        
+      </nav>
+
+      
+      <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const chapterLinks = document.querySelectorAll('.ccbook-chapter-link');
+
+        chapterLinks.forEach(link => {
+          const toggle = link.querySelector('.chapter-toggle');
+          if (toggle) {
+            link.addEventListener('click', function(e) {
+              // Only toggle if clicking the chevron icon
+              if (e.target.closest('.chapter-toggle')) {
+                e.preventDefault();
+                const group = this.closest('.ccbook-chapter-group');
+                const sections = group.querySelector('.ccbook-sections');
+                const icon = toggle.querySelector('i');
+
+                sections.classList.toggle('show');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+              }
+            });
+          }
+        });
+      });
+      </script>
+    </div>
+    
+  </aside>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+  <div class="languages">
+    <label class="lang-select-label">
+      <i class="fa fa-language"></i>
+      <span>English</span>
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </label>
+    <select class="lang-select" data-canonical="" aria-label="Select language">
+      
+        <option value="zh-CN" data-href="/ccbook/chapters/chapter-12.html" selected="">
+          简体中文
+        </option>
+      
+        <option value="en" data-href="/en/ccbook/chapters/chapter-12.html" selected="">
+          English
+        </option>
+      
+    </select>
+  </div>
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">CCBus Lab</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+
+</body>
+</html>

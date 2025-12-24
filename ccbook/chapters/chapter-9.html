@@ -1,0 +1,2094 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/CCBus_B_T_64.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/CCBus_B_G_64.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/CCBus_B_T_64.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.ccbus.cc","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="学习目标：  理解零知识证明的原理和应用 掌握多方安全计算的基本概念 学习同态加密和门限密码学 了解可验证随机函数（VRF） 探索密码学在区块链隐私保护中的应用  本章关键词：零知识证明、zk-SNARK、zk-STARK、多方计算、同态加密、门限签名、VRF、隐私保护   9.1 零知识证明 (Zero-Knowledge Proof) 什么是零知识证明？ 零知识证明 (ZKP) 允许证明者向">
+<meta property="og:type" content="website">
+<meta property="og:title" content="第九章：高级密码学">
+<meta property="og:url" content="https://www.ccbus.cc/ccbook/chapters/chapter-9.html">
+<meta property="og:site_name" content="CCBus">
+<meta property="og:description" content="学习目标：  理解零知识证明的原理和应用 掌握多方安全计算的基本概念 学习同态加密和门限密码学 了解可验证随机函数（VRF） 探索密码学在区块链隐私保护中的应用  本章关键词：零知识证明、zk-SNARK、zk-STARK、多方计算、同态加密、门限签名、VRF、隐私保护   9.1 零知识证明 (Zero-Knowledge Proof) 什么是零知识证明？ 零知识证明 (ZKP) 允许证明者向">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-10-27T13:00:00.000Z">
+<meta property="article:modified_time" content="2025-12-06T20:55:41.188Z">
+<meta property="article:author" content="CCBus Lab">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.ccbus.cc/ccbook/chapters/chapter-9">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://www.ccbus.cc/ccbook/chapters/chapter-9.html","path":"ccbook/chapters/chapter-9.html","title":"第九章：高级密码学"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>第九章：高级密码学 | CCBus
+</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+<link rel="stylesheet" href="/css/custom.css">
+<script src="/js/mermaid-loader.js"></script>
+<script src="/js/menu-lang-switcher.js"></script>
+<script src="/js/ccbook-breadcrumb-fix.js"></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main ccbook-three-column">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">CCBus</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+  <ul class="main-menu menu menu-lang-zh-CN"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-ccbook"><a href="/ccbook/" rel="section"><i class="fa fa-book fa-fw"></i>CC宝典</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-articles"><a href="/articles/" rel="section"><i class="fa fa-file fa-fw"></i>Articles</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+
+  
+  <ul class="main-menu menu menu-lang-en" style="display: none;"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-ccbook"><a href="/ccbook/" rel="section"><i class="fa fa-book fa-fw"></i>CC Bible</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-articles"><a href="/articles/" rel="section"><i class="fa fa-file fa-fw"></i>Articles</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+
+<div class="languages-header">
+  
+    <a href="/ccbook/chapters/chapter-9.html"
+       class="lang-btn active"
+       title="切换到简体中文">
+      中文
+    </a>
+  
+    <a href="/en/ccbook/chapters/chapter-9.html"
+       class="lang-btn "
+       title="Switch to English">
+      EN
+    </a>
+  
+</div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="CCBus Lab"
+      src="/images/CCBus_B_G_64.png">
+  <p class="site-author-name" itemprop="name">CCBus Lab</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ccbus-lab" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ccbus-lab" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ccbus-lab@gmail.com" title="E-Mail → mailto:ccbus-lab@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner page posts-expand ccbook-page ccbook-chapter-page">
+
+
+    
+    
+    
+    <div class="post-block ccbook-main-container" lang="zh-CN">
+
+      
+      <article class="ccbook-content-area"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">第九章：高级密码学
+</h1>
+
+<div class="post-meta-container">
+  <ul class="breadcrumb">
+            <li><a href="/ccbook/">CC宝典</a></li>
+            <li><a href="/ccbook/chapters/">CHAPTERS</a></li>
+            <li>CHAPTER-9</li>
+  </ul>
+</div>
+
+</header>
+
+
+        
+        
+        
+        <div class="post-body ccbook-content-body">
+          <div class="chapter-intro">
+<p><strong>学习目标</strong>：</p>
+<ul>
+<li>理解零知识证明的原理和应用</li>
+<li>掌握多方安全计算的基本概念</li>
+<li>学习同态加密和门限密码学</li>
+<li>了解可验证随机函数（VRF）</li>
+<li>探索密码学在区块链隐私保护中的应用</li>
+</ul>
+<p><strong>本章关键词</strong>：零知识证明、zk-SNARK、zk-STARK、多方计算、同态加密、门限签名、VRF、隐私保护</p>
+</div>
+<hr>
+<h2 id="9-1-零知识证明-Zero-Knowledge-Proof">9.1 零知识证明 (Zero-Knowledge Proof)</h2>
+<h3 id="什么是零知识证明？">什么是零知识证明？</h3>
+<p><strong>零知识证明</strong> (ZKP) 允许证明者向验证者证明某个陈述是真的，而<strong>不透露任何额外信息</strong>。</p>
+<p><strong>经典例子：阿里巴巴洞穴</strong></p>
+<div style="background: rgba(32, 55, 76, 0.5); padding: 1.5em; border-radius: 8px; margin: 2em 0;">
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 900px; display: block; margin: 0 auto;">
+<defs>
+<style>
+.zkp-title { font-family: arial, sans-serif; font-size: 16px; fill: #f0e6d2; font-weight: bold; }
+.zkp-text { font-family: arial, sans-serif; font-size: 11px; fill: #f0e6d2; }
+.zkp-small { font-family: arial, sans-serif; font-size: 9px; fill: #b0a090; }
+.zkp-cave { fill: rgba(78, 93, 108, 0.3); stroke: #4e5d6c; stroke-width: 2; }
+.zkp-path { fill: none; stroke: #4c9be8; stroke-width: 2; }
+.zkp-door { fill: rgba(220, 53, 69, 0.5); stroke: #dc3545; stroke-width: 2; }
+.zkp-person { fill: #df6919; }
+.zkp-arrow { stroke: #5cb85c; stroke-width: 2; fill: none; marker-end: url(#arrowZKP); }
+</style>
+<marker id="arrowZKP" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L0,6 L9,3 z" fill="#5cb85c"/>
+</marker>
+</defs>
+<text x="400" y="25" text-anchor="middle" class="zkp-title">零知识证明经典例子：阿里巴巴洞穴</text>
+<text x="400" y="45" text-anchor="middle" class="zkp-small">证明者知道密码，但不透露密码内容</text>
+<ellipse cx="400" cy="250" rx="250" ry="180" class="zkp-cave"/>
+<path d="M 400,70 L 400,150" class="zkp-path" stroke-width="30"/>
+<text x="400" y="95" text-anchor="middle" class="zkp-text">入口</text>
+<path d="M 400,150 Q 300,200 250,300" class="zkp-path" stroke-width="20"/>
+<path d="M 400,150 Q 500,200 550,300" class="zkp-path" stroke-width="20"/>
+<text x="200" y="280" class="zkp-text">路径 A</text>
+<text x="600" y="280" class="zkp-text">路径 B</text>
+<path d="M 250,300 Q 300,380 400,400" class="zkp-path" stroke-width="20"/>
+<path d="M 550,300 Q 500,380 400,400" class="zkp-path" stroke-width="20"/>
+<rect x="385" y="390" width="30" height="40" class="zkp-door" rx="3"/>
+<text x="400" y="415" text-anchor="middle" class="zkp-text" font-size="10" fill="#f0e6d2">🔒</text>
+<text x="400" y="450" text-anchor="middle" class="zkp-text">魔法门（需要密码）</text>
+<circle cx="400" cy="120" r="15" class="zkp-person"/>
+<text x="400" y="125" text-anchor="middle" class="zkp-text" font-size="12" fill="#f0e6d2">P</text>
+<text x="465" y="125" class="zkp-text">证明者 (Prover)</text>
+<circle cx="400" cy="40" r="15" fill="#4c9be8"/>
+<text x="400" y="45" text-anchor="middle" class="zkp-text" font-size="12" fill="#f0e6d2">V</text>
+<text x="465" y="45" class="zkp-text">验证者 (Verifier)</text>
+<rect x="20" y="70" width="320" height="160" fill="rgba(76, 156, 232, 0.2)" stroke="#4c9be8" stroke-width="2" rx="6"/>
+<text x="180" y="90" text-anchor="middle" class="zkp-text" font-weight="bold">🔄 协议流程：</text>
+<text x="30" y="110" class="zkp-text">1️⃣ P 进入洞穴，V 在入口等待</text>
+<text x="30" y="130" class="zkp-text">2️⃣ P 随机选择路径 A 或 B 进入</text>
+<text x="30" y="150" class="zkp-text">3️⃣ V 随机要求 P 从路径 A 或 B 出来</text>
+<text x="30" y="170" class="zkp-text">4️⃣ 如果 P 知道密码，总能从指定路径出来</text>
+<text x="30" y="190" class="zkp-text">5️⃣ 如果 P 不知道密码，只有 50% 概率成功</text>
+<text x="30" y="210" class="zkp-text">6️⃣ 重复 n 次，作弊概率降至 (1/2)^n</text>
+<rect x="460" y="70" width="320" height="160" fill="rgba(92, 184, 92, 0.2)" stroke="#5cb85c" stroke-width="2" rx="6"/>
+<text x="620" y="90" text-anchor="middle" class="zkp-text" font-weight="bold">✅ 零知识性质：</text>
+<text x="470" y="110" class="zkp-text">• <tspan font-weight="bold">完备性</tspan>：知道密码的人总能证明</text>
+<text x="470" y="130" class="zkp-text">• <tspan font-weight="bold">可靠性</tspan>：不知道密码的人无法伪造</text>
+<text x="470" y="150" class="zkp-text">• <tspan font-weight="bold">零知识</tspan>：V 不知道密码是什么</text>
+<text x="470" y="180" class="zkp-small">V 只知道：P 确实知道密码</text>
+<text x="470" y="200" class="zkp-small">V 不知道：密码具体是什么</text>
+<text x="470" y="220" class="zkp-small">V 无法向他人证明：没有学到任何信息</text>
+<rect x="20" y="460" width="760" height="30" fill="rgba(223, 105, 25, 0.2)" stroke="#df6919" stroke-width="1" rx="4"/>
+<text x="30" y="480" class="zkp-text">💡 区块链应用：证明交易有效（余额足够、签名正确）但不透露具体余额、接收者等隐私信息</text>
+</svg>
+</div>
+<p><strong>零知识证明的三个性质</strong>：</p>
+<ol>
+<li>
+<p><strong>完备性</strong> (Completeness)：</p>
+<ul>
+<li>如果陈述为真，诚实的证明者总能说服验证者</li>
+<li>$P(\text{Verifier accepts} | \text{Statement is true}) = 1$</li>
+</ul>
+</li>
+<li>
+<p><strong>可靠性</strong> (Soundness)：</p>
+<ul>
+<li>如果陈述为假，作弊的证明者无法说服验证者（除了可忽略的概率）</li>
+<li>$P(\text{Verifier accepts} | \text{Statement is false}) \approx 0$</li>
+</ul>
+</li>
+<li>
+<p><strong>零知识</strong> (Zero-Knowledge)：</p>
+<ul>
+<li>验证者除了&quot;陈述为真&quot;之外，不学到任何额外信息</li>
+<li>验证过程可被模拟，无法向他人转述证明</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="9-2-zk-SNARK-与-zk-STARK">9.2 zk-SNARK 与 zk-STARK</h2>
+<h3 id="zk-SNARK-零知识简洁非交互式知识论证">zk-SNARK (零知识简洁非交互式知识论证)</h3>
+<p><strong>zk-SNARK</strong>: Zero-Knowledge Succinct Non-Interactive Argument of Knowledge</p>
+<div style="background: rgba(32, 55, 76, 0.5); padding: 1.5em; border-radius: 8px; margin: 2em 0;">
+<svg viewBox="0 0 900 550" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 1000px; display: block; margin: 0 auto;">
+<defs>
+<style>
+.snark-title { font-family: arial, sans-serif; font-size: 16px; fill: #f0e6d2; font-weight: bold; }
+.snark-subtitle { font-family: arial, sans-serif; font-size: 13px; fill: #f0e6d2; font-weight: bold; }
+.snark-text { font-family: arial, sans-serif; font-size: 11px; fill: #f0e6d2; }
+.snark-small { font-family: arial, sans-serif; font-size: 9px; fill: #b0a090; }
+.snark-box { fill: rgba(76, 156, 232, 0.2); stroke: #4c9be8; stroke-width: 2; }
+.snark-setup { fill: rgba(223, 105, 25, 0.2); stroke: #df6919; stroke-width: 2; }
+.snark-prove { fill: rgba(92, 184, 92, 0.2); stroke: #5cb85c; stroke-width: 2; }
+.snark-arrow { stroke: #f0e6d2; stroke-width: 2; fill: none; marker-end: url(#arrowSnark); }
+</style>
+<marker id="arrowSnark" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L0,6 L9,3 z" fill="#f0e6d2"/>
+</marker>
+</defs>
+<text x="450" y="25" text-anchor="middle" class="snark-title">zk-SNARK vs zk-STARK 对比</text>
+<text x="450" y="45" text-anchor="middle" class="snark-small">两种主流零知识证明系统</text>
+<rect x="50" y="70" width="380" height="430" class="snark-box" rx="8"/>
+<text x="240" y="95" text-anchor="middle" class="snark-subtitle">zk-SNARK</text>
+<text x="240" y="115" text-anchor="middle" class="snark-small">Succinct Non-interactive ARgument of Knowledge</text>
+<rect x="60" y="130" width="360" height="100" class="snark-setup" rx="6"/>
+<text x="240" y="150" text-anchor="middle" class="snark-text" font-weight="bold">🔧 可信设置 (Trusted Setup)</text>
+<text x="70" y="170" class="snark-text">• 需要 CRS (Common Reference String)</text>
+<text x="70" y="186" class="snark-text">• 生成证明密钥 (pk) 和验证密钥 (vk)</text>
+<text x="70" y="202" class="snark-text">• 必须销毁"有毒废料" (toxic waste)</text>
+<text x="70" y="218" class="snark-text">• 风险：如果泄露可伪造证明</text>
+<rect x="60" y="245" width="360" height="110" class="snark-prove" rx="6"/>
+<text x="240" y="265" text-anchor="middle" class="snark-text" font-weight="bold">✅ 优势</text>
+<text x="70" y="285" class="snark-text">• 证明尺寸小：~200 字节</text>
+<text x="70" y="301" class="snark-text">• 验证速度快：~5-10 毫秒</text>
+<text x="70" y="317" class="snark-text">• Gas 成本低：以太坊上 ~240k gas</text>
+<text x="70" y="333" class="snark-text">• 技术成熟：Zcash、Tornado Cash</text>
+<text x="70" y="349" class="snark-text">• 支持通用计算</text>
+<rect x="60" y="370" width="360" height="120" fill="rgba(220, 53, 69, 0.2)" stroke="#dc3545" stroke-width="2" rx="6"/>
+<text x="240" y="390" text-anchor="middle" class="snark-text" font-weight="bold">⚠️  劣势</text>
+<text x="70" y="410" class="snark-text">• 需要可信设置（每个电路独立）</text>
+<text x="70" y="426" class="snark-text">• 不抗量子攻击（基于椭圆曲线）</text>
+<text x="70" y="442" class="snark-text">• 设置泄露风险</text>
+<text x="70" y="458" class="snark-text">• 证明生成慢：几秒到几分钟</text>
+<text x="70" y="474" class="snark-text">• Groth16: 最快但每电路需新设置</text>
+<rect x="470" y="70" width="380" height="430" class="snark-box" rx="8"/>
+<text x="660" y="95" text-anchor="middle" class="snark-subtitle">zk-STARK</text>
+<text x="660" y="115" text-anchor="middle" class="snark-small">Scalable Transparent ARgument of Knowledge</text>
+<rect x="480" y="130" width="360" height="100" fill="rgba(92, 184, 92, 0.3)" stroke="#5cb85c" stroke-width="2" rx="6"/>
+<text x="660" y="150" text-anchor="middle" class="snark-text" font-weight="bold">🔓 无需可信设置 (Transparent)</text>
+<text x="490" y="170" class="snark-text">• 使用公开随机性</text>
+<text x="490" y="186" class="snark-text">• 基于哈希函数（如 Rescue）</text>
+<text x="490" y="202" class="snark-text">• 无"有毒废料"风险</text>
+<text x="490" y="218" class="snark-text">• 更去中心化和安全</text>
+<rect x="480" y="245" width="360" height="110" class="snark-prove" rx="6"/>
+<text x="660" y="265" text-anchor="middle" class="snark-text" font-weight="bold">✅ 优势</text>
+<text x="490" y="285" class="snark-text">• 无需可信设置</text>
+<text x="490" y="301" class="snark-text">• 抗量子攻击（基于哈希）</text>
+<text x="490" y="317" class="snark-text">• 证明生成快：高度并行化</text>
+<text x="490" y="333" class="snark-text">• 可扩展性好：处理大计算</text>
+<text x="490" y="349" class="snark-text">• 项目：StarkNet、StarkEx</text>
+<rect x="480" y="370" width="360" height="120" fill="rgba(220, 53, 69, 0.2)" stroke="#dc3545" stroke-width="2" rx="6"/>
+<text x="660" y="390" text-anchor="middle" class="snark-text" font-weight="bold">⚠️  劣势</text>
+<text x="490" y="410" class="snark-text">• 证明尺寸大：~100-200 KB</text>
+<text x="490" y="426" class="snark-text">• 验证时间长：~50-100 毫秒</text>
+<text x="490" y="442" class="snark-text">• Gas 成本高：以太坊上 ~1-5M gas</text>
+<text x="490" y="458" class="snark-text">• 技术较新，生态发展中</text>
+<text x="490" y="474" class="snark-text">• 链上验证成本昂贵</text>
+<rect x="50" y="515" width="400" height="25" fill="rgba(76, 156, 232, 0.3)" stroke="#4c9be8" stroke-width="1" rx="4"/>
+<text x="60" y="533" class="snark-text">📊 zk-SNARK 应用：Zcash, Tornado Cash, Polygon zkEVM</text>
+<rect x="500" y="515" width="350" height="25" fill="rgba(92, 184, 92, 0.3)" stroke="#5cb85c" stroke-width="1" rx="4"/>
+<text x="510" y="533" class="snark-text">📊 zk-STARK 应用：StarkNet, StarkEx (dYdX, Sorare)</text>
+</svg>
+</div>
+<h3 id="zk-SNARK-工作流程">zk-SNARK 工作流程</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">步骤 1️⃣：可信设置 (Setup)</span><br><span class="line">  电路 C → Setup(C) → (pk, vk)</span><br><span class="line">  - pk: 证明密钥 (proving key)</span><br><span class="line">  - vk: 验证密钥 (verification key)</span><br><span class="line">  - 销毁随机数 τ (toxic waste)</span><br><span class="line"></span><br><span class="line">步骤 2️⃣：生成证明 (Prove)</span><br><span class="line">  证明者 P：</span><br><span class="line">  - 输入：公开输入 x, 私密见证 w, pk</span><br><span class="line">  - 计算：π = Prove(pk, x, w)</span><br><span class="line">  - 输出：证明 π (~200 bytes)</span><br><span class="line"></span><br><span class="line">步骤 3️⃣：验证证明 (Verify)</span><br><span class="line">  验证者 V：</span><br><span class="line">  - 输入：公开输入 x, 证明 π, vk</span><br><span class="line">  - 计算：Verify(vk, x, π) → &#123;accept, reject&#125;</span><br><span class="line">  - 时间：~5-10 ms</span><br></pre></td></tr></table></figure>
+<p><strong>Groth16 算法</strong>（最流行的 zk-SNARK）：</p>
+<p>$$<br>
+\begin{aligned}<br>
+&amp;\text{证明包含 3 个群元素：} \<br>
+&amp;\pi = (A, B, C) \in \mathbb{G}_1 \times \mathbb{G}_2 \times \mathbb{G}_1 \<br>
+\<br>
+&amp;\text{验证等式：} \<br>
+&amp;e(A, B) = e(\alpha, \beta) \cdot e(L, \gamma) \cdot e(C, \delta)<br>
+\end{aligned}<br>
+$$</p>
+<p>其中 $e$ 是双线性配对函数。</p>
+<h3 id="应用案例">应用案例</h3>
+<p><strong>1. Zcash (隐私货币)</strong>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 隐藏交易金额和接收者</span></span><br><span class="line"><span class="comment">// 证明：我有足够的余额，且交易有效</span></span><br><span class="line">proof = <span class="title class_">GenerateProof</span>(&#123;</span><br><span class="line">    <span class="attr">public_input</span>: nullifier,  <span class="comment">// 防止双花</span></span><br><span class="line">    <span class="attr">private_witness</span>: &#123;</span><br><span class="line">        <span class="attr">value</span>: <span class="number">100</span>,           <span class="comment">// 金额（隐藏）</span></span><br><span class="line">        <span class="attr">sender_key</span>: sk,       <span class="comment">// 发送者私钥（隐藏）</span></span><br><span class="line">        <span class="attr">receiver_addr</span>: addr   <span class="comment">// 接收者地址（隐藏）</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 链上只验证证明，不知道具体金额</span></span><br><span class="line"><span class="title class_">VerifyProof</span>(proof) → <span class="literal">true</span>/<span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p><strong>2. Tornado Cash (隐私混币)</strong>：</p>
+<ul>
+<li>用户存款时生成秘密 (secret + nullifier)</li>
+<li>存款哈希 commitment = Hash(secret, nullifier) 记录到链上</li>
+<li>提款时提供 ZK 证明：知道某个 commitment 的原像</li>
+<li>无法关联存款和提款地址</li>
+</ul>
+<p><strong>3. zkSync Era (Layer 2 扩容)</strong>：</p>
+<ul>
+<li>将数千笔交易打包到一个区块</li>
+<li>生成单个 zk-SNARK 证明</li>
+<li>以太坊只需验证一个证明 → 节省 Gas</li>
+</ul>
+<hr>
+<h2 id="9-3-多方安全计算-MPC">9.3 多方安全计算 (MPC)</h2>
+<h3 id="MPC-基本概念">MPC 基本概念</h3>
+<p><strong>多方安全计算</strong> (Secure Multi-Party Computation) 允许多方在不泄露各自私密输入的情况下，共同计算一个函数。</p>
+<div style="background: rgba(32, 55, 76, 0.5); padding: 1.5em; border-radius: 8px; margin: 2em 0;">
+<svg viewBox="0 0 850 520" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 950px; display: block; margin: 0 auto;">
+<defs>
+<style>
+.mpc-title { font-family: arial, sans-serif; font-size: 16px; fill: #f0e6d2; font-weight: bold; }
+.mpc-text { font-family: arial, sans-serif; font-size: 11px; fill: #f0e6d2; }
+.mpc-small { font-family: arial, sans-serif; font-size: 9px; fill: #b0a090; }
+.mpc-party { fill: rgba(76, 156, 232, 0.3); stroke: #4c9be8; stroke-width: 2; }
+.mpc-secret { fill: rgba(220, 53, 69, 0.3); stroke: #dc3545; stroke-width: 2; }
+.mpc-result { fill: rgba(92, 184, 92, 0.3); stroke: #5cb85c; stroke-width: 2; }
+.mpc-line { stroke: #f0e6d2; stroke-width: 1.5; stroke-dasharray: 5,5; fill: none; }
+</style>
+</defs>
+<text x="425" y="25" text-anchor="middle" class="mpc-title">多方安全计算 (MPC) 示例：百万富翁问题</text>
+<text x="425" y="45" text-anchor="middle" class="mpc-small">Alice 和 Bob 想知道谁更富有，但不想透露各自的财富值</text>
+<circle cx="200" cy="150" r="60" class="mpc-party"/>
+<text x="200" y="145" text-anchor="middle" class="mpc-text" font-size="14" fill="#f0e6d2">👨 Alice</text>
+<text x="200" y="165" text-anchor="middle" class="mpc-text">财富：$2M</text>
+<rect x="140" y="180" width="120" height="30" class="mpc-secret" rx="4"/>
+<text x="200" y="200" text-anchor="middle" class="mpc-text" fill="#dc3545">🔒 私密输入</text>
+<circle cx="650" cy="150" r="60" class="mpc-party"/>
+<text x="650" y="145" text-anchor="middle" class="mpc-text" font-size="14" fill="#f0e6d2">👩 Bob</text>
+<text x="650" y="165" text-anchor="middle" class="mpc-text">财富：$3M</text>
+<rect x="590" y="180" width="120" height="30" class="mpc-secret" rx="4"/>
+<text x="650" y="200" text-anchor="middle" class="mpc-text" fill="#dc3545">🔒 私密输入</text>
+<rect x="325" y="100" width="200" height="100" fill="rgba(223, 105, 25, 0.2)" stroke="#df6919" stroke-width="2" rx="8"/>
+<text x="425" y="125" text-anchor="middle" class="mpc-text" font-weight="bold">MPC 协议</text>
+<text x="335" y="145" class="mpc-text">安全计算函数：</text>
+<text x="335" y="165" class="mpc-text">f(x₁, x₂) = (x₁ > x₂)</text>
+<text x="335" y="185" class="mpc-text">输出：Bob 更富有</text>
+<line x1="260" y1="150" x2="325" y2="150" class="mpc-line"/>
+<line x1="525" y1="150" x2="590" y2="150" class="mpc-line"/>
+<rect x="100" y="250" width="650" height="100" fill="rgba(76, 156, 232, 0.2)" stroke="#4c9be8" stroke-width="2" rx="8"/>
+<text x="425" y="275" text-anchor="middle" class="mpc-text" font-weight="bold">🔄 MPC 协议步骤</text>
+<text x="110" y="295" class="mpc-text">1️⃣ Alice 将财富 $2M 秘密分享成多个份额：s₁, s₂, s₃</text>
+<text x="110" y="315" class="mpc-text">2️⃣ Bob 将财富 $3M 秘密分享成多个份额：t₁, t₂, t₃</text>
+<text x="110" y="335" class="mpc-text">3️⃣ 双方交换部分份额，共同计算比较电路</text>
+<rect x="100" y="370" width="300" height="130" class="mpc-result" rx="8"/>
+<text x="250" y="395" text-anchor="middle" class="mpc-text" font-weight="bold">✅ Alice 学到：</text>
+<text x="110" y="415" class="mpc-text">• Bob 更富有 ✓</text>
+<text x="110" y="435" class="mpc-text">• 不知道 Bob 有多少钱 ✓</text>
+<text x="110" y="455" class="mpc-text">• 不知道差距是多少 ✓</text>
+<text x="110" y="475" class="mpc-small">仅知道计算结果，不知道对方输入</text>
+<rect x="450" y="370" width="300" height="130" class="mpc-result" rx="8"/>
+<text x="600" y="395" text-anchor="middle" class="mpc-text" font-weight="bold">✅ Bob 学到：</text>
+<text x="460" y="415" class="mpc-text">• Bob 更富有 ✓</text>
+<text x="460" y="435" class="mpc-text">• 不知道 Alice 有多少钱 ✓</text>
+<text x="460" y="455" class="mpc-text">• 不知道差距是多少 ✓</text>
+<text x="460" y="475" class="mpc-small">双方获得相同结果，但隐私受保护</text>
+</svg>
+</div>
+<h3 id="MPC-核心技术">MPC 核心技术</h3>
+<p><strong>1. 秘密分享 (Secret Sharing)</strong>：</p>
+<p>Shamir 秘密分享方案：</p>
+<ul>
+<li>将秘密 $s$ 分割成 $n$ 个份额</li>
+<li>任意 $t$ 个份额可恢复秘密</li>
+<li>少于 $t$ 个份额无法获得任何信息</li>
+</ul>
+<p>$$<br>
+\begin{aligned}<br>
+&amp;\text{多项式构造：} \<br>
+&amp;f(x) = s + a_1 x + a_2 x^2 + \cdots + a_{t-1} x^{t-1} \<br>
+&amp;\text{份额：} s_i = f(i) \quad (i = 1, 2, \ldots, n)<br>
+\end{aligned}<br>
+$$</p>
+<p><strong>2. 混淆电路 (Garbled Circuits - Yao’s Protocol)</strong>：</p>
+<ul>
+<li>将计算表示为布尔电路</li>
+<li>加密每个逻辑门的真值表</li>
+<li>一方生成电路，另一方执行</li>
+<li>执行过程中不知道中间值含义</li>
+</ul>
+<p><strong>3. 不经意传输 (Oblivious Transfer, OT)</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1-out-of-2 OT 协议：</span><br><span class="line">  发送者：持有两个消息 (m₀, m₁)</span><br><span class="line">  接收者：想获取 m_b，不让发送者知道 b</span><br><span class="line"></span><br><span class="line">  结果：</span><br><span class="line">  - 接收者获得 m_b</span><br><span class="line">  - 发送者不知道 b 的值</span><br><span class="line">  - 接收者不知道 m_&#123;1-b&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="区块链中的-MPC-应用">区块链中的 MPC 应用</h3>
+<p><strong>1. 门限签名 (Threshold Signature)</strong>：</p>
+<p>多方协作生成签名，无需重构私钥。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 3-of-5 门限签名</span></span><br><span class="line"><span class="comment">// 5 个参与方共享私钥，任意 3 方可生成签名</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 密钥生成阶段</span></span><br><span class="line"><span class="title class_">KeyGen</span>(n=<span class="number">5</span>, t=<span class="number">3</span>) → (pk, sk_shares[<span class="number">5</span>])</span><br><span class="line"><span class="comment">// 每方持有 sk_shares[i]，无人知道完整 sk</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 签名阶段（3 方参与）</span></span><br><span class="line"><span class="title function_">MPC_Sign</span>(msg, &#123;sk_shares[<span class="number">1</span>], sk_shares[<span class="number">3</span>], sk_shares[<span class="number">5</span>]&#125;) → signature</span><br><span class="line"></span><br><span class="line"><span class="comment">// 验证</span></span><br><span class="line"><span class="title class_">Verify</span>(pk, msg, signature) → <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p><strong>应用案例</strong>：</p>
+<ul>
+<li><strong>钱包安全</strong>：ZenGo、Fireblocks（2-of-2 或 2-of-3 MPC 钱包）</li>
+<li><strong>托管服务</strong>：交易所热钱包，多方共管资产</li>
+<li><strong>去中心化验证者</strong>：以太坊验证者密钥分布式管理</li>
+</ul>
+<p><strong>2. 链上隐私计算</strong>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Secret Network 使用 MPC + TEE</span></span><br><span class="line"><span class="comment">// 在加密状态下执行智能合约</span></span><br><span class="line"></span><br><span class="line">contract <span class="title class_">PrivateAuction</span> &#123;</span><br><span class="line">    <span class="comment">// 密封竞价：所有人提交加密的竞价</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">submitBid</span>(<span class="params">bytes encryptedBid</span>) public &#123;</span><br><span class="line">        <span class="comment">// 存储加密竞价，无人知道具体金额</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// MPC 计算最高竞价，不泄露其他竞价</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">revealWinner</span>(<span class="params"></span>) public &#123;</span><br><span class="line">        <span class="comment">// 使用 MPC 协议找出最高竞价者</span></span><br><span class="line">        <span class="comment">// 只公开获胜者和价格，其他竞价保密</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="9-4-同态加密-Homomorphic-Encryption">9.4 同态加密 (Homomorphic Encryption)</h2>
+<h3 id="什么是同态加密？">什么是同态加密？</h3>
+<p><strong>同态加密</strong>允许在加密数据上直接进行计算，解密后得到正确结果。</p>
+<div style="background: rgba(32, 55, 76, 0.5); padding: 1.5em; border-radius: 8px; margin: 2em 0;">
+<svg viewBox="0 0 850 450" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 950px; display: block; margin: 0 auto;">
+<defs>
+<style>
+.he-title { font-family: arial, sans-serif; font-size: 16px; fill: #f0e6d2; font-weight: bold; }
+.he-text { font-family: arial, sans-serif; font-size: 11px; fill: #f0e6d2; }
+.he-small { font-family: arial, sans-serif; font-size: 9px; fill: #b0a090; }
+.he-box { fill: rgba(76, 156, 232, 0.2); stroke: #4c9be8; stroke-width: 2; }
+.he-encrypt { fill: rgba(223, 105, 25, 0.2); stroke: #df6919; stroke-width: 2; }
+.he-compute { fill: rgba(92, 184, 92, 0.2); stroke: #5cb85c; stroke-width: 2; }
+.he-arrow { stroke: #f0e6d2; stroke-width: 2; fill: none; marker-end: url(#arrowHE); }
+</style>
+<marker id="arrowHE" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L0,6 L9,3 z" fill="#f0e6d2"/>
+</marker>
+</defs>
+<text x="425" y="25" text-anchor="middle" class="he-title">同态加密 (Homomorphic Encryption) 工作原理</text>
+<text x="425" y="45" text-anchor="middle" class="he-small">在加密数据上计算，解密后得到正确结果</text>
+<rect x="50" y="80" width="180" height="100" class="he-encrypt" rx="8"/>
+<text x="140" y="105" text-anchor="middle" class="he-text" font-weight="bold">🔢 明文数据</text>
+<text x="140" y="130" text-anchor="middle" class="he-text" font-size="14">a = 5</text>
+<text x="140" y="150" text-anchor="middle" class="he-text" font-size="14">b = 3</text>
+<text x="140" y="170" text-anchor="middle" class="he-small">客户端持有</text>
+<line x1="230" y1="130" x2="290" y2="130" class="he-arrow"/>
+<text x="260" y="120" text-anchor="middle" class="he-small">Encrypt(pk)</text>
+<rect x="290" y="80" width="180" height="100" class="he-box" rx="8"/>
+<text x="380" y="105" text-anchor="middle" class="he-text" font-weight="bold">🔒 密文数据</text>
+<text x="380" y="130" text-anchor="middle" class="he-text" font-size="14">E(5) = 0x7a3f...</text>
+<text x="380" y="150" text-anchor="middle" class="he-text" font-size="14">E(3) = 0x9b2c...</text>
+<text x="380" y="170" text-anchor="middle" class="he-small">发送到服务器</text>
+<line x1="380" y1="180" x2="380" y2="230" class="he-arrow"/>
+<rect x="290" y="230" width="180" height="100" class="he-compute" rx="8"/>
+<text x="380" y="255" text-anchor="middle" class="he-text" font-weight="bold">⚙️ 密文计算</text>
+<text x="380" y="280" text-anchor="middle" class="he-text">E(5) ⊕ E(3)</text>
+<text x="380" y="300" text-anchor="middle" class="he-text">= E(5 + 3)</text>
+<text x="380" y="320" text-anchor="middle" class="he-small">服务器不知道明文</text>
+<line x1="290" y1="280" x2="230" y2="280" class="he-arrow"/>
+<text x="260" y="270" text-anchor="middle" class="he-small">返回密文结果</text>
+<rect x="50" y="230" width="180" height="100" class="he-encrypt" rx="8"/>
+<text x="140" y="255" text-anchor="middle" class="he-text" font-weight="bold">🔓 解密结果</text>
+<text x="140" y="280" text-anchor="middle" class="he-text">Decrypt(sk, E(8))</text>
+<text x="140" y="300" text-anchor="middle" class="he-text" font-size="14">= 8 ✓</text>
+<text x="140" y="320" text-anchor="middle" class="he-small">客户端解密验证</text>
+<rect x="520" y="80" width="280" height="250" fill="rgba(76, 156, 232, 0.15)" stroke="#4c9be8" stroke-width="2" stroke-dasharray="5,5" rx="8"/>
+<text x="660" y="105" text-anchor="middle" class="he-text" font-weight="bold">同态性质</text>
+<text x="530" y="130" class="he-text">• <tspan font-weight="bold">加法同态</tspan>：</text>
+<text x="540" y="150" class="he-text">E(a) ⊕ E(b) = E(a + b)</text>
+<text x="530" y="175" class="he-text">• <tspan font-weight="bold">乘法同态</tspan>：</text>
+<text x="540" y="195" class="he-text">E(a) ⊗ E(b) = E(a × b)</text>
+<text x="530" y="220" class="he-text">• <tspan font-weight="bold">全同态</tspan> (FHE)：</text>
+<text x="540" y="240" class="he-text">支持任意计算电路</text>
+<text x="540" y="260" class="he-text">f(E(a), E(b)) = E(f(a, b))</text>
+<text x="530" y="285" class="he-small">算法：Paillier (加法), RSA (乘法),</text>
+<text x="530" y="305" class="he-small">CKKS, TFHE (全同态)</text>
+<rect x="50" y="360" width="750" height="70" fill="rgba(92, 184, 92, 0.2)" stroke="#5cb85c" stroke-width="2" rx="8"/>
+<text x="425" y="385" text-anchor="middle" class="he-text" font-weight="bold">🌐 区块链应用场景</text>
+<text x="60" y="405" class="he-text">• <tspan font-weight="bold">隐私投票</tspan>：加密选票，同态计数，公开结果</text>
+<text x="60" y="420" class="he-text">• <tspan font-weight="bold">私密竞价</tspan>：加密竞价，同态比较，找出最高价</text>
+</svg>
+</div>
+<h3 id="同态加密类型">同态加密类型</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>支持操作</th>
+<th>代表算法</th>
+<th>性能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>部分同态</strong></td>
+<td>仅加法 或 仅乘法</td>
+<td>Paillier (加法), RSA (乘法)</td>
+<td>快 ⚡⚡⚡</td>
+</tr>
+<tr>
+<td><strong>层次同态</strong> (LHE)</td>
+<td>有限次数的加法和乘法</td>
+<td>BGV, BFV</td>
+<td>中 ⚡⚡</td>
+</tr>
+<tr>
+<td><strong>全同态</strong> (FHE)</td>
+<td>任意电路（无限次加法和乘法）</td>
+<td>CKKS, TFHE, FHEW</td>
+<td>慢 ⚡</td>
+</tr>
+</tbody>
+</table>
+<p><strong>全同态加密的挑战</strong>：</p>
+<ul>
+<li><strong>性能开销大</strong>：计算速度慢 1000-1000000 倍</li>
+<li><strong>密文膨胀</strong>：加密后数据变大（如 1KB → 1MB）</li>
+<li><strong>噪声累积</strong>：每次运算增加噪声，需 bootstrapping 清理</li>
+</ul>
+<h3 id="区块链应用">区块链应用</h3>
+<p><strong>Zama (TFHE-based)</strong> - 支持智能合约全同态加密计算：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fhEVM: 同态加密 EVM</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fhevm/lib/TFHE.sol&quot;</span>;</span><br><span class="line"></span><br><span class="line">contract <span class="title class_">PrivateAuction</span> &#123;</span><br><span class="line">    <span class="comment">// 加密的竞价</span></span><br><span class="line">    <span class="title function_">mapping</span>(<span class="function"><span class="params">address</span> =&gt;</span> euint32) encryptedBids;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">submitBid</span>(<span class="params">bytes calldata encryptedBid</span>) public &#123;</span><br><span class="line">        <span class="comment">// 存储加密竞价</span></span><br><span class="line">        encryptedBids[msg.<span class="property">sender</span>] = <span class="variable constant_">TFHE</span>.<span class="title function_">asEuint32</span>(encryptedBid);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">findWinner</span>(<span class="params"></span>) public view <span class="title function_">returns</span> (address) &#123;</span><br><span class="line">        euint32 maxBid = <span class="variable constant_">TFHE</span>.<span class="title function_">asEuint32</span>(<span class="number">0</span>);</span><br><span class="line">        address winner;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 在加密状态下比较竞价！</span></span><br><span class="line">        <span class="keyword">for</span> (address bidder : bidders) &#123;</span><br><span class="line">            euint32 bid = encryptedBids[bidder];</span><br><span class="line">            ebool isGreater = <span class="variable constant_">TFHE</span>.<span class="title function_">gt</span>(bid, maxBid);</span><br><span class="line">            maxBid = <span class="variable constant_">TFHE</span>.<span class="title function_">cmux</span>(isGreater, bid, maxBid);</span><br><span class="line">            <span class="comment">// cmux: 同态条件选择</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> winner; <span class="comment">// 只公开获胜者</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="9-5-门限密码学与-VRF">9.5 门限密码学与 VRF</h2>
+<h3 id="门限签名-Threshold-Signature">门限签名 (Threshold Signature)</h3>
+<p><strong>t-of-n 门限签名</strong>：n 个参与方共享私钥，任意 t 个参与方可生成有效签名。</p>
+<div style="background: rgba(32, 55, 76, 0.5); padding: 1.5em; border-radius: 8px; margin: 2em 0;">
+<svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 900px; display: block; margin: 0 auto;">
+<defs>
+<style>
+.tss-title { font-family: arial, sans-serif; font-size: 16px; fill: #f0e6d2; font-weight: bold; }
+.tss-text { font-family: arial, sans-serif; font-size: 11px; fill: #f0e6d2; }
+.tss-small { font-family: arial, sans-serif; font-size: 9px; fill: #b0a090; }
+.tss-party { fill: rgba(76, 156, 232, 0.3); stroke: #4c9be8; stroke-width: 2; }
+.tss-active { fill: rgba(92, 184, 92, 0.3); stroke: #5cb85c; stroke-width: 3; }
+.tss-inactive { fill: rgba(78, 93, 108, 0.2); stroke: #4e5d6c; stroke-width: 2; stroke-dasharray: 5,5; }
+.tss-sig { fill: rgba(223, 105, 25, 0.3); stroke: #df6919; stroke-width: 2; }
+</style>
+</defs>
+<text x="400" y="25" text-anchor="middle" class="tss-title">门限签名 (Threshold Signature) - 3-of-5 示例</text>
+<text x="400" y="45" text-anchor="middle" class="tss-small">5 个参与方共享私钥，任意 3 方可生成签名</text>
+<rect x="50" y="70" width="700" height="130" fill="rgba(76, 156, 232, 0.15)" stroke="#4c9be8" stroke-width="2" stroke-dasharray="5,5" rx="8"/>
+<text x="400" y="95" text-anchor="middle" class="tss-text" font-weight="bold">阶段 1️⃣：分布式密钥生成 (DKG)</text>
+<circle cx="150" cy="150" r="30" class="tss-party"/>
+<text x="150" y="155" text-anchor="middle" class="tss-text">P₁</text>
+<circle cx="280" cy="150" r="30" class="tss-party"/>
+<text x="280" y="155" text-anchor="middle" class="tss-text">P₂</text>
+<circle cx="410" cy="150" r="30" class="tss-party"/>
+<text x="410" y="155" text-anchor="middle" class="tss-text">P₃</text>
+<circle cx="540" cy="150" r="30" class="tss-party"/>
+<text x="540" y="155" text-anchor="middle" class="tss-text">P₄</text>
+<circle cx="670" cy="150" r="30" class="tss-party"/>
+<text x="670" y="155" text-anchor="middle" class="tss-text">P₅</text>
+<text x="150" y="195" text-anchor="middle" class="tss-small">sk_share₁</text>
+<text x="280" y="195" text-anchor="middle" class="tss-small">sk_share₂</text>
+<text x="410" y="195" text-anchor="middle" class="tss-small">sk_share₃</text>
+<text x="540" y="195" text-anchor="middle" class="tss-small">sk_share₄</text>
+<text x="670" y="195" text-anchor="middle" class="tss-small">sk_share₅</text>
+<rect x="250" y="115" width="300" height="20" fill="rgba(223, 105, 25, 0.3)" stroke="#df6919" stroke-width="1" rx="4"/>
+<text x="400" y="128" text-anchor="middle" class="tss-small" fill="#df6919">公钥 pk（所有人共享同一个公钥）</text>
+<rect x="50" y="220" width="700" height="200" fill="rgba(92, 184, 92, 0.15)" stroke="#5cb85c" stroke-width="2" stroke-dasharray="5,5" rx="8"/>
+<text x="400" y="245" text-anchor="middle" class="tss-text" font-weight="bold">阶段 2️⃣：门限签名生成（3 方参与：P₁, P₃, P₅）</text>
+<circle cx="200" cy="310" r="30" class="tss-active"/>
+<text x="200" y="315" text-anchor="middle" class="tss-text">P₁</text>
+<text x="200" y="350" text-anchor="middle" class="tss-small" fill="#5cb85c">✓ 参与</text>
+<circle cx="340" cy="310" r="30" class="tss-inactive"/>
+<text x="340" y="315" text-anchor="middle" class="tss-text">P₂</text>
+<text x="340" y="350" text-anchor="middle" class="tss-small" fill="#4e5d6c">✗ 离线</text>
+<circle cx="480" cy="310" r="30" class="tss-active"/>
+<text x="480" y="315" text-anchor="middle" class="tss-text">P₃</text>
+<text x="480" y="350" text-anchor="middle" class="tss-small" fill="#5cb85c">✓ 参与</text>
+<circle cx="620" cy="310" r="30" class="tss-inactive"/>
+<text x="620" y="315" text-anchor="middle" class="tss-text">P₄</text>
+<text x="620" y="350" text-anchor="middle" class="tss-small" fill="#4e5d6c">✗ 拒绝</text>
+<circle cx="200" cy="390" r="30" class="tss-active"/>
+<text x="200" y="395" text-anchor="middle" class="tss-text">P₅</text>
+<text x="200" y="430" text-anchor="middle" class="tss-small" fill="#5cb85c">✓ 参与</text>
+<rect x="320" y="370" width="260" height="60" class="tss-sig" rx="8"/>
+<text x="450" y="395" text-anchor="middle" class="tss-text" font-weight="bold">🔏 最终签名</text>
+<text x="450" y="415" text-anchor="middle" class="tss-text">σ = Sign(msg, {sk₁, sk₃, sk₅})</text>
+<line x1="230" y1="310" x2="320" y2="390" stroke="#5cb85c" stroke-width="2"/>
+<line x1="480" y1="340" x2="450" y2="370" stroke="#5cb85c" stroke-width="2"/>
+<line x1="230" y1="390" x2="320" y2="400" stroke="#5cb85c" stroke-width="2"/>
+<rect x="50" y="445" width="700" height="35" fill="rgba(223, 105, 25, 0.2)" stroke="#df6919" stroke-width="1" rx="4"/>
+<text x="60" y="465" class="tss-text">💡 关键特性：无需重构完整私钥 sk，参与方协作生成签名份额，聚合后得到有效签名</text>
+</svg>
+</div>
+<p><strong>ECDSA 门限签名</strong>（最流行）：</p>
+<ul>
+<li>用于比特币、以太坊等 ECDSA 链</li>
+<li>算法：GG20, CGGMP21</li>
+<li>应用：Fireblocks, ZenGo, Coinbase Prime</li>
+</ul>
+<p><strong>BLS 门限签名</strong>：</p>
+<ul>
+<li>签名可聚合：多个签名合并为一个</li>
+<li>用于以太坊 2.0 验证者</li>
+<li>算法：基于配对的 BLS 签名</li>
+</ul>
+<h3 id="可验证随机函数-VRF">可验证随机函数 (VRF)</h3>
+<p><strong>VRF</strong> (Verifiable Random Function) 生成可验证的伪随机数。</p>
+<p><strong>性质</strong>：</p>
+<ol>
+<li><strong>伪随机性</strong>：输出看起来随机</li>
+<li><strong>唯一性</strong>：对于给定输入和密钥，输出唯一</li>
+<li><strong>可验证性</strong>：任何人可验证输出正确性</li>
+</ol>
+<p><strong>工作流程</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">密钥生成：(pk, sk) ← KeyGen()</span><br><span class="line"></span><br><span class="line">随机数生成：</span><br><span class="line">  输入：seed (如区块高度)</span><br><span class="line">  输出：(randomness, proof) ← VRF_Prove(sk, seed)</span><br><span class="line"></span><br><span class="line">验证：</span><br><span class="line">  VRF_Verify(pk, seed, randomness, proof) → &#123;true, false&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Chainlink VRF 示例</strong>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;@chainlink/contracts/src/v0.8/VRFConsumerBase.sol&quot;</span>;</span><br><span class="line"></span><br><span class="line">contract <span class="title class_">DiceGame</span> is <span class="title class_">VRFConsumerBase</span> &#123;</span><br><span class="line">    bytes32 internal keyHash;</span><br><span class="line">    uint256 internal fee;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 请求随机数</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">rollDice</span>(<span class="params"></span>) public <span class="title function_">returns</span> (bytes32 requestId) &#123;</span><br><span class="line">        <span class="built_in">require</span>(<span class="variable constant_">LINK</span>.<span class="title function_">balanceOf</span>(<span class="title function_">address</span>(<span class="variable language_">this</span>)) &gt;= fee);</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_">requestRandomness</span>(keyHash, fee);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Chainlink VRF 回调</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">fulfillRandomness</span>(<span class="params">bytes32 requestId, uint256 randomness</span>)</span><br><span class="line">        internal override</span><br><span class="line">    &#123;</span><br><span class="line">        uint256 diceRoll = (randomness % <span class="number">6</span>) + <span class="number">1</span>; <span class="comment">// 1-6</span></span><br><span class="line">        <span class="comment">// 使用骰子结果...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>应用场景</strong>：</p>
+<ul>
+<li><strong>随机抽奖</strong>：NFT Mint、空投白名单</li>
+<li><strong>游戏</strong>：掷骰子、抽卡</li>
+<li><strong>共识</strong>：随机选择验证者（Algorand）</li>
+</ul>
+<hr>
+<h2 id="9-6-隐私保护技术对比">9.6 隐私保护技术对比</h2>
+<div style="background: rgba(32, 55, 76, 0.5); padding: 1.5em; border-radius: 8px; margin: 2em 0;">
+<svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 1000px; display: block; margin: 0 auto;">
+<defs>
+<style>
+.priv-title { font-family: arial, sans-serif; font-size: 16px; fill: #f0e6d2; font-weight: bold; }
+.priv-header { font-family: arial, sans-serif; font-size: 12px; fill: #f0e6d2; font-weight: bold; }
+.priv-text { font-family: arial, sans-serif; font-size: 10px; fill: #f0e6d2; }
+.priv-small { font-family: arial, sans-serif; font-size: 8px; fill: #b0a090; }
+.priv-cell { fill: rgba(76, 156, 232, 0.15); stroke: #4c9be8; stroke-width: 1; }
+.priv-header-cell { fill: rgba(223, 105, 25, 0.3); stroke: #df6919; stroke-width: 2; }
+</style>
+</defs>
+<text x="450" y="25" text-anchor="middle" class="priv-title">区块链隐私保护技术对比</text>
+<text x="450" y="45" text-anchor="middle" class="priv-small">各种密码学技术的特点、性能与应用场景</text>
+<rect x="50" y="60" width="160" height="40" class="priv-header-cell" rx="4"/>
+<text x="130" y="85" text-anchor="middle" class="priv-header">技术</text>
+<rect x="210" y="60" width="140" height="40" class="priv-header-cell" rx="4"/>
+<text x="280" y="85" text-anchor="middle" class="priv-header">隐私保护</text>
+<rect x="350" y="60" width="140" height="40" class="priv-header-cell" rx="4"/>
+<text x="420" y="85" text-anchor="middle" class="priv-header">性能</text>
+<rect x="490" y="60" width="140" height="40" class="priv-header-cell" rx="4"/>
+<text x="560" y="85" text-anchor="middle" class="priv-header">证明大小</text>
+<rect x="630" y="60" width="220" height="40" class="priv-header-cell" rx="4"/>
+<text x="740" y="85" text-anchor="middle" class="priv-header">典型应用</text>
+<rect x="50" y="100" width="160" height="60" class="priv-cell" rx="4"/>
+<text x="130" y="125" text-anchor="middle" class="priv-text" font-weight="bold">zk-SNARK</text>
+<text x="130" y="145" text-anchor="middle" class="priv-small">(Groth16)</text>
+<rect x="210" y="100" width="140" height="60" class="priv-cell" rx="4"/>
+<text x="280" y="125" text-anchor="middle" class="priv-text">完全隐藏</text>
+<text x="280" y="145" text-anchor="middle" class="priv-small">零知识</text>
+<rect x="350" y="100" width="140" height="60" class="priv-cell" rx="4"/>
+<text x="420" y="120" text-anchor="middle" class="priv-text">验证快 ⚡⚡⚡</text>
+<text x="420" y="135" text-anchor="middle" class="priv-small">~5-10 ms</text>
+<text x="420" y="150" text-anchor="middle" class="priv-small">证明慢 ⏱️⏱️</text>
+<rect x="490" y="100" width="140" height="60" class="priv-cell" rx="4"/>
+<text x="560" y="125" text-anchor="middle" class="priv-text">极小</text>
+<text x="560" y="145" text-anchor="middle" class="priv-small">~200 bytes</text>
+<rect x="630" y="100" width="220" height="60" class="priv-cell" rx="4"/>
+<text x="740" y="120" text-anchor="middle" class="priv-text">Zcash, Tornado</text>
+<text x="740" y="135" text-anchor="middle" class="priv-text">Polygon zkEVM</text>
+<text x="740" y="150" text-anchor="middle" class="priv-small">zkSync, Aztec</text>
+<rect x="50" y="160" width="160" height="60" class="priv-cell" rx="4"/>
+<text x="130" y="185" text-anchor="middle" class="priv-text" font-weight="bold">zk-STARK</text>
+<rect x="210" y="160" width="140" height="60" class="priv-cell" rx="4"/>
+<text x="280" y="185" text-anchor="middle" class="priv-text">完全隐藏</text>
+<text x="280" y="205" text-anchor="middle" class="priv-small">零知识</text>
+<rect x="350" y="160" width="140" height="60" class="priv-cell" rx="4"/>
+<text x="420" y="180" text-anchor="middle" class="priv-text">验证中 ⚡⚡</text>
+<text x="420" y="195" text-anchor="middle" class="priv-small">~50-100 ms</text>
+<text x="420" y="210" text-anchor="middle" class="priv-small">证明快 ⏱️</text>
+<rect x="490" y="160" width="140" height="60" class="priv-cell" rx="4"/>
+<text x="560" y="185" text-anchor="middle" class="priv-text">大</text>
+<text x="560" y="205" text-anchor="middle" class="priv-small">~100-200 KB</text>
+<rect x="630" y="160" width="220" height="60" class="priv-cell" rx="4"/>
+<text x="740" y="180" text-anchor="middle" class="priv-text">StarkNet</text>
+<text x="740" y="195" text-anchor="middle" class="priv-text">StarkEx (dYdX)</text>
+<text x="740" y="210" text-anchor="middle" class="priv-small">Mina Protocol</text>
+<rect x="50" y="220" width="160" height="60" class="priv-cell" rx="4"/>
+<text x="130" y="245" text-anchor="middle" class="priv-text" font-weight="bold">MPC</text>
+<text x="130" y="265" text-anchor="middle" class="priv-small">(门限签名)</text>
+<rect x="210" y="220" width="140" height="60" class="priv-cell" rx="4"/>
+<text x="280" y="245" text-anchor="middle" class="priv-text">输入隐藏</text>
+<text x="280" y="265" text-anchor="middle" class="priv-small">协作计算</text>
+<rect x="350" y="220" width="140" height="60" class="priv-cell" rx="4"/>
+<text x="420" y="245" text-anchor="middle" class="priv-text">中 ⚡⚡</text>
+<text x="420" y="265" text-anchor="middle" class="priv-small">需多轮交互</text>
+<rect x="490" y="220" width="140" height="60" class="priv-cell" rx="4"/>
+<text x="560" y="245" text-anchor="middle" class="priv-text">小</text>
+<text x="560" y="265" text-anchor="middle" class="priv-small">签名 ~64 bytes</text>
+<rect x="630" y="220" width="220" height="60" class="priv-cell" rx="4"/>
+<text x="740" y="240" text-anchor="middle" class="priv-text">Fireblocks, ZenGo</text>
+<text x="740" y="255" text-anchor="middle" class="priv-text">多签钱包</text>
+<text x="740" y="270" text-anchor="middle" class="priv-small">托管服务</text>
+<rect x="50" y="280" width="160" height="60" class="priv-cell" rx="4"/>
+<text x="130" y="305" text-anchor="middle" class="priv-text" font-weight="bold">同态加密</text>
+<text x="130" y="325" text-anchor="middle" class="priv-small">(FHE)</text>
+<rect x="210" y="280" width="140" height="60" class="priv-cell" rx="4"/>
+<text x="280" y="305" text-anchor="middle" class="priv-text">完全隐藏</text>
+<text x="280" y="325" text-anchor="middle" class="priv-small">密文计算</text>
+<rect x="350" y="280" width="140" height="60" class="priv-cell" rx="4"/>
+<text x="420" y="305" text-anchor="middle" class="priv-text">慢 ⚡</text>
+<text x="420" y="325" text-anchor="middle" class="priv-small">1000-10000x</text>
+<rect x="490" y="280" width="140" height="60" class="priv-cell" rx="4"/>
+<text x="560" y="305" text-anchor="middle" class="priv-text">极大</text>
+<text x="560" y="325" text-anchor="middle" class="priv-small">膨胀 100-1000x</text>
+<rect x="630" y="280" width="220" height="60" class="priv-cell" rx="4"/>
+<text x="740" y="300" text-anchor="middle" class="priv-text">Zama (fhEVM)</text>
+<text x="740" y="315" text-anchor="middle" class="priv-text">Secret Network</text>
+<text x="740" y="330" text-anchor="middle" class="priv-small">隐私投票</text>
+<rect x="50" y="340" width="160" height="60" class="priv-cell" rx="4"/>
+<text x="130" y="365" text-anchor="middle" class="priv-text" font-weight="bold">VRF</text>
+<text x="130" y="385" text-anchor="middle" class="priv-small">(可验证随机)</text>
+<rect x="210" y="340" width="140" height="60" class="priv-cell" rx="4"/>
+<text x="280" y="365" text-anchor="middle" class="priv-text">不可预测</text>
+<text x="280" y="385" text-anchor="middle" class="priv-small">随机性保证</text>
+<rect x="350" y="340" width="140" height="60" class="priv-cell" rx="4"/>
+<text x="420" y="365" text-anchor="middle" class="priv-text">快 ⚡⚡⚡</text>
+<text x="420" y="385" text-anchor="middle" class="priv-small">~1-5 ms</text>
+<rect x="490" y="340" width="140" height="60" class="priv-cell" rx="4"/>
+<text x="560" y="365" text-anchor="middle" class="priv-text">小</text>
+<text x="560" y="385" text-anchor="middle" class="priv-small">~200 bytes</text>
+<rect x="630" y="340" width="220" height="60" class="priv-cell" rx="4"/>
+<text x="740" y="360" text-anchor="middle" class="priv-text">Chainlink VRF</text>
+<text x="740" y="375" text-anchor="middle" class="priv-text">Algorand</text>
+<text x="740" y="390" text-anchor="middle" class="priv-small">随机抽奖、游戏</text>
+<rect x="50" y="400" width="160" height="60" class="priv-cell" rx="4"/>
+<text x="130" y="425" text-anchor="middle" class="priv-text" font-weight="bold">混币器</text>
+<text x="130" y="445" text-anchor="middle" class="priv-small">(Mixer)</text>
+<rect x="210" y="400" width="140" height="60" class="priv-cell" rx="4"/>
+<text x="280" y="425" text-anchor="middle" class="priv-text">去关联</text>
+<text x="280" y="445" text-anchor="middle" class="priv-small">地址匿名</text>
+<rect x="350" y="400" width="140" height="60" class="priv-cell" rx="4"/>
+<text x="420" y="425" text-anchor="middle" class="priv-text">快 ⚡⚡⚡</text>
+<text x="420" y="445" text-anchor="middle" class="priv-small">链上操作</text>
+<rect x="490" y="400" width="140" height="60" class="priv-cell" rx="4"/>
+<text x="560" y="425" text-anchor="middle" class="priv-text">标准交易</text>
+<text x="560" y="445" text-anchor="middle" class="priv-small">~200 bytes</text>
+<rect x="630" y="400" width="220" height="60" class="priv-cell" rx="4"/>
+<text x="740" y="420" text-anchor="middle" class="priv-text">Tornado Cash</text>
+<text x="740" y="435" text-anchor="middle" class="priv-text">Railgun</text>
+<text x="740" y="450" text-anchor="middle" class="priv-small">隐私转账</text>
+<rect x="50" y="480" width="800" height="100" fill="rgba(92, 184, 92, 0.2)" stroke="#5cb85c" stroke-width="2" rx="8"/>
+<text x="450" y="505" text-anchor="middle" class="priv-header">技术选择建议</text>
+<text x="60" y="525" class="priv-text">• <tspan font-weight="bold">隐私转账</tspan>：zk-SNARK (Tornado Cash 模式) - 小证明、低成本</text>
+<text x="60" y="543" class="priv-text">• <tspan font-weight="bold">扩容 + 隐私</tspan>：zk-STARK (StarkNet) - 无需可信设置、抗量子</text>
+<text x="60" y="561" class="priv-text">• <tspan font-weight="bold">密钥管理</tspan>：MPC 门限签名 - 去中心化托管、无单点故障</text>
+<text x="60" y="579" class="priv-text">• <tspan font-weight="bold">密文计算</tspan>：同态加密 - 隐私投票、竞价（性能慢但完全隐私）</text>
+</svg>
+</div>
+<hr>
+<div class="chapter-footer">
+<h2 id="本章总结">本章总结</h2>
+<p>本章深入探讨了区块链中的高级密码学技术：</p>
+<p><strong>核心要点</strong>：</p>
+<ul>
+<li><strong>零知识证明</strong>：证明陈述为真而不透露额外信息（完备性、可靠性、零知识）</li>
+<li><strong>zk-SNARK vs zk-STARK</strong>：SNARK 证明小、验证快但需可信设置；STARK 无需设置、抗量子但证明大</li>
+<li><strong>MPC</strong>：多方协作计算，无需泄露私密输入，应用于门限签名、隐私计算</li>
+<li><strong>同态加密</strong>：在密文上直接计算，解密后得到正确结果，全同态加密 (FHE) 支持任意计算</li>
+<li><strong>门限签名</strong>：n 方共享私钥，t 方可生成签名，用于安全的密钥管理</li>
+<li><strong>VRF</strong>：生成可验证的伪随机数，确保不可预测性和唯一性</li>
+</ul>
+<p><strong>技术对比</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>隐私需求</th>
+<th>推荐技术</th>
+<th>典型项目</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>隐私转账</td>
+<td>zk-SNARK</td>
+<td>Zcash, Tornado Cash</td>
+</tr>
+<tr>
+<td>Layer 2 扩容</td>
+<td>zk-SNARK/STARK</td>
+<td>zkSync, StarkNet</td>
+</tr>
+<tr>
+<td>密钥管理</td>
+<td>MPC 门限签名</td>
+<td>Fireblocks, ZenGo</td>
+</tr>
+<tr>
+<td>密文计算</td>
+<td>同态加密</td>
+<td>Zama fhEVM</td>
+</tr>
+<tr>
+<td>随机数</td>
+<td>VRF</td>
+<td>Chainlink VRF</td>
+</tr>
+</tbody>
+</table>
+<p><strong>学习资源</strong>：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.cryptographyengineering.com/2014/11/27/zero-knowledge-proofs-illustrated-primer/">Zero Knowledge Proofs: An Illustrated Primer</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.di.ens.fr/~nitulesc/files/Survey-SNARKs.pdf">zk-SNARKs: A Gentle Introduction</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/matter-labs/awesome-zero-knowledge-proofs">Awesome Zero Knowledge Proofs</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.mpcalliance.org/">MPC Alliance</a></li>
+</ul>
+<p><strong>下一章预告</strong>：<br>
+第十章将探讨 <strong>DeFi (去中心化金融)</strong>，包括 AMM、借贷协议、衍生品等核心机制。</p>
+</div>
+
+        </div>
+        
+        
+        
+
+        
+        
+          <div class="ccbook-chapter-nav-bottom">
+            
+            
+              
+              
+
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                  
+                
+                
+              
+                
+                
+              
+                
+                
+                  
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+                
+                
+              
+
+              <div class="chapter-nav-buttons">
+                
+                  <a href="/ccbook/chapters/chapter-8.html" class="prev-chapter-btn">
+                    <i class="fa fa-arrow-left"></i>
+                    <span class="btn-text">
+                        <span class="nav-label">上一章</span>
+                      <span class="nav-title">第八章：互操作性与跨链</span>
+                    </span>
+                  </a>
+                
+
+                
+                  <a href="/ccbook/chapters/chapter-10.html" class="next-chapter-btn">
+                    <span class="btn-text">
+                        <span class="nav-label">下一章</span>
+                      <span class="nav-title">第十章：DeFi - 去中心化金融</span>
+                    </span>
+                    <i class="fa fa-arrow-right"></i>
+                  </a>
+                
+              </div>
+            
+          </div>
+        
+      </article>
+    </div>
+    
+    
+    
+
+
+</div>
+
+    
+    
+  <aside class="ccbook-sidebar-right">
+    
+    <div class="ccbook-lang-switcher">
+      <div class="languages-header">
+          <a href="/ccbook/chapters/chapter-9.html" class="lang-btn active">中文</a>
+          <a href="/en/ccbook/chapters/chapter-9.html" class="lang-btn">EN</a>
+      </div>
+    </div>
+
+    
+    <div class="ccbook-sidebar-content">
+      <div class="ccbook-nav-header">
+          <h3><i class="fa fa-book"></i> CCBook 目录</h3>
+          <a href="/ccbook/" class="ccbook-home-link">
+            <i class="fa fa-home"></i> 返回首页
+          </a>
+      </div>
+
+      <nav class="ccbook-nav-menu">
+        
+        
+          
+            <div class="ccbook-chapter-group">
+              <a href="/ccbook/chapters/chapter-1.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="1">
+                <span class="chapter-icon">
+                  <i class="fa fa-cubes"></i>
+                </span>
+                <span class="chapter-title">第一章：区块链基础</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/ccbook/chapters/chapter-1.html#1-1-什么是区块链？"
+                       class="ccbook-section-link"
+                       data-section="#1-1-什么是区块链？">
+                      1.1 什么是区块链？
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-1.html#1-2-区块链的历史与演进"
+                       class="ccbook-section-link"
+                       data-section="#1-2-区块链的历史与演进">
+                      1.2 区块链的历史与演进
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-1.html#1-3-区块链的核心特性"
+                       class="ccbook-section-link"
+                       data-section="#1-3-区块链的核心特性">
+                      1.3 区块链的核心特性
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-1.html#1-4-区块链如何工作"
+                       class="ccbook-section-link"
+                       data-section="#1-4-区块链如何工作">
+                      1.4 区块链如何工作
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-1.html#1-5-区块链的类型"
+                       class="ccbook-section-link"
+                       data-section="#1-5-区块链的类型">
+                      1.5 区块链的类型
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-1.html#1-6-区块链-vs-传统数据库"
+                       class="ccbook-section-link"
+                       data-section="#1-6-区块链-vs-传统数据库">
+                      1.6 区块链 vs 传统数据库
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-1.html#1-7-真实世界的类比与应用场景"
+                       class="ccbook-section-link"
+                       data-section="#1-7-真实世界的类比与应用场景">
+                      1.7 真实世界的类比与应用场景
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-1.html#1-8-章节总结"
+                       class="ccbook-section-link"
+                       data-section="#1-8-章节总结">
+                      1.8 章节总结
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/ccbook/chapters/chapter-2.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="2">
+                <span class="chapter-icon">
+                  <i class="fa fa-key"></i>
+                </span>
+                <span class="chapter-title">第二章：密码学基础</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/ccbook/chapters/chapter-2.html#2-1-密码学简介"
+                       class="ccbook-section-link"
+                       data-section="#2-1-密码学简介">
+                      2.1 密码学简介
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-2.html#2-2-哈希函数"
+                       class="ccbook-section-link"
+                       data-section="#2-2-哈希函数">
+                      2.2 哈希函数
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-2.html#2-3-对称加密与非对称加密"
+                       class="ccbook-section-link"
+                       data-section="#2-3-对称加密与非对称加密">
+                      2.3 对称加密与非对称加密
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-2.html#2-4-数字签名"
+                       class="ccbook-section-link"
+                       data-section="#2-4-数字签名">
+                      2.4 数字签名
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-2.html#2-5-merkle-树"
+                       class="ccbook-section-link"
+                       data-section="#2-5-merkle-树">
+                      2.5 Merkle 树
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-2.html#2-6-高级密码学概念"
+                       class="ccbook-section-link"
+                       data-section="#2-6-高级密码学概念">
+                      2.6 高级密码学概念
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/ccbook/chapters/chapter-3.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="3">
+                <span class="chapter-icon">
+                  <i class="fa fa-bitcoin"></i>
+                </span>
+                <span class="chapter-title">第三章：加密货币基础</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/ccbook/chapters/chapter-3.html#3-1-什么是加密货币？"
+                       class="ccbook-section-link"
+                       data-section="#3-1-什么是加密货币？">
+                      3.1 什么是加密货币？
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-3.html#3-2-比特币：第一个加密货币"
+                       class="ccbook-section-link"
+                       data-section="#3-2-比特币：第一个加密货币">
+                      3.2 比特币：第一个加密货币
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-3.html#3-3-以太坊和智能合约平台"
+                       class="ccbook-section-link"
+                       data-section="#3-3-以太坊和智能合约平台">
+                      3.3 以太坊和智能合约平台
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-3.html#3-4-其他主流加密货币"
+                       class="ccbook-section-link"
+                       data-section="#3-4-其他主流加密货币">
+                      3.4 其他主流加密货币
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-3.html#3-5-如何获得加密货币"
+                       class="ccbook-section-link"
+                       data-section="#3-5-如何获得加密货币">
+                      3.5 如何获得加密货币
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-3.html#3-6-加密货币钱包"
+                       class="ccbook-section-link"
+                       data-section="#3-6-加密货币钱包">
+                      3.6 加密货币钱包
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-3.html#3-7-加密货币的风险与挑战"
+                       class="ccbook-section-link"
+                       data-section="#3-7-加密货币的风险与挑战">
+                      3.7 加密货币的风险与挑战
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/ccbook/chapters/chapter-4.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="4">
+                <span class="chapter-icon">
+                  <i class="fa fa-handshake"></i>
+                </span>
+                <span class="chapter-title">第四章：共识机制</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/ccbook/chapters/chapter-4.html#4-1-什么是共识机制？"
+                       class="ccbook-section-link"
+                       data-section="#4-1-什么是共识机制？">
+                      4.1 什么是共识机制？
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-4.html#4-2-工作量证明-pow"
+                       class="ccbook-section-link"
+                       data-section="#4-2-工作量证明-pow">
+                      4.2 工作量证明 (PoW)
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-4.html#4-3-权益证明-pos"
+                       class="ccbook-section-link"
+                       data-section="#4-3-权益证明-pos">
+                      4.3 权益证明 (PoS)
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-4.html#4-4-委托权益证明-dpos"
+                       class="ccbook-section-link"
+                       data-section="#4-4-委托权益证明-dpos">
+                      4.4 委托权益证明 (DPoS)
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-4.html#4-5-实用拜占庭容错-pbft"
+                       class="ccbook-section-link"
+                       data-section="#4-5-实用拜占庭容错-pbft">
+                      4.5 实用拜占庭容错 (PBFT)
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-4.html#4-6-其他共识机制"
+                       class="ccbook-section-link"
+                       data-section="#4-6-其他共识机制">
+                      4.6 其他共识机制
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-4.html#4-7-共识机制对比"
+                       class="ccbook-section-link"
+                       data-section="#4-7-共识机制对比">
+                      4.7 共识机制对比
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-4.html#4-8-共识机制的未来"
+                       class="ccbook-section-link"
+                       data-section="#4-8-共识机制的未来">
+                      4.8 共识机制的未来
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/ccbook/chapters/chapter-5.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="5">
+                <span class="chapter-icon">
+                  <i class="fa fa-file-contract"></i>
+                </span>
+                <span class="chapter-title">第五章：智能合约</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/ccbook/chapters/chapter-5.html#5-1-什么是智能合约？"
+                       class="ccbook-section-link"
+                       data-section="#5-1-什么是智能合约？">
+                      5.1 什么是智能合约？
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-5.html#5-2-以太坊虚拟机-evm"
+                       class="ccbook-section-link"
+                       data-section="#5-2-以太坊虚拟机-evm">
+                      5.2 以太坊虚拟机 (EVM)
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-5.html#5-3-solidity-编程基础"
+                       class="ccbook-section-link"
+                       data-section="#5-3-solidity-编程基础">
+                      5.3 Solidity 编程基础
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-5.html#5-4-智能合约设计模式"
+                       class="ccbook-section-link"
+                       data-section="#5-4-智能合约设计模式">
+                      5.4 智能合约设计模式
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-5.html#5-5-智能合约安全"
+                       class="ccbook-section-link"
+                       data-section="#5-5-智能合约安全">
+                      5.5 智能合约安全
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-5.html#5-6-智能合约应用场景"
+                       class="ccbook-section-link"
+                       data-section="#5-6-智能合约应用场景">
+                      5.6 智能合约应用场景
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/ccbook/chapters/chapter-6.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="6">
+                <span class="chapter-icon">
+                  <i class="fa fa-sitemap"></i>
+                </span>
+                <span class="chapter-title">第六章：区块链架构</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/ccbook/chapters/chapter-6.html#6-1-区块链分层架构"
+                       class="ccbook-section-link"
+                       data-section="#6-1-区块链分层架构">
+                      6.1 区块链分层架构
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-6.html#6-2-p2p网络架构"
+                       class="ccbook-section-link"
+                       data-section="#6-2-p2p网络架构">
+                      6.2 P2P网络架构
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-6.html#6-3-数据结构设计"
+                       class="ccbook-section-link"
+                       data-section="#6-3-数据结构设计">
+                      6.3 数据结构设计
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-6.html#6-4-状态存储与merkle树"
+                       class="ccbook-section-link"
+                       data-section="#6-4-状态存储与merkle树">
+                      6.4 状态存储与Merkle树
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-6.html#6-5-不同区块链架构对比"
+                       class="ccbook-section-link"
+                       data-section="#6-5-不同区块链架构对比">
+                      6.5 不同区块链架构对比
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-6.html#6-6-高性能区块链设计"
+                       class="ccbook-section-link"
+                       data-section="#6-6-高性能区块链设计">
+                      6.6 高性能区块链设计
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/ccbook/chapters/chapter-7.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="7">
+                <span class="chapter-icon">
+                  <i class="fa fa-layer-group"></i>
+                </span>
+                <span class="chapter-title">第七章：Layer 2扩展方案</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/ccbook/chapters/chapter-7.html#7-1-为什么需要layer-2？"
+                       class="ccbook-section-link"
+                       data-section="#7-1-为什么需要layer-2？">
+                      7.1 为什么需要Layer 2？
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-7.html#7-2-optimistic-rollup"
+                       class="ccbook-section-link"
+                       data-section="#7-2-optimistic-rollup">
+                      7.2 Optimistic Rollup
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-7.html#7-3-zk-rollup"
+                       class="ccbook-section-link"
+                       data-section="#7-3-zk-rollup">
+                      7.3 ZK Rollup
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-7.html#7-4-状态通道"
+                       class="ccbook-section-link"
+                       data-section="#7-4-状态通道">
+                      7.4 状态通道
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-7.html#7-5-侧链"
+                       class="ccbook-section-link"
+                       data-section="#7-5-侧链">
+                      7.5 侧链
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-7.html#7-6-layer-2生态全景"
+                       class="ccbook-section-link"
+                       data-section="#7-6-layer-2生态全景">
+                      7.6 Layer 2生态全景
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-7.html#7-7-layer-2未来趋势"
+                       class="ccbook-section-link"
+                       data-section="#7-7-layer-2未来趋势">
+                      7.7 Layer 2未来趋势
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/ccbook/chapters/chapter-8.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="8">
+                <span class="chapter-icon">
+                  <i class="fa fa-exchange-alt"></i>
+                </span>
+                <span class="chapter-title">第八章：互操作性与跨链</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/ccbook/chapters/chapter-8.html#8-1-为什么需要互操作性？"
+                       class="ccbook-section-link"
+                       data-section="#8-1-为什么需要互操作性？">
+                      8.1 为什么需要互操作性？
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-8.html#8-2-跨链桥的工作原理"
+                       class="ccbook-section-link"
+                       data-section="#8-2-跨链桥的工作原理">
+                      8.2 跨链桥的工作原理
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-8.html#8-3-主流跨链协议"
+                       class="ccbook-section-link"
+                       data-section="#8-3-主流跨链协议">
+                      8.3 主流跨链协议
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-8.html#8-4-跨链桥安全风险"
+                       class="ccbook-section-link"
+                       data-section="#8-4-跨链桥安全风险">
+                      8.4 跨链桥安全风险
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-8.html#8-5-新兴跨链技术"
+                       class="ccbook-section-link"
+                       data-section="#8-5-新兴跨链技术">
+                      8.5 新兴跨链技术
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-8.html#8-6-跨链未来展望"
+                       class="ccbook-section-link"
+                       data-section="#8-6-跨链未来展望">
+                      8.6 跨链未来展望
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group active-chapter">
+              <a href="/ccbook/chapters/chapter-9.html"
+                 class="ccbook-chapter-link active"
+                 data-chapter="9">
+                <span class="chapter-icon">
+                  <i class="fa fa-lock"></i>
+                </span>
+                <span class="chapter-title">第九章：高级密码学</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections show">
+                  
+                    <a href="/ccbook/chapters/chapter-9.html#9-1-零知识证明-zero-knowledge-proof"
+                       class="ccbook-section-link"
+                       data-section="#9-1-零知识证明-zero-knowledge-proof">
+                      9.1 零知识证明
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-9.html#9-2-zk-snark-与-zk-stark"
+                       class="ccbook-section-link"
+                       data-section="#9-2-zk-snark-与-zk-stark">
+                      9.2 zk-SNARK 与 zk-STARK
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-9.html#9-3-多方安全计算-mpc"
+                       class="ccbook-section-link"
+                       data-section="#9-3-多方安全计算-mpc">
+                      9.3 多方安全计算 (MPC)
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-9.html#9-4-同态加密-homomorphic-encryption"
+                       class="ccbook-section-link"
+                       data-section="#9-4-同态加密-homomorphic-encryption">
+                      9.4 同态加密
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-9.html#9-5-门限密码学与-vrf"
+                       class="ccbook-section-link"
+                       data-section="#9-5-门限密码学与-vrf">
+                      9.5 门限密码学与 VRF
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-9.html#9-6-隐私保护技术对比"
+                       class="ccbook-section-link"
+                       data-section="#9-6-隐私保护技术对比">
+                      9.6 隐私保护技术对比
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/ccbook/chapters/chapter-10.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="10">
+                <span class="chapter-icon">
+                  <i class="fa fa-coins"></i>
+                </span>
+                <span class="chapter-title">第十章：DeFi - 去中心化金融</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/ccbook/chapters/chapter-10.html#10-1-什么是-defi？"
+                       class="ccbook-section-link"
+                       data-section="#10-1-什么是-defi？">
+                      10.1 什么是 DeFi？
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-10.html#10-2-自动化做市商-amm"
+                       class="ccbook-section-link"
+                       data-section="#10-2-自动化做市商-amm">
+                      10.2 自动化做市商 (AMM)
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-10.html#10-3-借贷协议"
+                       class="ccbook-section-link"
+                       data-section="#10-3-借贷协议">
+                      10.3 借贷协议
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-10.html#10-4-稳定币设计模式"
+                       class="ccbook-section-link"
+                       data-section="#10-4-稳定币设计模式">
+                      10.4 稳定币设计模式
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-10.html#10-5-defi-创新应用"
+                       class="ccbook-section-link"
+                       data-section="#10-5-defi-创新应用">
+                      10.5 DeFi 创新应用
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/ccbook/chapters/chapter-11.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="11">
+                <span class="chapter-icon">
+                  <i class="fa fa-image"></i>
+                </span>
+                <span class="chapter-title">第十一章：NFT与数字资产</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/ccbook/chapters/chapter-11.html#11-1-什么是-nft？"
+                       class="ccbook-section-link"
+                       data-section="#11-1-什么是-nft？">
+                      11.1 什么是 NFT？
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-11.html#11-2-nft-标准"
+                       class="ccbook-section-link"
+                       data-section="#11-2-nft-标准">
+                      11.2 NFT 标准
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-11.html#11-3-nft-应用场景"
+                       class="ccbook-section-link"
+                       data-section="#11-3-nft-应用场景">
+                      11.3 NFT 应用场景
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-11.html#11-4-nft-的技术挑战"
+                       class="ccbook-section-link"
+                       data-section="#11-4-nft-的技术挑战">
+                      11.4 NFT 的技术挑战
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-11.html#11-5-nft-fi：金融化创新"
+                       class="ccbook-section-link"
+                       data-section="#11-5-nft-fi：金融化创新">
+                      11.5 NFT-Fi：金融化创新
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-11.html#11-6-nft-的未来趋势"
+                       class="ccbook-section-link"
+                       data-section="#11-6-nft-的未来趋势">
+                      11.6 NFT 的未来趋势
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/ccbook/chapters/chapter-12.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="12">
+                <span class="chapter-icon">
+                  <i class="fa fa-users-cog"></i>
+                </span>
+                <span class="chapter-title">第十二章：治理与DAO</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/ccbook/chapters/chapter-12.html#12-1-什么是-dao？"
+                       class="ccbook-section-link"
+                       data-section="#12-1-什么是-dao？">
+                      12.1 什么是 DAO？
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-12.html#12-2-链上治理机制"
+                       class="ccbook-section-link"
+                       data-section="#12-2-链上治理机制">
+                      12.2 链上治理机制
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-12.html#12-3-链下治理：snapshot"
+                       class="ccbook-section-link"
+                       data-section="#12-3-链下治理：snapshot">
+                      12.3 链下治理：Snapshot
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-12.html#12-4-代币经济学与激励设计"
+                       class="ccbook-section-link"
+                       data-section="#12-4-代币经济学与激励设计">
+                      12.4 代币经济学与激励设计
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-12.html#12-5-多签钱包与治理安全"
+                       class="ccbook-section-link"
+                       data-section="#12-5-多签钱包与治理安全">
+                      12.5 多签钱包与治理安全
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-12.html#12-6-dao-工具栈"
+                       class="ccbook-section-link"
+                       data-section="#12-6-dao-工具栈">
+                      12.6 DAO 工具栈
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/ccbook/chapters/chapter-13.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="13">
+                <span class="chapter-icon">
+                  <i class="fa fa-chart-bar"></i>
+                </span>
+                <span class="chapter-title">第十三章：区块链平台对比</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/ccbook/chapters/chapter-13.html#13-1-区块链不可能三角"
+                       class="ccbook-section-link"
+                       data-section="#13-1-区块链不可能三角">
+                      13.1 区块链不可能三角
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-13.html#13-2-layer-1-主流平台对比"
+                       class="ccbook-section-link"
+                       data-section="#13-2-layer-1-主流平台对比">
+                      13.2 Layer 1 主流平台对比
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-13.html#13-3-evm-兼容链-vs-非-evm-链"
+                       class="ccbook-section-link"
+                       data-section="#13-3-evm-兼容链-vs-非-evm-链">
+                      13.3 EVM 兼容链 vs 非 EVM 链
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-13.html#13-4-layer-2-解决方案"
+                       class="ccbook-section-link"
+                       data-section="#13-4-layer-2-解决方案">
+                      13.4 Layer 2 解决方案
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-13.html#13-5-新兴公链"
+                       class="ccbook-section-link"
+                       data-section="#13-5-新兴公链">
+                      13.5 新兴公链
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-13.html#13-6-如何选择区块链平台？"
+                       class="ccbook-section-link"
+                       data-section="#13-6-如何选择区块链平台？">
+                      13.6 如何选择区块链平台？
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-13.html#13-7-多链未来"
+                       class="ccbook-section-link"
+                       data-section="#13-7-多链未来">
+                      13.7 多链未来
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/ccbook/chapters/chapter-14.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="14">
+                <span class="chapter-icon">
+                  <i class="fa fa-building"></i>
+                </span>
+                <span class="chapter-title">第十四章：企业区块链</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/ccbook/chapters/chapter-14.html#14-1-企业区块链-vs-公链"
+                       class="ccbook-section-link"
+                       data-section="#14-1-企业区块链-vs-公链">
+                      14.1 企业区块链 vs 公链
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-14.html#14-2-主流企业区块链平台"
+                       class="ccbook-section-link"
+                       data-section="#14-2-主流企业区块链平台">
+                      14.2 主流企业区块链平台
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-14.html#14-3-企业区块链隐私保护"
+                       class="ccbook-section-link"
+                       data-section="#14-3-企业区块链隐私保护">
+                      14.3 企业区块链隐私保护
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-14.html#14-4-企业区块链应用案例"
+                       class="ccbook-section-link"
+                       data-section="#14-4-企业区块链应用案例">
+                      14.4 企业区块链应用案例
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-14.html#14-5-企业区块链部署实践"
+                       class="ccbook-section-link"
+                       data-section="#14-5-企业区块链部署实践">
+                      14.5 企业区块链部署实践
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-14.html#14-6-企业区块链挑战与未来"
+                       class="ccbook-section-link"
+                       data-section="#14-6-企业区块链挑战与未来">
+                      14.6 企业区块链挑战与未来
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/ccbook/chapters/chapter-15.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="15">
+                <span class="chapter-icon">
+                  <i class="fa fa-shield-alt"></i>
+                </span>
+                <span class="chapter-title">第十五章：安全与最佳实践</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/ccbook/chapters/chapter-15.html#15-1-区块链安全威胁模型"
+                       class="ccbook-section-link"
+                       data-section="#15-1-区块链安全威胁模型">
+                      15.1 区块链安全威胁模型
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-15.html#15-2-智能合约安全最佳实践"
+                       class="ccbook-section-link"
+                       data-section="#15-2-智能合约安全最佳实践">
+                      15.2 智能合约安全最佳实践
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-15.html#15-3-智能合约审计"
+                       class="ccbook-section-link"
+                       data-section="#15-3-智能合约审计">
+                      15.3 智能合约审计
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-15.html#15-4-私钥与钱包安全"
+                       class="ccbook-section-link"
+                       data-section="#15-4-私钥与钱包安全">
+                      15.4 私钥与钱包安全
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-15.html#15-5-dapp-前端安全"
+                       class="ccbook-section-link"
+                       data-section="#15-5-dapp-前端安全">
+                      15.5 DApp 前端安全
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-15.html#15-6-应急响应与事件处理"
+                       class="ccbook-section-link"
+                       data-section="#15-6-应急响应与事件处理">
+                      15.6 应急响应与事件处理
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+            <div class="ccbook-chapter-group">
+              <a href="/ccbook/chapters/chapter-16.html"
+                 class="ccbook-chapter-link"
+                 data-chapter="16">
+                <span class="chapter-icon">
+                  <i class="fa fa-rocket"></i>
+                </span>
+                <span class="chapter-title">第十六章：区块链的未来</span>
+                
+                  <span class="chapter-toggle">
+                    <i class="fa fa-chevron-down"></i>
+                  </span>
+                
+              </a>
+              
+                <div class="ccbook-sections">
+                  
+                    <a href="/ccbook/chapters/chapter-16.html#16-1-技术演进路线图"
+                       class="ccbook-section-link"
+                       data-section="#16-1-技术演进路线图">
+                      16.1 技术演进路线图
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-16.html#16-2-扩展性突破"
+                       class="ccbook-section-link"
+                       data-section="#16-2-扩展性突破">
+                      16.2 扩展性突破
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-16.html#16-3-ai-区块链融合"
+                       class="ccbook-section-link"
+                       data-section="#16-3-ai-区块链融合">
+                      16.3 AI + 区块链融合
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-16.html#16-4-rwa（真实世界资产）代币化"
+                       class="ccbook-section-link"
+                       data-section="#16-4-rwa（真实世界资产）代币化">
+                      16.4 RWA（真实世界资产）代币化
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-16.html#16-5-监管演进"
+                       class="ccbook-section-link"
+                       data-section="#16-5-监管演进">
+                      16.5 监管演进
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-16.html#16-6-web3-大规模采用"
+                       class="ccbook-section-link"
+                       data-section="#16-6-web3-大规模采用">
+                      16.6 Web3 大规模采用
+                    </a>
+                  
+                    <a href="/ccbook/chapters/chapter-16.html#16-7-本章小结"
+                       class="ccbook-section-link"
+                       data-section="#16-7-本章小结">
+                      16.7 本章小结
+                    </a>
+                  
+                </div>
+              
+            </div>
+          
+        
+      </nav>
+
+      
+      <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const chapterLinks = document.querySelectorAll('.ccbook-chapter-link');
+
+        chapterLinks.forEach(link => {
+          const toggle = link.querySelector('.chapter-toggle');
+          if (toggle) {
+            link.addEventListener('click', function(e) {
+              // Only toggle if clicking the chevron icon
+              if (e.target.closest('.chapter-toggle')) {
+                e.preventDefault();
+                const group = this.closest('.ccbook-chapter-group');
+                const sections = group.querySelector('.ccbook-sections');
+                const icon = toggle.querySelector('i');
+
+                sections.classList.toggle('show');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+              }
+            });
+          }
+        });
+      });
+      </script>
+    </div>
+    
+  </aside>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+  <div class="languages">
+    <label class="lang-select-label">
+      <i class="fa fa-language"></i>
+      <span>简体中文</span>
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </label>
+    <select class="lang-select" data-canonical="" aria-label="选择语言">
+      
+        <option value="zh-CN" data-href="/ccbook/chapters/chapter-9.html" selected="">
+          简体中文
+        </option>
+      
+        <option value="en" data-href="/en/ccbook/chapters/chapter-9.html" selected="">
+          English
+        </option>
+      
+    </select>
+  </div>
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">CCBus Lab</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+
+</body>
+</html>
