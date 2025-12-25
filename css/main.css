@@ -1383,7 +1383,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #ac2eff;
+    background: #2fff69;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -3990,4 +3990,24 @@ body:has(.ccbook-three-column) .languages-header {
   display: block;
   max-width: 100%;
   overflow-x: auto;
+}
+figure.highlight .table-container {
+  overflow: hidden !important;
+}
+figure.highlight table {
+  display: table !important;
+  width: 100% !important;
+  max-width: none !important;
+}
+figure.highlight td.gutter {
+  width: auto !important;
+}
+figure.highlight td.code {
+  width: 100% !important;
+}
+figure.highlight td.code pre {
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+  display: block !important;
+  width: 100% !important;
 }
