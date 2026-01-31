@@ -20,26 +20,42 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.ccbus.cc","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="CCBus 指南  欢迎来到 **CCBus 指南**！这是一本专注于区块链技术实践应用的综合性指南，涵盖从基础概念到高级应用的完整知识体系。 无论您是：  🎓 初学者 - 想要快速上手区块链技术 💻 开发者 - 希望掌握实战技能 🏗️ 架构师 - 需要设计解决方案 💼 从业者 - 探索行业最佳实践  这本指南都将为您提供实用的知识和经验。  📚 完整目录  本指南特色  ✅ 实战导向">
+    <meta name="description" content="copy复制chevron-down  screwdriver-wrench操作工具  inbox-out代币批量空投教程 一次性将代币转账至多个地址  hashtag 什么是批量空投工具？ 就是我们理解的1对多转账工具，一次性将代币转给数百个地址。其主要用途有三个：   加代币持仓地址： 如果想让代币的持仓数量从1增加到1000，正常情况下需要手动转账999次，至少得搞2个小时。而通过批量转账，">
 <meta property="og:type" content="website">
-<meta property="og:title" content="CCBus 指南">
-<meta property="og:url" content="https://www.ccbus.cc/ccbus-guide/index.html">
+<meta property="og:title" content="代币批量空投教程">
+<meta property="og:url" content="https://www.ccbus.cc/ccbus-guide/chapters/tools/multisendv2.html">
 <meta property="og:site_name" content="CCBus">
-<meta property="og:description" content="CCBus 指南  欢迎来到 **CCBus 指南**！这是一本专注于区块链技术实践应用的综合性指南，涵盖从基础概念到高级应用的完整知识体系。 无论您是：  🎓 初学者 - 想要快速上手区块链技术 💻 开发者 - 希望掌握实战技能 🏗️ 架构师 - 需要设计解决方案 💼 从业者 - 探索行业最佳实践  这本指南都将为您提供实用的知识和经验。  📚 完整目录  本指南特色  ✅ 实战导向">
+<meta property="og:description" content="copy复制chevron-down  screwdriver-wrench操作工具  inbox-out代币批量空投教程 一次性将代币转账至多个地址  hashtag 什么是批量空投工具？ 就是我们理解的1对多转账工具，一次性将代币转给数百个地址。其主要用途有三个：   加代币持仓地址： 如果想让代币的持仓数量从1增加到1000，正常情况下需要手动转账999次，至少得搞2个小时。而通过批量转账，">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-01-29T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-30T14:24:56.787Z">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252Foiwqtk1fQNMMa8uAZuVg%252F1%25E6%2589%2593%25E5%25BC%2580%25E5%25B7%25A5%25E5%2585%25B7.png%3Falt%3Dmedia%26token%3D9fce18e3-82ae-4398-80a6-54b2fb5d2013&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=69cc65e0&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FaAL724uzhin7ePMqE3Kc%252F2%25E8%258F%259C%25E5%258D%2595%25E6%2589%2593%25E5%25BC%2580.png%3Falt%3Dmedia%26token%3D218b748b-9555-4ceb-9380-b49dc80d58e9&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=d4f1d13c&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F8mpcDNuBZ0rAHFeu6MwK%252F3%25E9%2580%2589%25E6%258B%25A9%25E9%2593%25BE%25E4%25B8%258E%25E9%2592%25B1%25E5%258C%2585.png%3Falt%3Dmedia%26token%3D4d664f82-2f81-4209-afa6-39a0cc2ac964&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=cfe9b5ef&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F4sEWRkMApRIvqO7z16ey%252F4.5%25E5%258E%259F%25E7%2594%259F%25E4%25BB%25A3%25E5%25B8%2581.png%3Falt%3Dmedia%26token%3Dfdc5f295-ee04-4ce5-9a6b-fad501e4822f&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=1eabe0c1&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F6Fi8AD8t1ZmmNUXW7ui2%252F4%25E8%25BE%2593%25E5%2585%25A5%25E4%25BB%25A3%25E5%25B8%2581%25E5%259C%25B0%25E5%259D%2580.png%3Falt%3Dmedia%26token%3Df4d52100-b789-4262-816e-1359709aa9f3&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=7b0cd594&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F8c48k1wzbou3pTddj1G3%252F5%25E9%2592%25B1%25E5%258C%2585%25E5%259C%25B0%25E5%259D%2580.png%3Falt%3Dmedia%26token%3D9fce4b41-36f1-4c13-9d77-320130a51de3&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=b01f8c5a&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FbUyaecUqM0gA1xWZaeeY%252F6%25E9%259A%258F%25E6%259C%25BA%25E5%259C%25B0%25E5%259D%2580.png%3Falt%3Dmedia%26token%3De0e3c36d-21b4-4f6d-bdcd-18572acba010&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=3f9bc79f&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FXTDkiBEQ17hAXip6O3b9%252F7%25E4%25B8%258B%25E8%25BD%25BD%25E4%25BE%258B%25E5%25AD%2590%25E6%2596%2587%25E7%25AB%25A0.png%3Falt%3Dmedia%26token%3Ddfbd476c-1204-42d0-9a91-5a99c691a194&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=2b3c7392&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FyLeaALlv7nb51DRfQ6EQ%252F8%25E4%25B8%258B%25E4%25B8%2580%25E6%25AD%25A5.png%3Falt%3Dmedia%26token%3De0b3b369-8c32-449a-973e-028120850dcf&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=4272cfca&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F9HOspRL5NrO3qlbr64KK%252F11%25E6%258E%2588%25E6%259D%2583.png%3Falt%3Dmedia%26token%3D8c418385-5708-49a3-b247-3b746c596cee&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=1d90c578&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FM0fZZ2mNtdLx985bLErW%252F9%25E4%25BA%258C%25E6%25AC%25A1%25E7%25A1%25AE%25E8%25AE%25A4.png%3Falt%3Dmedia%26token%3D3cb0d800-2603-43f9-8914-d8b4ac184830&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=2f00faa&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FK0f6SZWQF7xOh085p7mW%252F12%25E6%2589%25B9%25E9%2587%258F%25E8%25BD%25AC%25E8%25B4%25A6.png%3Falt%3Dmedia%26token%3D1cb1c812-2c41-4d0b-9710-c5194495ff35&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=45fd2114&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FvYr28g1ZJ320xDk88JMB%252F13%25E9%2592%25B1%25E5%258C%2585%25E7%25A1%25AE%25E8%25AE%25A4.png%3Falt%3Dmedia%26token%3D61f8bd8b-3bff-4804-bd50-bda9679379f8&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=9d385750&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FN95Vm5a5tf0QqOHiixFK%252FScreenShot_2025-11-25_190252_305.png%3Falt%3Dmedia%26token%3D6ecb3e72-5e37-4d40-a11c-53bb43b8cc37&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=e950515e&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252Fu9Xfwctwqa5fIXTc3vbm%252F15%25E9%2592%25B1%25E5%258C%2585%25E8%25AE%25B0%25E5%25BD%2595.png%3Falt%3Dmedia%26token%3D9cc45180-db6e-4cbe-a28f-2e4ebd73e9e7&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=f5738a7a&amp;sv=2">
+<meta property="article:published_time" content="2026-01-30T14:24:31.000Z">
+<meta property="article:modified_time" content="2026-01-30T14:24:31.575Z">
 <meta property="article:author" content="CCBus Lab">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252Foiwqtk1fQNMMa8uAZuVg%252F1%25E6%2589%2593%25E5%25BC%2580%25E5%25B7%25A5%25E5%2585%25B7.png%3Falt%3Dmedia%26token%3D9fce18e3-82ae-4398-80a6-54b2fb5d2013&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=69cc65e0&amp;sv=2">
 
 
-<link rel="canonical" href="https://www.ccbus.cc/ccbus-guide/">
+<link rel="canonical" href="https://www.ccbus.cc/ccbus-guide/chapters/tools/multisendv2">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://www.ccbus.cc/ccbus-guide/index.html","path":"ccbus-guide/index.html","title":"CCBus 指南"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://www.ccbus.cc/ccbus-guide/chapters/tools/multisendv2.html","path":"ccbus-guide/chapters/tools/multisendv2.html","title":"代币批量空投教程"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>CCBus 指南 | CCBus
+<title>代币批量空投教程 | CCBus
 </title>
   
 
@@ -132,13 +148,13 @@
 
 <div class="languages-header">
   
-    <a href="/ccbus-guide/index.html"
+    <a href="/ccbus-guide/chapters/tools/multisendv2.html"
        class="lang-btn active"
        title="切换到简体中文">
       中文
     </a>
   
-    <a href="/en/ccbus-guide/index.html"
+    <a href="/en/ccbus-guide/chapters/tools/multisendv2.html"
        class="lang-btn "
        title="Switch to English">
       EN
@@ -227,10 +243,16 @@
       
       <article class="ccbook-content-area"><header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">CCBus 指南
+<h1 class="post-title" itemprop="name headline">代币批量空投教程
 </h1>
 
 <div class="post-meta-container">
+  <ul class="breadcrumb">
+            <li><a href="/ccbus-guide/">CCBUS 指南</a></li>
+            <li><a href="/ccbus-guide/chapters/">CHAPTERS</a></li>
+            <li><a href="/ccbus-guide/chapters/tools/">TOOLS</a></li>
+            <li>MULTISENDV2</li>
+  </ul>
 </div>
 
 </header>
@@ -240,102 +262,97 @@
         
         
         <div class="post-body ccbook-content-body">
-          <div class="ccbook-index">
-<h1>CCBus 指南</h1>
-<div class="book-intro">
-欢迎来到 **CCBus 指南**！这是一本专注于区块链技术实践应用的综合性指南，涵盖从基础概念到高级应用的完整知识体系。
-<p>无论您是：</p>
-<ul>
-<li>🎓 <strong>初学者</strong> - 想要快速上手区块链技术</li>
-<li>💻 <strong>开发者</strong> - 希望掌握实战技能</li>
-<li>🏗️ <strong>架构师</strong> - 需要设计解决方案</li>
-<li>💼 <strong>从业者</strong> - 探索行业最佳实践</li>
-</ul>
-<p>这本指南都将为您提供实用的知识和经验。</p>
-</div>
-<h2 id="📚-完整目录">📚 完整目录</h2>
-<div class="book-features">
-<h3 id="本指南特色">本指南特色</h3>
-<ul>
-<li>✅ <strong>实战导向</strong>：注重实际应用和案例分析</li>
-<li>✅ <strong>深入浅出</strong>：从基础到进阶，循序渐进</li>
-<li>✅ <strong>工具集成</strong>：丰富的工具和框架介绍</li>
-<li>✅ <strong>持续更新</strong>：跟踪最新技术发展</li>
-<li>✅ <strong>社区驱动</strong>：汇集行业最佳实践</li>
-</ul>
-</div>
-<h2 id="📖-完整内容导航">📖 完整内容导航</h2>
-<div class="chapter-group">
-<h3 id="第一章：跨链桥-🌉"><a href="/ccbus-guide/chapters/bridge/">第一章：跨链桥</a> 🌉</h3>
-<p><strong>难度：</strong> 🟢 入门 | <strong>教程数：</strong> 4篇</p>
-<p>掌握跨链资产转移技术，支持多链资产互通。</p>
-<h3 id="第二章：EVM代币创建-🪙"><a href="/ccbus-guide/chapters/createtoken/">第二章：EVM代币创建</a> 🪙</h3>
-<p><strong>难度：</strong> 🟢 入门 | <strong>教程数：</strong> 22篇</p>
-<p>全面掌握EVM链代币创建，包括标准代币、分红代币、314协议等多种类型。</p>
-<h3 id="第三章：声明条款-📋"><a href="/ccbus-guide/chapters/declaration/">第三章：声明条款</a> 📋</h3>
-<p><strong>难度：</strong> 🟢 入门 | <strong>文档数：</strong> 2篇</p>
-<p>重要的法律声明和服务条款。</p>
-<h3 id="第四章：实用信息-💡"><a href="/ccbus-guide/chapters/practical-information/">第四章：实用信息</a> 💡</h3>
-<p><strong>难度：</strong> 🟢 入门 | <strong>教程数：</strong> 7篇</p>
-<p>钱包配置、公链参数、水龙头等实用工具指南。</p>
-<h3 id="第五章：预售工具-🚀"><a href="/ccbus-guide/chapters/presale/">第五章：预售工具</a> 🚀</h3>
-<p><strong>难度：</strong> 🟡 中级 | <strong>教程数：</strong> 3篇</p>
-<p>代币预售和Mint功能实现教程。</p>
-<h3 id="第六章：常见问题-❓"><a href="/ccbus-guide/chapters/question/">第六章：常见问题</a> ❓</h3>
-<p><strong>难度：</strong> 🟢 入门 | <strong>问答数：</strong> 9篇</p>
-<p>常见问题解答，包括加池、检测、开源等操作指南。</p>
-<h3 id="第七章：Solana工具-⚡"><a href="/ccbus-guide/chapters/sol/">第七章：Solana工具</a> ⚡</h3>
-<p><strong>难度：</strong> 🟡 中级 | <strong>教程数：</strong> 30篇</p>
-<p>Solana生态完整工具集，涵盖代币创建、Raydium、Pump.fun等。</p>
-<h3 id="第八章：Sui工具-🌊"><a href="/ccbus-guide/chapters/sui/">第八章：Sui工具</a> 🌊</h3>
-<p><strong>难度：</strong> 🟡 中级 | <strong>教程数：</strong> 7篇</p>
-<p>Sui区块链工具使用指南，包括Cetus、Turbos等DEX。</p>
-<h3 id="第九章：TON工具-💎"><a href="/ccbus-guide/chapters/ton/">第九章：TON工具</a> 💎</h3>
-<p><strong>难度：</strong> 🟡 中级 | <strong>教程数：</strong> 5篇</p>
-<p>TON生态工具教程，Jetton创建和DeDust交易。</p>
-<h3 id="第十章：通用工具-🛠️"><a href="/ccbus-guide/chapters/tools/">第十章：通用工具</a> 🛠️</h3>
-<p><strong>难度：</strong> 🟢 入门 | <strong>教程数：</strong> 10篇</p>
-<p>批量转账、合约检测、钱包生成等通用工具。</p>
-<h3 id="第十一章：TRON工具-🔴"><a href="/ccbus-guide/chapters/tron/">第十一章：TRON工具</a> 🔴</h3>
-<p><strong>难度：</strong> 🟡 中级 | <strong>教程数：</strong> 7篇</p>
-<p>TRON链工具集，TRC20代币和SunSwap操作。</p>
-</div>
-<h2 id="📝-内容说明">📝 内容说明</h2>
-<div class="book-intro">
-<p>本指南基于 PandaTool 文档整理，包含完整的区块链工具使用教程。内容涵盖：</p>
-<ul>
-<li><strong>EVM工具</strong>：代币创建、流动性管理、权限控制</li>
-<li><strong>Solana工具</strong>：SPL代币、Raydium池、交易机器人</li>
-<li><strong>Sui工具</strong>：代币发行、DEX交互</li>
-<li><strong>TON工具</strong>：Jetton创建、交易所集成</li>
-<li><strong>TRON工具</strong>：TRC20代币、能量租赁</li>
-<li><strong>跨链工具</strong>：多链资产桥接</li>
-<li><strong>通用工具</strong>：批量转账、快照、钱包管理</li>
-</ul>
-<p><strong>注意：</strong> 内容正在持续完善中，更多章节即将添加！</p>
-</div>
-<h2 id="💡-如何使用本指南">💡 如何使用本指南</h2>
-<div class="usage-guide">
-<h3 id="学习建议">学习建议</h3>
+          <p>copy复制chevron-down</p>
 <ol>
-<li><strong>按需学习</strong> - 根据自己的需求选择章节</li>
-<li><strong>动手实践</strong> - 跟随示例进行实操</li>
-<li><strong>问题驱动</strong> - 带着问题学习效果更好</li>
-<li><strong>交流分享</strong> - 加入社区讨论</li>
+<li><a href="/tools">screwdriver-wrench操作工具</a></li>
 </ol>
-<h3 id="配套资源">配套资源</h3>
+<h1>inbox-out代币批量空投教程</h1>
+<p>一次性将代币转账至多个地址</p>
+<h3 id=""></h3>
+<p>hashtag</p>
+<p><strong>什么是批量空投工具？</strong></p>
+<p>就是我们理解的1对多转账工具，一次性将代币转给数百个地址。其主要用途有三个：</p>
 <ul>
-<li><strong>代码仓库</strong> - GitHub上的完整示例</li>
-<li><strong>在线社区</strong> - 问答和交流平台</li>
-<li><strong>实战项目</strong> - 真实场景应用案例</li>
+<li>
+<p><strong>加代币持仓地址：</strong> 如果想让代币的持仓数量从1增加到1000，正常情况下需要手动转账999次，至少得搞2个小时。而通过批量转账，3秒钟就能搞定，非常省事。</p>
+</li>
+<li>
+<p><strong>增加钱包内余额：</strong> 可以快速将BNB、ETH或者USDT分发给自己的其他钱包。如果你现在管理几百个钱包地址用来撸毛，那么通过PandaTool的批量空投工具，就能快速给每个钱包转账金额来操作。</p>
+</li>
+<li>
+<p><strong>发放代币奖励：</strong> 项目方给符合条件的地址批量发放代币奖励，通过空投工具比一次次转账更加方便。</p>
+</li>
 </ul>
-</div>
-<div class="book-footer">
-<h2 id="🚀-开始您的学习之旅">🚀 开始您的学习之旅</h2>
-<p>选择感兴趣的主题，开始探索区块链技术的精彩世界！</p>
-<p><strong>版本：</strong> v1.0 (2026-01) | <strong>最后更新：</strong> 2026年1月29日</p>
-</div>
-</div>
+<p>总得来说，批量空投工具的目的在于解放双手，帮助用户快速批量得进行代币分发。</p>
+<h3 id="-2"></h3>
+<p>hashtag</p>
+<p><strong>如何使用批量空投工具？</strong></p>
+<p>按照以下流程实现代币的批量空投</p>
+<p>1.打开工具并链接钱包</p>
+<p>2.输入代币合约地址</p>
+<p>3.输入收款钱包地址和数量</p>
+<p>4.确认授权</p>
+<p>5.点击转账</p>
+<p>接下来，PandaTool将给大家详细阐述这一教程</p>
+<h4 id="-3"></h4>
+<p>hashtag</p>
+<p><strong>1、打开批量工具并连接钱包</strong></p>
+<p>首先，我们需要通过网址打开批量空投工具：<a target="_blank" rel="noopener" href="https://pandatool.org/#/multisendV2?lang=zh-CN">https://pandatool.org/#/multisendV2?lang=zh-CN</a><a target="_blank" rel="noopener" href="https://pandatool.org/#/multisendV2?lang=zh-CN">arrow-up-right</a></p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252Foiwqtk1fQNMMa8uAZuVg%252F1%25E6%2589%2593%25E5%25BC%2580%25E5%25B7%25A5%25E5%2585%25B7.png%3Falt%3Dmedia%26token%3D9fce18e3-82ae-4398-80a6-54b2fb5d2013&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=69cc65e0&amp;sv=2" alt=""></p>
+<p>或者在左边菜单栏，也能找到这个工具</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FaAL724uzhin7ePMqE3Kc%252F2%25E8%258F%259C%25E5%258D%2595%25E6%2589%2593%25E5%25BC%2580.png%3Falt%3Dmedia%26token%3D218b748b-9555-4ceb-9380-b49dc80d58e9&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=d4f1d13c&amp;sv=2" alt=""></p>
+<p>打开之后，右上角要选择链并连接钱包。要在哪条链转账，就选择哪条</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F8mpcDNuBZ0rAHFeu6MwK%252F3%25E9%2580%2589%25E6%258B%25A9%25E9%2593%25BE%25E4%25B8%258E%25E9%2592%25B1%25E5%258C%2585.png%3Falt%3Dmedia%26token%3D4d664f82-2f81-4209-afa6-39a0cc2ac964&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=cfe9b5ef&amp;sv=2" alt=""></p>
+<h4 id="-4"></h4>
+<p>hashtag</p>
+<p><strong>2、输入代币地址</strong></p>
+<p>钱包连接之后，就需要输入要转账的代币合约地址。如果是转原生代币，例如BNB、ETH等，则不需要输入。</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F4sEWRkMApRIvqO7z16ey%252F4.5%25E5%258E%259F%25E7%2594%259F%25E4%25BB%25A3%25E5%25B8%2581.png%3Falt%3Dmedia%26token%3Dfdc5f295-ee04-4ce5-9a6b-fad501e4822f&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=1eabe0c1&amp;sv=2" alt=""></p>
+<p>如果是转账USDT、土狗币这些，就需要填入合约地址。填入地址后，等待几秒钟，就会提示您查询代币成功</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F6Fi8AD8t1ZmmNUXW7ui2%252F4%25E8%25BE%2593%25E5%2585%25A5%25E4%25BB%25A3%25E5%25B8%2581%25E5%259C%25B0%25E5%259D%2580.png%3Falt%3Dmedia%26token%3Df4d52100-b789-4262-816e-1359709aa9f3&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=7b0cd594&amp;sv=2" alt=""></p>
+<h4 id="-5"></h4>
+<p>hashtag</p>
+<p><strong>3、填入接收钱包地址</strong></p>
+<p>接下来，就是填写要接受代币的钱包地址了。地址和数量以英文逗号隔开，每行一组，为保证转账效果，一次最好不要输入超过<strong>400个地址</strong></p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F8c48k1wzbou3pTddj1G3%252F5%25E9%2592%25B1%25E5%258C%2585%25E5%259C%25B0%25E5%259D%2580.png%3Falt%3Dmedia%26token%3D9fce4b41-36f1-4c13-9d77-320130a51de3&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=b01f8c5a&amp;sv=2" alt=""></p>
+<p>此外，这里还有两个功能</p>
+<p><strong>随机地址：</strong> 指的是由系统随机生成地址用于转账，无需项目方自己输入，比较方便。但这些地址无人认领，一旦转过去，就拿不回来了，仅适合纯粹用于刷数量的项目</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FbUyaecUqM0gA1xWZaeeY%252F6%25E9%259A%258F%25E6%259C%25BA%25E5%259C%25B0%25E5%259D%2580.png%3Falt%3Dmedia%26token%3De0e3c36d-21b4-4f6d-bdcd-18572acba010&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=3f9bc79f&amp;sv=2" alt=""></p>
+<p><strong>上传文件：</strong> 除了自动生成地址外，也可以自己上传地址文件，这样也比一行行输入来的方便。上传之前，可以先下载好<code>例子文件</code>，然后打开文件输入即可</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FXTDkiBEQ17hAXip6O3b9%252F7%25E4%25B8%258B%25E8%25BD%25BD%25E4%25BE%258B%25E5%25AD%2590%25E6%2596%2587%25E7%25AB%25A0.png%3Falt%3Dmedia%26token%3Ddfbd476c-1204-42d0-9a91-5a99c691a194&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=2b3c7392&amp;sv=2" alt=""></p>
+<p>确定好地址之后，我们点击下一步</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FyLeaALlv7nb51DRfQ6EQ%252F8%25E4%25B8%258B%25E4%25B8%2580%25E6%25AD%25A5.png%3Falt%3Dmedia%26token%3De0b3b369-8c32-449a-973e-028120850dcf&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=4272cfca&amp;sv=2" alt=""></p>
+<p>circle-check</p>
+<p>如何获得热门代币的持币数据？如果你想将代币空投给USDT、Doge这种热门代币的持有者，可以通过我们的快照工具获取这些代币的持仓地址，然后再空投即可。</p>
+<p>代币快照数据：<a target="_blank" rel="noopener" href="https://pandatool.org/#/contractCheck/snapshotToken?lang=zh-CN">https://pandatool.org/#/contractCheck/snapshotToken?lang=zh-CN</a><a target="_blank" rel="noopener" href="https://pandatool.org/#/contractCheck/snapshotToken?lang=zh-CN">arrow-up-right</a></p>
+<h4 id="-6"></h4>
+<p>hashtag</p>
+<p><strong>4、代币授权</strong></p>
+<p>接下来，你能看到你要转账的所有地址以及详细信息。如果你的代币没有授权，就需要点击授权。如果已经授权，就会提示您授权额度充足</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F9HOspRL5NrO3qlbr64KK%252F11%25E6%258E%2588%25E6%259D%2583.png%3Falt%3Dmedia%26token%3D8c418385-5708-49a3-b247-3b746c596cee&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=1d90c578&amp;sv=2" alt=""></p>
+<p><strong>我们再确认一下转账信息，没有问题的话，点击下一步</strong></p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FM0fZZ2mNtdLx985bLErW%252F9%25E4%25BA%258C%25E6%25AC%25A1%25E7%25A1%25AE%25E8%25AE%25A4.png%3Falt%3Dmedia%26token%3D3cb0d800-2603-43f9-8914-d8b4ac184830&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=2f00faa&amp;sv=2" alt=""></p>
+<h4 id="-7"></h4>
+<p>hashtag</p>
+<p><strong>5、批量转账</strong></p>
+<p>接下来点击批量转账按钮，会弹出钱包确认，点击确认后即可完成</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FK0f6SZWQF7xOh085p7mW%252F12%25E6%2589%25B9%25E9%2587%258F%25E8%25BD%25AC%25E8%25B4%25A6.png%3Falt%3Dmedia%26token%3D1cb1c812-2c41-4d0b-9710-c5194495ff35&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=45fd2114&amp;sv=2" alt=""></p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FvYr28g1ZJ320xDk88JMB%252F13%25E9%2592%25B1%25E5%258C%2585%25E7%25A1%25AE%25E8%25AE%25A4.png%3Falt%3Dmedia%26token%3D61f8bd8b-3bff-4804-bd50-bda9679379f8&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=9d385750&amp;sv=2" alt=""></p>
+<p>等待几秒钟后，就能看到提示说已经<strong>批量发送成功</strong></p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FN95Vm5a5tf0QqOHiixFK%252FScreenShot_2025-11-25_190252_305.png%3Falt%3Dmedia%26token%3D6ecb3e72-5e37-4d40-a11c-53bb43b8cc37&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=e950515e&amp;sv=2" alt=""></p>
+<p>然后我们回到工具首页，也能查询到自己的转账记录</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252Fu9Xfwctwqa5fIXTc3vbm%252F15%25E9%2592%25B1%25E5%258C%2585%25E8%25AE%25B0%25E5%25BD%2595.png%3Falt%3Dmedia%26token%3D9cc45180-db6e-4cbe-a28f-2e4ebd73e9e7&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=f5738a7a&amp;sv=2" alt=""></p>
+<h3 id="-8"></h3>
+<p>hashtag</p>
+<p>批量空投工具注意事项</p>
+<p>1.、收款地址和数量必须用英文逗号分隔</p>
+<p>2、推荐使用电脑端操作，更加方便快捷，手机不太方便</p>
+<p>3、如往交易所地址进行转账，请务必确认交易所是否支持合约转账，否则你的转账将无法到账</p>
+<p>4、为保证转账顺利，一次转账的地址数请勿超过400个</p>
+<p>5、支持大部分EVM公链，包括ETH、Base、Arb等等</p>
+<p>如果您有任何关于批量空投相关的的问题，可以在电报群联系志愿者解答：<a target="_blank" rel="noopener" href="https://t.me/pandatool">https://t.me/pandatool</a><a target="_blank" rel="noopener" href="https://t.me/pandatool">arrow-up-right</a></p>
+<p><a href="/tools/gather">上一页代币批量归集工具chevron-left</a><a href="/tools/snapshottoken">下一页代币快照教程chevron-right</a></p>
+<p>最后更新于2个月前</p>
 
         </div>
         
@@ -359,8 +376,8 @@
     
     <div class="ccbook-lang-switcher">
       <div class="languages-header">
-          <a href="/ccbus-guide/index.html" class="lang-btn active">中文</a>
-          <a href="/en/ccbus-guide/index.html" class="lang-btn">EN</a>
+          <a href="/ccbus-guide/chapters/tools/multisendv2.html" class="lang-btn active">中文</a>
+          <a href="/en/ccbus-guide/chapters/tools/multisendv2.html" class="lang-btn">EN</a>
       </div>
     </div>
 
@@ -1325,11 +1342,11 @@
     </label>
     <select class="lang-select" data-canonical="" aria-label="选择语言">
       
-        <option value="zh-CN" data-href="/ccbus-guide/index.html" selected="">
+        <option value="zh-CN" data-href="/ccbus-guide/chapters/tools/multisendv2.html" selected="">
           简体中文
         </option>
       
-        <option value="en" data-href="/en/ccbus-guide/index.html" selected="">
+        <option value="en" data-href="/en/ccbus-guide/chapters/tools/multisendv2.html" selected="">
           English
         </option>
       

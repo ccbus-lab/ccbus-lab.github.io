@@ -20,26 +20,42 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.ccbus.cc","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="CCBus 指南  欢迎来到 **CCBus 指南**！这是一本专注于区块链技术实践应用的综合性指南，涵盖从基础概念到高级应用的完整知识体系。 无论您是：  🎓 初学者 - 想要快速上手区块链技术 💻 开发者 - 希望掌握实战技能 🏗️ 架构师 - 需要设计解决方案 💼 从业者 - 探索行业最佳实践  这本指南都将为您提供实用的知识和经验。  📚 完整目录  本指南特色  ✅ 实战导向">
+    <meta name="description" content="copy复制chevron-down  landmark-magnifying-glass创建预售  hammer创建标准代币Mint预售教程 100%去中心化的预售合约创建教程 什么是标准Mint预售？ 简单来说，就是通过Mint的方式进行预售。项目方将一定数量的代币打入预售合约地址，开启预售后，用户将BNB转入预售合约地址，预售合约会自动按照设定好的比例，将代币给到用户。 circle-che">
 <meta property="og:type" content="website">
-<meta property="og:title" content="CCBus 指南">
-<meta property="og:url" content="https://www.ccbus.cc/ccbus-guide/index.html">
+<meta property="og:title" content="创建标准代币Mint预售教程">
+<meta property="og:url" content="https://www.ccbus.cc/ccbus-guide/chapters/presale/simplemint.html">
 <meta property="og:site_name" content="CCBus">
-<meta property="og:description" content="CCBus 指南  欢迎来到 **CCBus 指南**！这是一本专注于区块链技术实践应用的综合性指南，涵盖从基础概念到高级应用的完整知识体系。 无论您是：  🎓 初学者 - 想要快速上手区块链技术 💻 开发者 - 希望掌握实战技能 🏗️ 架构师 - 需要设计解决方案 💼 从业者 - 探索行业最佳实践  这本指南都将为您提供实用的知识和经验。  📚 完整目录  本指南特色  ✅ 实战导向">
+<meta property="og:description" content="copy复制chevron-down  landmark-magnifying-glass创建预售  hammer创建标准代币Mint预售教程 100%去中心化的预售合约创建教程 什么是标准Mint预售？ 简单来说，就是通过Mint的方式进行预售。项目方将一定数量的代币打入预售合约地址，开启预售后，用户将BNB转入预售合约地址，预售合约会自动按照设定好的比例，将代币给到用户。 circle-che">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-01-29T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-30T14:24:56.787Z">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FjaYwyhZIo7caum3ByfMp%252F1-%25E8%25BF%259E%25E6%258E%25A5%25E9%2592%25B1%25E5%258C%2585.png%3Falt%3Dmedia%26token%3D646f459f-27d6-4b10-84db-cc67eecb11d4&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=118be3e1&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252Fto2I45fnkhnHMnT4mrz6%252F2-%25E9%2580%2589%25E6%258B%25A9%25E5%2585%25AC%25E9%2593%25BE.png%3Falt%3Dmedia%26token%3D5c12898f-492e-4007-94ba-afa9f2fbe4e4&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=188fa091&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FOyggh30XarBUzDeYIypN%252F3-%25E9%2593%25BE%25E5%2590%258D%25E7%25A7%25B0%25E4%25B8%258E%25E5%259C%25B0%25E5%259D%2580.png%3Falt%3Dmedia%26token%3Dd2b119cc-c122-490c-be03-87d829b937c0&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=eb37c865&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FcXAqUQFcRW3TLdEUHKHu%252F1%25E6%25A0%2587%25E5%2587%2586Mint.png%3Falt%3Dmedia%26token%3D52f6ff9f-6d8f-4c47-861b-a1c4c8f78c2f&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=1bce69c8&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F2g5Ws1v94mmY6Vz4TDt4%252F2-%25E9%25A2%2584%25E5%2594%25AE%25E5%258F%2582%25E6%2595%25B0%25E5%25A1%25AB%25E5%2586%2599.png%3Falt%3Dmedia%26token%3D84e2abae-77e8-433e-973b-6de4e7e188b9&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=c6608f1f&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F3y4VjPFEVN4DykCk9pyk%252F3-%25E5%2588%259B%25E5%25BB%25BA%25E5%2590%2588%25E7%25BA%25A6.png%3Falt%3Dmedia%26token%3D84f5185a-413d-42f7-afc4-df929c1e49a7&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=e0145ce&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FLD1L854k1LYpUDmuIfgO%252F4-%25E7%2582%25B9%25E5%2587%25BB%25E7%25A1%25AE%25E8%25AE%25A4.png%3Falt%3Dmedia%26token%3Dd4c9a127-75eb-4633-b400-326e32f85a3a&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=b64484db&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FQ9idTZdBr9C0jwJkZ62Z%252F5-%25E5%2588%259B%25E5%25BB%25BA%25E6%2588%2590%25E5%258A%259F.png%3Falt%3Dmedia%26token%3D41c81afd-6614-4ed5-954f-e0dd390207ab&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=24b12671&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252Fm5GN0gbgtJdZfkExwXyw%252F6-%25E6%258E%25A7%25E5%2588%25B6%25E5%258F%25B0.png%3Falt%3Dmedia%26token%3Dcfe950a3-335a-4700-91a2-81ca77c0a68d&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=b56f8293&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F7LuTsb4blgGzcO1opGkR%252F7%25E5%25BC%2580%25E5%2590%25AF%25E9%25A2%2584%25E5%2594%25AE.png%3Falt%3Dmedia%26token%3D98f35de2-eec2-4240-9a01-e135ca14e698&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=23ba5c9c&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FrPw8M1dwuDKixSgO1VP0%252F8-%25E9%2592%25B1%25E5%258C%2585%25E6%258E%2588%25E6%259D%2583.png%3Falt%3Dmedia%26token%3D53cbccb2-e4ac-4877-b479-396590d959d5&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=cb719347&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FYwFCZ2qMczcoKISfnkUU%252F9-%25E8%25BD%25AC%25E5%2585%25A5%25E4%25BB%25A3%25E5%25B8%2581.png%3Falt%3Dmedia%26token%3D8b5b5557-0cdb-4414-8a9f-efa569affeba&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=a365f7f6&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F8WLAMev46qXYo66QIawa%252F10-%25E9%25A2%2584%25E5%2594%25AE%25E5%25BC%2580%25E5%2590%25AF%25E6%2588%2590%25E5%258A%259F.png%3Falt%3Dmedia%26token%3Df93e8286-e08a-4fd0-ad22-115940f85092&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=244eb707&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FwbEMLbAjkokMLSRTmCNL%252F%25E6%258F%2590%25E5%258F%2596%25E5%2590%2588%25E7%25BA%25A6%25E5%2586%2585%25E4%25BB%25A3%25E5%25B8%2581.png%3Falt%3Dmedia%26token%3D1452cfbf-f477-49b7-b2ba-b4278b949433&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=f8c6745a&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F3wgQCJgqnGH5O5VeQozP%252F%25E9%25A2%2584%25E5%2594%25AE%25E5%25BC%2580%25E5%2590%25AF%25E5%25A4%25B1%25E8%25B4%25A5.png%3Falt%3Dmedia%26token%3Db60e1267-6bf1-433e-9efa-66b898c995c0&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=a8a6170a&amp;sv=2">
+<meta property="article:published_time" content="2026-01-30T14:24:31.000Z">
+<meta property="article:modified_time" content="2026-01-30T14:24:31.559Z">
 <meta property="article:author" content="CCBus Lab">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FjaYwyhZIo7caum3ByfMp%252F1-%25E8%25BF%259E%25E6%258E%25A5%25E9%2592%25B1%25E5%258C%2585.png%3Falt%3Dmedia%26token%3D646f459f-27d6-4b10-84db-cc67eecb11d4&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=118be3e1&amp;sv=2">
 
 
-<link rel="canonical" href="https://www.ccbus.cc/ccbus-guide/">
+<link rel="canonical" href="https://www.ccbus.cc/ccbus-guide/chapters/presale/simplemint">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://www.ccbus.cc/ccbus-guide/index.html","path":"ccbus-guide/index.html","title":"CCBus 指南"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://www.ccbus.cc/ccbus-guide/chapters/presale/simplemint.html","path":"ccbus-guide/chapters/presale/simplemint.html","title":"创建标准代币Mint预售教程"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>CCBus 指南 | CCBus
+<title>创建标准代币Mint预售教程 | CCBus
 </title>
   
 
@@ -132,13 +148,13 @@
 
 <div class="languages-header">
   
-    <a href="/ccbus-guide/index.html"
+    <a href="/ccbus-guide/chapters/presale/simplemint.html"
        class="lang-btn active"
        title="切换到简体中文">
       中文
     </a>
   
-    <a href="/en/ccbus-guide/index.html"
+    <a href="/en/ccbus-guide/chapters/presale/simplemint.html"
        class="lang-btn "
        title="Switch to English">
       EN
@@ -227,10 +243,16 @@
       
       <article class="ccbook-content-area"><header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">CCBus 指南
+<h1 class="post-title" itemprop="name headline">创建标准代币Mint预售教程
 </h1>
 
 <div class="post-meta-container">
+  <ul class="breadcrumb">
+            <li><a href="/ccbus-guide/">CCBUS 指南</a></li>
+            <li><a href="/ccbus-guide/chapters/">CHAPTERS</a></li>
+            <li><a href="/ccbus-guide/chapters/presale/">PRESALE</a></li>
+            <li>SIMPLEMINT</li>
+  </ul>
 </div>
 
 </header>
@@ -240,102 +262,212 @@
         
         
         <div class="post-body ccbook-content-body">
-          <div class="ccbook-index">
-<h1>CCBus 指南</h1>
-<div class="book-intro">
-欢迎来到 **CCBus 指南**！这是一本专注于区块链技术实践应用的综合性指南，涵盖从基础概念到高级应用的完整知识体系。
-<p>无论您是：</p>
-<ul>
-<li>🎓 <strong>初学者</strong> - 想要快速上手区块链技术</li>
-<li>💻 <strong>开发者</strong> - 希望掌握实战技能</li>
-<li>🏗️ <strong>架构师</strong> - 需要设计解决方案</li>
-<li>💼 <strong>从业者</strong> - 探索行业最佳实践</li>
-</ul>
-<p>这本指南都将为您提供实用的知识和经验。</p>
-</div>
-<h2 id="📚-完整目录">📚 完整目录</h2>
-<div class="book-features">
-<h3 id="本指南特色">本指南特色</h3>
-<ul>
-<li>✅ <strong>实战导向</strong>：注重实际应用和案例分析</li>
-<li>✅ <strong>深入浅出</strong>：从基础到进阶，循序渐进</li>
-<li>✅ <strong>工具集成</strong>：丰富的工具和框架介绍</li>
-<li>✅ <strong>持续更新</strong>：跟踪最新技术发展</li>
-<li>✅ <strong>社区驱动</strong>：汇集行业最佳实践</li>
-</ul>
-</div>
-<h2 id="📖-完整内容导航">📖 完整内容导航</h2>
-<div class="chapter-group">
-<h3 id="第一章：跨链桥-🌉"><a href="/ccbus-guide/chapters/bridge/">第一章：跨链桥</a> 🌉</h3>
-<p><strong>难度：</strong> 🟢 入门 | <strong>教程数：</strong> 4篇</p>
-<p>掌握跨链资产转移技术，支持多链资产互通。</p>
-<h3 id="第二章：EVM代币创建-🪙"><a href="/ccbus-guide/chapters/createtoken/">第二章：EVM代币创建</a> 🪙</h3>
-<p><strong>难度：</strong> 🟢 入门 | <strong>教程数：</strong> 22篇</p>
-<p>全面掌握EVM链代币创建，包括标准代币、分红代币、314协议等多种类型。</p>
-<h3 id="第三章：声明条款-📋"><a href="/ccbus-guide/chapters/declaration/">第三章：声明条款</a> 📋</h3>
-<p><strong>难度：</strong> 🟢 入门 | <strong>文档数：</strong> 2篇</p>
-<p>重要的法律声明和服务条款。</p>
-<h3 id="第四章：实用信息-💡"><a href="/ccbus-guide/chapters/practical-information/">第四章：实用信息</a> 💡</h3>
-<p><strong>难度：</strong> 🟢 入门 | <strong>教程数：</strong> 7篇</p>
-<p>钱包配置、公链参数、水龙头等实用工具指南。</p>
-<h3 id="第五章：预售工具-🚀"><a href="/ccbus-guide/chapters/presale/">第五章：预售工具</a> 🚀</h3>
-<p><strong>难度：</strong> 🟡 中级 | <strong>教程数：</strong> 3篇</p>
-<p>代币预售和Mint功能实现教程。</p>
-<h3 id="第六章：常见问题-❓"><a href="/ccbus-guide/chapters/question/">第六章：常见问题</a> ❓</h3>
-<p><strong>难度：</strong> 🟢 入门 | <strong>问答数：</strong> 9篇</p>
-<p>常见问题解答，包括加池、检测、开源等操作指南。</p>
-<h3 id="第七章：Solana工具-⚡"><a href="/ccbus-guide/chapters/sol/">第七章：Solana工具</a> ⚡</h3>
-<p><strong>难度：</strong> 🟡 中级 | <strong>教程数：</strong> 30篇</p>
-<p>Solana生态完整工具集，涵盖代币创建、Raydium、Pump.fun等。</p>
-<h3 id="第八章：Sui工具-🌊"><a href="/ccbus-guide/chapters/sui/">第八章：Sui工具</a> 🌊</h3>
-<p><strong>难度：</strong> 🟡 中级 | <strong>教程数：</strong> 7篇</p>
-<p>Sui区块链工具使用指南，包括Cetus、Turbos等DEX。</p>
-<h3 id="第九章：TON工具-💎"><a href="/ccbus-guide/chapters/ton/">第九章：TON工具</a> 💎</h3>
-<p><strong>难度：</strong> 🟡 中级 | <strong>教程数：</strong> 5篇</p>
-<p>TON生态工具教程，Jetton创建和DeDust交易。</p>
-<h3 id="第十章：通用工具-🛠️"><a href="/ccbus-guide/chapters/tools/">第十章：通用工具</a> 🛠️</h3>
-<p><strong>难度：</strong> 🟢 入门 | <strong>教程数：</strong> 10篇</p>
-<p>批量转账、合约检测、钱包生成等通用工具。</p>
-<h3 id="第十一章：TRON工具-🔴"><a href="/ccbus-guide/chapters/tron/">第十一章：TRON工具</a> 🔴</h3>
-<p><strong>难度：</strong> 🟡 中级 | <strong>教程数：</strong> 7篇</p>
-<p>TRON链工具集，TRC20代币和SunSwap操作。</p>
-</div>
-<h2 id="📝-内容说明">📝 内容说明</h2>
-<div class="book-intro">
-<p>本指南基于 PandaTool 文档整理，包含完整的区块链工具使用教程。内容涵盖：</p>
-<ul>
-<li><strong>EVM工具</strong>：代币创建、流动性管理、权限控制</li>
-<li><strong>Solana工具</strong>：SPL代币、Raydium池、交易机器人</li>
-<li><strong>Sui工具</strong>：代币发行、DEX交互</li>
-<li><strong>TON工具</strong>：Jetton创建、交易所集成</li>
-<li><strong>TRON工具</strong>：TRC20代币、能量租赁</li>
-<li><strong>跨链工具</strong>：多链资产桥接</li>
-<li><strong>通用工具</strong>：批量转账、快照、钱包管理</li>
-</ul>
-<p><strong>注意：</strong> 内容正在持续完善中，更多章节即将添加！</p>
-</div>
-<h2 id="💡-如何使用本指南">💡 如何使用本指南</h2>
-<div class="usage-guide">
-<h3 id="学习建议">学习建议</h3>
+          <p>copy复制chevron-down</p>
 <ol>
-<li><strong>按需学习</strong> - 根据自己的需求选择章节</li>
-<li><strong>动手实践</strong> - 跟随示例进行实操</li>
-<li><strong>问题驱动</strong> - 带着问题学习效果更好</li>
-<li><strong>交流分享</strong> - 加入社区讨论</li>
+<li><a href="/presale">landmark-magnifying-glass创建预售</a></li>
 </ol>
-<h3 id="配套资源">配套资源</h3>
+<h1>hammer创建标准代币Mint预售教程</h1>
+<p>100%去中心化的预售合约创建教程</p>
+<p><strong>什么是标准Mint预售？</strong></p>
+<p>简单来说，就是通过Mint的方式进行预售。项目方将一定数量的代币打入预售合约地址，开启预售后，用户将BNB转入预售合约地址，预售合约会自动按照设定好的比例，将代币给到用户。</p>
+<p>circle-check</p>
+<p>注意：创建预售的前提是，必须先创建代币。没有代币，无法预售</p>
+<h2 id=""></h2>
+<p>hashtag</p>
+<p>一、预售功能说明</p>
 <ul>
-<li><strong>代码仓库</strong> - GitHub上的完整示例</li>
-<li><strong>在线社区</strong> - 问答和交流平台</li>
-<li><strong>实战项目</strong> - 真实场景应用案例</li>
+<li>
+<p><strong>无前端：</strong> 不需要任何网页，纯合约支持，100%<strong>去中心化</strong></p>
+</li>
+<li>
+<p><strong>转账即预售：</strong> 用户将BNB转到<code>预售合约</code>，就能<strong>自动</strong> 获得代币</p>
+</li>
+<li>
+<p><strong>不用领取：</strong> 参与预售的用户<strong>无需</strong> 手动领取代币</p>
+</li>
+<li>
+<p><strong>自定义功能：</strong> 项目方可以在预售开始后通过控制台<strong>修改</strong> 预售价格和每份数量</p>
+</li>
+<li>
+<p><strong>无软顶/硬顶：</strong> 没有软顶或者硬顶的概念，只有一个预售总数量（份数x每份数量）</p>
+</li>
 </ul>
-</div>
-<div class="book-footer">
-<h2 id="🚀-开始您的学习之旅">🚀 开始您的学习之旅</h2>
-<p>选择感兴趣的主题，开始探索区块链技术的精彩世界！</p>
-<p><strong>版本：</strong> v1.0 (2026-01) | <strong>最后更新：</strong> 2026年1月29日</p>
-</div>
-</div>
+<h2 id="-2"></h2>
+<p>hashtag</p>
+<p>二、注意事项提前说明</p>
+<ul>
+<li>
+<p>标准代币预售期间，可能会有人提前加池</p>
+</li>
+<li>
+<p>建议使用手动开启交易功能，以防止被加池交易</p>
+</li>
+<li>
+<p>请勿将预售地址加入黑名单，否则无法交易</p>
+</li>
+</ul>
+<h2 id="-3"></h2>
+<p>hashtag</p>
+<p><strong>三、标准Mint预售创建教程</strong></p>
+<h3 id="-4"></h3>
+<p>hashtag</p>
+<p><strong>1、连接钱包（老手请忽略）</strong></p>
+<p>首先，我们打开预售创建官网：<a target="_blank" rel="noopener" href="https://www.pandatool.org/#/presale/simpleMint">https://www.pandatool.org/#/presale/simpleMint</a><a target="_blank" rel="noopener" href="https://www.pandatool.org/#/presale/simpleMint">arrow-up-right</a>，右上角点击连接钱包</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FjaYwyhZIo7caum3ByfMp%252F1-%25E8%25BF%259E%25E6%258E%25A5%25E9%2592%25B1%25E5%258C%2585.png%3Falt%3Dmedia%26token%3D646f459f-27d6-4b10-84db-cc67eecb11d4&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=118be3e1&amp;sv=2" alt=""></p>
+<p>之后会弹出小狐狸让你确定要连接的钱包地址，选择一个就行了。然后下一步就是选择公链，如果您要在币安创建预售，就选择BSC。如果要在Base链创建预售，就选择Base</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252Fto2I45fnkhnHMnT4mrz6%252F2-%25E9%2580%2589%25E6%258B%25A9%25E5%2585%25AC%25E9%2593%25BE.png%3Falt%3Dmedia%26token%3D5c12898f-492e-4007-94ba-afa9f2fbe4e4&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=188fa091&amp;sv=2" alt=""></p>
+<p>之后就能在右上角看到你的钱包地址和链状态，说明已经链接成功了</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FOyggh30XarBUzDeYIypN%252F3-%25E9%2593%25BE%25E5%2590%258D%25E7%25A7%25B0%25E4%25B8%258E%25E5%259C%25B0%25E5%259D%2580.png%3Falt%3Dmedia%26token%3Dd2b119cc-c122-490c-be03-87d829b937c0&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=eb37c865&amp;sv=2" alt=""></p>
+<h3 id="-5"></h3>
+<p>hashtag</p>
+<p><strong>2、填写预售参数</strong></p>
+<p>钱包连接成功后，我们通过PandaTool可视化页面创建预售，还是那个页面<a target="_blank" rel="noopener" href="https://www.pandatool.org/#/presale/simpleMint">https://www.pandatool.org/#/presale/simpleMint</a><a target="_blank" rel="noopener" href="https://www.pandatool.org/#/presale/simpleMint">arrow-up-right</a> 打开，填写相应的预售参数：</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FcXAqUQFcRW3TLdEUHKHu%252F1%25E6%25A0%2587%25E5%2587%2586Mint.png%3Falt%3Dmedia%26token%3D52f6ff9f-6d8f-4c47-861b-a1c4c8f78c2f&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=1bce69c8&amp;sv=2" alt=""></p>
+<ul>
+<li>check</li>
+</ul>
+<p><strong>预售名称：</strong> 随便起一个，如：Presale，不支持中文，只能用英文名</p>
+<ul>
+<li>check</li>
+</ul>
+<p><strong>预售代币地址：</strong> 要预售的代币合约地址（前提是有代币）</p>
+<ul>
+<li>check</li>
+</ul>
+<p><strong>每份价格：</strong> 每份预售需要支付多少费用，最小的价格是0.001（BNB或ETH）</p>
+<ul>
+<li>check</li>
+</ul>
+<p><strong>每份数量：</strong> 每份预售里有多少个代币</p>
+<ul>
+<li>check</li>
+</ul>
+<p><strong>总份数:：</strong> 一共可以预售多少份（每份数量x总份数≤代币发行总量）</p>
+<ul>
+<li>check</li>
+</ul>
+<p><strong>单次预售最大份数：</strong> 一次最多可以买几份</p>
+<ul>
+<li>check</li>
+</ul>
+<p><strong>单钱包预售最大份数：</strong> 一个钱包地址最多可以买几份 <em>（单钱包最大份数必须小于单次预售最大份数）</em></p>
+<p>例如我填写的内容如下</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F2g5Ws1v94mmY6Vz4TDt4%252F2-%25E9%25A2%2584%25E5%2594%25AE%25E5%258F%2582%25E6%2595%25B0%25E5%25A1%25AB%25E5%2586%2599.png%3Falt%3Dmedia%26token%3D84e2abae-77e8-433e-973b-6de4e7e188b9&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=c6608f1f&amp;sv=2" alt=""></p>
+<p>参数填写完成后，点击创建合约，此时会弹出提示，让你再次确认</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F3y4VjPFEVN4DykCk9pyk%252F3-%25E5%2588%259B%25E5%25BB%25BA%25E5%2590%2588%25E7%25BA%25A6.png%3Falt%3Dmedia%26token%3D84f5185a-413d-42f7-afc4-df929c1e49a7&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=e0145ce&amp;sv=2" alt=""></p>
+<p>注意，开源参数无需复制，现在是自动开源的了</p>
+<p>然后会弹出小狐狸钱包进行确认</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FLD1L854k1LYpUDmuIfgO%252F4-%25E7%2582%25B9%25E5%2587%25BB%25E7%25A1%25AE%25E8%25AE%25A4.png%3Falt%3Dmedia%26token%3Dd4c9a127-75eb-4633-b400-326e32f85a3a&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=b64484db&amp;sv=2" alt=""></p>
+<p>点击后等待几秒，就会提示你预售创建完成。如果钱包内BNB/ETH余额不够，可能会导致失败</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FQ9idTZdBr9C0jwJkZ62Z%252F5-%25E5%2588%259B%25E5%25BB%25BA%25E6%2588%2590%25E5%258A%259F.png%3Falt%3Dmedia%26token%3D41c81afd-6614-4ed5-954f-e0dd390207ab&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=24b12671&amp;sv=2" alt=""></p>
+<p><strong>为什么点击创建没有反应？</strong></p>
+<ul>
+<li>check</li>
+</ul>
+<p>有可能是钱包没连上，核查一下钱包连接情况</p>
+<ul>
+<li>check</li>
+</ul>
+<p>有可能是代币合约填错了，核查一下合约地址</p>
+<h3 id="-6"></h3>
+<p>hashtag</p>
+<p><strong>3、预售控制台操作</strong></p>
+<p>创建成功后，我们进入到控制台：<a target="_blank" rel="noopener" href="https://www.pandatool.org/#/presale/console">https://www.pandatool.org/#/presale/console</a><a target="_blank" rel="noopener" href="https://www.pandatool.org/#/presale/console">arrow-up-right</a>，看下该如何操作这个预售</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252Fm5GN0gbgtJdZfkExwXyw%252F6-%25E6%258E%25A7%25E5%2588%25B6%25E5%258F%25B0.png%3Falt%3Dmedia%26token%3Dcfe950a3-335a-4700-91a2-81ca77c0a68d&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=b56f8293&amp;sv=2" alt=""></p>
+<ul>
+<li>check</li>
+</ul>
+<p><strong>预售控制</strong></p>
+<pre><code>* **转让所有权** : 将合约权限转让给其他人（转移权限之前，记得复制`控制台链接`。新的权限地址必须通过控制台链接，才能进入控制台操作）
+
+* **开启预售：** 点击后钱包确认，即可开启预售
+
+* **提取合约内代币：** 可以将预售合约里面的价值币和代币提取走
+</code></pre>
+<ul>
+<li>check</li>
+</ul>
+<p><strong>参数控制</strong></p>
+<pre><code>* **修改每份价格 :** 重新修改预售价格，最低0.001
+
+* **修改每份数量：** 重新修改每份数量
+
+* **修改总份数：** 根据实际情况重新修改总的预售份数
+
+* **修改单次Mint最大份数：** 根据需求修改单次预售上限
+
+* **修改单钱包最大份数：** 根据需求修改单个钱包预售上限
+</code></pre>
+<h3 id="-7"></h3>
+<p>hashtag</p>
+<p><strong>4、预售怎么开始与结束？</strong></p>
+<p><strong>1）开启预售：</strong> 在<code>预售控制台</code>点击<strong>开启预售</strong> ，会进行两次确认。第一次是授权确认，第二次会让你<strong>转入</strong> 足够的代币进入预售合约里</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F7LuTsb4blgGzcO1opGkR%252F7%25E5%25BC%2580%25E5%2590%25AF%25E9%25A2%2584%25E5%2594%25AE.png%3Falt%3Dmedia%26token%3D98f35de2-eec2-4240-9a01-e135ca14e698&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=23ba5c9c&amp;sv=2" alt=""></p>
+<p>首先，点击开启预售按钮后，钱包会弹出让你进行授权</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FrPw8M1dwuDKixSgO1VP0%252F8-%25E9%2592%25B1%25E5%258C%2585%25E6%258E%2588%25E6%259D%2583.png%3Falt%3Dmedia%26token%3D53cbccb2-e4ac-4877-b479-396590d959d5&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=cb719347&amp;sv=2" alt=""></p>
+<p>确认授权</p>
+<p>第一次授权成功后，紧接着会弹出钱包进行第二次确认，并将预售的代币转入预售合约地址</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FYwFCZ2qMczcoKISfnkUU%252F9-%25E8%25BD%25AC%25E5%2585%25A5%25E4%25BB%25A3%25E5%25B8%2581.png%3Falt%3Dmedia%26token%3D8b5b5557-0cdb-4414-8a9f-efa569affeba&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=a365f7f6&amp;sv=2" alt=""></p>
+<p>转入代币</p>
+<p>第二次确认成功后，会提示你预售开启成功，同时也能看到代币已经转入到合约里面</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F8WLAMev46qXYo66QIawa%252F10-%25E9%25A2%2584%25E5%2594%25AE%25E5%25BC%2580%25E5%2590%25AF%25E6%2588%2590%25E5%258A%259F.png%3Falt%3Dmedia%26token%3Df93e8286-e08a-4fd0-ad22-115940f85092&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=244eb707&amp;sv=2" alt=""></p>
+<p><strong>3）结束预售：</strong> 如果你想提前结束预售，只需要通过“提取合约内代币”的功能，将合约里面的代币全部提出来，就无法预售了，如下图所示</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FwbEMLbAjkokMLSRTmCNL%252F%25E6%258F%2590%25E5%258F%2596%25E5%2590%2588%25E7%25BA%25A6%25E5%2586%2585%25E4%25BB%25A3%25E5%25B8%2581.png%3Falt%3Dmedia%26token%3D1452cfbf-f477-49b7-b2ba-b4278b949433&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=f8c6745a&amp;sv=2" alt=""></p>
+<h2 id="-8"></h2>
+<p>hashtag</p>
+<p><strong>四、相关问答</strong></p>
+<ul>
+<li>check</li>
+</ul>
+<p><strong>为什么开启预售失败？</strong></p>
+<pre><code>* **钱包里没有足够的代币：** 假设你设置的预售【每份数量x总份数=10000枚代币】，但是你的钱包里只有9000枚代币，那么就会提示预售失败
+
+* **预售合约没有加白名单：** 如果没有把预售合约地址加入到代币白名单里面，就有可能出现预售开启失败的情况
+
+* **代币合约有持币限制：** 假如之前的代币合约有最大持仓限制，而你预售的数量超过这个限制，导致代币无法转入到预售地址里，就会造成预售开启失败的情况
+</code></pre>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F3wgQCJgqnGH5O5VeQozP%252F%25E9%25A2%2584%25E5%2594%25AE%25E5%25BC%2580%25E5%2590%25AF%25E5%25A4%25B1%25E8%25B4%25A5.png%3Falt%3Dmedia%26token%3Db60e1267-6bf1-433e-9efa-66b898c995c0&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=a8a6170a&amp;sv=2" alt=""></p>
+<ul>
+<li>check</li>
+</ul>
+<p><strong>预售开启成功后，为什么用户转账预售失败？</strong></p>
+<pre><code>* **价格问题：** 用户转账的BNB数量低于每份价格，就会失败，BNB原路返还
+
+* **Gas问题：** 如果gas费设置的太低，就有可能会导致预售失败
+
+* **合约总量问题：** 如果合约地址内已经没有足够的代币用于预售，那用户自然无法参与
+
+* **份数填写错误：** 单钱包最大份数必须大于或等于单次预售最大份数
+
+* **达到了预售限制：** 如果达到了单次预售限制或者单钱包预售限制，则无法再购买
+
+* **预售已完成：** 假设你设置的预售总份数是10份，如果已经达到10份，那就代表着预售已经完成，此时将无法继续预售。如果权限还在，可以通过修改预售份数的方式继续预售。如果权限不在了，那就没办法了
+</code></pre>
+<ul>
+<li>check</li>
+</ul>
+<p><strong>可以用wBNB或者USDT预售吗</strong> ？</p>
+<pre><code>* 不支持，目前只支持使用原生代币预售。如BSC链用BNB，Base链用ETH
+</code></pre>
+<ul>
+<li>check</li>
+</ul>
+<p><strong>批量预售与实际发放份数问题</strong></p>
+<pre><code>* **整倍数预售：** 假设1份100个币，每份价格0.03BNB。用户转账0.06BNB，发放200个；用户转账0.09BNB，发放300个币，以此类推
+
+* **非整倍数预售：** 同样是1份100个币，价格0.03BNB。假设用户转账0.04个BNB，则会发放100个币，并退回多余的0.01BNB。如果用户转账0.05BNB，则会发放100个币+退回0.02BNB。假设用户转账0.07BNB，则会发放200个币+退回0.01BNB。合约会自动按照最大倍数发放，多余退还
+</code></pre>
+<ul>
+<li>check</li>
+</ul>
+<p><strong>预售有没有最大/最小限制？</strong></p>
+<pre><code>* **最小限制：** 单个地址单次预售，这个最小限制就是你设定的最小价格，低于这个价格无法预售。
+
+* **最大限制：** 单次和单个钱包都分别有最大限制
+</code></pre>
+<p>如有不明白或者不清楚的地方，请加入官方电报群：<a target="_blank" rel="noopener" href="https://t.me/PandaTool">https://t.me/PandaTool</a><a target="_blank" rel="noopener" href="https://t.me/PandaTool">arrow-up-right</a></p>
+<p><a href="/tron/sunswap">上一页SunSwap做流动性资金池子教程chevron-left</a><a href="/presale/mintaddsale">下一页创建代币Mint加池预售教程chevron-right</a></p>
+<p>最后更新于9个月前</p>
 
         </div>
         
@@ -359,8 +491,8 @@
     
     <div class="ccbook-lang-switcher">
       <div class="languages-header">
-          <a href="/ccbus-guide/index.html" class="lang-btn active">中文</a>
-          <a href="/en/ccbus-guide/index.html" class="lang-btn">EN</a>
+          <a href="/ccbus-guide/chapters/presale/simplemint.html" class="lang-btn active">中文</a>
+          <a href="/en/ccbus-guide/chapters/presale/simplemint.html" class="lang-btn">EN</a>
       </div>
     </div>
 
@@ -1325,11 +1457,11 @@
     </label>
     <select class="lang-select" data-canonical="" aria-label="选择语言">
       
-        <option value="zh-CN" data-href="/ccbus-guide/index.html" selected="">
+        <option value="zh-CN" data-href="/ccbus-guide/chapters/presale/simplemint.html" selected="">
           简体中文
         </option>
       
-        <option value="en" data-href="/en/ccbus-guide/index.html" selected="">
+        <option value="en" data-href="/en/ccbus-guide/chapters/presale/simplemint.html" selected="">
           English
         </option>
       

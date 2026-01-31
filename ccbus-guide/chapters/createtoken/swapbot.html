@@ -20,26 +20,43 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.ccbus.cc","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="CCBus 指南  欢迎来到 **CCBus 指南**！这是一本专注于区块链技术实践应用的综合性指南，涵盖从基础概念到高级应用的完整知识体系。 无论您是：  🎓 初学者 - 想要快速上手区块链技术 💻 开发者 - 希望掌握实战技能 🏗️ 架构师 - 需要设计解决方案 💼 从业者 - 探索行业最佳实践  这本指南都将为您提供实用的知识和经验。  📚 完整目录  本指南特色  ✅ 实战导向">
+    <meta name="description" content="copy复制chevron-down  gavelEVM代币创建  shuffle代币批量交易&#x2F;市值管理教程 使用PandaTool的批量交易机器人  hashtag 一、市值工具解读 该工具是PandaTool开发、针对于以太坊兼容链的市值管理工具升级版，不仅支持了更多的链，工具速度、支持的资金池类型也有显著提升。  hashtag 1、功能概念 用户可以导入多个钱包地址，针对某一代币进行批量交">
 <meta property="og:type" content="website">
-<meta property="og:title" content="CCBus 指南">
-<meta property="og:url" content="https://www.ccbus.cc/ccbus-guide/index.html">
+<meta property="og:title" content="代币批量交易&#x2F;市值管理教程">
+<meta property="og:url" content="https://www.ccbus.cc/ccbus-guide/chapters/createtoken/swapbot.html">
 <meta property="og:site_name" content="CCBus">
-<meta property="og:description" content="CCBus 指南  欢迎来到 **CCBus 指南**！这是一本专注于区块链技术实践应用的综合性指南，涵盖从基础概念到高级应用的完整知识体系。 无论您是：  🎓 初学者 - 想要快速上手区块链技术 💻 开发者 - 希望掌握实战技能 🏗️ 架构师 - 需要设计解决方案 💼 从业者 - 探索行业最佳实践  这本指南都将为您提供实用的知识和经验。  📚 完整目录  本指南特色  ✅ 实战导向">
+<meta property="og:description" content="copy复制chevron-down  gavelEVM代币创建  shuffle代币批量交易&#x2F;市值管理教程 使用PandaTool的批量交易机器人  hashtag 一、市值工具解读 该工具是PandaTool开发、针对于以太坊兼容链的市值管理工具升级版，不仅支持了更多的链，工具速度、支持的资金池类型也有显著提升。  hashtag 1、功能概念 用户可以导入多个钱包地址，针对某一代币进行批量交">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-01-29T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-30T14:24:56.787Z">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FJ122hbI4xwJIElir71BR%252F1%25E5%259F%25BA%25E7%25A1%2580%25E4%25BF%25A1%25E6%2581%25AF.png%3Falt%3Dmedia%26token%3D4e06f7fd-c5e0-4e61-9dd2-162f5657ca59&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=9d9e648b&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FZuwIORokxKUElGRzSyVM%252F3%25E6%259F%25A5%25E8%25AF%25A2%25E6%25AD%25A3%25E5%25B8%25B8.png%3Falt%3Dmedia%26token%3Dfb5be02e-d537-45d8-b05f-71e36e32c5f4&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=483967b9&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FLhjne57ET9IWec3o3gZ3%252F2%25E6%259F%25A5%25E8%25AF%25A2%25E9%2594%2599%25E8%25AF%25AF.png%3Falt%3Dmedia%26token%3De93a4722-6478-43b7-9cb9-d3051272e806&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=457b4a19&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FLrQVS8C6uLRn9jspqgDs%252F4%25E5%25AF%25BC%25E5%2585%25A5%25E9%2592%25B1%25E5%258C%2585.png%3Falt%3Dmedia%26token%3Da6d29345-56d1-48de-860f-faf65be19f59&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=20e3b57e&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F4CfI2ZfUwUidbws9AtKo%252F5%25E5%25AF%25BC%25E5%2585%25A5%25E7%25A7%2581%25E9%2592%25A5.png%3Falt%3Dmedia%26token%3D5aa972e7-80fc-4632-8399-abc5f1cf67d4&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=9c9bade0&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FvmDLcCtN3oc5ZUiHsJVr%252F6%25E5%2588%25B7%25E6%2596%25B0%25E4%25BD%2599%25E9%25A2%259D.png%3Falt%3Dmedia%26token%3D704258fc-0068-4c5d-a567-63b75e245bad&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=1614783e&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F3d5L1AagDEMZrXolcQqz%252F7%25E9%2587%2591%25E9%25A2%259D%25E7%25B1%25BB%25E5%259E%258B.png%3Falt%3Dmedia%26token%3Dee48e1b5-2b46-4cb9-8749-6f416cb0b611&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=668d0858&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FpZRlnjJaoMvZqsICvX15%252F8%25E5%2581%259C%25E6%25AD%25A2%25E7%25B1%25BB%25E5%259E%258B.png%3Falt%3Dmedia%26token%3D981fad1e-8d5b-4d33-b7db-86de3ce82849&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=dc7042&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FlPJw6iZCiBdBM71Ewyql%252F9%25E4%25BA%25A4%25E6%2598%2593%25E8%25AE%25BE%25E7%25BD%25AE.png%3Falt%3Dmedia%26token%3D2aec806b-bc57-436a-a601-17593e8d7b14&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=d668cc1b&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FR94BiYRadcGcJbVKyCoX%252F10%25E5%25BC%2580%25E5%25A7%258B%25E4%25BA%25A4%25E6%2598%2593.png%3Falt%3Dmedia%26token%3D47b845a9-d27d-4c7f-aef0-380f8c0315d2&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=cd411cb2&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FlaUelszn5BcNUn6q92k6%252F11%25E4%25BA%25A4%25E6%2598%2593%25E6%2597%25A5%25E5%25BF%2597.png%3Falt%3Dmedia%26token%3De6e8a9d5-a2eb-4661-bc2d-a8e096a3de46&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=10010e7f&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FJ3QGW3f14BBLYR9k6k7F%252F12%25E4%25B9%25B0%25E5%258D%2596%25E8%25AE%25BE%25E7%25BD%25AE.png%3Falt%3Dmedia%26token%3Dca5e63d6-5a19-4a7a-a94c-b4718f803dee&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=14f61db7&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FrWuBudOPZKINwYCXsrM8%252F13%25E4%25B9%25B0%25E5%258D%2596%25E6%2595%25B0%25E9%2587%258F%2520%25E8%258C%2583%25E5%259B%25B4.png%3Falt%3Dmedia%26token%3D7dc5ec25-1282-41ba-bbdb-856ec10d9164&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=bfef671a&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FMnQnHyF2nTWxJiVIk2OR%252F14%25E4%25BA%25A4%25E6%2598%2593%25E5%2581%259C%25E6%25AD%25A2.png%3Falt%3Dmedia%26token%3D139ee1d0-173f-434d-8a28-96dae36237a6&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=8ae55946&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FnnABLeJzzrTqnNvJzB0E%252F15%25E5%25BC%2580%25E5%25A7%258B%25E4%25BA%25A4%25E6%2598%2593.png%3Falt%3Dmedia%26token%3D2655615c-967b-4b8e-b514-240a22e6b47f&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=cc3a7759&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FTu0upzghIbiWda54KkSi%252F16%25E6%2594%25B6%25E8%25B4%25B9%25E6%25A0%2587%25E5%2587%2586.png%3Falt%3Dmedia%26token%3De2307c05-46e9-45cd-9336-40da6c9468e7&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=227ab29a&amp;sv=2">
+<meta property="article:published_time" content="2026-01-30T14:24:31.000Z">
+<meta property="article:modified_time" content="2026-01-30T14:24:31.555Z">
 <meta property="article:author" content="CCBus Lab">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FJ122hbI4xwJIElir71BR%252F1%25E5%259F%25BA%25E7%25A1%2580%25E4%25BF%25A1%25E6%2581%25AF.png%3Falt%3Dmedia%26token%3D4e06f7fd-c5e0-4e61-9dd2-162f5657ca59&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=9d9e648b&amp;sv=2">
 
 
-<link rel="canonical" href="https://www.ccbus.cc/ccbus-guide/">
+<link rel="canonical" href="https://www.ccbus.cc/ccbus-guide/chapters/createtoken/swapbot">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://www.ccbus.cc/ccbus-guide/index.html","path":"ccbus-guide/index.html","title":"CCBus 指南"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://www.ccbus.cc/ccbus-guide/chapters/createtoken/swapbot.html","path":"ccbus-guide/chapters/createtoken/swapbot.html","title":"代币批量交易/市值管理教程"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>CCBus 指南 | CCBus
+<title>代币批量交易/市值管理教程 | CCBus
 </title>
   
 
@@ -132,13 +149,13 @@
 
 <div class="languages-header">
   
-    <a href="/ccbus-guide/index.html"
+    <a href="/ccbus-guide/chapters/createtoken/swapbot.html"
        class="lang-btn active"
        title="切换到简体中文">
       中文
     </a>
   
-    <a href="/en/ccbus-guide/index.html"
+    <a href="/en/ccbus-guide/chapters/createtoken/swapbot.html"
        class="lang-btn "
        title="Switch to English">
       EN
@@ -227,10 +244,16 @@
       
       <article class="ccbook-content-area"><header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">CCBus 指南
+<h1 class="post-title" itemprop="name headline">代币批量交易/市值管理教程
 </h1>
 
 <div class="post-meta-container">
+  <ul class="breadcrumb">
+            <li><a href="/ccbus-guide/">CCBUS 指南</a></li>
+            <li><a href="/ccbus-guide/chapters/">CHAPTERS</a></li>
+            <li><a href="/ccbus-guide/chapters/createtoken/">CREATETOKEN</a></li>
+            <li>SWAPBOT</li>
+  </ul>
 </div>
 
 </header>
@@ -240,102 +263,213 @@
         
         
         <div class="post-body ccbook-content-body">
-          <div class="ccbook-index">
-<h1>CCBus 指南</h1>
-<div class="book-intro">
-欢迎来到 **CCBus 指南**！这是一本专注于区块链技术实践应用的综合性指南，涵盖从基础概念到高级应用的完整知识体系。
-<p>无论您是：</p>
-<ul>
-<li>🎓 <strong>初学者</strong> - 想要快速上手区块链技术</li>
-<li>💻 <strong>开发者</strong> - 希望掌握实战技能</li>
-<li>🏗️ <strong>架构师</strong> - 需要设计解决方案</li>
-<li>💼 <strong>从业者</strong> - 探索行业最佳实践</li>
-</ul>
-<p>这本指南都将为您提供实用的知识和经验。</p>
-</div>
-<h2 id="📚-完整目录">📚 完整目录</h2>
-<div class="book-features">
-<h3 id="本指南特色">本指南特色</h3>
-<ul>
-<li>✅ <strong>实战导向</strong>：注重实际应用和案例分析</li>
-<li>✅ <strong>深入浅出</strong>：从基础到进阶，循序渐进</li>
-<li>✅ <strong>工具集成</strong>：丰富的工具和框架介绍</li>
-<li>✅ <strong>持续更新</strong>：跟踪最新技术发展</li>
-<li>✅ <strong>社区驱动</strong>：汇集行业最佳实践</li>
-</ul>
-</div>
-<h2 id="📖-完整内容导航">📖 完整内容导航</h2>
-<div class="chapter-group">
-<h3 id="第一章：跨链桥-🌉"><a href="/ccbus-guide/chapters/bridge/">第一章：跨链桥</a> 🌉</h3>
-<p><strong>难度：</strong> 🟢 入门 | <strong>教程数：</strong> 4篇</p>
-<p>掌握跨链资产转移技术，支持多链资产互通。</p>
-<h3 id="第二章：EVM代币创建-🪙"><a href="/ccbus-guide/chapters/createtoken/">第二章：EVM代币创建</a> 🪙</h3>
-<p><strong>难度：</strong> 🟢 入门 | <strong>教程数：</strong> 22篇</p>
-<p>全面掌握EVM链代币创建，包括标准代币、分红代币、314协议等多种类型。</p>
-<h3 id="第三章：声明条款-📋"><a href="/ccbus-guide/chapters/declaration/">第三章：声明条款</a> 📋</h3>
-<p><strong>难度：</strong> 🟢 入门 | <strong>文档数：</strong> 2篇</p>
-<p>重要的法律声明和服务条款。</p>
-<h3 id="第四章：实用信息-💡"><a href="/ccbus-guide/chapters/practical-information/">第四章：实用信息</a> 💡</h3>
-<p><strong>难度：</strong> 🟢 入门 | <strong>教程数：</strong> 7篇</p>
-<p>钱包配置、公链参数、水龙头等实用工具指南。</p>
-<h3 id="第五章：预售工具-🚀"><a href="/ccbus-guide/chapters/presale/">第五章：预售工具</a> 🚀</h3>
-<p><strong>难度：</strong> 🟡 中级 | <strong>教程数：</strong> 3篇</p>
-<p>代币预售和Mint功能实现教程。</p>
-<h3 id="第六章：常见问题-❓"><a href="/ccbus-guide/chapters/question/">第六章：常见问题</a> ❓</h3>
-<p><strong>难度：</strong> 🟢 入门 | <strong>问答数：</strong> 9篇</p>
-<p>常见问题解答，包括加池、检测、开源等操作指南。</p>
-<h3 id="第七章：Solana工具-⚡"><a href="/ccbus-guide/chapters/sol/">第七章：Solana工具</a> ⚡</h3>
-<p><strong>难度：</strong> 🟡 中级 | <strong>教程数：</strong> 30篇</p>
-<p>Solana生态完整工具集，涵盖代币创建、Raydium、Pump.fun等。</p>
-<h3 id="第八章：Sui工具-🌊"><a href="/ccbus-guide/chapters/sui/">第八章：Sui工具</a> 🌊</h3>
-<p><strong>难度：</strong> 🟡 中级 | <strong>教程数：</strong> 7篇</p>
-<p>Sui区块链工具使用指南，包括Cetus、Turbos等DEX。</p>
-<h3 id="第九章：TON工具-💎"><a href="/ccbus-guide/chapters/ton/">第九章：TON工具</a> 💎</h3>
-<p><strong>难度：</strong> 🟡 中级 | <strong>教程数：</strong> 5篇</p>
-<p>TON生态工具教程，Jetton创建和DeDust交易。</p>
-<h3 id="第十章：通用工具-🛠️"><a href="/ccbus-guide/chapters/tools/">第十章：通用工具</a> 🛠️</h3>
-<p><strong>难度：</strong> 🟢 入门 | <strong>教程数：</strong> 10篇</p>
-<p>批量转账、合约检测、钱包生成等通用工具。</p>
-<h3 id="第十一章：TRON工具-🔴"><a href="/ccbus-guide/chapters/tron/">第十一章：TRON工具</a> 🔴</h3>
-<p><strong>难度：</strong> 🟡 中级 | <strong>教程数：</strong> 7篇</p>
-<p>TRON链工具集，TRC20代币和SunSwap操作。</p>
-</div>
-<h2 id="📝-内容说明">📝 内容说明</h2>
-<div class="book-intro">
-<p>本指南基于 PandaTool 文档整理，包含完整的区块链工具使用教程。内容涵盖：</p>
-<ul>
-<li><strong>EVM工具</strong>：代币创建、流动性管理、权限控制</li>
-<li><strong>Solana工具</strong>：SPL代币、Raydium池、交易机器人</li>
-<li><strong>Sui工具</strong>：代币发行、DEX交互</li>
-<li><strong>TON工具</strong>：Jetton创建、交易所集成</li>
-<li><strong>TRON工具</strong>：TRC20代币、能量租赁</li>
-<li><strong>跨链工具</strong>：多链资产桥接</li>
-<li><strong>通用工具</strong>：批量转账、快照、钱包管理</li>
-</ul>
-<p><strong>注意：</strong> 内容正在持续完善中，更多章节即将添加！</p>
-</div>
-<h2 id="💡-如何使用本指南">💡 如何使用本指南</h2>
-<div class="usage-guide">
-<h3 id="学习建议">学习建议</h3>
+          <p>copy复制chevron-down</p>
 <ol>
-<li><strong>按需学习</strong> - 根据自己的需求选择章节</li>
-<li><strong>动手实践</strong> - 跟随示例进行实操</li>
-<li><strong>问题驱动</strong> - 带着问题学习效果更好</li>
-<li><strong>交流分享</strong> - 加入社区讨论</li>
+<li><a href="/createtoken">gavelEVM代币创建</a></li>
 </ol>
-<h3 id="配套资源">配套资源</h3>
+<h1>shuffle代币批量交易/市值管理教程</h1>
+<p>使用PandaTool的批量交易机器人</p>
+<h2 id=""></h2>
+<p>hashtag</p>
+<p><strong>一、市值工具解读</strong></p>
+<p>该工具是PandaTool开发、针对于以太坊兼容链的市值管理工具升级版，不仅支持了更多的链，工具速度、支持的资金池类型也有显著提升。</p>
+<h3 id="-2"></h3>
+<p>hashtag</p>
+<p><strong>1、功能概念</strong></p>
+<p>用户可以导入多个钱包地址，针对某一代币进行批量交易。通过设定交易次数、交易价格等要素，来实现交易的停止与启动。其目的在于解放双手，快速实现代币的大量交易。</p>
+<h3 id="-3"></h3>
+<p>hashtag</p>
+<p><strong>2、支持类型</strong></p>
+<p>该市值管理工具支持多条区块链、多个资金池类型，具体如下：</p>
 <ul>
-<li><strong>代码仓库</strong> - GitHub上的完整示例</li>
-<li><strong>在线社区</strong> - 问答和交流平台</li>
-<li><strong>实战项目</strong> - 真实场景应用案例</li>
+<li>
+<p><strong>BNB Chain：</strong> PancakeSwap V2、PancakeSwap V3</p>
+</li>
+<li>
+<p><strong>Ethereum</strong> ：Uniswap V2、Uniswap V3</p>
+</li>
+<li>
+<p><strong>Avalanche：</strong> Uniswap V2、Uniswap V3</p>
+</li>
+<li>
+<p><strong>Polygon：</strong> Uniswap V2、Uniswap V3</p>
+</li>
+<li>
+<p><strong>Arbitrum、Optimsim、Base：</strong> Uniswap V2、Uniswap V3</p>
+</li>
 </ul>
-</div>
-<div class="book-footer">
-<h2 id="🚀-开始您的学习之旅">🚀 开始您的学习之旅</h2>
-<p>选择感兴趣的主题，开始探索区块链技术的精彩世界！</p>
-<p><strong>版本：</strong> v1.0 (2026-01) | <strong>最后更新：</strong> 2026年1月29日</p>
-</div>
-</div>
+<h2 id="-4"></h2>
+<p>hashtag</p>
+<p><strong>二、市值工具使用教程</strong></p>
+<p>我们打开市值工具的操作页面：<a target="_blank" rel="noopener" href="https://evmswap.pandatool.org/">https://evmswap.pandatool.org/</a><a target="_blank" rel="noopener" href="https://evmswap.pandatool.org/">arrow-up-right</a> 然后根据以下教程进行操作</p>
+<h3 id="-5"></h3>
+<p>hashtag</p>
+<p><strong>1、查询资金池</strong></p>
+<p>第一步，我们需要选择基础的信息，包括链、代币等：</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FJ122hbI4xwJIElir71BR%252F1%25E5%259F%25BA%25E7%25A1%2580%25E4%25BF%25A1%25E6%2581%25AF.png%3Falt%3Dmedia%26token%3D4e06f7fd-c5e0-4e61-9dd2-162f5657ca59&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=9d9e648b&amp;sv=2" alt=""></p>
+<ul>
+<li>
+<p><strong>选择链：</strong> 选择您要交易的区块链，目标代币在哪条链，就选择哪条链</p>
+</li>
+<li>
+<p><strong>交易所：</strong> 选择您创建的资金池类型，主要是V2和V3的区别</p>
+</li>
+<li>
+<p><strong>报价代币：</strong> 就是您的资金池代币，一般是BNB、ETH、USDT等，看下您的资金池交易对</p>
+</li>
+<li>
+<p><strong>代币地址：</strong> 您要交易的目标代币地址，直接填进来</p>
+</li>
+</ul>
+<p>确定好信息填写无误后，我们点击查询资金池：</p>
+<ul>
+<li>如果查询没问题，则页面右边会出现代币i的价格，并提示您资金池正常</li>
+</ul>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FZuwIORokxKUElGRzSyVM%252F3%25E6%259F%25A5%25E8%25AF%25A2%25E6%25AD%25A3%25E5%25B8%25B8.png%3Falt%3Dmedia%26token%3Dfb5be02e-d537-45d8-b05f-71e36e32c5f4&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=483967b9&amp;sv=2" alt=""></p>
+<ul>
+<li>如果查询有问题，会提示您查询错误，您需要核对选择的区块链或者交易所是否正确</li>
+</ul>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FLhjne57ET9IWec3o3gZ3%252F2%25E6%259F%25A5%25E8%25AF%25A2%25E9%2594%2599%25E8%25AF%25AF.png%3Falt%3Dmedia%26token%3De93a4722-6478-43b7-9cb9-d3051272e806&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=457b4a19&amp;sv=2" alt=""></p>
+<h3 id="-6"></h3>
+<p>hashtag</p>
+<p><strong>2、导入钱包</strong></p>
+<p>查到资金池和价格后，我们点击右边的按钮导入钱包（私钥）</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FLrQVS8C6uLRn9jspqgDs%252F4%25E5%25AF%25BC%25E5%2585%25A5%25E9%2592%25B1%25E5%258C%2585.png%3Falt%3Dmedia%26token%3Da6d29345-56d1-48de-860f-faf65be19f59&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=20e3b57e&amp;sv=2" alt=""></p>
+<p>在弹出的页面输入钱包的私钥，一行一个，然后点击导入私钥。（一般导入几十个就可以了）</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F4CfI2ZfUwUidbws9AtKo%252F5%25E5%25AF%25BC%25E5%2585%25A5%25E7%25A7%2581%25E9%2592%25A5.png%3Falt%3Dmedia%26token%3D5aa972e7-80fc-4632-8399-abc5f1cf67d4&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=9c9bade0&amp;sv=2" alt=""></p>
+<p>钱包导入之后，我们就能看到各个钱包地址了，然后点击<strong>刷新余额</strong> ，确认一下钱包内的代币情况</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FvmDLcCtN3oc5ZUiHsJVr%252F6%25E5%2588%25B7%25E6%2596%25B0%25E4%25BD%2599%25E9%25A2%259D.png%3Falt%3Dmedia%26token%3D704258fc-0068-4c5d-a567-63b75e245bad&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=1614783e&amp;sv=2" alt=""></p>
+<p>余额刷新之后，我们进行下一步</p>
+<h3 id="-7"></h3>
+<p>hashtag</p>
+<p><strong>3、买入与卖出交易设置</strong></p>
+<p>目前代币的交易方式有三种，分别是：<strong>买入交易、卖出交易和刷量交易，</strong> 同时会选择不同的操作类型。现在我们了解一下买入和卖出的交易设置</p>
+<h4 id="-8"></h4>
+<p>hashtag</p>
+<p><strong>金额类型（使用买入和卖出同理）</strong></p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F3d5L1AagDEMZrXolcQqz%252F7%25E9%2587%2591%25E9%25A2%259D%25E7%25B1%25BB%25E5%259E%258B.png%3Falt%3Dmedia%26token%3Dee48e1b5-2b46-4cb9-8749-6f416cb0b611&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=668d0858&amp;sv=2" alt=""></p>
+<ul>
+<li>
+<p><strong>按照数量：</strong> 设定每笔交易的买入数量，以报价代币计算（如USDT，BNB等）</p>
+</li>
+<li>
+<p><strong>按照比例：</strong> 设定每笔交易钱包支出的余额比例</p>
+</li>
+<li>
+<p><strong>范围：</strong> 设定交易数量或者比例的范围</p>
+</li>
+</ul>
+<p>circle-check</p>
+<p><strong>关于比例：</strong> 这个比例是钱包余额的比例。如果您设置1%，钱包内1000U的话，那么第一笔交易就是10U。此时钱包内只有990U了，那么第二笔交易就是9.9U，以此类推</p>
+<h4 id="-9"></h4>
+<p>hashtag</p>
+<p><strong>停止类型（买入和卖出同理）</strong></p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FpZRlnjJaoMvZqsICvX15%252F8%25E5%2581%259C%25E6%25AD%25A2%25E7%25B1%25BB%25E5%259E%258B.png%3Falt%3Dmedia%26token%3D981fad1e-8d5b-4d33-b7db-86de3ce82849&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=dc7042&amp;sv=2" alt=""></p>
+<ul>
+<li>
+<p><strong>按价格：</strong> 就是到了某个价格，停止交易</p>
+</li>
+<li>
+<p><strong>按次数：</strong> 交易了多少次之后，就停止交易</p>
+</li>
+<li>
+<p><strong>间隔：</strong> 每一笔交易的间隔时间，以秒为单位</p>
+</li>
+<li>
+<p><strong>线程数：</strong> 同一秒发起多少笔交易，线程越大，交易频率越高（最大为6）</p>
+</li>
+</ul>
+<h4 id="-10"></h4>
+<p>hashtag</p>
+<p><strong>设置案例</strong></p>
+<p>例如我填写的代币交易设置是这样的：</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FlPJw6iZCiBdBM71Ewyql%252F9%25E4%25BA%25A4%25E6%2598%2593%25E8%25AE%25BE%25E7%25BD%25AE.png%3Falt%3Dmedia%26token%3D2aec806b-bc57-436a-a601-17593e8d7b14&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=d668cc1b&amp;sv=2" alt=""></p>
+<p>这是一笔批量买入的交易，每次买入的金额是0.0001BNB到0.001BNB之间。一共交易6次就停止，没错交易间隔时间为0~3秒，不固定，线程数是2.</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FR94BiYRadcGcJbVKyCoX%252F10%25E5%25BC%2580%25E5%25A7%258B%25E4%25BA%25A4%25E6%2598%2593.png%3Falt%3Dmedia%26token%3D47b845a9-d27d-4c7f-aef0-380f8c0315d2&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=cd411cb2&amp;sv=2" alt=""></p>
+<p>设定完成后，我点击右边的开启交易按钮，即可开始交易</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FlaUelszn5BcNUn6q92k6%252F11%25E4%25BA%25A4%25E6%2598%2593%25E6%2597%25A5%25E5%25BF%2597.png%3Falt%3Dmedia%26token%3De6e8a9d5-a2eb-4661-bc2d-a8e096a3de46&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=10010e7f&amp;sv=2" alt=""></p>
+<p>可以看到，如果钱包内gas不足，会直接跳过。一旦达到停止条件，会自动停止交易。</p>
+<h3 id="-11"></h3>
+<p>hashtag</p>
+<p><strong>4、买卖交易设置</strong></p>
+<p>不同于前面两种针对某个方向的交易，买卖交易指的是自动实现买和卖两种交易方式。</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FJ3QGW3f14BBLYR9k6k7F%252F12%25E4%25B9%25B0%25E5%258D%2596%25E8%25AE%25BE%25E7%25BD%25AE.png%3Falt%3Dmedia%26token%3Dca5e63d6-5a19-4a7a-a94c-b4718f803dee&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=14f61db7&amp;sv=2" alt=""></p>
+<p><strong>金额类型（仅支持按数量交易）</strong></p>
+<ul>
+<li>
+<p><strong>按数量：</strong> 输入您要交易的代币数量范围</p>
+</li>
+<li>
+<p>~~<strong>按比例：</strong>~~<s>设定每笔交易钱包支出的余额比例</s></p>
+</li>
+</ul>
+<p><strong>买卖概率</strong></p>
+<ul>
+<li>
+<p><strong>买单概率：</strong> 系统发起一笔交易时，这笔交易是<strong>买单</strong> 的概率有多大</p>
+</li>
+<li>
+<p><strong>卖单概率：</strong> 系统发起一笔交易时，这笔交易是<strong>卖单</strong> 的概率有多大</p>
+</li>
+<li>
+<p>买单概率与卖单概率相加为100%</p>
+</li>
+</ul>
+<p><strong>数量设置</strong></p>
+<ul>
+<li>
+<p><strong>买入：</strong> 设置每笔买单的买入数量范围（如果数字一样，则为固定数量）</p>
+</li>
+<li>
+<p><strong>卖出：</strong> 设置每笔卖单的卖出数量范围（如果数字一样，则为固定数量）</p>
+</li>
+</ul>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FrWuBudOPZKINwYCXsrM8%252F13%25E4%25B9%25B0%25E5%258D%2596%25E6%2595%25B0%25E9%2587%258F%2520%25E8%258C%2583%25E5%259B%25B4.png%3Falt%3Dmedia%26token%3D7dc5ec25-1282-41ba-bbdb-856ec10d9164&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=bfef671a&amp;sv=2" alt=""></p>
+<p><strong>停止方式（设置交易次数）</strong></p>
+<ul>
+<li>
+<p><strong>按次数：</strong> 当买卖笔数达到多少笔时停止交易</p>
+</li>
+<li>
+<p>~~<strong>按价格：</strong>~~<s>达到多少价格时停止交易</s></p>
+</li>
+<li>
+<p><strong>间隔：</strong> 每一笔交易的间隔时间，以秒为单位</p>
+</li>
+<li>
+<p><strong>线程数：</strong> 同一秒发起多少笔交易，线程越大，交易频率越高（最大为6）</p>
+</li>
+</ul>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FMnQnHyF2nTWxJiVIk2OR%252F14%25E4%25BA%25A4%25E6%2598%2593%25E5%2581%259C%25E6%25AD%25A2.png%3Falt%3Dmedia%26token%3D139ee1d0-173f-434d-8a28-96dae36237a6&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=8ae55946&amp;sv=2" alt=""></p>
+<p>设定完成后，我点击右边的开启交易按钮，即可<strong>开始交易</strong></p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FnnABLeJzzrTqnNvJzB0E%252F15%25E5%25BC%2580%25E5%25A7%258B%25E4%25BA%25A4%25E6%2598%2593.png%3Falt%3Dmedia%26token%3D2655615c-967b-4b8e-b514-240a22e6b47f&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=cc3a7759&amp;sv=2" alt=""></p>
+<h2 id="-12"></h2>
+<p>hashtag</p>
+<p><strong>三、疑问解答</strong></p>
+<p><strong>1、代币地址没有错，为什么提示错误？</strong></p>
+<ul>
+<li><strong>答：</strong> 如果确认代币地址没有错，那么可能是您选择的区块链错误，或者是交易所资金池类型错误</li>
+</ul>
+<p><strong>2、为什么会交易失败？</strong></p>
+<ul>
+<li><strong>答：</strong> 通常的原因是钱包内Gas不足或者代币余额不足导致的</li>
+</ul>
+<p><strong>3、私钥会不会泄露？</strong></p>
+<ul>
+<li><strong>答：</strong> 私钥仅保存在您的电脑页面，不上传至服务器，至少PandaTool是看不到的</li>
+</ul>
+<p><strong>4、最多可以导入多少钱包？</strong></p>
+<ul>
+<li><strong>答：</strong> 理论上是没有上限的，但考虑到您的电脑CPU以及用户体验，几十个应该是比较合适的</li>
+</ul>
+<p><strong>5、市值管理工具如何收费？</strong></p>
+<ul>
+<li><strong>答：</strong> 您可以在右上角查询我们的收费标准</li>
+</ul>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FTu0upzghIbiWda54KkSi%252F16%25E6%2594%25B6%25E8%25B4%25B9%25E6%25A0%2587%25E5%2587%2586.png%3Falt%3Dmedia%26token%3De2307c05-46e9-45cd-9336-40da6c9468e7&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=227ab29a&amp;sv=2" alt=""></p>
+<p>如果您在市值管理工具的运行过程中，遇到了无法解决或者不清楚的地方，可以在PandaTool的官方交流群联系客服处理：<a target="_blank" rel="noopener" href="https://t.me/pandatool">https://t.me/pandatool</a><a target="_blank" rel="noopener" href="https://t.me/pandatool">arrow-up-right</a></p>
+<p><a href="/createtoken/tp">上一页手机TP钱包发币教程chevron-left</a><a href="/createtoken/verify-and-publish">下一页合约开源教程chevron-right</a></p>
+<p>最后更新于6个月前</p>
 
         </div>
         
@@ -359,8 +493,8 @@
     
     <div class="ccbook-lang-switcher">
       <div class="languages-header">
-          <a href="/ccbus-guide/index.html" class="lang-btn active">中文</a>
-          <a href="/en/ccbus-guide/index.html" class="lang-btn">EN</a>
+          <a href="/ccbus-guide/chapters/createtoken/swapbot.html" class="lang-btn active">中文</a>
+          <a href="/en/ccbus-guide/chapters/createtoken/swapbot.html" class="lang-btn">EN</a>
       </div>
     </div>
 
@@ -1325,11 +1459,11 @@
     </label>
     <select class="lang-select" data-canonical="" aria-label="选择语言">
       
-        <option value="zh-CN" data-href="/ccbus-guide/index.html" selected="">
+        <option value="zh-CN" data-href="/ccbus-guide/chapters/createtoken/swapbot.html" selected="">
           简体中文
         </option>
       
-        <option value="en" data-href="/en/ccbus-guide/index.html" selected="">
+        <option value="en" data-href="/en/ccbus-guide/chapters/createtoken/swapbot.html" selected="">
           English
         </option>
       

@@ -20,26 +20,40 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.ccbus.cc","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="CCBus Guide  Welcome to **CCBus Guide**! This is a comprehensive guide focused on practical applications of blockchain technology, covering a complete knowledge system from fundamental concepts to ad">
+    <meta name="description" content="copy复制chevron-down  jxlSolana链发币  lampSolana权限管理(增发、冻结、弃权） Solana链代币权限管理  hashtag 一、权限解读 Solana有两种代币标准：SPL Token和SPL Token2022。前一种就是普通的代币，占据市场95%的份额。后一种是基于标准代币推出的高级拓展代币，具有多种功能，用的不多。我们分开解读两种不同代币的权限。  h">
 <meta property="og:type" content="website">
-<meta property="og:title" content="CCBus Guide">
-<meta property="og:url" content="https://www.ccbus.cc/en/ccbus-guide/index.html">
+<meta property="og:title" content="权限管理(增发、冻结、弃权）">
+<meta property="og:url" content="https://www.ccbus.cc/en/ccbus-guide/chapters/sol/control.html">
 <meta property="og:site_name" content="CCBus">
-<meta property="og:description" content="CCBus Guide  Welcome to **CCBus Guide**! This is a comprehensive guide focused on practical applications of blockchain technology, covering a complete knowledge system from fundamental concepts to ad">
+<meta property="og:description" content="copy复制chevron-down  jxlSolana链发币  lampSolana权限管理(增发、冻结、弃权） Solana链代币权限管理  hashtag 一、权限解读 Solana有两种代币标准：SPL Token和SPL Token2022。前一种就是普通的代币，占据市场95%的份额。后一种是基于标准代币推出的高级拓展代币，具有多种功能，用的不多。我们分开解读两种不同代币的权限。  h">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2026-01-29T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-30T14:25:07.713Z">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FLNNjX5zjU35IAbeyApY5%252F%25E6%2597%25A0%25E6%259D%2583%25E9%2599%2590.png%3Falt%3Dmedia%26token%3D83d20ee4-0f9d-4a93-8473-2a130834e8ba&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=1fa2549d&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FmIoEkn6QwhvIKTfyxqtj%252F%25E4%25B8%25A2%25E5%25BC%2583%25E6%259D%2583%25E9%2599%2590.png%3Falt%3Dmedia%26token%3D91b9333e-58e8-4952-9f39-1e2f3c849dba&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=d51eee09&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FAfhWmoxyO0jM0pkRI7H5%252F%25E5%25A2%259E%25E5%258F%2591%25E5%2589%258D.png%3Falt%3Dmedia%26token%3Dc83add81-5dd6-449a-a417-e60038867b42&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=3200d397&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252Fx3Wc3oy3VguDeeH6joS5%252F%25E5%25A2%259E%25E5%258F%2591%25E6%258C%2589%25E9%2592%25AE.png%3Falt%3Dmedia%26token%3D4164e70e-0c66-42eb-9c85-5a6522508b0d&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=def17808&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FBfwp6TaL280IxRg2pKII%252F%25E5%25A2%259E%25E5%258F%2591%25E6%2588%2590%25E5%258A%259F.png%3Falt%3Dmedia%26token%3Dacc091ee-be5d-467a-af9e-10e210df790d&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=550adc95&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FnBlTWiD2ZvhdHsRF3pRf%252F%25E5%25A2%259E%25E5%258F%2591%25E5%2590%258E.png%3Falt%3Dmedia%26token%3Db6cae63a-91cc-463e-a841-012d3b62840b&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=2f721313&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FqgdsgEbE9r37dlQm9Vyt%252F%25E5%25BE%25AE%25E4%25BF%25A1%25E6%2588%25AA%25E5%259B%25BE_20241002140919.png%3Falt%3Dmedia%26token%3Dfe60826a-a1e1-47d9-a047-9c8b56ea8a3d&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=13512db3&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FPOeW74k5a01ul1ZmU5th%252F%25E6%2597%25A0%25E6%25B3%2595%25E5%258F%2591%25E9%2580%2581.png%3Falt%3Dmedia%26token%3D3a41d993-ce34-488b-8682-42d9481f623a&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=9d644add&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FNVnLmFoSc7zomtEGf985%252F2%25E5%2585%25A8%25E5%25B1%2580%25E6%258E%25A7%25E5%2588%25B6%25E4%25B8%258E%25E6%259A%2582%25E5%2581%259C%25E4%25BA%25A4%25E6%2598%2593.png%3Falt%3Dmedia%26token%3D848f0e51-008d-4384-afbe-c19931fc419e&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=524ab534&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FCOEGCPwBuC5HDeAtZH5D%252F3%25E8%25BD%25AC%25E8%25B4%25A6%25E4%25BB%25A3%25E5%25B8%2581.png%3Falt%3Dmedia%26token%3D3b6f5123-a7b7-4895-b075-a083f23e15df&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=f44f0039&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F6oFtkJzetTXs0KvpHrw2%252F4%25E9%2594%2580%25E6%25AF%2581%25E4%25BB%25A3%25E5%25B8%2581.png%3Falt%3Dmedia%26token%3D2ae15abf-80ab-41ec-afb9-84113cb58b77&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=dc6bdd2e&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252Fz3jrHxOCpv5UT2hVHu8d%252F5%25E6%259A%2582%25E5%2581%259C%25E4%25BA%25A4%25E6%2598%2593.png%3Falt%3Dmedia%26token%3Df62402d7-b4bd-4b0a-b00f-c6ce828d6ddd&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=c684993&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FbGc7F8WbMKJCvaj3lasR%252F6%25E6%259A%2582%25E5%2581%259C%25E4%25BA%25A4%25E6%2598%2593.png%3Falt%3Dmedia%26token%3Dc0c823f2-3b21-4363-ba11-a710c6a9b3a5&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=284e8303&amp;sv=2">
+<meta property="article:published_time" content="2026-01-30T14:24:31.000Z">
+<meta property="article:modified_time" content="2026-01-30T14:24:31.567Z">
 <meta property="article:author" content="CCBus Lab">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FLNNjX5zjU35IAbeyApY5%252F%25E6%2597%25A0%25E6%259D%2583%25E9%2599%2590.png%3Falt%3Dmedia%26token%3D83d20ee4-0f9d-4a93-8473-2a130834e8ba&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=1fa2549d&amp;sv=2">
 
 
-<link rel="canonical" href="https://www.ccbus.cc/en/ccbus-guide/">
+<link rel="canonical" href="https://www.ccbus.cc/en/ccbus-guide/chapters/sol/control">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://www.ccbus.cc/en/ccbus-guide/index.html","path":"en/ccbus-guide/index.html","title":"CCBus Guide"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://www.ccbus.cc/en/ccbus-guide/chapters/sol/control.html","path":"en/ccbus-guide/chapters/sol/control.html","title":"权限管理(增发、冻结、弃权）"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>CCBus Guide | CCBus
+<title>权限管理(增发、冻结、弃权） | CCBus
 </title>
   
 
@@ -132,13 +146,13 @@
 
 <div class="languages-header">
   
-    <a href="/ccbus-guide/index.html"
+    <a href="/ccbus-guide/chapters/sol/control.html"
        class="lang-btn "
        title="切换到简体中文">
       中文
     </a>
   
-    <a href="/en/ccbus-guide/index.html"
+    <a href="/en/ccbus-guide/chapters/sol/control.html"
        class="lang-btn active"
        title="Switch to English">
       EN
@@ -227,13 +241,16 @@
       
       <article class="ccbook-content-area"><header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">CCBus Guide
+<h1 class="post-title" itemprop="name headline">权限管理(增发、冻结、弃权）
 </h1>
 
 <div class="post-meta-container">
   <ul class="breadcrumb">
             <li><a href="/en/">EN</a></li>
-          <li>CCBUS-GUIDE</li>
+            <li><a href="/en/ccbus-guide/">CCBUS-GUIDE</a></li>
+            <li><a href="/en/ccbus-guide/chapters/">CHAPTERS</a></li>
+            <li><a href="/en/ccbus-guide/chapters/sol/">SOL</a></li>
+            <li>CONTROL</li>
   </ul>
 </div>
 
@@ -244,102 +261,112 @@
         
         
         <div class="post-body ccbook-content-body">
-          <div class="ccbook-index">
-<h1>CCBus Guide</h1>
-<div class="book-intro">
-Welcome to **CCBus Guide**! This is a comprehensive guide focused on practical applications of blockchain technology, covering a complete knowledge system from fundamental concepts to advanced applications.
-<p>Whether you are:</p>
-<ul>
-<li>🎓 <strong>Beginner</strong> - wanting to quickly get started with blockchain technology</li>
-<li>💻 <strong>Developer</strong> - hoping to master practical skills</li>
-<li>🏗️ <strong>Architect</strong> - needing to design solutions</li>
-<li>💼 <strong>Professional</strong> - exploring industry best practices</li>
-</ul>
-<p>This guide will provide you with practical knowledge and experience.</p>
-</div>
-<h2 id="📚-Complete-Table-of-Contents">📚 Complete Table of Contents</h2>
-<div class="book-features">
-<h3 id="Guide-Features">Guide Features</h3>
-<ul>
-<li>✅ <strong>Practice-Oriented</strong>: Focus on practical applications and case studies</li>
-<li>✅ <strong>Easy to Understand</strong>: From basics to advanced, step by step</li>
-<li>✅ <strong>Tool Integration</strong>: Rich introduction to tools and frameworks</li>
-<li>✅ <strong>Continuous Updates</strong>: Tracking latest technology developments</li>
-<li>✅ <strong>Community-Driven</strong>: Gathering industry best practices</li>
-</ul>
-</div>
-<h2 id="📖-Complete-Content-Navigation">📖 Complete Content Navigation</h2>
-<div class="chapter-group">
-<h3 id="Chapter-1-Cross-Chain-Bridge-🌉"><a href="/en/ccbus-guide/chapters/bridge/">Chapter 1: Cross-Chain Bridge</a> 🌉</h3>
-<p><strong>Difficulty:</strong> 🟢 Beginner | <strong>Tutorials:</strong> 4</p>
-<p>Master cross-chain asset transfer technology, supporting multi-chain interoperability.</p>
-<h3 id="Chapter-2-EVM-Token-Creation-🪙"><a href="/en/ccbus-guide/chapters/createtoken/">Chapter 2: EVM Token Creation</a> 🪙</h3>
-<p><strong>Difficulty:</strong> 🟢 Beginner | <strong>Tutorials:</strong> 22</p>
-<p>Comprehensive guide to EVM token creation, including standard tokens, dividend tokens, 314 protocol, and more.</p>
-<h3 id="Chapter-3-Terms-Declaration-📋"><a href="/en/ccbus-guide/chapters/declaration/">Chapter 3: Terms &amp; Declaration</a> 📋</h3>
-<p><strong>Difficulty:</strong> 🟢 Beginner | <strong>Documents:</strong> 2</p>
-<p>Important legal disclaimers and terms of service.</p>
-<h3 id="Chapter-4-Practical-Information-💡"><a href="/en/ccbus-guide/chapters/practical-information/">Chapter 4: Practical Information</a> 💡</h3>
-<p><strong>Difficulty:</strong> 🟢 Beginner | <strong>Tutorials:</strong> 7</p>
-<p>Wallet configuration, chain parameters, faucets, and other practical guides.</p>
-<h3 id="Chapter-5-Presale-Tools-🚀"><a href="/en/ccbus-guide/chapters/presale/">Chapter 5: Presale Tools</a> 🚀</h3>
-<p><strong>Difficulty:</strong> 🟡 Intermediate | <strong>Tutorials:</strong> 3</p>
-<p>Token presale and mint functionality implementation tutorials.</p>
-<h3 id="Chapter-6-FAQ-❓"><a href="/en/ccbus-guide/chapters/question/">Chapter 6: FAQ</a> ❓</h3>
-<p><strong>Difficulty:</strong> 🟢 Beginner | <strong>Q&amp;A:</strong> 9</p>
-<p>Common questions and answers, including liquidity, detection, and verification guides.</p>
-<h3 id="Chapter-7-Solana-Tools-⚡"><a href="/en/ccbus-guide/chapters/sol/">Chapter 7: Solana Tools</a> ⚡</h3>
-<p><strong>Difficulty:</strong> 🟡 Intermediate | <strong>Tutorials:</strong> 30</p>
-<p>Complete Solana ecosystem toolset, covering token creation, Raydium, Pump.fun, and more.</p>
-<h3 id="Chapter-8-Sui-Tools-🌊"><a href="/en/ccbus-guide/chapters/sui/">Chapter 8: Sui Tools</a> 🌊</h3>
-<p><strong>Difficulty:</strong> 🟡 Intermediate | <strong>Tutorials:</strong> 7</p>
-<p>Sui blockchain tools guide, including Cetus, Turbos, and other DEXs.</p>
-<h3 id="Chapter-9-TON-Tools-💎"><a href="/en/ccbus-guide/chapters/ton/">Chapter 9: TON Tools</a> 💎</h3>
-<p><strong>Difficulty:</strong> 🟡 Intermediate | <strong>Tutorials:</strong> 5</p>
-<p>TON ecosystem tools, Jetton creation and DeDust trading.</p>
-<h3 id="Chapter-10-General-Tools-🛠️"><a href="/en/ccbus-guide/chapters/tools/">Chapter 10: General Tools</a> 🛠️</h3>
-<p><strong>Difficulty:</strong> 🟢 Beginner | <strong>Tutorials:</strong> 10</p>
-<p>Batch transfer, contract checking, wallet generation, and other utilities.</p>
-<h3 id="Chapter-11-TRON-Tools-🔴"><a href="/en/ccbus-guide/chapters/tron/">Chapter 11: TRON Tools</a> 🔴</h3>
-<p><strong>Difficulty:</strong> 🟡 Intermediate | <strong>Tutorials:</strong> 7</p>
-<p>TRON chain toolset, TRC20 tokens and SunSwap operations.</p>
-</div>
-<h2 id="📝-Content-Description">📝 Content Description</h2>
-<div class="book-intro">
-<p>This guide is organized based on PandaTool documentation, containing complete blockchain tool usage tutorials. Content includes:</p>
-<ul>
-<li><strong>EVM Tools</strong>: Token creation, liquidity management, permission control</li>
-<li><strong>Solana Tools</strong>: SPL tokens, Raydium pools, trading bots</li>
-<li><strong>Sui Tools</strong>: Token issuance, DEX interaction</li>
-<li><strong>TON Tools</strong>: Jetton creation, exchange integration</li>
-<li><strong>TRON Tools</strong>: TRC20 tokens, energy rental</li>
-<li><strong>Cross-Chain Tools</strong>: Multi-chain asset bridging</li>
-<li><strong>General Tools</strong>: Batch transfer, snapshot, wallet management</li>
-</ul>
-<p><strong>Note:</strong> Content is continuously being improved, more chapters coming soon!</p>
-</div>
-<h2 id="💡-How-to-Use-This-Guide">💡 How to Use This Guide</h2>
-<div class="usage-guide">
-<h3 id="Learning-Recommendations">Learning Recommendations</h3>
+          <p>copy复制chevron-down</p>
 <ol>
-<li><strong>Learn as Needed</strong> - Choose chapters based on your requirements</li>
-<li><strong>Hands-On Practice</strong> - Follow examples for practical operations</li>
-<li><strong>Problem-Driven</strong> - Learning with questions is more effective</li>
-<li><strong>Communication &amp; Sharing</strong> - Join community discussions</li>
+<li><a href="/sol">jxlSolana链发币</a></li>
 </ol>
-<h3 id="Supporting-Resources">Supporting Resources</h3>
+<h1>lampSolana权限管理(增发、冻结、弃权）</h1>
+<p>Solana链代币权限管理</p>
+<h2 id=""></h2>
+<p>hashtag</p>
+<p><strong>一、权限解读</strong></p>
+<p>Solana有两种代币标准：SPL Token和SPL Token2022。前一种就是普通的代币，占据市场95%的份额。后一种是基于标准代币推出的高级拓展代币，具有多种功能，用的不多。我们分开解读两种不同代币的权限。</p>
+<h3 id="-2"></h3>
+<p>hashtag</p>
+<p><strong>1、普通SPL代币权限</strong></p>
+<p>普通的Solana SPL代币创建出来后，会有3个权限：增发权限（铸币权）、拉黑权限（冻结权）、更新资料权限</p>
 <ul>
-<li><strong>Code Repository</strong> - Complete examples on GitHub</li>
-<li><strong>Online Community</strong> - Q&amp;A and communication platform</li>
-<li><strong>Practical Projects</strong> - Real-world application cases</li>
+<li>
+<p><strong>增发权限：</strong> 可以增发、铸造代币，提高代币供给量</p>
+</li>
+<li>
+<p><strong>拉黑权限：</strong> 可以冻结任何一个地址，使代币不能转入与转出</p>
+</li>
+<li>
+<p><strong>更新资料权限：</strong> 可以修改代币名称、logo等</p>
+</li>
 </ul>
-</div>
-<div class="book-footer">
-<h2 id="🚀-Start-Your-Learning-Journey">🚀 Start Your Learning Journey</h2>
-<p>Choose a topic of interest and start exploring the exciting world of blockchain technology!</p>
-<p><strong>Version:</strong> v1.0 (2026-01) | <strong>Last Updated:</strong> January 29, 2026</p>
-</div>
-</div>
+<p>如果是在PandaTool发行的代币，并已上传了logo，会自带这三个权限。如果是其他平台发行的代币，可能会带有2个权限或者1个权限。</p>
+<p>当然，不管你是在哪里创建发行的代币，都可以通过PandaTool的工具放弃权限，或者使用拉黑、冻结功能，以实现代币的权限管理。</p>
+<h3 id="-3"></h3>
+<p>hashtag</p>
+<p><strong>2、Token2022权限</strong></p>
+<p>高级的Token2022代币创建出来后，除了有上述三种权限以外，还有2个权限：<strong>超级管理权限和暂停交易权限</strong></p>
+<ul>
+<li>
+<p><strong>超级管理：</strong> 可以将持仓地址的代币转走或者销毁</p>
+</li>
+<li>
+<p><strong>暂停交易：</strong> 暂停全网代币的转账、交易</p>
+</li>
+</ul>
+<p>下面，我们详细看一下这些权限**。**</p>
+<h2 id="-4"></h2>
+<p>hashtag</p>
+<p><strong>二、放弃权限</strong></p>
+<p>我们提倡大家在发币之后，将权限放弃。打开权限管理页面， <a target="_blank" rel="noopener" href="https://solana.pandatool.org/control">https://solana.pandatool.org/control</a><a target="_blank" rel="noopener" href="https://solana.pandatool.org/control">arrow-up-right</a> ，然后输入代币的合约地址，可能会给你以下几个提示：</p>
+<h3 id="-5"></h3>
+<p>hashtag</p>
+<p><strong>1、当前地址无代币权限</strong></p>
+<p>如果你已经丢弃了所有权限，查询代币时会提示你：当前代币已禁止更新资料、当前地址无代币增发权限、当前地址无代币的冻结权限。</p>
+<p>出现该情况，说明你的钱包没有该代币的权限，不支持放弃。如果你确认没有放弃权限，那就是你连接的钱包不是发币钱包，可以更换钱包后刷新再试</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FLNNjX5zjU35IAbeyApY5%252F%25E6%2597%25A0%25E6%259D%2583%25E9%2599%2590.png%3Falt%3Dmedia%26token%3D83d20ee4-0f9d-4a93-8473-2a130834e8ba&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=1fa2549d&amp;sv=2" alt=""></p>
+<h2 id="-6"></h2>
+<p>hashtag</p>
+<p>2、没有任何提示</p>
+<p>如果点击查询代币，发现没有任何提示，说明你可以正常放弃权限。此时将权限按钮勾选上，然后确认就可以了。需要放弃哪个权限，就勾选哪个。</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FmIoEkn6QwhvIKTfyxqtj%252F%25E4%25B8%25A2%25E5%25BC%2583%25E6%259D%2583%25E9%2599%2590.png%3Falt%3Dmedia%26token%3D91b9333e-58e8-4952-9f39-1e2f3c849dba&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=d51eee09&amp;sv=2" alt=""></p>
+<h2 id="-7"></h2>
+<p>hashtag</p>
+<p><strong>二、普通SPL代币使用权限</strong></p>
+<p>如果你不愿意放弃权限，那就可以使用权限工具，对代币进行增发或者拉黑操作</p>
+<h3 id="-8"></h3>
+<p>hashtag</p>
+<p><strong>1、增发代币</strong></p>
+<p>很好理解，就是增加代币的总量。我们只需要点击增发按钮，输入增发数量，点击确认即可。</p>
+<p>以下面这个代币为了，从浏览器可以看出，该代币的总量是1000</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FAfhWmoxyO0jM0pkRI7H5%252F%25E5%25A2%259E%25E5%258F%2591%25E5%2589%258D.png%3Falt%3Dmedia%26token%3Dc83add81-5dd6-449a-a417-e60038867b42&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=3200d397&amp;sv=2" alt=""></p>
+<p>现在我使用增发功能，增发1000个代币，操作如下：</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252Fx3Wc3oy3VguDeeH6joS5%252F%25E5%25A2%259E%25E5%258F%2591%25E6%258C%2589%25E9%2592%25AE.png%3Falt%3Dmedia%26token%3D4164e70e-0c66-42eb-9c85-5a6522508b0d&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=def17808&amp;sv=2" alt=""></p>
+<p>点击确认，钱包确认后，会提示你增发成功</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FBfwp6TaL280IxRg2pKII%252F%25E5%25A2%259E%25E5%258F%2591%25E6%2588%2590%25E5%258A%259F.png%3Falt%3Dmedia%26token%3Dacc091ee-be5d-467a-af9e-10e210df790d&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=550adc95&amp;sv=2" alt=""></p>
+<p>此时我们回到浏览器刷新一下，就可以看到浏览器的代币数量发生了变化，达到了2000枚</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FnBlTWiD2ZvhdHsRF3pRf%252F%25E5%25A2%259E%25E5%258F%2591%25E5%2590%258E.png%3Falt%3Dmedia%26token%3Db6cae63a-91cc-463e-a841-012d3b62840b&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=2f721313&amp;sv=2" alt=""></p>
+<h3 id="-9"></h3>
+<p>hashtag</p>
+<p><strong>2、冻结/解冻账户</strong></p>
+<p>冻结账户也叫拉黑账户，指的是持有该代币的地址被拉黑后，将无法把代币转出，即无法转账及卖出。同时，其他地址也无法向该地址转账。我们建议大家谨慎使用该功能，以确保项目的长久运行。如果冻结之后要解冻，直接点击解冻账户就行了</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FqgdsgEbE9r37dlQm9Vyt%252F%25E5%25BE%25AE%25E4%25BF%25A1%25E6%2588%25AA%25E5%259B%25BE_20241002140919.png%3Falt%3Dmedia%26token%3Dfe60826a-a1e1-47d9-a047-9c8b56ea8a3d&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=13512db3&amp;sv=2" alt=""></p>
+<p>地址被冻结之后，转账出去会提示“无法发送”，这就说明冻结成功了。</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FPOeW74k5a01ul1ZmU5th%252F%25E6%2597%25A0%25E6%25B3%2595%25E5%258F%2591%25E9%2580%2581.png%3Falt%3Dmedia%26token%3D3a41d993-ce34-488b-8682-42d9481f623a&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=9d644add&amp;sv=2" alt=""></p>
+<ul>
+<li>注意，该地址为钱包地址，不是Account地址</li>
+</ul>
+<h2 id="-10"></h2>
+<p>hashtag</p>
+<p><strong>三、Token2022代币使用权限</strong></p>
+<p>Token2022代币的增发、冻结和更新资料，与普通代币是一样的，就不做过多解释了，主要是看一下高级功能。</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FNVnLmFoSc7zomtEGf985%252F2%25E5%2585%25A8%25E5%25B1%2580%25E6%258E%25A7%25E5%2588%25B6%25E4%25B8%258E%25E6%259A%2582%25E5%2581%259C%25E4%25BA%25A4%25E6%2598%2593.png%3Falt%3Dmedia%26token%3D848f0e51-008d-4384-afbe-c19931fc419e&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=524ab534&amp;sv=2" alt=""></p>
+<h3 id="-11"></h3>
+<p>hashtag</p>
+<p><strong>1、超级管理权限</strong></p>
+<p>超级管理权限，就是截图中显示的全局管理。您可以通过该权限，对其他钱包地址的代币进行操作：转账与销毁。</p>
+<p><strong>转账代币：</strong> 输入目标钱包地址、代币数量和接收地址，即可将代币转走</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FCOEGCPwBuC5HDeAtZH5D%252F3%25E8%25BD%25AC%25E8%25B4%25A6%25E4%25BB%25A3%25E5%25B8%2581.png%3Falt%3Dmedia%26token%3D3b6f5123-a7b7-4895-b075-a083f23e15df&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=f44f0039&amp;sv=2" alt=""></p>
+<p><strong>销毁代币：</strong> 输入目标钱包地址和销毁数量，即可将该钱包内相应数量的代币销毁掉</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F6oFtkJzetTXs0KvpHrw2%252F4%25E9%2594%2580%25E6%25AF%2581%25E4%25BB%25A3%25E5%25B8%2581.png%3Falt%3Dmedia%26token%3D2ae15abf-80ab-41ec-afb9-84113cb58b77&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=dc6bdd2e&amp;sv=2" alt=""></p>
+<h3 id="-12"></h3>
+<p>hashtag</p>
+<p><strong>2、暂停交易权限</strong></p>
+<p>可以将代币所有的交易与转账全部冻结住，使其无法再进行任何任何操作。这个权限主要用于紧急情况，例如代币被盗等。</p>
+<p><strong>暂停交易：</strong> 点击该按钮，钱包确认好后即可暂停</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252Fz3jrHxOCpv5UT2hVHu8d%252F5%25E6%259A%2582%25E5%2581%259C%25E4%25BA%25A4%25E6%2598%2593.png%3Falt%3Dmedia%26token%3Df62402d7-b4bd-4b0a-b00f-c6ce828d6ddd&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=c684993&amp;sv=2" alt=""></p>
+<p><strong>恢复交易：</strong> 交易暂停后，还可以恢复，我们点击<code>恢复交易</code>按钮就可以了</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FbGc7F8WbMKJCvaj3lasR%252F6%25E6%259A%2582%25E5%2581%259C%25E4%25BA%25A4%25E6%2598%2593.png%3Falt%3Dmedia%26token%3Dc0c823f2-3b21-4363-ba11-a710c6a9b3a5&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=284e8303&amp;sv=2" alt=""></p>
+<p>至此，关于普通的SPL Token和Token2022的权限管理使用教程，就到这里全部结束了。</p>
+<p>如果使用权限的过程有相关问题，欢迎进群询问解答：<a target="_blank" rel="noopener" href="https://t.me/pandatool">https://t.me/pandatool</a><a target="_blank" rel="noopener" href="https://t.me/pandatool">arrow-up-right</a></p>
+<p><a href="/sol/newbuy">上一页Solana新地址买入工具教程chevron-left</a><a href="/sol/upload">下一页Solana更新代币资料chevron-right</a></p>
+<p>最后更新于6个月前</p>
 
         </div>
         
@@ -363,8 +390,8 @@ Welcome to **CCBus Guide**! This is a comprehensive guide focused on practical a
     
     <div class="ccbook-lang-switcher">
       <div class="languages-header">
-          <a href="/ccbus-guide/index.html" class="lang-btn">中文</a>
-          <a href="/en/ccbus-guide/index.html" class="lang-btn active">EN</a>
+          <a href="/ccbus-guide/chapters/sol/control.html" class="lang-btn">中文</a>
+          <a href="/en/ccbus-guide/chapters/sol/control.html" class="lang-btn active">EN</a>
       </div>
     </div>
 
@@ -1329,11 +1356,11 @@ Welcome to **CCBus Guide**! This is a comprehensive guide focused on practical a
     </label>
     <select class="lang-select" data-canonical="" aria-label="Select language">
       
-        <option value="zh-CN" data-href="/ccbus-guide/index.html" selected="">
+        <option value="zh-CN" data-href="/ccbus-guide/chapters/sol/control.html" selected="">
           简体中文
         </option>
       
-        <option value="en" data-href="/en/ccbus-guide/index.html" selected="">
+        <option value="en" data-href="/en/ccbus-guide/chapters/sol/control.html" selected="">
           English
         </option>
       

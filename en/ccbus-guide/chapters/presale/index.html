@@ -20,26 +20,26 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.ccbus.cc","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="CCBus Guide  Welcome to **CCBus Guide**! This is a comprehensive guide focused on practical applications of blockchain technology, covering a complete knowledge system from fundamental concepts to ad">
+    <meta name="description" content="Chapter 5: Presale Tools This chapter introduces PandaTool’s token presale tools, including standard Mint presale, add-pool presale, and donation presale features.  Create Standard Token Mint Presale">
 <meta property="og:type" content="website">
-<meta property="og:title" content="CCBus Guide">
-<meta property="og:url" content="https://www.ccbus.cc/en/ccbus-guide/index.html">
+<meta property="og:title" content="Chapter 5: Presale Tools">
+<meta property="og:url" content="https://www.ccbus.cc/en/ccbus-guide/chapters/presale/index.html">
 <meta property="og:site_name" content="CCBus">
-<meta property="og:description" content="CCBus Guide  Welcome to **CCBus Guide**! This is a comprehensive guide focused on practical applications of blockchain technology, covering a complete knowledge system from fundamental concepts to ad">
+<meta property="og:description" content="Chapter 5: Presale Tools This chapter introduces PandaTool’s token presale tools, including standard Mint presale, add-pool presale, and donation presale features.  Create Standard Token Mint Presale">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2026-01-29T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-30T14:25:07.713Z">
+<meta property="article:published_time" content="2026-01-30T14:24:31.000Z">
+<meta property="article:modified_time" content="2026-01-31T16:39:21.252Z">
 <meta property="article:author" content="CCBus Lab">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://www.ccbus.cc/en/ccbus-guide/">
+<link rel="canonical" href="https://www.ccbus.cc/en/ccbus-guide/chapters/presale/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://www.ccbus.cc/en/ccbus-guide/index.html","path":"en/ccbus-guide/index.html","title":"CCBus Guide"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://www.ccbus.cc/en/ccbus-guide/chapters/presale/index.html","path":"en/ccbus-guide/chapters/presale/index.html","title":"Chapter 5: Presale Tools"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>CCBus Guide | CCBus
+<title>Chapter 5: Presale Tools | CCBus
 </title>
   
 
@@ -132,13 +132,13 @@
 
 <div class="languages-header">
   
-    <a href="/ccbus-guide/index.html"
+    <a href="/ccbus-guide/chapters/presale/index.html"
        class="lang-btn "
        title="切换到简体中文">
       中文
     </a>
   
-    <a href="/en/ccbus-guide/index.html"
+    <a href="/en/ccbus-guide/chapters/presale/index.html"
        class="lang-btn active"
        title="Switch to English">
       EN
@@ -227,13 +227,15 @@
       
       <article class="ccbook-content-area"><header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">CCBus Guide
+<h1 class="post-title" itemprop="name headline">Chapter 5: Presale Tools
 </h1>
 
 <div class="post-meta-container">
   <ul class="breadcrumb">
             <li><a href="/en/">EN</a></li>
-          <li>CCBUS-GUIDE</li>
+            <li><a href="/en/ccbus-guide/">CCBUS-GUIDE</a></li>
+            <li><a href="/en/ccbus-guide/chapters/">CHAPTERS</a></li>
+          <li>PRESALE</li>
   </ul>
 </div>
 
@@ -244,102 +246,292 @@
         
         
         <div class="post-body ccbook-content-body">
-          <div class="ccbook-index">
-<h1>CCBus Guide</h1>
-<div class="book-intro">
-Welcome to **CCBus Guide**! This is a comprehensive guide focused on practical applications of blockchain technology, covering a complete knowledge system from fundamental concepts to advanced applications.
-<p>Whether you are:</p>
+          <h1>Chapter 5: Presale Tools</h1>
+<p>This chapter introduces PandaTool’s token presale tools, including standard Mint presale, add-pool presale, and donation presale features.</p>
+<hr>
+<h2 id="Create-Standard-Token-Mint-Presale-Tutorial">Create Standard Token Mint Presale Tutorial</h2>
+<p>100% decentralized presale contract creation tutorial</p>
+<p><strong>What is Standard Mint Presale?</strong></p>
+<p>Simply put, it is a presale through the Mint method. The project team transfers a certain amount of tokens to the presale contract address. After the presale is opened, users transfer BNB to the presale contract address, and the presale contract will automatically give tokens to users according to the set ratio.</p>
+<p>Note: The prerequisite for creating a presale is that you must first create a token. Without a token, you cannot presale.</p>
+<h3 id="I-Presale-Feature-Description">I. Presale Feature Description</h3>
 <ul>
-<li>🎓 <strong>Beginner</strong> - wanting to quickly get started with blockchain technology</li>
-<li>💻 <strong>Developer</strong> - hoping to master practical skills</li>
-<li>🏗️ <strong>Architect</strong> - needing to design solutions</li>
-<li>💼 <strong>Professional</strong> - exploring industry best practices</li>
+<li><strong>No Frontend:</strong> No webpage needed, pure contract support, 100% <strong>decentralized</strong></li>
+<li><strong>Transfer = Presale:</strong> Users transfer BNB to <code>presale contract</code> and <strong>automatically</strong> receive tokens</li>
+<li><strong>No Claiming:</strong> Users participating in presale do <strong>not need</strong> to manually claim tokens</li>
+<li><strong>Custom Functions:</strong> Project team can <strong>modify</strong> presale price and portion quantity through console after presale starts</li>
+<li><strong>No Soft/Hard Cap:</strong> No concept of soft or hard cap, only total presale quantity (portions x quantity per portion)</li>
 </ul>
-<p>This guide will provide you with practical knowledge and experience.</p>
-</div>
-<h2 id="📚-Complete-Table-of-Contents">📚 Complete Table of Contents</h2>
-<div class="book-features">
-<h3 id="Guide-Features">Guide Features</h3>
+<h3 id="II-Important-Notes">II. Important Notes</h3>
 <ul>
-<li>✅ <strong>Practice-Oriented</strong>: Focus on practical applications and case studies</li>
-<li>✅ <strong>Easy to Understand</strong>: From basics to advanced, step by step</li>
-<li>✅ <strong>Tool Integration</strong>: Rich introduction to tools and frameworks</li>
-<li>✅ <strong>Continuous Updates</strong>: Tracking latest technology developments</li>
-<li>✅ <strong>Community-Driven</strong>: Gathering industry best practices</li>
+<li>During standard token presale, someone may add liquidity pool early</li>
+<li>Recommend using manual trading enable function to prevent pool trading</li>
+<li>Do not add presale address to blacklist, otherwise trading is impossible</li>
 </ul>
-</div>
-<h2 id="📖-Complete-Content-Navigation">📖 Complete Content Navigation</h2>
-<div class="chapter-group">
-<h3 id="Chapter-1-Cross-Chain-Bridge-🌉"><a href="/en/ccbus-guide/chapters/bridge/">Chapter 1: Cross-Chain Bridge</a> 🌉</h3>
-<p><strong>Difficulty:</strong> 🟢 Beginner | <strong>Tutorials:</strong> 4</p>
-<p>Master cross-chain asset transfer technology, supporting multi-chain interoperability.</p>
-<h3 id="Chapter-2-EVM-Token-Creation-🪙"><a href="/en/ccbus-guide/chapters/createtoken/">Chapter 2: EVM Token Creation</a> 🪙</h3>
-<p><strong>Difficulty:</strong> 🟢 Beginner | <strong>Tutorials:</strong> 22</p>
-<p>Comprehensive guide to EVM token creation, including standard tokens, dividend tokens, 314 protocol, and more.</p>
-<h3 id="Chapter-3-Terms-Declaration-📋"><a href="/en/ccbus-guide/chapters/declaration/">Chapter 3: Terms &amp; Declaration</a> 📋</h3>
-<p><strong>Difficulty:</strong> 🟢 Beginner | <strong>Documents:</strong> 2</p>
-<p>Important legal disclaimers and terms of service.</p>
-<h3 id="Chapter-4-Practical-Information-💡"><a href="/en/ccbus-guide/chapters/practical-information/">Chapter 4: Practical Information</a> 💡</h3>
-<p><strong>Difficulty:</strong> 🟢 Beginner | <strong>Tutorials:</strong> 7</p>
-<p>Wallet configuration, chain parameters, faucets, and other practical guides.</p>
-<h3 id="Chapter-5-Presale-Tools-🚀"><a href="/en/ccbus-guide/chapters/presale/">Chapter 5: Presale Tools</a> 🚀</h3>
-<p><strong>Difficulty:</strong> 🟡 Intermediate | <strong>Tutorials:</strong> 3</p>
-<p>Token presale and mint functionality implementation tutorials.</p>
-<h3 id="Chapter-6-FAQ-❓"><a href="/en/ccbus-guide/chapters/question/">Chapter 6: FAQ</a> ❓</h3>
-<p><strong>Difficulty:</strong> 🟢 Beginner | <strong>Q&amp;A:</strong> 9</p>
-<p>Common questions and answers, including liquidity, detection, and verification guides.</p>
-<h3 id="Chapter-7-Solana-Tools-⚡"><a href="/en/ccbus-guide/chapters/sol/">Chapter 7: Solana Tools</a> ⚡</h3>
-<p><strong>Difficulty:</strong> 🟡 Intermediate | <strong>Tutorials:</strong> 30</p>
-<p>Complete Solana ecosystem toolset, covering token creation, Raydium, Pump.fun, and more.</p>
-<h3 id="Chapter-8-Sui-Tools-🌊"><a href="/en/ccbus-guide/chapters/sui/">Chapter 8: Sui Tools</a> 🌊</h3>
-<p><strong>Difficulty:</strong> 🟡 Intermediate | <strong>Tutorials:</strong> 7</p>
-<p>Sui blockchain tools guide, including Cetus, Turbos, and other DEXs.</p>
-<h3 id="Chapter-9-TON-Tools-💎"><a href="/en/ccbus-guide/chapters/ton/">Chapter 9: TON Tools</a> 💎</h3>
-<p><strong>Difficulty:</strong> 🟡 Intermediate | <strong>Tutorials:</strong> 5</p>
-<p>TON ecosystem tools, Jetton creation and DeDust trading.</p>
-<h3 id="Chapter-10-General-Tools-🛠️"><a href="/en/ccbus-guide/chapters/tools/">Chapter 10: General Tools</a> 🛠️</h3>
-<p><strong>Difficulty:</strong> 🟢 Beginner | <strong>Tutorials:</strong> 10</p>
-<p>Batch transfer, contract checking, wallet generation, and other utilities.</p>
-<h3 id="Chapter-11-TRON-Tools-🔴"><a href="/en/ccbus-guide/chapters/tron/">Chapter 11: TRON Tools</a> 🔴</h3>
-<p><strong>Difficulty:</strong> 🟡 Intermediate | <strong>Tutorials:</strong> 7</p>
-<p>TRON chain toolset, TRC20 tokens and SunSwap operations.</p>
-</div>
-<h2 id="📝-Content-Description">📝 Content Description</h2>
-<div class="book-intro">
-<p>This guide is organized based on PandaTool documentation, containing complete blockchain tool usage tutorials. Content includes:</p>
+<h3 id="III-Standard-Mint-Presale-Creation-Tutorial">III. Standard Mint Presale Creation Tutorial</h3>
+<h4 id="1-Connect-Wallet-Experienced-users-can-skip">1. Connect Wallet (Experienced users can skip)</h4>
+<p>First, open the presale creation website: <a target="_blank" rel="noopener" href="https://www.pandatool.org/#/presale/simpleMint">https://www.pandatool.org/#/presale/simpleMint</a>, click connect wallet in the upper right corner</p>
+<h4 id="2-Fill-in-Presale-Parameters">2. Fill in Presale Parameters</h4>
+<p>After wallet connection is successful, we create the presale through the PandaTool visual page and fill in the corresponding presale parameters:</p>
 <ul>
-<li><strong>EVM Tools</strong>: Token creation, liquidity management, permission control</li>
-<li><strong>Solana Tools</strong>: SPL tokens, Raydium pools, trading bots</li>
-<li><strong>Sui Tools</strong>: Token issuance, DEX interaction</li>
-<li><strong>TON Tools</strong>: Jetton creation, exchange integration</li>
-<li><strong>TRON Tools</strong>: TRC20 tokens, energy rental</li>
-<li><strong>Cross-Chain Tools</strong>: Multi-chain asset bridging</li>
-<li><strong>General Tools</strong>: Batch transfer, snapshot, wallet management</li>
+<li><strong>Presale Name:</strong> Any name, e.g., Presale, Chinese not supported, only English</li>
+<li><strong>Presale Token Address:</strong> The token contract address to presale (prerequisite is having a token)</li>
+<li><strong>Price Per Portion:</strong> How much to pay per presale portion, minimum price is 0.001 (BNB or ETH)</li>
+<li><strong>Quantity Per Portion:</strong> How many tokens in each presale portion</li>
+<li><strong>Total Portions:</strong> Total number of portions available for presale (quantity per portion x total portions &lt;= total token supply)</li>
+<li><strong>Max Portions Per Transaction:</strong> Maximum portions that can be bought at once</li>
+<li><strong>Max Portions Per Wallet:</strong> Maximum portions a single wallet address can buy</li>
 </ul>
-<p><strong>Note:</strong> Content is continuously being improved, more chapters coming soon!</p>
-</div>
-<h2 id="💡-How-to-Use-This-Guide">💡 How to Use This Guide</h2>
-<div class="usage-guide">
-<h3 id="Learning-Recommendations">Learning Recommendations</h3>
-<ol>
-<li><strong>Learn as Needed</strong> - Choose chapters based on your requirements</li>
-<li><strong>Hands-On Practice</strong> - Follow examples for practical operations</li>
-<li><strong>Problem-Driven</strong> - Learning with questions is more effective</li>
-<li><strong>Communication &amp; Sharing</strong> - Join community discussions</li>
-</ol>
-<h3 id="Supporting-Resources">Supporting Resources</h3>
+<p>After filling in parameters, click Create Contract, a prompt will pop up for you to confirm again</p>
+<h4 id="3-Presale-Console-Operations">3. Presale Console Operations</h4>
+<p>After successful creation, we enter the console: <a target="_blank" rel="noopener" href="https://www.pandatool.org/#/presale/console">https://www.pandatool.org/#/presale/console</a>, to see how to operate this presale</p>
 <ul>
-<li><strong>Code Repository</strong> - Complete examples on GitHub</li>
-<li><strong>Online Community</strong> - Q&amp;A and communication platform</li>
-<li><strong>Practical Projects</strong> - Real-world application cases</li>
+<li>
+<p><strong>Presale Control</strong></p>
+<ul>
+<li><strong>Transfer Ownership</strong>: Transfer contract permissions to others</li>
+<li><strong>Enable Presale:</strong> Click and confirm with wallet to enable presale</li>
+<li><strong>Withdraw Tokens from Contract:</strong> Can withdraw value coins and tokens from the presale contract</li>
 </ul>
-</div>
-<div class="book-footer">
-<h2 id="🚀-Start-Your-Learning-Journey">🚀 Start Your Learning Journey</h2>
-<p>Choose a topic of interest and start exploring the exciting world of blockchain technology!</p>
-<p><strong>Version:</strong> v1.0 (2026-01) | <strong>Last Updated:</strong> January 29, 2026</p>
-</div>
-</div>
+</li>
+<li>
+<p><strong>Parameter Control</strong></p>
+<ul>
+<li><strong>Modify Price Per Portion:</strong> Modify presale price, minimum 0.001</li>
+<li><strong>Modify Quantity Per Portion:</strong> Modify quantity per portion</li>
+<li><strong>Modify Total Portions:</strong> Modify total presale portions based on actual situation</li>
+<li><strong>Modify Max Portions Per Mint:</strong> Modify single presale limit as needed</li>
+<li><strong>Modify Max Portions Per Wallet:</strong> Modify single wallet presale limit as needed</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-How-Does-Presale-Start-and-End">4. How Does Presale Start and End?</h4>
+<p><strong>1) Enable Presale:</strong> In <code>Presale Console</code> click <strong>Enable Presale</strong>, there will be two confirmations. First is authorization confirmation, second will ask you to <strong>transfer</strong> enough tokens into the presale contract</p>
+<p><strong>2) End Presale:</strong> If you want to end the presale early, just use the &quot;Withdraw Tokens from Contract&quot; function to withdraw all tokens from the contract, then presale is no longer possible</p>
+<h3 id="IV-FAQ">IV. FAQ</h3>
+<ul>
+<li>
+<p><strong>Why did enabling presale fail?</strong></p>
+<ul>
+<li><strong>Insufficient tokens in wallet:</strong> If your set presale [quantity per portion x total portions = 10000 tokens], but your wallet only has 9000 tokens, it will prompt presale failure</li>
+<li><strong>Presale contract not whitelisted:</strong> If the presale contract address is not added to the token whitelist, presale may fail to enable</li>
+<li><strong>Token contract has holding limit:</strong> If the previous token contract has maximum holding limit, and your presale quantity exceeds this limit, tokens cannot be transferred to the presale address, causing presale enable failure</li>
+</ul>
+</li>
+<li>
+<p><strong>After presale is enabled, why do user transfer presales fail?</strong></p>
+<ul>
+<li><strong>Price issue:</strong> If the user’s BNB transfer amount is less than the price per portion, it will fail, BNB returned</li>
+<li><strong>Gas issue:</strong> If gas fee is set too low, presale may fail</li>
+<li><strong>Contract total issue:</strong> If the contract address doesn’t have enough tokens for presale, users naturally cannot participate</li>
+<li><strong>Portion input error:</strong> Max portions per wallet must be greater than or equal to max portions per transaction</li>
+<li><strong>Presale limit reached:</strong> If single transaction or single wallet presale limit is reached, cannot buy more</li>
+<li><strong>Presale completed:</strong> If you set total presale portions as 10, and 10 portions have been reached, presale is complete</li>
+</ul>
+</li>
+<li>
+<p><strong>Can I presale using wBNB or USDT?</strong></p>
+<ul>
+<li>Not supported, currently only native token presales are supported. BSC chain uses BNB, Base chain uses ETH</li>
+</ul>
+</li>
+<li>
+<p><strong>Batch presale and actual portion distribution</strong></p>
+<ul>
+<li><strong>Integer multiple presale:</strong> If 1 portion is 100 tokens, price 0.03 BNB. User transfers 0.06 BNB, receives 200 tokens; user transfers 0.09 BNB, receives 300 tokens, and so on</li>
+<li><strong>Non-integer multiple presale:</strong> Same 1 portion 100 tokens, price 0.03 BNB. If user transfers 0.04 BNB, receives 100 tokens, excess 0.01 BNB returned</li>
+</ul>
+</li>
+<li>
+<p><strong>Is there a max/min limit for presale?</strong></p>
+<ul>
+<li><strong>Minimum limit:</strong> Single address single presale, minimum limit is your set minimum price, below this price cannot presale</li>
+<li><strong>Maximum limit:</strong> Both single transaction and single wallet have separate maximum limits</li>
+</ul>
+</li>
+</ul>
+<p>If you have questions or unclear points, please join the official Telegram group: <a target="_blank" rel="noopener" href="https://t.me/PandaTool">https://t.me/PandaTool</a></p>
+<hr>
+<h2 id="Create-Token-Mint-Add-Pool-Presale-Tutorial">Create Token Mint Add-Pool Presale Tutorial</h2>
+<p>Presale = Add Pool, Automatic LP Distribution, Everyone is a Market Maker</p>
+<p><strong>What is Mint Add-Pool Presale?</strong></p>
+<p>Simply put, it is a presale through the Mint method, and the received BNB is added to the liquidity pool. The project team transfers a certain amount of tokens to the presale contract address. After the presale is opened, users transfer BNB to the presale contract address, and the presale contract will automatically add tokens and BNB together to PancakeSwap to form a liquidity pool, and give LP to users.</p>
+<p>The difference from standard presale is that add-pool presale <strong>only gives LP to users</strong>, to establish the foundation for the project’s subsequent development.</p>
+<h3 id="I-Mint-Add-Pool-Presale-Feature-Description">I. Mint Add-Pool Presale Feature Description</h3>
+<ul>
+<li><strong>Add-Pool Presale:</strong> Automatically <strong>adds liquidity</strong> during presale, users can only receive <code>LP</code>, not tokens</li>
+<li><strong>No Frontend:</strong> No webpage needed, pure contract support, 100% <strong>decentralized</strong></li>
+<li><strong>Transfer = Presale:</strong> Users transfer BNB to <code>presale contract</code> and <strong>automatically</strong> receive LP</li>
+<li><strong>Custom Functions:</strong> Project team can <strong>modify</strong> presale price and portion quantity through console after presale starts</li>
+<li><strong>No Soft/Hard Cap:</strong> No concept of soft or hard cap, only total presale quantity (portions x quantity per portion)</li>
+</ul>
+<h3 id="II-Important-Notes-2">II. Important Notes</h3>
+<ul>
+<li>Please ensure token <strong>has not</strong> added pool before presale is enabled</li>
+<li>Standard token contracts <strong>not recommended</strong></li>
+<li>Other token contracts should not start trading (if manual launch function exists)</li>
+<li>After presale creation, please add presale address to token address <strong>whitelist</strong></li>
+<li>If your token contract has manual launch function but no whitelist function, do not use</li>
+<li><strong>Do not remove pool</strong> during presale. Once pool is removed, subsequent presales may fail</li>
+</ul>
+<h3 id="III-Mint-Presale-Creation-Tutorial">III. Mint Presale Creation Tutorial</h3>
+<h4 id="1-Connect-Wallet-Experienced-users-can-skip-2">1. Connect Wallet (Experienced users can skip)</h4>
+<p>First, open the presale creation website: <a target="_blank" rel="noopener" href="https://www.pandatool.org/#/presale/mintAddSale">https://www.pandatool.org/#/presale/mintAddSale</a>, click connect wallet in the upper right corner</p>
+<h4 id="2-Fill-in-Presale-Parameters-2">2. Fill in Presale Parameters</h4>
+<p>After wallet connection is successful, we create the presale through the PandaTool visual page and fill in the corresponding presale parameters:</p>
+<ul>
+<li><strong>Presale Name</strong>: Name your presale, English only</li>
+<li><strong>Presale Token Address</strong>: Your token contract address to presale (prerequisite is having a token)</li>
+<li><strong>Price Per Portion:</strong> Presale price per portion, minimum unit is 0.001</li>
+<li><strong>Quantity Per Portion</strong>: How many tokens per portion</li>
+<li><strong>Total Portions:</strong> Total number of portions available for presale (quantity per portion x total portions &lt;= total token supply)</li>
+<li><strong>Max Portions Per Transaction:</strong> Maximum portions per single presale</li>
+<li><strong>Max Portions Per Wallet:</strong> Maximum portions per wallet</li>
+<li><strong>Select Exchange:</strong> BSC selects Pancake, Base chain selects Uniswap</li>
+<li><strong>Add-Pool Ratio:</strong> Add liquidity according to set ratio (minimum 50%, maximum 100%), excess BNB or ETH goes to marketing wallet</li>
+</ul>
+<p>After filling in parameters, click Create Contract, wallet will pop up for confirmation, wait a few seconds, and you’ll be notified that presale creation is complete</p>
+<h4 id="3-Presale-Console-Operations-2">3. Presale Console Operations</h4>
+<p>After successful creation, we enter the console: <a target="_blank" rel="noopener" href="https://www.pandatool.org/#/presale/console">https://www.pandatool.org/#/presale/console</a></p>
+<ul>
+<li>
+<p><strong>Permission Control</strong></p>
+<ul>
+<li><strong>Transfer Ownership</strong>: Transfer contract permissions to others</li>
+<li><strong>Enable Trading:</strong> Click button and confirm with wallet to start presale</li>
+<li><strong>Withdraw Tokens from Contract:</strong> Can withdraw BNB/ETH and tokens from the presale contract</li>
+</ul>
+</li>
+<li>
+<p><strong>Parameter Control</strong></p>
+<ul>
+<li><strong>Modify Price Per Portion:</strong> Modify presale price, minimum 0.001</li>
+<li><strong>Modify Quantity Per Portion:</strong> Modify quantity per portion</li>
+<li><strong>Modify Total Portions:</strong> Modify total presale portions based on actual situation</li>
+<li><strong>Modify Max Portions Per Mint:</strong> Modify single presale limit as needed</li>
+<li><strong>Modify Max Portions Per Wallet:</strong> Modify single wallet presale limit as needed</li>
+</ul>
+</li>
+<li>
+<p><strong>Pool Control</strong></p>
+<ul>
+<li><strong>Modify Marketing Wallet:</strong> Marketing wallet defaults to token creation wallet, can be modified as needed</li>
+<li><strong>Modify Add-Pool Ratio:</strong> Minimum 50%, maximum 100%, can be modified within this range</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-How-Does-Presale-Start-and-End-2">4. How Does Presale Start and End?</h4>
+<p><strong>1) Add Whitelist:</strong> After presale creation, add the presale contract to your token contract’s tax whitelist</p>
+<p><strong>2) Enable Presale:</strong> In <code>Presale Console</code> click <strong>Start Trading</strong>, there will be two confirmations. First is authorization confirmation, second will ask you to <strong>transfer</strong> enough tokens into the presale contract</p>
+<p><strong>3) End Presale:</strong> If you want to end the presale early, just use the &quot;Withdraw Tokens from Contract&quot; function to withdraw all tokens from the contract, then presale is no longer possible</p>
+<h3 id="IV-FAQ-2">IV. FAQ</h3>
+<ul>
+<li>
+<p><strong>How to understand add-pool ratio?</strong></p>
+<ul>
+<li>If you select 100%, it means all BNB from each user’s presale will be added to the pool as liquidity; if you select 50%, half of the user’s presale BNB goes to marketing wallet, half is added to the pool</li>
+</ul>
+</li>
+<li>
+<p><strong>What is the marketing wallet for?</strong></p>
+<ul>
+<li>Marketing wallet defaults to the token creation wallet, mainly to receive users’ excess BNB when you select the add-pool mode</li>
+</ul>
+</li>
+</ul>
+<p>If you have questions or unclear points, please join the official Telegram group: <a target="_blank" rel="noopener" href="https://t.me/PandaTool">https://t.me/PandaTool</a></p>
+<hr>
+<h2 id="Create-Token-Mint-Donation-Presale-Tutorial">Create Token Mint Donation Presale Tutorial</h2>
+<p>Presale = Add Pool, Automatic LP Distribution, Everyone is a Market Maker</p>
+<p><strong>What is Mint Donation Presale?</strong></p>
+<p>Simply put, it is a presale through the Mint method, and the received BNB is donated to celebrity wallets. Specifically, the project team transfers a certain amount of tokens to the presale contract address. After the presale is opened, users transfer BNB to the presale contract address, and the presale contract will automatically give a portion of tokens or BNB to celebrity wallets according to the set ratio, such as Vitalik’s wallet address, convenient for subsequent promotion.</p>
+<p>Different from standard presale and add-pool presale, donation presale leverages celebrity marketing, proactively adding wallet addresses like Vitalik’s to the project, creating new narratives for the project, facilitating subsequent promotion.</p>
+<h3 id="I-Mint-Donation-Presale-Feature-Description">I. Mint Donation Presale Feature Description</h3>
+<ul>
+<li><strong>Donation Presale:</strong> Give BNB or tokens to celebrity wallets during presale</li>
+<li><strong>No Frontend:</strong> No webpage needed, pure contract support, 100% <strong>decentralized</strong></li>
+<li><strong>Transfer = Presale:</strong> Users transfer BNB to <code>presale contract</code> and <strong>automatically</strong> receive tokens</li>
+<li><strong>Custom Functions:</strong> Project team can <strong>modify</strong> presale price and portion quantity through console after presale starts</li>
+<li><strong>No Soft/Hard Cap:</strong> No concept of soft or hard cap, only total presale quantity (portions x quantity per portion)</li>
+</ul>
+<h3 id="II-Important-Notes-3">II. Important Notes</h3>
+<ul>
+<li>Vitalik may dump later, be aware of the risk</li>
+<li>Standard token contracts <strong>not recommended</strong> for presale, as someone may add pool during presale</li>
+<li>Other token contracts should not start trading (if manual launch function exists)</li>
+</ul>
+<h3 id="III-Donation-Presale-Creation-Tutorial">III. Donation Presale Creation Tutorial</h3>
+<h4 id="1-Connect-Wallet-Experienced-users-can-skip-3">1. Connect Wallet (Experienced users can skip)</h4>
+<p>First, open the donation presale creation website: <a target="_blank" rel="noopener" href="https://www.pandatool.org/#/presale/mintDonate">https://www.pandatool.org/#/presale/mintDonate</a>, click connect wallet in the upper right corner</p>
+<h4 id="2-Fill-in-Presale-Parameters-3">2. Fill in Presale Parameters</h4>
+<p>After wallet connection is successful, we create the presale through the PandaTool visual page and fill in the corresponding presale parameters:</p>
+<ul>
+<li><strong>Presale Name</strong>: Name your presale, English only</li>
+<li><strong>Presale Token Address</strong>: Your token contract address to presale (prerequisite is having a token)</li>
+<li><strong>Price Per Portion:</strong> Presale price per portion, minimum unit is 0.001</li>
+<li><strong>Quantity Per Portion</strong>: How many tokens per portion</li>
+<li><strong>Total Portions:</strong> Total number of portions available for presale (quantity per portion x total portions &lt;= total token supply)</li>
+<li><strong>Max Portions Per Transaction:</strong> Maximum portions per single presale</li>
+<li><strong>Max Portions Per Wallet:</strong> Maximum portions per wallet</li>
+<li><strong>Donate BNB/ETH Ratio:</strong> What ratio (0~100) of presale BNB/ETH to donate to an address</li>
+<li><strong>BNB/ETH Receiving Address:</strong> Which address to donate BNB/ETH to (usually celebrity wallet)</li>
+<li><strong>Donate Token Ratio:</strong> What ratio (0~100) of presale tokens to donate to an address</li>
+<li><strong>Token Receiving Address:</strong> Which address to donate tokens to (usually celebrity wallet)</li>
+</ul>
+<p>Vitalik’s wallet address: 0xd8da6bf26964af9d7eed9e03e53415d37aa96045</p>
+<p>After filling in parameters, click Create Contract, wallet will pop up for confirmation, wait a few seconds, and you’ll be notified that presale creation is complete</p>
+<h4 id="3-Presale-Console-Operations-3">3. Presale Console Operations</h4>
+<p>After successful creation, we enter the console: <a target="_blank" rel="noopener" href="https://www.pandatool.org/#/presale/console">https://www.pandatool.org/#/presale/console</a></p>
+<ul>
+<li>
+<p><strong>Permission Control</strong></p>
+<ul>
+<li><strong>Transfer Ownership</strong>: Transfer contract permissions to others</li>
+<li><strong>Enable Trading:</strong> Click button and confirm with wallet to start presale</li>
+<li><strong>Withdraw Tokens from Contract:</strong> Can withdraw BNB/ETH and tokens from the presale contract</li>
+</ul>
+</li>
+<li>
+<p><strong>Parameter Control</strong></p>
+<ul>
+<li><strong>Modify Price Per Portion:</strong> Modify presale price, minimum 0.001</li>
+<li><strong>Modify Quantity Per Portion:</strong> Modify quantity per portion</li>
+<li><strong>Modify Total Portions:</strong> Modify total presale portions based on actual situation</li>
+<li><strong>Modify Max Portions Per Mint:</strong> Modify single presale limit as needed</li>
+<li><strong>Modify Max Portions Per Wallet:</strong> Modify single wallet presale limit as needed</li>
+</ul>
+</li>
+<li>
+<p><strong>Donation Control</strong></p>
+<ul>
+<li><strong>Modify BNB/ETH Receiving Wallet:</strong> Reset the wallet address receiving donations</li>
+<li><strong>Modify BNB/ETH Donation Ratio:</strong> Reset the donation ratio</li>
+<li><strong>Modify Token Receiving Wallet:</strong> Reset the wallet address receiving donations</li>
+<li><strong>Modify Token Donation Ratio:</strong> Reset the donation ratio</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-How-Does-Presale-Start-and-End-3">4. How Does Presale Start and End?</h4>
+<p><strong>1) Add Whitelist:</strong> After presale creation, add the presale contract to your token contract’s tax whitelist</p>
+<p><strong>2) Enable Presale:</strong> In <code>Presale Console</code> click <strong>Start Trading</strong>, there will be two confirmations. First is authorization confirmation, second will ask you to <strong>transfer</strong> enough tokens into the presale contract</p>
+<p><strong>3) End Presale:</strong> If you want to end the presale early, just use the &quot;Withdraw Tokens from Contract&quot; function to withdraw all tokens from the contract, then presale is no longer possible</p>
+<h3 id="IV-FAQ-3">IV. FAQ</h3>
+<ul>
+<li>
+<p><strong>What is the donation ratio range?</strong></p>
+<ul>
+<li>Minimum 0% donation, maximum 100% donation</li>
+</ul>
+</li>
+<li>
+<p><strong>What’s the difference between donating BNB and donating tokens?</strong></p>
+<ul>
+<li><strong>Donate BNB/ETH:</strong> Project team receives less BNB/ETH</li>
+<li><strong>Donate Tokens:</strong> Users receive fewer tokens</li>
+</ul>
+</li>
+</ul>
+<p>If you have questions or unclear points, please join the official Telegram group: <a target="_blank" rel="noopener" href="https://t.me/PandaTool">https://t.me/PandaTool</a></p>
 
         </div>
         
@@ -363,8 +555,8 @@ Welcome to **CCBus Guide**! This is a comprehensive guide focused on practical a
     
     <div class="ccbook-lang-switcher">
       <div class="languages-header">
-          <a href="/ccbus-guide/index.html" class="lang-btn">中文</a>
-          <a href="/en/ccbus-guide/index.html" class="lang-btn active">EN</a>
+          <a href="/ccbus-guide/chapters/presale/index.html" class="lang-btn">中文</a>
+          <a href="/en/ccbus-guide/chapters/presale/index.html" class="lang-btn active">EN</a>
       </div>
     </div>
 
@@ -1329,11 +1521,11 @@ Welcome to **CCBus Guide**! This is a comprehensive guide focused on practical a
     </label>
     <select class="lang-select" data-canonical="" aria-label="Select language">
       
-        <option value="zh-CN" data-href="/ccbus-guide/index.html" selected="">
+        <option value="zh-CN" data-href="/ccbus-guide/chapters/presale/index.html" selected="">
           简体中文
         </option>
       
-        <option value="en" data-href="/en/ccbus-guide/index.html" selected="">
+        <option value="en" data-href="/en/ccbus-guide/chapters/presale/index.html" selected="">
           English
         </option>
       

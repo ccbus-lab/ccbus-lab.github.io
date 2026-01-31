@@ -20,26 +20,32 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.ccbus.cc","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="CCBus Guide  Welcome to **CCBus Guide**! This is a comprehensive guide focused on practical applications of blockchain technology, covering a complete knowledge system from fundamental concepts to ad">
+    <meta name="description" content="copy复制chevron-down  screwdriver-wrench操作工具  arrow-right-to-bracket代币批量归集工具 一键批量归集EVM链的代币 批量归集工具指的是，可以将钱包内的代币一次性归集到一个地址，也就是我们常说的多对一转账。 归集完的钱包地址就可以直接丢弃掉，方便钱包的管理与整合。 接下来，将给大家演示，该如何使用PandaTool平台的批量归集工具 ci">
 <meta property="og:type" content="website">
-<meta property="og:title" content="CCBus Guide">
-<meta property="og:url" content="https://www.ccbus.cc/en/ccbus-guide/index.html">
+<meta property="og:title" content="代币批量归集工具">
+<meta property="og:url" content="https://www.ccbus.cc/en/ccbus-guide/chapters/tools/gather.html">
 <meta property="og:site_name" content="CCBus">
-<meta property="og:description" content="CCBus Guide  Welcome to **CCBus Guide**! This is a comprehensive guide focused on practical applications of blockchain technology, covering a complete knowledge system from fundamental concepts to ad">
+<meta property="og:description" content="copy复制chevron-down  screwdriver-wrench操作工具  arrow-right-to-bracket代币批量归集工具 一键批量归集EVM链的代币 批量归集工具指的是，可以将钱包内的代币一次性归集到一个地址，也就是我们常说的多对一转账。 归集完的钱包地址就可以直接丢弃掉，方便钱包的管理与整合。 接下来，将给大家演示，该如何使用PandaTool平台的批量归集工具 ci">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2026-01-29T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-30T14:25:07.713Z">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F19IM1hfKWxCHvNg03t8V%252F1-%25E5%2588%2587%25E6%258D%25A2%25E9%2593%25BE.png%3Falt%3Dmedia%26token%3D956f26c4-531a-40c4-9d6e-b4bb07b2112c&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=91213a4d&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FO8TPq21h3vAxEB80nbIw%252F%25E6%2589%25B9%25E9%2587%258F%25E5%25BD%2592%25E9%259B%2586.png%3Falt%3Dmedia%26token%3D17cbb1e2-de70-4b03-a5cb-270f82199a75&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=8898e9f4&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FnZRvnbfGW4y5B8VjwJEp%252F4-%25E9%2585%258D%25E7%25BD%25AE%25E4%25BF%25A1%25E6%2581%25AF.png%3Falt%3Dmedia%26token%3Ddfd4b163-b115-4547-b849-c9b173852530&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=eef6115e&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FEkirK6XxBlV05TithDzo%252F5-%25E6%2589%25A7%25E8%25A1%258C%25E5%25BD%2592%25E9%259B%2586.png%3Falt%3Dmedia%26token%3D4c07cd82-4731-4ca7-a821-9854fdaef333&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=f3dde2f3&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FJIbUgOjgHvk1wGdKjIxy%252F6-%25E7%2582%25B9%25E5%2587%25BB%25E6%2589%25A7%25E8%25A1%258C.png%3Falt%3Dmedia%26token%3D1561bd70-d71b-4f23-bd00-c0ffde989894&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=be204c15&amp;sv=2">
+<meta property="article:published_time" content="2026-01-30T14:24:31.000Z">
+<meta property="article:modified_time" content="2026-01-30T14:24:31.575Z">
 <meta property="article:author" content="CCBus Lab">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F19IM1hfKWxCHvNg03t8V%252F1-%25E5%2588%2587%25E6%258D%25A2%25E9%2593%25BE.png%3Falt%3Dmedia%26token%3D956f26c4-531a-40c4-9d6e-b4bb07b2112c&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=91213a4d&amp;sv=2">
 
 
-<link rel="canonical" href="https://www.ccbus.cc/en/ccbus-guide/">
+<link rel="canonical" href="https://www.ccbus.cc/en/ccbus-guide/chapters/tools/gather">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://www.ccbus.cc/en/ccbus-guide/index.html","path":"en/ccbus-guide/index.html","title":"CCBus Guide"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://www.ccbus.cc/en/ccbus-guide/chapters/tools/gather.html","path":"en/ccbus-guide/chapters/tools/gather.html","title":"代币批量归集工具"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>CCBus Guide | CCBus
+<title>代币批量归集工具 | CCBus
 </title>
   
 
@@ -132,13 +138,13 @@
 
 <div class="languages-header">
   
-    <a href="/ccbus-guide/index.html"
+    <a href="/ccbus-guide/chapters/tools/gather.html"
        class="lang-btn "
        title="切换到简体中文">
       中文
     </a>
   
-    <a href="/en/ccbus-guide/index.html"
+    <a href="/en/ccbus-guide/chapters/tools/gather.html"
        class="lang-btn active"
        title="Switch to English">
       EN
@@ -227,13 +233,16 @@
       
       <article class="ccbook-content-area"><header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">CCBus Guide
+<h1 class="post-title" itemprop="name headline">代币批量归集工具
 </h1>
 
 <div class="post-meta-container">
   <ul class="breadcrumb">
             <li><a href="/en/">EN</a></li>
-          <li>CCBUS-GUIDE</li>
+            <li><a href="/en/ccbus-guide/">CCBUS-GUIDE</a></li>
+            <li><a href="/en/ccbus-guide/chapters/">CHAPTERS</a></li>
+            <li><a href="/en/ccbus-guide/chapters/tools/">TOOLS</a></li>
+            <li>GATHER</li>
   </ul>
 </div>
 
@@ -244,102 +253,108 @@
         
         
         <div class="post-body ccbook-content-body">
-          <div class="ccbook-index">
-<h1>CCBus Guide</h1>
-<div class="book-intro">
-Welcome to **CCBus Guide**! This is a comprehensive guide focused on practical applications of blockchain technology, covering a complete knowledge system from fundamental concepts to advanced applications.
-<p>Whether you are:</p>
-<ul>
-<li>🎓 <strong>Beginner</strong> - wanting to quickly get started with blockchain technology</li>
-<li>💻 <strong>Developer</strong> - hoping to master practical skills</li>
-<li>🏗️ <strong>Architect</strong> - needing to design solutions</li>
-<li>💼 <strong>Professional</strong> - exploring industry best practices</li>
-</ul>
-<p>This guide will provide you with practical knowledge and experience.</p>
-</div>
-<h2 id="📚-Complete-Table-of-Contents">📚 Complete Table of Contents</h2>
-<div class="book-features">
-<h3 id="Guide-Features">Guide Features</h3>
-<ul>
-<li>✅ <strong>Practice-Oriented</strong>: Focus on practical applications and case studies</li>
-<li>✅ <strong>Easy to Understand</strong>: From basics to advanced, step by step</li>
-<li>✅ <strong>Tool Integration</strong>: Rich introduction to tools and frameworks</li>
-<li>✅ <strong>Continuous Updates</strong>: Tracking latest technology developments</li>
-<li>✅ <strong>Community-Driven</strong>: Gathering industry best practices</li>
-</ul>
-</div>
-<h2 id="📖-Complete-Content-Navigation">📖 Complete Content Navigation</h2>
-<div class="chapter-group">
-<h3 id="Chapter-1-Cross-Chain-Bridge-🌉"><a href="/en/ccbus-guide/chapters/bridge/">Chapter 1: Cross-Chain Bridge</a> 🌉</h3>
-<p><strong>Difficulty:</strong> 🟢 Beginner | <strong>Tutorials:</strong> 4</p>
-<p>Master cross-chain asset transfer technology, supporting multi-chain interoperability.</p>
-<h3 id="Chapter-2-EVM-Token-Creation-🪙"><a href="/en/ccbus-guide/chapters/createtoken/">Chapter 2: EVM Token Creation</a> 🪙</h3>
-<p><strong>Difficulty:</strong> 🟢 Beginner | <strong>Tutorials:</strong> 22</p>
-<p>Comprehensive guide to EVM token creation, including standard tokens, dividend tokens, 314 protocol, and more.</p>
-<h3 id="Chapter-3-Terms-Declaration-📋"><a href="/en/ccbus-guide/chapters/declaration/">Chapter 3: Terms &amp; Declaration</a> 📋</h3>
-<p><strong>Difficulty:</strong> 🟢 Beginner | <strong>Documents:</strong> 2</p>
-<p>Important legal disclaimers and terms of service.</p>
-<h3 id="Chapter-4-Practical-Information-💡"><a href="/en/ccbus-guide/chapters/practical-information/">Chapter 4: Practical Information</a> 💡</h3>
-<p><strong>Difficulty:</strong> 🟢 Beginner | <strong>Tutorials:</strong> 7</p>
-<p>Wallet configuration, chain parameters, faucets, and other practical guides.</p>
-<h3 id="Chapter-5-Presale-Tools-🚀"><a href="/en/ccbus-guide/chapters/presale/">Chapter 5: Presale Tools</a> 🚀</h3>
-<p><strong>Difficulty:</strong> 🟡 Intermediate | <strong>Tutorials:</strong> 3</p>
-<p>Token presale and mint functionality implementation tutorials.</p>
-<h3 id="Chapter-6-FAQ-❓"><a href="/en/ccbus-guide/chapters/question/">Chapter 6: FAQ</a> ❓</h3>
-<p><strong>Difficulty:</strong> 🟢 Beginner | <strong>Q&amp;A:</strong> 9</p>
-<p>Common questions and answers, including liquidity, detection, and verification guides.</p>
-<h3 id="Chapter-7-Solana-Tools-⚡"><a href="/en/ccbus-guide/chapters/sol/">Chapter 7: Solana Tools</a> ⚡</h3>
-<p><strong>Difficulty:</strong> 🟡 Intermediate | <strong>Tutorials:</strong> 30</p>
-<p>Complete Solana ecosystem toolset, covering token creation, Raydium, Pump.fun, and more.</p>
-<h3 id="Chapter-8-Sui-Tools-🌊"><a href="/en/ccbus-guide/chapters/sui/">Chapter 8: Sui Tools</a> 🌊</h3>
-<p><strong>Difficulty:</strong> 🟡 Intermediate | <strong>Tutorials:</strong> 7</p>
-<p>Sui blockchain tools guide, including Cetus, Turbos, and other DEXs.</p>
-<h3 id="Chapter-9-TON-Tools-💎"><a href="/en/ccbus-guide/chapters/ton/">Chapter 9: TON Tools</a> 💎</h3>
-<p><strong>Difficulty:</strong> 🟡 Intermediate | <strong>Tutorials:</strong> 5</p>
-<p>TON ecosystem tools, Jetton creation and DeDust trading.</p>
-<h3 id="Chapter-10-General-Tools-🛠️"><a href="/en/ccbus-guide/chapters/tools/">Chapter 10: General Tools</a> 🛠️</h3>
-<p><strong>Difficulty:</strong> 🟢 Beginner | <strong>Tutorials:</strong> 10</p>
-<p>Batch transfer, contract checking, wallet generation, and other utilities.</p>
-<h3 id="Chapter-11-TRON-Tools-🔴"><a href="/en/ccbus-guide/chapters/tron/">Chapter 11: TRON Tools</a> 🔴</h3>
-<p><strong>Difficulty:</strong> 🟡 Intermediate | <strong>Tutorials:</strong> 7</p>
-<p>TRON chain toolset, TRC20 tokens and SunSwap operations.</p>
-</div>
-<h2 id="📝-Content-Description">📝 Content Description</h2>
-<div class="book-intro">
-<p>This guide is organized based on PandaTool documentation, containing complete blockchain tool usage tutorials. Content includes:</p>
-<ul>
-<li><strong>EVM Tools</strong>: Token creation, liquidity management, permission control</li>
-<li><strong>Solana Tools</strong>: SPL tokens, Raydium pools, trading bots</li>
-<li><strong>Sui Tools</strong>: Token issuance, DEX interaction</li>
-<li><strong>TON Tools</strong>: Jetton creation, exchange integration</li>
-<li><strong>TRON Tools</strong>: TRC20 tokens, energy rental</li>
-<li><strong>Cross-Chain Tools</strong>: Multi-chain asset bridging</li>
-<li><strong>General Tools</strong>: Batch transfer, snapshot, wallet management</li>
-</ul>
-<p><strong>Note:</strong> Content is continuously being improved, more chapters coming soon!</p>
-</div>
-<h2 id="💡-How-to-Use-This-Guide">💡 How to Use This Guide</h2>
-<div class="usage-guide">
-<h3 id="Learning-Recommendations">Learning Recommendations</h3>
+          <p>copy复制chevron-down</p>
 <ol>
-<li><strong>Learn as Needed</strong> - Choose chapters based on your requirements</li>
-<li><strong>Hands-On Practice</strong> - Follow examples for practical operations</li>
-<li><strong>Problem-Driven</strong> - Learning with questions is more effective</li>
-<li><strong>Communication &amp; Sharing</strong> - Join community discussions</li>
+<li><a href="/tools">screwdriver-wrench操作工具</a></li>
 </ol>
-<h3 id="Supporting-Resources">Supporting Resources</h3>
+<h1>arrow-right-to-bracket代币批量归集工具</h1>
+<p>一键批量归集EVM链的代币</p>
+<p>批量归集工具指的是，可以将钱包内的代币一次性归集到一个地址，也就是我们常说的<strong>多对一转账。</strong> 归集完的钱包地址就可以直接丢弃掉，方便钱包的管理与整合。</p>
+<p>接下来，将给大家演示，该如何使用PandaTool平台的批量归集工具</p>
+<p>circle-info</p>
+<p>批量归集工具免费使用</p>
+<h3 id=""></h3>
+<p>hashtag</p>
+<p>一、连接钱包</p>
+<p>首先，我们需要打开批量归集工具：<a target="_blank" rel="noopener" href="https://www.pandatool.org/#/market/gather">https://www.pandatool.org/#/market/gather</a><a target="_blank" rel="noopener" href="https://www.pandatool.org/#/market/gather">arrow-up-right</a> ，进入之后，会让你切换到币安链</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F19IM1hfKWxCHvNg03t8V%252F1-%25E5%2588%2587%25E6%258D%25A2%25E9%2593%25BE.png%3Falt%3Dmedia%26token%3D956f26c4-531a-40c4-9d6e-b4bb07b2112c&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=91213a4d&amp;sv=2" alt=""></p>
+<p>将链切换到币安链，并连接钱包后，就能够看到整个批量归集的页面了。</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FO8TPq21h3vAxEB80nbIw%252F%25E6%2589%25B9%25E9%2587%258F%25E5%25BD%2592%25E9%259B%2586.png%3Falt%3Dmedia%26token%3D17cbb1e2-de70-4b03-a5cb-270f82199a75&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=8898e9f4&amp;sv=2" alt=""></p>
+<p>需要注意的是，批量归集以前是需要购买会员才能使用，现在不需要了</p>
+<h3 id="-2"></h3>
+<p>hashtag</p>
+<p>二、配置归集参数</p>
+<p>进入归集页面之后，我们需要按照下图顺序和要求，填写并配置相关信息，同时导入要<code>归集</code>的钱包</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FnZRvnbfGW4y5B8VjwJEp%252F4-%25E9%2585%258D%25E7%25BD%25AE%25E4%25BF%25A1%25E6%2581%25AF.png%3Falt%3Dmedia%26token%3Ddfd4b163-b115-4547-b849-c9b173852530&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=eef6115e&amp;sv=2" alt=""></p>
+<p><strong>1、选择链</strong></p>
 <ul>
-<li><strong>Code Repository</strong> - Complete examples on GitHub</li>
-<li><strong>Online Community</strong> - Q&amp;A and communication platform</li>
-<li><strong>Practical Projects</strong> - Real-world application cases</li>
+<li>目前支持BSC、Arb、Base、ETH等多种EVM链的代币归集</li>
 </ul>
-</div>
-<div class="book-footer">
-<h2 id="🚀-Start-Your-Learning-Journey">🚀 Start Your Learning Journey</h2>
-<p>Choose a topic of interest and start exploring the exciting world of blockchain technology!</p>
-<p><strong>Version:</strong> v1.0 (2026-01) | <strong>Last Updated:</strong> January 29, 2026</p>
-</div>
-</div>
+<p><strong>2、接收地址</strong></p>
+<ul>
+<li>输入接收代币的钱包地址</li>
+</ul>
+<p><strong>3、归集代币</strong></p>
+<ul>
+<li>
+<p>归集原生代币：如果归集BNB、ETH这种原生代币，不需要输入合约地址</p>
+</li>
+<li>
+<p>归集其他代币：如果归集的是其他代币，则需要填入代币合约地址</p>
+</li>
+</ul>
+<p><strong>4、导入钱包</strong></p>
+<ul>
+<li>导入需要归集的钱包私钥</li>
+</ul>
+<p><strong>5、刷新余额</strong></p>
+<ul>
+<li>
+<p>在导入钱包之后，需要刷新各钱包内的代币余额</p>
+</li>
+<li>
+<p>在每一次<strong>完成归集后</strong> ，也需要筛选钱包内的代币余额</p>
+</li>
+<li>
+<p>在每一次<strong>切换了链之后</strong> ，也需要刷新钱包内的代币余额</p>
+</li>
+</ul>
+<p><strong>6、选择归集方式</strong></p>
+<ul>
+<li>
+<p><strong>发送全部：</strong> 将钱包内某个<code>指定代币</code>全部归集到指定的钱包地址</p>
+</li>
+<li>
+<p><strong>归集数量：</strong> 可以自定义要归集的代币数量，如果部分钱包数量不足，将跳过</p>
+</li>
+<li>
+<p><strong>保留余额：</strong> 在钱包内保留固定余额的代币，其余的归集出去。如果余额不够，将跳过</p>
+</li>
+</ul>
+<p><strong>7、核对归集信息</strong></p>
+<ul>
+<li>确认好要归集的信息无误</li>
+</ul>
+<h3 id="-3"></h3>
+<p>hashtag</p>
+<p>三、执行归集</p>
+<p>如下图所示，当所有的信息填写完成后，我们点击归集按钮，即可开始执行归集</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FEkirK6XxBlV05TithDzo%252F5-%25E6%2589%25A7%25E8%25A1%258C%25E5%25BD%2592%25E9%259B%2586.png%3Falt%3Dmedia%26token%3D4c07cd82-4731-4ca7-a821-9854fdaef333&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=f3dde2f3&amp;sv=2" alt=""></p>
+<p>不管执行结果是成功还是失败，都会给你展示出来。如果遇到失败的情况，可以点击地址栏的<code>执行</code>按钮，再次执行归集</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FJIbUgOjgHvk1wGdKjIxy%252F6-%25E7%2582%25B9%25E5%2587%25BB%25E6%2589%25A7%25E8%25A1%258C.png%3Falt%3Dmedia%26token%3D1561bd70-d71b-4f23-bd00-c0ffde989894&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=be204c15&amp;sv=2" alt=""></p>
+<h3 id="-4"></h3>
+<p>hashtag</p>
+<p>四、批量归集疑问解答</p>
+<p><strong>1、为什么归集会失败？</strong></p>
+<ul>
+<li>
+<p>如果要归集的地址内的gas余额不足，也有可能会失败</p>
+</li>
+<li>
+<p>如果此时链刚好延迟了，也会导致部分钱包失败</p>
+</li>
+</ul>
+<p><strong>2、归集需要收费吗？</strong></p>
+<ul>
+<li>PandaTool的批量归集产品是<strong>不收费</strong> 的，除了<strong>gas</strong> 以外，您不会额外支出其他费用</li>
+</ul>
+<p><strong>3、为什么归集后没有返回结果？</strong></p>
+<ul>
+<li>可能是链卡住了，耐心等待几秒钟，就会有结果返回的</li>
+</ul>
+<p>有任何关于批量归集的的问题，可以在电报群联系志愿者：<a target="_blank" rel="noopener" href="https://t.me/pandatool">https://t.me/pandatool</a><a target="_blank" rel="noopener" href="https://t.me/pandatool">arrow-up-right</a></p>
+<p><a href="/tools/batch-transfer">上一页代币批量转账教程chevron-left</a><a href="/tools/multisendv2">下一页代币批量空投教程chevron-right</a></p>
+<p>最后更新于6个月前</p>
 
         </div>
         
@@ -363,8 +378,8 @@ Welcome to **CCBus Guide**! This is a comprehensive guide focused on practical a
     
     <div class="ccbook-lang-switcher">
       <div class="languages-header">
-          <a href="/ccbus-guide/index.html" class="lang-btn">中文</a>
-          <a href="/en/ccbus-guide/index.html" class="lang-btn active">EN</a>
+          <a href="/ccbus-guide/chapters/tools/gather.html" class="lang-btn">中文</a>
+          <a href="/en/ccbus-guide/chapters/tools/gather.html" class="lang-btn active">EN</a>
       </div>
     </div>
 
@@ -1329,11 +1344,11 @@ Welcome to **CCBus Guide**! This is a comprehensive guide focused on practical a
     </label>
     <select class="lang-select" data-canonical="" aria-label="Select language">
       
-        <option value="zh-CN" data-href="/ccbus-guide/index.html" selected="">
+        <option value="zh-CN" data-href="/ccbus-guide/chapters/tools/gather.html" selected="">
           简体中文
         </option>
       
-        <option value="en" data-href="/en/ccbus-guide/index.html" selected="">
+        <option value="en" data-href="/en/ccbus-guide/chapters/tools/gather.html" selected="">
           English
         </option>
       

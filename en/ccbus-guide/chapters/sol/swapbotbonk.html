@@ -20,26 +20,35 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.ccbus.cc","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="CCBus Guide  Welcome to **CCBus Guide**! This is a comprehensive guide focused on practical applications of blockchain technology, covering a complete knowledge system from fundamental concepts to ad">
+    <meta name="description" content="copy复制chevron-down  jxlSolana链发币  dog-leashedBonkFun批量交易&#x2F;市值管理教程 在LetsBonk批量交易代币 BonkFun市值管理机器人，简单来说就是一个支持LetsBonkarrow-up-right代币自动交易、批量交易的机器人系统，可以按照设定好的目标价格、交易次数等方式进行自动化批量买卖。   hashtag BonkFun机器人使用注意">
 <meta property="og:type" content="website">
-<meta property="og:title" content="CCBus Guide">
-<meta property="og:url" content="https://www.ccbus.cc/en/ccbus-guide/index.html">
+<meta property="og:title" content="批量交易&#x2F;市值管理教程">
+<meta property="og:url" content="https://www.ccbus.cc/en/ccbus-guide/chapters/sol/swapbotbonk.html">
 <meta property="og:site_name" content="CCBus">
-<meta property="og:description" content="CCBus Guide  Welcome to **CCBus Guide**! This is a comprehensive guide focused on practical applications of blockchain technology, covering a complete knowledge system from fundamental concepts to ad">
+<meta property="og:description" content="copy复制chevron-down  jxlSolana链发币  dog-leashedBonkFun批量交易&#x2F;市值管理教程 在LetsBonk批量交易代币 BonkFun市值管理机器人，简单来说就是一个支持LetsBonkarrow-up-right代币自动交易、批量交易的机器人系统，可以按照设定好的目标价格、交易次数等方式进行自动化批量买卖。   hashtag BonkFun机器人使用注意">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2026-01-29T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-30T14:25:07.713Z">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FFPxE7ygnLVFhPdRy8OfV%252Fbonkfun%25E4%25BA%25A4%25E6%2598%2593%25E6%259C%25BA%25E5%2599%25A8%25E4%25BA%25BA.jpg%3Falt%3Dmedia%26token%3Dec323d54-a0e2-48c1-8f18-9914bb9f0749&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=d37d537d&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FuA2yO0plb0ZSxy6y5sAz%252F1%25E6%2580%25BB%25E8%25A7%2588%25E9%25A1%25B5%25E9%259D%25A2.png%3Falt%3Dmedia%26token%3D052d9a5b-e733-4c0c-a433-b9fc056dd5d7&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=7126d768&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FhrgzM3Cje4Pi2zHtb2CP%252F2%25E5%25AF%25BC%25E5%2585%25A5%25E9%2592%25B1%25E5%258C%2585.png%3Falt%3Dmedia%26token%3D81235a89-9eea-4052-bc51-a92f43359ddc&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=bb14c20a&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F6sqdceSYdjIqwrI5P07h%252F3%25E5%25AF%25BC%25E5%2585%25A5%25E7%25A7%2581%25E9%2592%25A5.png%3Falt%3Dmedia%26token%3D0d08ad95-c842-4260-a346-e35888b9bcd8&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=f09a716f&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FrPrvr0IRACsQFfMyWO5m%252F4%25E5%259F%25BA%25E7%25A1%2580%25E4%25BB%25A3%25E5%25B8%2581.png%3Falt%3Dmedia%26token%3D00ceb4c1-a72c-4143-8ff0-635a032d70a6&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=bac8f81c&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FknZKwHvaFwafHpVgTtvB%252F5%25E8%25BE%2593%25E5%2585%25A5%25E4%25BB%25A3%25E5%25B8%2581%25E5%259C%25B0%25E5%259D%2580.png%3Falt%3Dmedia%26token%3D7ba2e53b-a952-40b4-b3f0-29f8a07b8b9f&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=3425b631&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FvpHNbsR9rbrhaf5OBg2X%252F6%25E5%25A4%259A%25E5%258A%259F%25E8%2583%25BD%25E8%25AE%25BE%25E7%25BD%25AE.png%3Falt%3Dmedia%26token%3D9e946ad9-79c9-4342-a210-2b571e8ddd72&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=50a8c209&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FznLZ9l2rJzX5nNURpyzU%252F7%25E4%25BA%25A4%25E6%2598%2593%25E5%25BC%2580%25E5%25A7%258B.png%3Falt%3Dmedia%26token%3Db1dcc94b-3fce-40c8-a344-e77759e1a895&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=10c34233&amp;sv=2">
+<meta property="article:published_time" content="2026-01-30T14:24:31.000Z">
+<meta property="article:modified_time" content="2026-01-30T14:24:31.567Z">
 <meta property="article:author" content="CCBus Lab">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FFPxE7ygnLVFhPdRy8OfV%252Fbonkfun%25E4%25BA%25A4%25E6%2598%2593%25E6%259C%25BA%25E5%2599%25A8%25E4%25BA%25BA.jpg%3Falt%3Dmedia%26token%3Dec323d54-a0e2-48c1-8f18-9914bb9f0749&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=d37d537d&amp;sv=2">
 
 
-<link rel="canonical" href="https://www.ccbus.cc/en/ccbus-guide/">
+<link rel="canonical" href="https://www.ccbus.cc/en/ccbus-guide/chapters/sol/swapbotbonk">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://www.ccbus.cc/en/ccbus-guide/index.html","path":"en/ccbus-guide/index.html","title":"CCBus Guide"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://www.ccbus.cc/en/ccbus-guide/chapters/sol/swapbotbonk.html","path":"en/ccbus-guide/chapters/sol/swapbotbonk.html","title":"批量交易/市值管理教程"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>CCBus Guide | CCBus
+<title>批量交易/市值管理教程 | CCBus
 </title>
   
 
@@ -132,13 +141,13 @@
 
 <div class="languages-header">
   
-    <a href="/ccbus-guide/index.html"
+    <a href="/ccbus-guide/chapters/sol/swapbotbonk.html"
        class="lang-btn "
        title="切换到简体中文">
       中文
     </a>
   
-    <a href="/en/ccbus-guide/index.html"
+    <a href="/en/ccbus-guide/chapters/sol/swapbotbonk.html"
        class="lang-btn active"
        title="Switch to English">
       EN
@@ -227,13 +236,16 @@
       
       <article class="ccbook-content-area"><header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">CCBus Guide
+<h1 class="post-title" itemprop="name headline">批量交易/市值管理教程
 </h1>
 
 <div class="post-meta-container">
   <ul class="breadcrumb">
             <li><a href="/en/">EN</a></li>
-          <li>CCBUS-GUIDE</li>
+            <li><a href="/en/ccbus-guide/">CCBUS-GUIDE</a></li>
+            <li><a href="/en/ccbus-guide/chapters/">CHAPTERS</a></li>
+            <li><a href="/en/ccbus-guide/chapters/sol/">SOL</a></li>
+            <li>SWAPBOTBONK</li>
   </ul>
 </div>
 
@@ -244,102 +256,134 @@
         
         
         <div class="post-body ccbook-content-body">
-          <div class="ccbook-index">
-<h1>CCBus Guide</h1>
-<div class="book-intro">
-Welcome to **CCBus Guide**! This is a comprehensive guide focused on practical applications of blockchain technology, covering a complete knowledge system from fundamental concepts to advanced applications.
-<p>Whether you are:</p>
-<ul>
-<li>🎓 <strong>Beginner</strong> - wanting to quickly get started with blockchain technology</li>
-<li>💻 <strong>Developer</strong> - hoping to master practical skills</li>
-<li>🏗️ <strong>Architect</strong> - needing to design solutions</li>
-<li>💼 <strong>Professional</strong> - exploring industry best practices</li>
-</ul>
-<p>This guide will provide you with practical knowledge and experience.</p>
-</div>
-<h2 id="📚-Complete-Table-of-Contents">📚 Complete Table of Contents</h2>
-<div class="book-features">
-<h3 id="Guide-Features">Guide Features</h3>
-<ul>
-<li>✅ <strong>Practice-Oriented</strong>: Focus on practical applications and case studies</li>
-<li>✅ <strong>Easy to Understand</strong>: From basics to advanced, step by step</li>
-<li>✅ <strong>Tool Integration</strong>: Rich introduction to tools and frameworks</li>
-<li>✅ <strong>Continuous Updates</strong>: Tracking latest technology developments</li>
-<li>✅ <strong>Community-Driven</strong>: Gathering industry best practices</li>
-</ul>
-</div>
-<h2 id="📖-Complete-Content-Navigation">📖 Complete Content Navigation</h2>
-<div class="chapter-group">
-<h3 id="Chapter-1-Cross-Chain-Bridge-🌉"><a href="/en/ccbus-guide/chapters/bridge/">Chapter 1: Cross-Chain Bridge</a> 🌉</h3>
-<p><strong>Difficulty:</strong> 🟢 Beginner | <strong>Tutorials:</strong> 4</p>
-<p>Master cross-chain asset transfer technology, supporting multi-chain interoperability.</p>
-<h3 id="Chapter-2-EVM-Token-Creation-🪙"><a href="/en/ccbus-guide/chapters/createtoken/">Chapter 2: EVM Token Creation</a> 🪙</h3>
-<p><strong>Difficulty:</strong> 🟢 Beginner | <strong>Tutorials:</strong> 22</p>
-<p>Comprehensive guide to EVM token creation, including standard tokens, dividend tokens, 314 protocol, and more.</p>
-<h3 id="Chapter-3-Terms-Declaration-📋"><a href="/en/ccbus-guide/chapters/declaration/">Chapter 3: Terms &amp; Declaration</a> 📋</h3>
-<p><strong>Difficulty:</strong> 🟢 Beginner | <strong>Documents:</strong> 2</p>
-<p>Important legal disclaimers and terms of service.</p>
-<h3 id="Chapter-4-Practical-Information-💡"><a href="/en/ccbus-guide/chapters/practical-information/">Chapter 4: Practical Information</a> 💡</h3>
-<p><strong>Difficulty:</strong> 🟢 Beginner | <strong>Tutorials:</strong> 7</p>
-<p>Wallet configuration, chain parameters, faucets, and other practical guides.</p>
-<h3 id="Chapter-5-Presale-Tools-🚀"><a href="/en/ccbus-guide/chapters/presale/">Chapter 5: Presale Tools</a> 🚀</h3>
-<p><strong>Difficulty:</strong> 🟡 Intermediate | <strong>Tutorials:</strong> 3</p>
-<p>Token presale and mint functionality implementation tutorials.</p>
-<h3 id="Chapter-6-FAQ-❓"><a href="/en/ccbus-guide/chapters/question/">Chapter 6: FAQ</a> ❓</h3>
-<p><strong>Difficulty:</strong> 🟢 Beginner | <strong>Q&amp;A:</strong> 9</p>
-<p>Common questions and answers, including liquidity, detection, and verification guides.</p>
-<h3 id="Chapter-7-Solana-Tools-⚡"><a href="/en/ccbus-guide/chapters/sol/">Chapter 7: Solana Tools</a> ⚡</h3>
-<p><strong>Difficulty:</strong> 🟡 Intermediate | <strong>Tutorials:</strong> 30</p>
-<p>Complete Solana ecosystem toolset, covering token creation, Raydium, Pump.fun, and more.</p>
-<h3 id="Chapter-8-Sui-Tools-🌊"><a href="/en/ccbus-guide/chapters/sui/">Chapter 8: Sui Tools</a> 🌊</h3>
-<p><strong>Difficulty:</strong> 🟡 Intermediate | <strong>Tutorials:</strong> 7</p>
-<p>Sui blockchain tools guide, including Cetus, Turbos, and other DEXs.</p>
-<h3 id="Chapter-9-TON-Tools-💎"><a href="/en/ccbus-guide/chapters/ton/">Chapter 9: TON Tools</a> 💎</h3>
-<p><strong>Difficulty:</strong> 🟡 Intermediate | <strong>Tutorials:</strong> 5</p>
-<p>TON ecosystem tools, Jetton creation and DeDust trading.</p>
-<h3 id="Chapter-10-General-Tools-🛠️"><a href="/en/ccbus-guide/chapters/tools/">Chapter 10: General Tools</a> 🛠️</h3>
-<p><strong>Difficulty:</strong> 🟢 Beginner | <strong>Tutorials:</strong> 10</p>
-<p>Batch transfer, contract checking, wallet generation, and other utilities.</p>
-<h3 id="Chapter-11-TRON-Tools-🔴"><a href="/en/ccbus-guide/chapters/tron/">Chapter 11: TRON Tools</a> 🔴</h3>
-<p><strong>Difficulty:</strong> 🟡 Intermediate | <strong>Tutorials:</strong> 7</p>
-<p>TRON chain toolset, TRC20 tokens and SunSwap operations.</p>
-</div>
-<h2 id="📝-Content-Description">📝 Content Description</h2>
-<div class="book-intro">
-<p>This guide is organized based on PandaTool documentation, containing complete blockchain tool usage tutorials. Content includes:</p>
-<ul>
-<li><strong>EVM Tools</strong>: Token creation, liquidity management, permission control</li>
-<li><strong>Solana Tools</strong>: SPL tokens, Raydium pools, trading bots</li>
-<li><strong>Sui Tools</strong>: Token issuance, DEX interaction</li>
-<li><strong>TON Tools</strong>: Jetton creation, exchange integration</li>
-<li><strong>TRON Tools</strong>: TRC20 tokens, energy rental</li>
-<li><strong>Cross-Chain Tools</strong>: Multi-chain asset bridging</li>
-<li><strong>General Tools</strong>: Batch transfer, snapshot, wallet management</li>
-</ul>
-<p><strong>Note:</strong> Content is continuously being improved, more chapters coming soon!</p>
-</div>
-<h2 id="💡-How-to-Use-This-Guide">💡 How to Use This Guide</h2>
-<div class="usage-guide">
-<h3 id="Learning-Recommendations">Learning Recommendations</h3>
+          <p>copy复制chevron-down</p>
 <ol>
-<li><strong>Learn as Needed</strong> - Choose chapters based on your requirements</li>
-<li><strong>Hands-On Practice</strong> - Follow examples for practical operations</li>
-<li><strong>Problem-Driven</strong> - Learning with questions is more effective</li>
-<li><strong>Communication &amp; Sharing</strong> - Join community discussions</li>
+<li><a href="/sol">jxlSolana链发币</a></li>
 </ol>
-<h3 id="Supporting-Resources">Supporting Resources</h3>
+<h1>dog-leashedBonkFun批量交易/市值管理教程</h1>
+<p>在LetsBonk批量交易代币</p>
+<p>BonkFun市值管理机器人，简单来说就是一个支持<a target="_blank" rel="noopener" href="https://letsbonk.fun/">LetsBonkarrow-up-right</a>代币自动交易、批量交易的机器人系统，可以按照设定好的目标价格、交易次数等方式进行自动化批量买卖。</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FFPxE7ygnLVFhPdRy8OfV%252Fbonkfun%25E4%25BA%25A4%25E6%2598%2593%25E6%259C%25BA%25E5%2599%25A8%25E4%25BA%25BA.jpg%3Falt%3Dmedia%26token%3Dec323d54-a0e2-48c1-8f18-9914bb9f0749&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=d37d537d&amp;sv=2" alt=""></p>
+<h3 id=""></h3>
+<p>hashtag</p>
+<p>BonkFun机器人使用注意</p>
+<p>1、 该机器人主要是交易BonkFun内盘代币，如果您的代币已经发射到了Raydium，请使用Raydium批量交易机器人：<a target="_blank" rel="noopener" href="https://solana.pandatool.org/swapbot">https://solana.pandatool.org/swapbot</a><a target="_blank" rel="noopener" href="https://solana.pandatool.org/swapbot">arrow-up-right</a></p>
+<p>2、批量交易机器人的成功率为98%，如果失败次数较多，可以咨询客服询问原因</p>
+<p>3、使用机器人有任何建议或者想法，可以在PandaTool官方电报群咨询：<a target="_blank" rel="noopener" href="https://t.me/pandatool">https://t.me/pandatool</a><a target="_blank" rel="noopener" href="https://t.me/pandatool">arrow-up-right</a></p>
+<h3 id="-2"></h3>
+<p>hashtag</p>
+<p>BonkFun机器人使用教程</p>
+<p>在PandaTool打开批量交易/市值管理机器人页面：<a target="_blank" rel="noopener" href="https://solana.pandatool.org/swapbotBonk">https://solana.pandatool.org/swapbotBonk</a><a target="_blank" rel="noopener" href="https://solana.pandatool.org/swapbotBonk">arrow-up-right</a> ，需要进行以下操作</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FuA2yO0plb0ZSxy6y5sAz%252F1%25E6%2580%25BB%25E8%25A7%2588%25E9%25A1%25B5%25E9%259D%25A2.png%3Falt%3Dmedia%26token%3D052d9a5b-e733-4c0c-a433-b9fc056dd5d7&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=7126d768&amp;sv=2" alt=""></p>
+<h3 id="-3"></h3>
+<p>hashtag</p>
+<p><strong>1、导入钱包</strong></p>
+<p>进入到批量交易网页后，我们第一步需要导入参与交易的钱包私钥。例如您要使用 20个钱包进行买卖，就点击<strong>导入钱包</strong> 按钮，在输入框内填入20个私钥。（私钥一行一个）</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FhrgzM3Cje4Pi2zHtb2CP%252F2%25E5%25AF%25BC%25E5%2585%25A5%25E9%2592%25B1%25E5%258C%2585.png%3Falt%3Dmedia%26token%3D81235a89-9eea-4052-bc51-a92f43359ddc&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=bb14c20a&amp;sv=2" alt=""></p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F6sqdceSYdjIqwrI5P07h%252F3%25E5%25AF%25BC%25E5%2585%25A5%25E7%25A7%2581%25E9%2592%25A5.png%3Falt%3Dmedia%26token%3D0d08ad95-c842-4260-a346-e35888b9bcd8&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=f09a716f&amp;sv=2" alt=""></p>
+<p>circle-exclamation</p>
+<p><strong>安全提醒：</strong> 所有的交易都是基于您的设备前端进行的，所有私钥不会上传服务器。PandaTool没有任何办法获取到您的私钥，请您妥善保管好自己的钱包私钥</p>
+<h3 id="-4"></h3>
+<p>hashtag</p>
+<p><strong>2、选择代币</strong></p>
+<p>接下来，我们需要选择要交易的代币。您要对哪个代币操盘，就在<code>基础代币</code>那里搜索自己的代币</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FrPrvr0IRACsQFfMyWO5m%252F4%25E5%259F%25BA%25E7%25A1%2580%25E4%25BB%25A3%25E5%25B8%2581.png%3Falt%3Dmedia%26token%3D00ceb4c1-a72c-4143-8ff0-635a032d70a6&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=bac8f81c&amp;sv=2" alt=""></p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FknZKwHvaFwafHpVgTtvB%252F5%25E8%25BE%2593%25E5%2585%25A5%25E4%25BB%25A3%25E5%25B8%2581%25E5%259C%25B0%25E5%259D%2580.png%3Falt%3Dmedia%26token%3D7ba2e53b-a952-40b4-b3f0-29f8a07b8b9f&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=3425b631&amp;sv=2" alt=""></p>
+<p>正常情况下，会提示您“<strong>已找到流动性池</strong> ”，这说明可以进行下一步。如果没有找到流动性，那可能是您输入的代币地址错误，请重新核查。</p>
+<h3 id="-5"></h3>
+<p>hashtag</p>
+<p><strong>3、选择交易模式</strong></p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FvpHNbsR9rbrhaf5OBg2X%252F6%25E5%25A4%259A%25E5%258A%259F%25E8%2583%25BD%25E8%25AE%25BE%25E7%25BD%25AE.png%3Falt%3Dmedia%26token%3D9e946ad9-79c9-4342-a210-2b571e8ddd72&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=50a8c209&amp;sv=2" alt=""></p>
+<p>接下来，我们需要选择交易模式。目前的交易模式有三种：拉盘/买入、砸盘/卖出、防夹刷量</p>
 <ul>
-<li><strong>Code Repository</strong> - Complete examples on GitHub</li>
-<li><strong>Online Community</strong> - Q&amp;A and communication platform</li>
-<li><strong>Practical Projects</strong> - Real-world application cases</li>
+<li>
+<p><strong>拉盘：</strong> 多地址批量、快速买入代币</p>
+</li>
+<li>
+<p><strong>砸盘：</strong> 多地址批量、快速卖出代币</p>
+</li>
+<li>
+<p><strong>防夹刷量：</strong> 在同一个哈希完成一笔买卖，防止夹子攻击</p>
+</li>
 </ul>
-</div>
-<div class="book-footer">
-<h2 id="🚀-Start-Your-Learning-Journey">🚀 Start Your Learning Journey</h2>
-<p>Choose a topic of interest and start exploring the exciting world of blockchain technology!</p>
-<p><strong>Version:</strong> v1.0 (2026-01) | <strong>Last Updated:</strong> January 29, 2026</p>
-</div>
-</div>
+<h3 id="-6"></h3>
+<p>hashtag</p>
+<p><strong>4、填写目标价格</strong></p>
+<p>所谓目标价格，是代币需要达成的一个价格。如果您选择拉盘模式，就是将代币拉升到某个价格。如果您选择砸盘模式，就是将代币卖出，使其降低到某个价位。</p>
+<ul>
+<li>
+<p><strong>拉盘：</strong> 代币要拉升到某个目标价位</p>
+</li>
+<li>
+<p><strong>砸盘：</strong> 代币要降低某个目标价位</p>
+</li>
+<li>
+<p><strong>防夹刷量：</strong> 无需设置价格，改为设置刷量次数（买一笔+卖一笔为一次）</p>
+</li>
+</ul>
+<p>circle-exclamation</p>
+<p>需要注意的是，当您选择拉盘模式的时候，目标价格<strong>不得低于</strong> 当前价格。当您选择砸盘模式的时候，目标价格<strong>不得高于</strong> 当前价格</p>
+<h3 id="-7"></h3>
+<p>hashtag</p>
+<p><strong>5、填写交易金额</strong></p>
+<p>在<strong>拉盘</strong> 模式下，这里的金额就是你所花费的sol数量。在<strong>砸盘</strong> 模式下，这里的金额就是你要出售的代币数量。在<strong>防夹刷量</strong> 模式下，金额为你要买入的金额</p>
+<ul>
+<li>
+<p>全部：一次性卖出所有代币，无视价格与滑点</p>
+</li>
+<li>
+<p>随机：根据设置的金额范围，随机买入/卖出代币</p>
+</li>
+<li>
+<p>固定：按照固定数额的sol买入，或者按照固定数量的基础代币进行卖出</p>
+</li>
+</ul>
+<h3 id="-8"></h3>
+<p>hashtag</p>
+<p><strong>6、设置时间间隔与滑点</strong></p>
+<ul>
+<li>
+<p><strong>时间间隔：</strong> 每次买入、卖出或者刷量交易之间的执行间隔时间，以秒为单位。该时间间隔可以是时间范围，也可以是固定时间</p>
+</li>
+<li>
+<p><strong>滑点：</strong> 每笔交易能接受的最大磨损成本，默认5%不用修改</p>
+</li>
+</ul>
+<h3 id="-9"></h3>
+<p>hashtag</p>
+<p><strong>7、交易的开始与暂停</strong></p>
+<p>设置好所有参数信息后，我们点击<strong>开始</strong> 按钮，即可运行程序。如果您希望在中途停止交易，只需点击<strong>停止</strong> 按钮，即可立即停止交易</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FznLZ9l2rJzX5nNURpyzU%252F7%25E4%25BA%25A4%25E6%2598%2593%25E5%25BC%2580%25E5%25A7%258B.png%3Falt%3Dmedia%26token%3Db1dcc94b-3fce-40c8-a344-e77759e1a895&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=10c34233&amp;sv=2" alt=""></p>
+<h2 id="-10"></h2>
+<p>hashtag</p>
+<p><strong>机器人疑问解答</strong></p>
+<p><strong>1、PandaTool会拿到你的私钥吗？</strong></p>
+<ul>
+<li>答：绝对不可能，你的私钥不会存储在平台上，所有操作都是基于前端执行的，请放心使用。如果你比较担心，可以使用新的钱包操作</li>
+</ul>
+<p><strong>2、市值管理是收费的吗？</strong></p>
+<ul>
+<li>答：当前的交易机器人是免费的，未来可能会收费</li>
+</ul>
+<p><strong>3、防夹刷量的逻辑是什么？</strong></p>
+<ul>
+<li>答：机器人会按照您设定的金额买入一笔，然后在同一笔哈希中卖出一笔。将买入和卖出放在一个哈希里进行打包确认，从而防止夹子机器人套利</li>
+</ul>
+<p><strong>4、导入多个地址进行防夹刷量，次数是单地址次数还是总次数？</strong></p>
+<ul>
+<li>答：次数是所有地址的总次数。每个地址买+卖一笔，即为1次。所有钱包轮循进行刷量，直到总次数达到设定值</li>
+</ul>
+<p><strong>5、最多可以导入多少钱包？</strong></p>
+<ul>
+<li>答：为了确保操作的稳定性和流畅性，一次性导入的钱包数量最好低于100个</li>
+</ul>
+<p><strong>6、为什么查不到流动性？</strong></p>
+<ul>
+<li>答：先确认一下您输入的代币合约地址，是否为LetsBonk平台的代币，该机器人只支持操盘LetsBonk.fun平台的代币</li>
+</ul>
+<p>如有不明白或者不清楚的地方，请加入官方电报群：<a target="_blank" rel="noopener" href="https://t.me/PandaTool">https://t.me/PandaTool</a><a target="_blank" rel="noopener" href="https://t.me/PandaTool">arrow-up-right</a></p>
+<p><a href="/sol/createbonk">上一页BonkFun一键发币与捆绑买入教程chevron-left</a><a href="/sol/createpump">下一页PumpFun发币与捆绑买入教程chevron-right</a></p>
+<p>最后更新于6个月前</p>
 
         </div>
         
@@ -363,8 +407,8 @@ Welcome to **CCBus Guide**! This is a comprehensive guide focused on practical a
     
     <div class="ccbook-lang-switcher">
       <div class="languages-header">
-          <a href="/ccbus-guide/index.html" class="lang-btn">中文</a>
-          <a href="/en/ccbus-guide/index.html" class="lang-btn active">EN</a>
+          <a href="/ccbus-guide/chapters/sol/swapbotbonk.html" class="lang-btn">中文</a>
+          <a href="/en/ccbus-guide/chapters/sol/swapbotbonk.html" class="lang-btn active">EN</a>
       </div>
     </div>
 
@@ -1329,11 +1373,11 @@ Welcome to **CCBus Guide**! This is a comprehensive guide focused on practical a
     </label>
     <select class="lang-select" data-canonical="" aria-label="Select language">
       
-        <option value="zh-CN" data-href="/ccbus-guide/index.html" selected="">
+        <option value="zh-CN" data-href="/ccbus-guide/chapters/sol/swapbotbonk.html" selected="">
           简体中文
         </option>
       
-        <option value="en" data-href="/en/ccbus-guide/index.html" selected="">
+        <option value="en" data-href="/en/ccbus-guide/chapters/sol/swapbotbonk.html" selected="">
           English
         </option>
       

@@ -20,26 +20,47 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.ccbus.cc","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="CCBus 指南  欢迎来到 **CCBus 指南**！这是一本专注于区块链技术实践应用的综合性指南，涵盖从基础概念到高级应用的完整知识体系。 无论您是：  🎓 初学者 - 想要快速上手区块链技术 💻 开发者 - 希望掌握实战技能 🏗️ 架构师 - 需要设计解决方案 💼 从业者 - 探索行业最佳实践  这本指南都将为您提供实用的知识和经验。  📚 完整目录  本指南特色  ✅ 实战导向">
+    <meta name="description" content="copy复制chevron-down  dropletSui链发币  turkish-lira-signTurbos创建CLMM流动性资金池教程 在Turbos上创建CLMM资金池 Turbos Financearrow-up-right 是第一个建立在 Sui 上的去中心化零滑点永续合约交易和现货交易平台，由 Sui（Turbos）驱动的去中心化永续交易平台，交易效率更快、手续费更低、清算风险更">
 <meta property="og:type" content="website">
-<meta property="og:title" content="CCBus 指南">
-<meta property="og:url" content="https://www.ccbus.cc/ccbus-guide/index.html">
+<meta property="og:title" content="创建CLMM流动性资金池教程">
+<meta property="og:url" content="https://www.ccbus.cc/ccbus-guide/chapters/sui/turbos.html">
 <meta property="og:site_name" content="CCBus">
-<meta property="og:description" content="CCBus 指南  欢迎来到 **CCBus 指南**！这是一本专注于区块链技术实践应用的综合性指南，涵盖从基础概念到高级应用的完整知识体系。 无论您是：  🎓 初学者 - 想要快速上手区块链技术 💻 开发者 - 希望掌握实战技能 🏗️ 架构师 - 需要设计解决方案 💼 从业者 - 探索行业最佳实践  这本指南都将为您提供实用的知识和经验。  📚 完整目录  本指南特色  ✅ 实战导向">
+<meta property="og:description" content="copy复制chevron-down  dropletSui链发币  turkish-lira-signTurbos创建CLMM流动性资金池教程 在Turbos上创建CLMM资金池 Turbos Financearrow-up-right 是第一个建立在 Sui 上的去中心化零滑点永续合约交易和现货交易平台，由 Sui（Turbos）驱动的去中心化永续交易平台，交易效率更快、手续费更低、清算风险更">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-01-29T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-30T14:24:56.787Z">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FqwaE0RS1lMZPbteU6z5H%252F1-%25E9%25A6%2596%25E9%25A1%25B5.png%3Falt%3Dmedia%26token%3Dba649c25-0447-4f54-aee7-b58582ba8228&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=37195954&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FqMIROj9M4OBK8brPlQ3r%252F2-%25E8%25BF%259E%25E6%258E%25A5%25E9%2592%25B1%25E5%258C%2585.png%3Falt%3Dmedia%26token%3Ddddccf57-fb43-4db5-b33e-857b2e95c65e&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=f2fb4dd9&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FVI6LTpPuMVWHwqHl6OXk%252F3-suiet%25E9%2592%25B1%25E5%258C%2585.png%3Falt%3Dmedia%26token%3D5450ea76-2790-4fd1-a15a-d6e06c09fc72&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=e193fa1b&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FuVd0Isiu5Mo0CmJXLaqi%252F4-%25E9%2592%25B1%25E5%258C%2585%25E8%25BF%259E%25E6%258E%25A5%25E6%2588%2590%25E5%258A%259F.png%3Falt%3Dmedia%26token%3Da330ec95-d5a1-42ee-97b2-d554901e729a&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=995b0bbf&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252Fv9yQ5KXnjS0shmPIgxvH%252F5-%25E5%2588%259B%25E5%25BB%25BA%25E6%25B1%25A0%25E5%25AD%2590.png%3Falt%3Dmedia%26token%3D17248f06-d873-4c00-8ccc-f52076c6cefe&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=d8ab6c19&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252Fs2O8zXdGyQ8R2gDC27z6%252F6-%25E9%2580%2589%25E6%258B%25A9%25E4%25BB%25A3%25E5%25B8%2581.png%3Falt%3Dmedia%26token%3D4e1768bf-93c2-4e97-8805-ea5b86b99e17&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=43aafd51&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FaOsME034H6N8mdzdUlv0%252F7-%25E6%2589%25BE%25E5%2588%25B0%25E4%25BB%25A3%25E5%25B8%2581.png%3Falt%3Dmedia%26token%3D3b1327cb-c0a0-4ba3-bd60-77ac0735c964&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=b785eb29&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FnObFkURMAVOl7DanYIvB%252F8-%25E6%2589%25BE%25E5%2588%25B0%25E4%25BA%25A4%25E6%2598%2593%25E5%25AF%25B9.png%3Falt%3Dmedia%26token%3Dbf766f35-a20f-43e9-82c4-b5c3fb3d05bb&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=b89be537&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252Fa8HlQIbvLm2xDegK9ypJ%252F9-%25E8%25B5%2584%25E9%2587%2591%25E6%25B1%25A0%25E8%25AE%25BE%25E7%25BD%25AE.png%3Falt%3Dmedia%26token%3Dbd2c925b-d329-449e-b709-fa997a78d92f&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=cfe7b2f8&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FapFTqzRKG2h8HZat2fZo%252F10-%25E8%25B5%2584%25E9%2587%2591%25E6%25B1%25A0%25E8%25AE%25BE%25E7%25BD%25AE.png%3Falt%3Dmedia%26token%3Dde915a80-578f-4e05-bb89-830dd10aa83c&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=b4135e99&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F9n23MHTXbn8G0nolDvhj%252F11-%25E5%2586%258D%25E6%25AC%25A1%25E7%25A1%25AE%25E8%25AE%25A4.png%3Falt%3Dmedia%26token%3D034258b2-44f8-4462-af91-31183c733432&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=fe37c981&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FtSw5h2elDumIt8g4SJud%252F11-%25E9%2592%25B1%25E5%258C%2585%25E7%25A1%25AE%25E8%25AE%25A4.png%3Falt%3Dmedia%26token%3Ddcff6601-8876-469e-ba91-277aeb7e516e&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=85e84ffe&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FbkF30uxQblxFlKEnpqlT%252F12-%25E5%2588%259B%25E5%25BB%25BA%25E6%2588%2590%25E5%258A%259F.png%3Falt%3Dmedia%26token%3Def6a710b-138c-4c75-a60b-33ec39e4a522&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=dbc31323&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FbTwKw8OgvRgeXHDy4D6y%252F13-%25E4%25BB%25A3%25E5%25B8%2581%25E4%25BA%25A4%25E6%2598%2593.png%3Falt%3Dmedia%26token%3D111c1285-00a0-4c37-abc2-3c27d9c03f42&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=32ed1155&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FTp8uqLytjTxSsO8dRcqu%252F14-%25E4%25BA%25A4%25E6%2598%2593%25E6%2588%2590%25E5%258A%259F.png%3Falt%3Dmedia%26token%3D8944f063-63ba-4981-a516-eaefcc5cf753&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=e93b0747&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FoHQ6RzdoQxQTie47f9Hx%252F15-%25E7%25AE%25A1%25E7%2590%2586%25E6%25B5%2581%25E5%258A%25A8%25E6%2580%25A7.png%3Falt%3Dmedia%26token%3D8032c0b8-624d-4461-8b2d-616476790223&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=58573e5e&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FncuWarOtQgolJnG4ohTV%252F16-%25E6%25B5%2581%25E5%258A%25A8%25E6%2580%25A7png.png%3Falt%3Dmedia%26token%3D1bfb0079-62e4-4fe7-a4b4-18bcbc6dbd9c&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=52a98e06&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FVIMFsJ0DjpxzdGGmpYhh%252F17-%25E5%25A2%259E%25E5%258A%25A0%25E4%25B8%258E%25E6%2592%25A4%25E5%2587%25BA%25E6%25B5%2581%25E5%258A%25A8%25E6%2580%25A7.png%3Falt%3Dmedia%26token%3D24910571-8a21-4fe0-b110-ceec49c0165b&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=f3cb15e8&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FhnyZMgl5GSdLLEB0quDW%252F18-%25E5%25A2%259E%25E5%258A%25A0%25E6%25B5%2581%25E5%258A%25A8%25E6%2580%25A7.png%3Falt%3Dmedia%26token%3Da3b06ab8-13f0-43ef-ab63-d4c90dcf27d4&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=25b5df6b&amp;sv=2">
+<meta property="og:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F1nCxeqvB4Sv0hvRM4MgZ%252F19-%25E7%25A7%25BB%25E9%2599%25A4%25E6%25B5%2581%25E5%258A%25A8%25E6%2580%25A7.png%3Falt%3Dmedia%26token%3D64c09cd0-d3c7-435b-9f37-856bee4b8635&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=b0cd71bb&amp;sv=2">
+<meta property="article:published_time" content="2026-01-30T14:24:31.000Z">
+<meta property="article:modified_time" content="2026-01-30T14:24:31.571Z">
 <meta property="article:author" content="CCBus Lab">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FqwaE0RS1lMZPbteU6z5H%252F1-%25E9%25A6%2596%25E9%25A1%25B5.png%3Falt%3Dmedia%26token%3Dba649c25-0447-4f54-aee7-b58582ba8228&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=37195954&amp;sv=2">
 
 
-<link rel="canonical" href="https://www.ccbus.cc/ccbus-guide/">
+<link rel="canonical" href="https://www.ccbus.cc/ccbus-guide/chapters/sui/turbos">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://www.ccbus.cc/ccbus-guide/index.html","path":"ccbus-guide/index.html","title":"CCBus 指南"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://www.ccbus.cc/ccbus-guide/chapters/sui/turbos.html","path":"ccbus-guide/chapters/sui/turbos.html","title":"创建CLMM流动性资金池教程"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>CCBus 指南 | CCBus
+<title>创建CLMM流动性资金池教程 | CCBus
 </title>
   
 
@@ -132,13 +153,13 @@
 
 <div class="languages-header">
   
-    <a href="/ccbus-guide/index.html"
+    <a href="/ccbus-guide/chapters/sui/turbos.html"
        class="lang-btn active"
        title="切换到简体中文">
       中文
     </a>
   
-    <a href="/en/ccbus-guide/index.html"
+    <a href="/en/ccbus-guide/chapters/sui/turbos.html"
        class="lang-btn "
        title="Switch to English">
       EN
@@ -227,10 +248,16 @@
       
       <article class="ccbook-content-area"><header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">CCBus 指南
+<h1 class="post-title" itemprop="name headline">创建CLMM流动性资金池教程
 </h1>
 
 <div class="post-meta-container">
+  <ul class="breadcrumb">
+            <li><a href="/ccbus-guide/">CCBUS 指南</a></li>
+            <li><a href="/ccbus-guide/chapters/">CHAPTERS</a></li>
+            <li><a href="/ccbus-guide/chapters/sui/">SUI</a></li>
+            <li>TURBOS</li>
+  </ul>
 </div>
 
 </header>
@@ -240,102 +267,133 @@
         
         
         <div class="post-body ccbook-content-body">
-          <div class="ccbook-index">
-<h1>CCBus 指南</h1>
-<div class="book-intro">
-欢迎来到 **CCBus 指南**！这是一本专注于区块链技术实践应用的综合性指南，涵盖从基础概念到高级应用的完整知识体系。
-<p>无论您是：</p>
-<ul>
-<li>🎓 <strong>初学者</strong> - 想要快速上手区块链技术</li>
-<li>💻 <strong>开发者</strong> - 希望掌握实战技能</li>
-<li>🏗️ <strong>架构师</strong> - 需要设计解决方案</li>
-<li>💼 <strong>从业者</strong> - 探索行业最佳实践</li>
-</ul>
-<p>这本指南都将为您提供实用的知识和经验。</p>
-</div>
-<h2 id="📚-完整目录">📚 完整目录</h2>
-<div class="book-features">
-<h3 id="本指南特色">本指南特色</h3>
-<ul>
-<li>✅ <strong>实战导向</strong>：注重实际应用和案例分析</li>
-<li>✅ <strong>深入浅出</strong>：从基础到进阶，循序渐进</li>
-<li>✅ <strong>工具集成</strong>：丰富的工具和框架介绍</li>
-<li>✅ <strong>持续更新</strong>：跟踪最新技术发展</li>
-<li>✅ <strong>社区驱动</strong>：汇集行业最佳实践</li>
-</ul>
-</div>
-<h2 id="📖-完整内容导航">📖 完整内容导航</h2>
-<div class="chapter-group">
-<h3 id="第一章：跨链桥-🌉"><a href="/ccbus-guide/chapters/bridge/">第一章：跨链桥</a> 🌉</h3>
-<p><strong>难度：</strong> 🟢 入门 | <strong>教程数：</strong> 4篇</p>
-<p>掌握跨链资产转移技术，支持多链资产互通。</p>
-<h3 id="第二章：EVM代币创建-🪙"><a href="/ccbus-guide/chapters/createtoken/">第二章：EVM代币创建</a> 🪙</h3>
-<p><strong>难度：</strong> 🟢 入门 | <strong>教程数：</strong> 22篇</p>
-<p>全面掌握EVM链代币创建，包括标准代币、分红代币、314协议等多种类型。</p>
-<h3 id="第三章：声明条款-📋"><a href="/ccbus-guide/chapters/declaration/">第三章：声明条款</a> 📋</h3>
-<p><strong>难度：</strong> 🟢 入门 | <strong>文档数：</strong> 2篇</p>
-<p>重要的法律声明和服务条款。</p>
-<h3 id="第四章：实用信息-💡"><a href="/ccbus-guide/chapters/practical-information/">第四章：实用信息</a> 💡</h3>
-<p><strong>难度：</strong> 🟢 入门 | <strong>教程数：</strong> 7篇</p>
-<p>钱包配置、公链参数、水龙头等实用工具指南。</p>
-<h3 id="第五章：预售工具-🚀"><a href="/ccbus-guide/chapters/presale/">第五章：预售工具</a> 🚀</h3>
-<p><strong>难度：</strong> 🟡 中级 | <strong>教程数：</strong> 3篇</p>
-<p>代币预售和Mint功能实现教程。</p>
-<h3 id="第六章：常见问题-❓"><a href="/ccbus-guide/chapters/question/">第六章：常见问题</a> ❓</h3>
-<p><strong>难度：</strong> 🟢 入门 | <strong>问答数：</strong> 9篇</p>
-<p>常见问题解答，包括加池、检测、开源等操作指南。</p>
-<h3 id="第七章：Solana工具-⚡"><a href="/ccbus-guide/chapters/sol/">第七章：Solana工具</a> ⚡</h3>
-<p><strong>难度：</strong> 🟡 中级 | <strong>教程数：</strong> 30篇</p>
-<p>Solana生态完整工具集，涵盖代币创建、Raydium、Pump.fun等。</p>
-<h3 id="第八章：Sui工具-🌊"><a href="/ccbus-guide/chapters/sui/">第八章：Sui工具</a> 🌊</h3>
-<p><strong>难度：</strong> 🟡 中级 | <strong>教程数：</strong> 7篇</p>
-<p>Sui区块链工具使用指南，包括Cetus、Turbos等DEX。</p>
-<h3 id="第九章：TON工具-💎"><a href="/ccbus-guide/chapters/ton/">第九章：TON工具</a> 💎</h3>
-<p><strong>难度：</strong> 🟡 中级 | <strong>教程数：</strong> 5篇</p>
-<p>TON生态工具教程，Jetton创建和DeDust交易。</p>
-<h3 id="第十章：通用工具-🛠️"><a href="/ccbus-guide/chapters/tools/">第十章：通用工具</a> 🛠️</h3>
-<p><strong>难度：</strong> 🟢 入门 | <strong>教程数：</strong> 10篇</p>
-<p>批量转账、合约检测、钱包生成等通用工具。</p>
-<h3 id="第十一章：TRON工具-🔴"><a href="/ccbus-guide/chapters/tron/">第十一章：TRON工具</a> 🔴</h3>
-<p><strong>难度：</strong> 🟡 中级 | <strong>教程数：</strong> 7篇</p>
-<p>TRON链工具集，TRC20代币和SunSwap操作。</p>
-</div>
-<h2 id="📝-内容说明">📝 内容说明</h2>
-<div class="book-intro">
-<p>本指南基于 PandaTool 文档整理，包含完整的区块链工具使用教程。内容涵盖：</p>
-<ul>
-<li><strong>EVM工具</strong>：代币创建、流动性管理、权限控制</li>
-<li><strong>Solana工具</strong>：SPL代币、Raydium池、交易机器人</li>
-<li><strong>Sui工具</strong>：代币发行、DEX交互</li>
-<li><strong>TON工具</strong>：Jetton创建、交易所集成</li>
-<li><strong>TRON工具</strong>：TRC20代币、能量租赁</li>
-<li><strong>跨链工具</strong>：多链资产桥接</li>
-<li><strong>通用工具</strong>：批量转账、快照、钱包管理</li>
-</ul>
-<p><strong>注意：</strong> 内容正在持续完善中，更多章节即将添加！</p>
-</div>
-<h2 id="💡-如何使用本指南">💡 如何使用本指南</h2>
-<div class="usage-guide">
-<h3 id="学习建议">学习建议</h3>
+          <p>copy复制chevron-down</p>
 <ol>
-<li><strong>按需学习</strong> - 根据自己的需求选择章节</li>
-<li><strong>动手实践</strong> - 跟随示例进行实操</li>
-<li><strong>问题驱动</strong> - 带着问题学习效果更好</li>
-<li><strong>交流分享</strong> - 加入社区讨论</li>
+<li><a href="/sui">dropletSui链发币</a></li>
 </ol>
-<h3 id="配套资源">配套资源</h3>
+<h1>turkish-lira-signTurbos创建CLMM流动性资金池教程</h1>
+<p>在Turbos上创建CLMM资金池</p>
+<p><a target="_blank" rel="noopener" href="https://turbos.finance/">Turbos Financearrow-up-right</a> 是第一个建立在 Sui 上的去中心化零滑点永续合约交易和现货交易平台，由 Sui（Turbos）驱动的去中心化永续交易平台，交易效率更快、手续费更低、清算风险更低。</p>
+<p>Turbos提供具有集中流动性做市商(CLMM) 模型和衍生品交易功能的自动做市商(AMM) 去中心化交易所，主打一个用户友好。</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FqwaE0RS1lMZPbteU6z5H%252F1-%25E9%25A6%2596%25E9%25A1%25B5.png%3Falt%3Dmedia%26token%3Dba649c25-0447-4f54-aee7-b58582ba8228&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=37195954&amp;sv=2" alt=""></p>
+<p>circle-info</p>
+<p>注意：本文仅作为教学演示，所涉及到的资金池和代币均<strong>没有任何实际价值</strong> ，大家也不要进行任何形式的交易。如果因此造成资金损失，PandaTool无法对此负责</p>
+<h2 id=""></h2>
+<p>hashtag</p>
+<p>一、创建CLMM资金池</p>
+<p>和<a href="/sui/cetus">Cetus</a>类似，在Turbos上也只能创建CLMM资金池，无法创建AMM资金池。</p>
+<h3 id="-2"></h3>
+<p>hashtag</p>
+<p>1、连接钱包</p>
+<p>连接钱包是所有操作的第一步，老手可以直接忽略。我们打开Turbos的官网：<a target="_blank" rel="noopener" href="https://app.turbos.finance/">https://app.turbos.finance/</a><a target="_blank" rel="noopener" href="https://app.turbos.finance/">arrow-up-right</a>，点击右上角Connect Wallet按钮，进行钱包连接</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FqMIROj9M4OBK8brPlQ3r%252F2-%25E8%25BF%259E%25E6%258E%25A5%25E9%2592%25B1%25E5%258C%2585.png%3Falt%3Dmedia%26token%3Ddddccf57-fb43-4db5-b33e-857b2e95c65e&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=f2fb4dd9&amp;sv=2" alt=""></p>
+<p>在弹出的钱包选项中，PandaTool推荐大家选择<a href="/sui/suiet">Suiet钱包</a></p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FVI6LTpPuMVWHwqHl6OXk%252F3-suiet%25E9%2592%25B1%25E5%258C%2585.png%3Falt%3Dmedia%26token%3D5450ea76-2790-4fd1-a15a-d6e06c09fc72&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=e193fa1b&amp;sv=2" alt=""></p>
+<p>和所有的DAPP一样，连接成功后，右上角会出现钱包地址。此时我们点击<a target="_blank" rel="noopener" href="https://app.turbos.finance/#/pools">Earnarrow-up-right</a>这个按钮，即可找到创建池子的页面</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FuVd0Isiu5Mo0CmJXLaqi%252F4-%25E9%2592%25B1%25E5%258C%2585%25E8%25BF%259E%25E6%258E%25A5%25E6%2588%2590%25E5%258A%259F.png%3Falt%3Dmedia%26token%3Da330ec95-d5a1-42ee-97b2-d554901e729a&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=995b0bbf&amp;sv=2" alt=""></p>
+<h3 id="-3"></h3>
+<p>hashtag</p>
+<p>2、创建交易对</p>
+<p>当然，我们也可以直接通过链接进入加池页面：<a target="_blank" rel="noopener" href="https://app.turbos.finance/#/pools">https://app.turbos.finance/#/pools</a><a target="_blank" rel="noopener" href="https://app.turbos.finance/#/pools">arrow-up-right</a> ，进来之后，我们找到<strong>Creat a Pool</strong> 这个位置，点击进入即可</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252Fv9yQ5KXnjS0shmPIgxvH%252F5-%25E5%2588%259B%25E5%25BB%25BA%25E6%25B1%25A0%25E5%25AD%2590.png%3Falt%3Dmedia%26token%3D17248f06-d873-4c00-8ccc-f52076c6cefe&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=d8ab6c19&amp;sv=2" alt=""></p>
+<p>第一步，我们需要先选择代币</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252Fs2O8zXdGyQ8R2gDC27z6%252F6-%25E9%2580%2589%25E6%258B%25A9%25E4%25BB%25A3%25E5%25B8%2581.png%3Falt%3Dmedia%26token%3D4e1768bf-93c2-4e97-8805-ea5b86b99e17&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=43aafd51&amp;sv=2" alt=""></p>
 <ul>
-<li><strong>代码仓库</strong> - GitHub上的完整示例</li>
-<li><strong>在线社区</strong> - 问答和交流平台</li>
-<li><strong>实战项目</strong> - 真实场景应用案例</li>
+<li>
+<p><strong>base token：</strong> 基础代币，就是你发行的土狗币</p>
+</li>
+<li>
+<p><strong>quote token：</strong> 报价代币，就是SUI、USDT、USDC这种主流币</p>
+</li>
 </ul>
-</div>
-<div class="book-footer">
-<h2 id="🚀-开始您的学习之旅">🚀 开始您的学习之旅</h2>
-<p>选择感兴趣的主题，开始探索区块链技术的精彩世界！</p>
-<p><strong>版本：</strong> v1.0 (2026-01) | <strong>最后更新：</strong> 2026年1月29日</p>
-</div>
-</div>
+<p>例如我通过合约地址选择Panda作为基础代币，SUI作为报价代币，就是下面这样</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FaOsME034H6N8mdzdUlv0%252F7-%25E6%2589%25BE%25E5%2588%25B0%25E4%25BB%25A3%25E5%25B8%2581.png%3Falt%3Dmedia%26token%3D3b1327cb-c0a0-4ba3-bd60-77ac0735c964&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=b785eb29&amp;sv=2" alt=""></p>
+<p>输入合约地址找到代币</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FnObFkURMAVOl7DanYIvB%252F8-%25E6%2589%25BE%25E5%2588%25B0%25E4%25BA%25A4%25E6%2598%2593%25E5%25AF%25B9.png%3Falt%3Dmedia%26token%3Dbf766f35-a20f-43e9-82c4-b5c3fb3d05bb&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=b89be537&amp;sv=2" alt=""></p>
+<p>找到交易对</p>
+<p>确认好两个代币交易对之后，我们继续进入下一步</p>
+<h3 id="-4"></h3>
+<p>hashtag</p>
+<p>3、设置资金池</p>
+<p>在资金池设置页面，我们需要设置费率、初始价格、价格范围等内容，具体可参考下图所示：</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252Fa8HlQIbvLm2xDegK9ypJ%252F9-%25E8%25B5%2584%25E9%2587%2591%25E6%25B1%25A0%25E8%25AE%25BE%25E7%25BD%25AE.png%3Falt%3Dmedia%26token%3Dbd2c925b-d329-449e-b709-fa997a78d92f&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=cfe7b2f8&amp;sv=2" alt=""></p>
+<p>创建资金池可能涉及到的选择</p>
+<ul>
+<li>
+<p><strong>费率/滑点：</strong> 虽然给出了多个等级，但是默认只能<strong>选择1%</strong> ，没有其他选项</p>
+</li>
+<li>
+<p><strong>设置初始价格：</strong> 即代币的上线价格，如果是SUI池子，则该价格以SUI计价，例如我要设置Panda的上线价格是0.0000001 SUI，那么在这个输入框里填入0.0000001即可</p>
+</li>
+<li>
+<p><strong>设置流动性范围：</strong> 其实就是该流动性的价格波动范围，这个大家请直接选择<strong>Full</strong> ，即<strong>全范围</strong> ，表示代币价格没有下限或上限。如果选择Custom，则需要设定一个价格下限与上限，这样不利于项目的长期运作</p>
+</li>
+<li>
+<p><strong>加池数量：</strong> 填写你要放入资金池的代币数量</p>
+</li>
+<li>
+<p><strong>提示：</strong> 最后会有一个提示，大概意思就是说，池子不能小于100U</p>
+</li>
+</ul>
+<p>了解完所有选项配置之后，PandaTool填写的参数示意如下</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FapFTqzRKG2h8HZat2fZo%252F10-%25E8%25B5%2584%25E9%2587%2591%25E6%25B1%25A0%25E8%25AE%25BE%25E7%25BD%25AE.png%3Falt%3Dmedia%26token%3Dde915a80-578f-4e05-bb89-830dd10aa83c&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=b4135e99&amp;sv=2" alt=""></p>
+<p>填写完成之后，点击Create Turbos pool and deposit（创建池子并存入代币），进行二次确认</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F9n23MHTXbn8G0nolDvhj%252F11-%25E5%2586%258D%25E6%25AC%25A1%25E7%25A1%25AE%25E8%25AE%25A4.png%3Falt%3Dmedia%26token%3D034258b2-44f8-4462-af91-31183c733432&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=fe37c981&amp;sv=2" alt=""></p>
+<p>再次确认信息无误之后，点击按钮，会弹出钱包进行确认</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FtSw5h2elDumIt8g4SJud%252F11-%25E9%2592%25B1%25E5%258C%2585%25E7%25A1%25AE%25E8%25AE%25A4.png%3Falt%3Dmedia%26token%3Ddcff6601-8876-469e-ba91-277aeb7e516e&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=85e84ffe&amp;sv=2" alt=""></p>
+<p>钱包点击Approve后，等待几秒钟，Trubos会提示你创建成功</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FbkF30uxQblxFlKEnpqlT%252F12-%25E5%2588%259B%25E5%25BB%25BA%25E6%2588%2590%25E5%258A%259F.png%3Falt%3Dmedia%26token%3Def6a710b-138c-4c75-a60b-33ec39e4a522&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=dbc31323&amp;sv=2" alt=""></p>
+<h3 id="-5"></h3>
+<p>hashtag</p>
+<p>3、交易代币</p>
+<p>池子创建成功后，就可以交易了。我们进入到Trurbos的官网首页：<a target="_blank" rel="noopener" href="https://app.turbos.finance/">https://app.turbos.finance/</a><a target="_blank" rel="noopener" href="https://app.turbos.finance/">arrow-up-right</a> ，选择卖出Panda代币3000万个</p>
+<p>circle-info</p>
+<p>注意：做完池子后，等待至少30分钟后，才能交易。流动性池子初始化需要时间，无法立即开始交易</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FbTwKw8OgvRgeXHDy4D6y%252F13-%25E4%25BB%25A3%25E5%25B8%2581%25E4%25BA%25A4%25E6%2598%2593.png%3Falt%3Dmedia%26token%3D111c1285-00a0-4c37-abc2-3c27d9c03f42&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=32ed1155&amp;sv=2" alt=""></p>
+<p>点击Trade后，钱包确认即可完成交易</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FTp8uqLytjTxSsO8dRcqu%252F14-%25E4%25BA%25A4%25E6%2598%2593%25E6%2588%2590%25E5%258A%259F.png%3Falt%3Dmedia%26token%3D8944f063-63ba-4981-a516-eaefcc5cf753&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=e93b0747&amp;sv=2" alt=""></p>
+<h2 id="-6"></h2>
+<p>hashtag</p>
+<p>二、增加与撤出流动性池子</p>
+<p>池子创建好之后，在哪里加池子和撤池子呢？首先，我们进入到Turbos的流动性管理页面：<a target="_blank" rel="noopener" href="https://app.turbos.finance/#/pools">https://app.turbos.finance/#/pools</a><a target="_blank" rel="noopener" href="https://app.turbos.finance/#/pools">arrow-up-right</a> ，选择<a target="_blank" rel="noopener" href="https://app.turbos.finance/#/pools?tab=position">Manage Positions and Rewardsarrow-up-right</a>（管理流动性与奖励）</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FoHQ6RzdoQxQTie47f9Hx%252F15-%25E7%25AE%25A1%25E7%2590%2586%25E6%25B5%2581%25E5%258A%25A8%25E6%2580%25A7.png%3Falt%3Dmedia%26token%3D8032c0b8-624d-4461-8b2d-616476790223&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=58573e5e&amp;sv=2" alt=""></p>
+<p>管理流动性</p>
+<p>之后就能看到你钱包里面的所有流动性了，包括流动性的金额、范围、APR等都很清晰的展示，我们选择要增加或者撤出的流动性交易对</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FncuWarOtQgolJnG4ohTV%252F16-%25E6%25B5%2581%25E5%258A%25A8%25E6%2580%25A7png.png%3Falt%3Dmedia%26token%3D1bfb0079-62e4-4fe7-a4b4-18bcbc6dbd9c&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=52a98e06&amp;sv=2" alt=""></p>
+<p>在进入的页面里，就可以对这个流动性进行管理了，包括增加或者撤出流动性</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FVIMFsJ0DjpxzdGGmpYhh%252F17-%25E5%25A2%259E%25E5%258A%25A0%25E4%25B8%258E%25E6%2592%25A4%25E5%2587%25BA%25E6%25B5%2581%25E5%258A%25A8%25E6%2580%25A7.png%3Falt%3Dmedia%26token%3D24910571-8a21-4fe0-b110-ceec49c0165b&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=f3cb15e8&amp;sv=2" alt=""></p>
+<ul>
+<li>
+<p>Increase Liquidity：增加流动性（加池子）</p>
+</li>
+<li>
+<p>Remove Liquidity：撤出流动性（撤池子）</p>
+</li>
+</ul>
+<p>假设我们点击<strong>增加流动性</strong> ，就可以按照比例进行增加相应的代币，然后钱包确认即可</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252FhnyZMgl5GSdLLEB0quDW%252F18-%25E5%25A2%259E%25E5%258A%25A0%25E6%25B5%2581%25E5%258A%25A8%25E6%2580%25A7.png%3Falt%3Dmedia%26token%3Da3b06ab8-13f0-43ef-ab63-d4c90dcf27d4&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=25b5df6b&amp;sv=2" alt=""></p>
+<p>加池子-增加流动性</p>
+<p>假设我们点击撤出流动性，就可以按照比例进行移除相应的代币，然后钱包确认即可</p>
+<p><img src="https://help.pandatool.org/~gitbook/image?url=https%3A%2F%2F1885923539-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FnmLBiMxr5iATgeZGW8in%252Fuploads%252F1nCxeqvB4Sv0hvRM4MgZ%252F19-%25E7%25A7%25BB%25E9%2599%25A4%25E6%25B5%2581%25E5%258A%25A8%25E6%2580%25A7.png%3Falt%3Dmedia%26token%3D64c09cd0-d3c7-435b-9f37-856bee4b8635&amp;width=768&amp;dpr=3&amp;quality=100&amp;sign=b0cd71bb&amp;sv=2" alt=""></p>
+<p>撤池子-移除流动性</p>
+<h2 id="-7"></h2>
+<p>hashtag</p>
+<p>三、疑问解答</p>
+<p><strong>1、为什么我加了池子后看不到自己的池子，也不能交易？</strong></p>
+<ul>
+<li>答：池子初始化需要一些时间，大概30分钟之后才能看到池子，才能交易</li>
+</ul>
+<p><strong>2、创建资金池的过程中不弹出钱包怎么办？</strong></p>
+<ul>
+<li>答：如果在页面操作时间过久，就会这样，可以刷新页面重试。或者查看一下钱包是否锁住，如果上锁了，把钱包解锁后刷新页面就可以了</li>
+</ul>
+<p><strong>3、Turbos创建池子要收费吗？</strong></p>
+<ul>
+<li>答：根据实际操作经验来看，在Turbos创建池子不收取费用</li>
+</ul>
+<p>如有大家还有不明白或者不清楚的地方，请加入官方电报Telegram群：<a target="_blank" rel="noopener" href="https://t.me/PandaTool">https://t.me/PandaTool</a><a target="_blank" rel="noopener" href="https://t.me/PandaTool">arrow-up-right</a></p>
+<p><a href="/sui/cetus">上一页Cetus创建集中流动性资金池教程chevron-left</a><a href="/sui/bluemove">下一页BlueMove创建AMM流动性资金池教程chevron-right</a></p>
+<p>最后更新于1年前</p>
 
         </div>
         
@@ -359,8 +417,8 @@
     
     <div class="ccbook-lang-switcher">
       <div class="languages-header">
-          <a href="/ccbus-guide/index.html" class="lang-btn active">中文</a>
-          <a href="/en/ccbus-guide/index.html" class="lang-btn">EN</a>
+          <a href="/ccbus-guide/chapters/sui/turbos.html" class="lang-btn active">中文</a>
+          <a href="/en/ccbus-guide/chapters/sui/turbos.html" class="lang-btn">EN</a>
       </div>
     </div>
 
@@ -1325,11 +1383,11 @@
     </label>
     <select class="lang-select" data-canonical="" aria-label="选择语言">
       
-        <option value="zh-CN" data-href="/ccbus-guide/index.html" selected="">
+        <option value="zh-CN" data-href="/ccbus-guide/chapters/sui/turbos.html" selected="">
           简体中文
         </option>
       
-        <option value="en" data-href="/en/ccbus-guide/index.html" selected="">
+        <option value="en" data-href="/en/ccbus-guide/chapters/sui/turbos.html" selected="">
           English
         </option>
       
