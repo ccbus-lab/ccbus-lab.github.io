@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/CCBus_B_T_64.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/CCBus_B_G_64.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/CCBus_B_T_64.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.ccbus.cc","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="A comprehensive expert-level guide to Uniswap V2-style liquidity pools: AMM mathematics, pool architecture, LP tokens, impermanent loss, fee mechanics, and production best practices on EVM chains.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Liquidity Pool Deep Dive — AMM Foundations to Production DeFi">
+<meta property="og:url" content="https://www.ccbus.cc/2026/03/31/liquidity-pool-deep-dive-EN/index.html">
+<meta property="og:site_name" content="CCBus">
+<meta property="og:description" content="A comprehensive expert-level guide to Uniswap V2-style liquidity pools: AMM mathematics, pool architecture, LP tokens, impermanent loss, fee mechanics, and production best practices on EVM chains.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-31T04:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-31T23:42:00.968Z">
+<meta property="article:author" content="CCBus Lab">
+<meta property="article:tag" content="AMM">
+<meta property="article:tag" content="DEX">
+<meta property="article:tag" content="DeFi">
+<meta property="article:tag" content="EVM">
+<meta property="article:tag" content="Liquidity">
+<meta property="article:tag" content="PancakeSwap">
+<meta property="article:tag" content="Solidity">
+<meta property="article:tag" content="Uniswap V2">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.ccbus.cc/2026/03/31/liquidity-pool-deep-dive-EN/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://www.ccbus.cc/2026/03/31/liquidity-pool-deep-dive-EN/","path":"2026/03/31/liquidity-pool-deep-dive-EN/","title":"Liquidity Pool Deep Dive — AMM Foundations to Production DeFi"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Liquidity Pool Deep Dive — AMM Foundations to Production DeFi | CCBus</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+<link rel="stylesheet" href="/css/custom.css">
+<script src="/js/mermaid-loader.js"></script>
+<script src="/js/menu-lang-switcher.js"></script>
+<script src="/js/ccbook-breadcrumb-fix.js"></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">CCBus</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+  <ul class="main-menu menu menu-lang-zh-CN" style="display: none;"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-ccbook"><a href="/ccbook/" rel="section"><i class="fa fa-book fa-fw"></i>CC宝典</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-articles"><a href="/articles/" rel="section"><i class="fa fa-file fa-fw"></i>Articles</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+
+  
+  <ul class="main-menu menu menu-lang-en"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-ccbook"><a href="/ccbook/" rel="section"><i class="fa fa-book fa-fw"></i>CC Bible</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-articles"><a href="/articles/" rel="section"><i class="fa fa-file fa-fw"></i>Articles</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+
+<div class="languages-header">
+  
+    <a href="/2026/03/31/liquidity-pool-deep-dive-EN/"
+       class="lang-btn "
+       title="切换到简体中文">
+      中文
+    </a>
+  
+    <a href="/en/2026/03/31/liquidity-pool-deep-dive-EN/"
+       class="lang-btn active"
+       title="Switch to English">
+      EN
+    </a>
+  
+</div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Liquidity Pool Deep Dive — AMM Foundations to Production DeFi</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Table-of-Contents"><span class="nav-number">1.1.</span> <span class="nav-text">Table of Contents</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-What-Is-a-Liquidity-Pool"><span class="nav-number">1.2.</span> <span class="nav-text">1. What Is a Liquidity Pool?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-The-AMM-Formula-%E2%80%94-Constant-Product-Market-Maker"><span class="nav-number">1.3.</span> <span class="nav-text">2. The AMM Formula — Constant Product Market Maker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-The-x%C2%B7y-k-Invariant"><span class="nav-number">1.3.1.</span> <span class="nav-text">2.1 The x·y &#x3D; k Invariant</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Price-Impact-and-Slippage"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.2 Price Impact and Slippage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-The-Spot-Price-Formula"><span class="nav-number">1.3.3.</span> <span class="nav-text">2.3 The Spot Price Formula</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Uniswap-V2-Architecture"><span class="nav-number">1.4.</span> <span class="nav-text">3. Uniswap V2 Architecture</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-The-Three-Contract-Model"><span class="nav-number">1.4.1.</span> <span class="nav-text">3.1 The Three-Contract Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-Factory-Contract-%E2%80%94-Pool-Registry"><span class="nav-number">1.4.2.</span> <span class="nav-text">3.2 Factory Contract — Pool Registry</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-Pair-Contract-%E2%80%94-The-Pool"><span class="nav-number">1.4.3.</span> <span class="nav-text">3.3 Pair Contract — The Pool</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-Router-Contract-%E2%80%94-User-Interface"><span class="nav-number">1.4.4.</span> <span class="nav-text">3.4 Router Contract — User Interface</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Pool-Uniqueness-and-Deterministic-Addresses"><span class="nav-number">1.5.</span> <span class="nav-text">4. Pool Uniqueness and Deterministic Addresses</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-What-Makes-a-Pool-Unique"><span class="nav-number">1.5.1.</span> <span class="nav-text">4.1 What Makes a Pool Unique</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-CREATE2-Deterministic-Deployment"><span class="nav-number">1.5.2.</span> <span class="nav-text">4.2 CREATE2 Deterministic Deployment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-One-Pool-Per-Pair-Per-Factory"><span class="nav-number">1.5.3.</span> <span class="nav-text">4.3 One Pool Per Pair Per Factory</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-LP-Tokens-%E2%80%94-Proof-of-Ownership"><span class="nav-number">1.6.</span> <span class="nav-text">5. LP Tokens — Proof of Ownership</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-LP-Token-Mechanics"><span class="nav-number">1.6.1.</span> <span class="nav-text">5.1 LP Token Mechanics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-Initial-Liquidity-and-Minimum-Lock"><span class="nav-number">1.6.2.</span> <span class="nav-text">5.2 Initial Liquidity and Minimum Lock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-Proportional-Ownership"><span class="nav-number">1.6.3.</span> <span class="nav-text">5.3 Proportional Ownership</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Adding-Liquidity"><span class="nav-number">1.7.</span> <span class="nav-text">6. Adding Liquidity</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-First-Liquidity-%E2%80%94-Setting-the-Price"><span class="nav-number">1.7.1.</span> <span class="nav-text">6.1 First Liquidity — Setting the Price</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-Subsequent-Liquidity-%E2%80%94-Matching-the-Ratio"><span class="nav-number">1.7.2.</span> <span class="nav-text">6.2 Subsequent Liquidity — Matching the Ratio</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-Multi-User-Pool-Lifecycle"><span class="nav-number">1.7.3.</span> <span class="nav-text">6.3 Multi-User Pool Lifecycle</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Swapping-%E2%80%94-How-Trades-Work"><span class="nav-number">1.8.</span> <span class="nav-text">7. Swapping — How Trades Work</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-The-Swap-Mechanics"><span class="nav-number">1.8.1.</span> <span class="nav-text">7.1 The Swap Mechanics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-Fee-Collection-0-3"><span class="nav-number">1.8.2.</span> <span class="nav-text">7.2 Fee Collection (0.3%)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-Minimum-Output-and-Deadline"><span class="nav-number">1.8.3.</span> <span class="nav-text">7.3 Minimum Output and Deadline</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-Removing-Liquidity"><span class="nav-number">1.9.</span> <span class="nav-text">8. Removing Liquidity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-Impermanent-Loss-%E2%80%94-The-Hidden-Risk"><span class="nav-number">1.10.</span> <span class="nav-text">9. Impermanent Loss — The Hidden Risk</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-1-What-Is-Impermanent-Loss"><span class="nav-number">1.10.1.</span> <span class="nav-text">9.1 What Is Impermanent Loss?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-2-The-Impermanent-Loss-Formula"><span class="nav-number">1.10.2.</span> <span class="nav-text">9.2 The Impermanent Loss Formula</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-3-Impermanent-Loss-vs-Fee-Income"><span class="nav-number">1.10.3.</span> <span class="nav-text">9.3 Impermanent Loss vs Fee Income</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-Fee-Accumulation-and-LP-Returns"><span class="nav-number">1.11.</span> <span class="nav-text">10. Fee Accumulation and LP Returns</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-Multiple-Pools-for-the-Same-Pair"><span class="nav-number">1.12.</span> <span class="nav-text">11. Multiple Pools for the Same Pair</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-1-Cross-DEX-Arbitrage"><span class="nav-number">1.12.1.</span> <span class="nav-text">11.1 Cross-DEX Arbitrage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-2-Multi-DEX-Liquidity-Strategy"><span class="nav-number">1.12.2.</span> <span class="nav-text">11.2 Multi-DEX Liquidity Strategy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-Uniswap-V2-vs-V3-%E2%80%94-Key-Differences"><span class="nav-number">1.13.</span> <span class="nav-text">12. Uniswap V2 vs V3 — Key Differences</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-Common-Misconceptions"><span class="nav-number">1.14.</span> <span class="nav-text">13. Common Misconceptions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-Best-Practices"><span class="nav-number">1.15.</span> <span class="nav-text">14. Best Practices</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#For-Liquidity-Providers"><span class="nav-number">1.15.1.</span> <span class="nav-text">For Liquidity Providers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#For-Developers"><span class="nav-number">1.15.2.</span> <span class="nav-text">For Developers</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-FAQ"><span class="nav-number">1.16.</span> <span class="nav-text">15. FAQ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#See-Also"><span class="nav-number">1.17.</span> <span class="nav-text">See Also</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="CCBus Lab"
+      src="/images/CCBus_B_G_64.png">
+  <p class="site-author-name" itemprop="name">CCBus Lab</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ccbus-lab" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ccbus-lab" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ccbus-lab@gmail.com" title="E-Mail → mailto:ccbus-lab@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://www.ccbus.cc/2026/03/31/liquidity-pool-deep-dive-EN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/CCBus_B_G_64.png">
+      <meta itemprop="name" content="CCBus Lab">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CCBus">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Liquidity Pool Deep Dive — AMM Foundations to Production DeFi | CCBus">
+      <meta itemprop="description" content="A comprehensive expert-level guide to Uniswap V2-style liquidity pools: AMM mathematics, pool architecture, LP tokens, impermanent loss, fee mechanics, and production best practices on EVM chains.">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Liquidity Pool Deep Dive — AMM Foundations to Production DeFi
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-03-31 00:00:00 / Modified: 19:42:00" itemprop="dateCreated datePublished" datetime="2026-03-31T00:00:00-04:00">2026-03-31</time>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">A comprehensive expert-level guide to Uniswap V2-style liquidity pools: AMM mathematics, pool architecture, LP tokens, impermanent loss, fee mechanics, and production best practices on EVM chains.</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1>Liquidity Pool Deep Dive — AMM Foundations to Production DeFi</h1>
+<p>This guide provides a thorough, expert-level understanding of Automated Market Maker (AMM) liquidity pools. Starting from first principles and progressing through advanced mechanics, it covers everything you need to confidently deploy, manage, and reason about liquidity pools in production EVM environments using Uniswap V2-compatible DEXs such as PancakeSwap and others supported by CCBus.</p>
+<hr>
+<h2 id="Table-of-Contents">Table of Contents</h2>
+<ul>
+<li><a href="#1-what-is-a-liquidity-pool">1. What Is a Liquidity Pool?</a></li>
+<li><a href="#2-the-amm-formula--constant-product-market-maker">2. The AMM Formula — Constant Product Market Maker</a>
+<ul>
+<li><a href="#21-the-xy--k-invariant">2.1 The x·y = k Invariant</a></li>
+<li><a href="#22-price-impact-and-slippage">2.2 Price Impact and Slippage</a></li>
+<li><a href="#23-the-spot-price-formula">2.3 The Spot Price Formula</a></li>
+</ul>
+</li>
+<li><a href="#3-uniswap-v2-architecture">3. Uniswap V2 Architecture</a>
+<ul>
+<li><a href="#31-the-three-contract-model">3.1 The Three-Contract Model</a></li>
+<li><a href="#32-factory-contract--pool-registry">3.2 Factory Contract — Pool Registry</a></li>
+<li><a href="#33-pair-contract--the-pool">3.3 Pair Contract — The Pool</a></li>
+<li><a href="#34-router-contract--user-interface">3.4 Router Contract — User Interface</a></li>
+</ul>
+</li>
+<li><a href="#4-pool-uniqueness-and-deterministic-addresses">4. Pool Uniqueness and Deterministic Addresses</a>
+<ul>
+<li><a href="#41-what-makes-a-pool-unique">4.1 What Makes a Pool Unique</a></li>
+<li><a href="#42-create2-deterministic-deployment">4.2 CREATE2 Deterministic Deployment</a></li>
+<li><a href="#43-one-pool-per-pair-per-factory">4.3 One Pool Per Pair Per Factory</a></li>
+</ul>
+</li>
+<li><a href="#5-lp-tokens--proof-of-ownership">5. LP Tokens — Proof of Ownership</a>
+<ul>
+<li><a href="#51-lp-token-mechanics">5.1 LP Token Mechanics</a></li>
+<li><a href="#52-initial-liquidity-and-minimum-lock">5.2 Initial Liquidity and Minimum Lock</a></li>
+<li><a href="#53-proportional-ownership">5.3 Proportional Ownership</a></li>
+</ul>
+</li>
+<li><a href="#6-adding-liquidity">6. Adding Liquidity</a>
+<ul>
+<li><a href="#61-first-liquidity--setting-the-price">6.1 First Liquidity — Setting the Price</a></li>
+<li><a href="#62-subsequent-liquidity--matching-the-ratio">6.2 Subsequent Liquidity — Matching the Ratio</a></li>
+<li><a href="#63-multi-user-pool-lifecycle">6.3 Multi-User Pool Lifecycle</a></li>
+</ul>
+</li>
+<li><a href="#7-swapping--how-trades-work">7. Swapping — How Trades Work</a>
+<ul>
+<li><a href="#71-the-swap-mechanics">7.1 The Swap Mechanics</a></li>
+<li><a href="#72-fee-collection-03">7.2 Fee Collection (0.3%)</a></li>
+<li><a href="#73-minimum-output-and-deadline">7.3 Minimum Output and Deadline</a></li>
+</ul>
+</li>
+<li><a href="#8-removing-liquidity">8. Removing Liquidity</a></li>
+<li><a href="#9-impermanent-loss--the-hidden-risk">9. Impermanent Loss — The Hidden Risk</a>
+<ul>
+<li><a href="#91-what-is-impermanent-loss">9.1 What Is Impermanent Loss?</a></li>
+<li><a href="#92-the-impermanent-loss-formula">9.2 The Impermanent Loss Formula</a></li>
+<li><a href="#93-impermanent-loss-vs-fee-income">9.3 Impermanent Loss vs Fee Income</a></li>
+</ul>
+</li>
+<li><a href="#10-fee-accumulation-and-lp-returns">10. Fee Accumulation and LP Returns</a></li>
+<li><a href="#11-multiple-pools-for-the-same-pair">11. Multiple Pools for the Same Pair</a>
+<ul>
+<li><a href="#111-cross-dex-arbitrage">11.1 Cross-DEX Arbitrage</a></li>
+<li><a href="#112-multi-dex-liquidity-strategy">11.2 Multi-DEX Liquidity Strategy</a></li>
+</ul>
+</li>
+<li><a href="#12-uniswap-v2-vs-v3--key-differences">12. Uniswap V2 vs V3 — Key Differences</a></li>
+<li><a href="#13-common-misconceptions">13. Common Misconceptions</a></li>
+<li><a href="#14-best-practices">14. Best Practices</a></li>
+<li><a href="#15-faq">15. FAQ</a></li>
+<li><a href="#see-also">See Also</a></li>
+</ul>
+<hr>
+<h2 id="1-What-Is-a-Liquidity-Pool">1. What Is a Liquidity Pool?</h2>
+<p>A <strong>liquidity pool</strong> is a smart contract that holds reserves of two tokens and enables decentralized, trustless trading between them. Unlike traditional order books (which need buyers and sellers to match at the same time), a liquidity pool uses a mathematical formula to determine prices algorithmically — this is the <strong>Automated Market Maker (AMM)</strong> model.</p>
+<svg viewBox="0 0 760 260" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;background:#1a1a2e;border-radius:8px;padding:8px">
+  <!-- Title -->
+  <text x="380" y="28" text-anchor="middle" fill="#f97316" font-size="14" font-weight="bold" font-family="monospace">Traditional Order Book vs AMM Liquidity Pool</text>
+  <!-- Left: Order Book -->
+  <rect x="30" y="45" width="320" height="195" rx="6" fill="#16213e" stroke="#374151" stroke-width="1"/>
+  <text x="190" y="65" text-anchor="middle" fill="#9ca3af" font-size="12" font-family="monospace">Traditional Order Book</text>
+  <!-- Sell orders -->
+  <rect x="50" y="75" width="140" height="16" rx="2" fill="#ef444433"/>
+  <text x="120" y="87" text-anchor="middle" fill="#ef4444" font-size="10" font-family="monospace">SELL 100 @ $1.05</text>
+  <rect x="50" y="94" width="120" height="16" rx="2" fill="#ef444433"/>
+  <text x="110" y="106" text-anchor="middle" fill="#ef4444" font-size="10" font-family="monospace">SELL 80 @ $1.03</text>
+  <rect x="50" y="113" width="100" height="16" rx="2" fill="#ef444433"/>
+  <text x="100" y="125" text-anchor="middle" fill="#ef4444" font-size="10" font-family="monospace">SELL 50 @ $1.01</text>
+  <!-- Spread -->
+  <text x="190" y="145" text-anchor="middle" fill="#f97316" font-size="11" font-family="monospace">── spread ──</text>
+  <!-- Buy orders -->
+  <rect x="50" y="153" width="100" height="16" rx="2" fill="#22c55e33"/>
+  <text x="100" y="165" text-anchor="middle" fill="#22c55e" font-size="10" font-family="monospace">BUY  40 @ $0.99</text>
+  <rect x="50" y="172" width="120" height="16" rx="2" fill="#22c55e33"/>
+  <text x="110" y="184" text-anchor="middle" fill="#22c55e" font-size="10" font-family="monospace">BUY  60 @ $0.97</text>
+  <rect x="50" y="191" width="140" height="16" rx="2" fill="#22c55e33"/>
+  <text x="120" y="203" text-anchor="middle" fill="#22c55e" font-size="10" font-family="monospace">BUY 200 @ $0.94</text>
+  <text x="190" y="228" text-anchor="middle" fill="#6b7280" font-size="10" font-family="monospace">Needs counterparty to match</text>
+  <!-- Arrow -->
+  <text x="380" y="148" text-anchor="middle" fill="#f97316" font-size="20">vs</text>
+  <!-- Right: AMM Pool -->
+  <rect x="410" y="45" width="320" height="195" rx="6" fill="#16213e" stroke="#374151" stroke-width="1"/>
+  <text x="570" y="65" text-anchor="middle" fill="#9ca3af" font-size="12" font-family="monospace">AMM Liquidity Pool</text>
+  <!-- Pool box -->
+  <rect x="450" y="78" width="220" height="100" rx="6" fill="#111827" stroke="#f97316" stroke-width="1.5"/>
+  <text x="560" y="100" text-anchor="middle" fill="#f97316" font-size="12" font-family="monospace">Pool Contract</text>
+  <text x="560" y="122" text-anchor="middle" fill="#60a5fa" font-size="11" font-family="monospace">Reserve A: 10,000 TOKEN</text>
+  <text x="560" y="140" text-anchor="middle" fill="#34d399" font-size="11" font-family="monospace">Reserve B: 100 WETH</text>
+  <text x="560" y="158" text-anchor="middle" fill="#a78bfa" font-size="10" font-family="monospace">Price = Reserve B / Reserve A</text>
+  <!-- Formula -->
+  <text x="560" y="195" text-anchor="middle" fill="#fbbf24" font-size="11" font-family="monospace">x · y = k  (always)</text>
+  <text x="560" y="228" text-anchor="middle" fill="#6b7280" font-size="10" font-family="monospace">Always available, no counterparty needed</text>
+</svg>
+<p><strong>Key insight:</strong> The pool is always available to trade against. There is no matching engine, no waiting for a buyer or seller. The price is determined entirely by the ratio of reserves in the pool.</p>
+<hr>
+<h2 id="2-The-AMM-Formula-—-Constant-Product-Market-Maker">2. The AMM Formula — Constant Product Market Maker</h2>
+<h3 id="2-1-The-x·y-k-Invariant">2.1 The x·y = k Invariant</h3>
+<p>The Uniswap V2 AMM is a <strong>Constant Product Market Maker</strong>. It enforces one simple invariant:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x · y = k</span><br></pre></td></tr></table></figure>
+<p>Where:</p>
+<ul>
+<li><code>x</code> = reserve of Token A</li>
+<li><code>y</code> = reserve of Token B</li>
+<li><code>k</code> = a constant (never decreases, only grows with fees)</li>
+</ul>
+<p>When a trade occurs, tokens flow in and out such that the product <code>x · y</code> remains constant (before fees). This creates the characteristic <strong>hyperbolic price curve</strong>:</p>
+<svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;background:#1a1a2e;border-radius:8px;padding:8px">
+  <text x="300" y="26" text-anchor="middle" fill="#f97316" font-size="14" font-weight="bold" font-family="monospace">x · y = k  Constant Product Curve</text>
+  <!-- Axes -->
+  <line x1="60" y1="340" x2="560" y2="340" stroke="#4b5563" stroke-width="1.5"/>
+  <line x1="60" y1="340" x2="60" y2="40" stroke="#4b5563" stroke-width="1.5"/>
+  <text x="565" y="344" fill="#9ca3af" font-size="11" font-family="monospace">Reserve X</text>
+  <text x="20" y="45" fill="#9ca3af" font-size="11" font-family="monospace" transform="rotate(-90,20,45) translate(-160,0)">Reserve Y</text>
+  <!-- Axis ticks -->
+  <text x="55" y="355" fill="#6b7280" font-size="10" font-family="monospace" text-anchor="middle">0</text>
+  <line x1="60" y1="340" x2="60" y2="344" stroke="#4b5563" stroke-width="1"/>
+  <text x="155" y="355" fill="#6b7280" font-size="10" font-family="monospace" text-anchor="middle">100</text>
+  <line x1="160" y1="340" x2="160" y2="344" stroke="#4b5563" stroke-width="1"/>
+  <text x="255" y="355" fill="#6b7280" font-size="10" font-family="monospace" text-anchor="middle">200</text>
+  <line x1="260" y1="340" x2="260" y2="344" stroke="#4b5563" stroke-width="1"/>
+  <text x="355" y="355" fill="#6b7280" font-size="10" font-family="monospace" text-anchor="middle">300</text>
+  <line x1="360" y1="340" x2="360" y2="344" stroke="#4b5563" stroke-width="1"/>
+  <text x="455" y="355" fill="#6b7280" font-size="10" font-family="monospace" text-anchor="middle">400</text>
+  <line x1="460" y1="340" x2="460" y2="344" stroke="#4b5563" stroke-width="1"/>
+  <line x1="60" y1="340" x2="56" y2="340" stroke="#4b5563" stroke-width="1"/>
+  <line x1="60" y1="280" x2="56" y2="280" stroke="#4b5563" stroke-width="1"/>
+  <line x1="60" y1="220" x2="56" y2="220" stroke="#4b5563" stroke-width="1"/>
+  <line x1="60" y1="160" x2="56" y2="160" stroke="#4b5563" stroke-width="1"/>
+  <line x1="60" y1="100" x2="56" y2="100" stroke="#4b5563" stroke-width="1"/>
+  <line x1="60" y1="40"  x2="56" y2="40"  stroke="#4b5563" stroke-width="1"/>
+  <!-- Hyperbola curve: x*y = 10000, x from 40..450, y = 10000/x, scaled -->
+  <polyline points="100,165 110,152 120,140 130,131 140,122 150,115 160,108 175,100 190,92 210,84 235,76 265,68 300,62 340,56 390,51 455,46" fill="none" stroke="#f97316" stroke-width="3" shape-rendering="geometricPrecision"/>
+  <!-- Current state point A -->
+  <circle cx="260" cy="68" r="6" fill="#f97316"/>
+  <text x="270" y="62" fill="#f97316" font-size="11" font-family="monospace">Current State</text>
+  <text x="270" y="75" fill="#f97316" font-size="10" font-family="monospace">(x=200, y=50)</text>
+  <!-- Trade: buy X (x increases, y decreases) -->
+  <circle cx="355" cy="56" r="6" fill="#22c55e"/>
+  <text x="365" y="50" fill="#22c55e" font-size="11" font-family="monospace">After Buy X</text>
+  <text x="365" y="63" fill="#22c55e" font-size="10" font-family="monospace">(x=290, y=34.5)</text>
+  <!-- Arrow showing trade direction -->
+  <path d="M 267 68 Q 310 62 348 58" fill="none" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+  <!-- Δx annotation -->
+  <line x1="260" y1="340" x2="260" y2="72" stroke="#60a5fa" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="355" y1="340" x2="355" y2="60" stroke="#60a5fa" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="260" y1="320" x2="355" y2="320" stroke="#60a5fa" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <text x="307" y="315" text-anchor="middle" fill="#60a5fa" font-size="10" font-family="monospace">Δx in</text>
+  <!-- Δy annotation -->
+  <line x1="80" y1="68" x2="255" y2="68" stroke="#a78bfa" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="80" y1="56" x2="350" y2="56" stroke="#a78bfa" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="90" y1="68" x2="90" y2="59" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrowPurple)"/>
+  <text x="95" y="65" fill="#a78bfa" font-size="10" font-family="monospace">Δy out</text>
+  <!-- Tangent line (spot price) -->
+  <line x1="200" y1="100" x2="320" y2="44" stroke="#fbbf24" stroke-width="1" stroke-dasharray="5,3" opacity="0.7"/>
+  <text x="330" y="42" fill="#fbbf24" font-size="10" font-family="monospace">slope = spot price</text>
+  <!-- k label -->
+  <text x="460" y="42" fill="#6b7280" font-size="11" font-family="monospace">k = 10,000</text>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#22c55e"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#60a5fa"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#a78bfa"/>
+    </marker>
+  </defs>
+</svg>
+<p><strong>The curve is a hyperbola.</strong> As you try to buy more of one token, the price increases non-linearly — this is <strong>price impact</strong>.</p>
+<h3 id="2-2-Price-Impact-and-Slippage">2.2 Price Impact and Slippage</h3>
+<p>When you execute a trade, the price you pay is the <strong>average</strong> across the curve segment traversed, not the spot price:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Spot price (marginal):   price = y / x</span><br><span class="line">Execution price (avg):   price = Δy / Δx  (always worse than spot)</span><br><span class="line"></span><br><span class="line">The larger the trade relative to pool size → greater price impact</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>Trade Size (% of Pool)</th>
+<th>Approximate Price Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.01%</td>
+<td>~0.01% (negligible)</td>
+</tr>
+<tr>
+<td>0.1%</td>
+<td>~0.1%</td>
+</tr>
+<tr>
+<td>1%</td>
+<td>~1.01%</td>
+</tr>
+<tr>
+<td>5%</td>
+<td>~5.26%</td>
+</tr>
+<tr>
+<td>10%</td>
+<td>~11.11%</td>
+</tr>
+<tr>
+<td>20%</td>
+<td>~25%</td>
+</tr>
+<tr>
+<td>50%</td>
+<td>~100% (doubles price)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-3-The-Spot-Price-Formula">2.3 The Spot Price Formula</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Spot price of X in terms of Y:  P(X) = reserveY / reserveX</span><br><span class="line"></span><br><span class="line">Example:</span><br><span class="line">  reserveX = 10,000 TOKEN</span><br><span class="line">  reserveY = 100 WETH</span><br><span class="line">  → 1 TOKEN = 0.01 WETH = 100 TOKEN per WETH</span><br></pre></td></tr></table></figure>
+<p><strong>Key point:</strong> The spot price is just the reserve ratio. Any trade that changes reserves also changes the price.</p>
+<hr>
+<h2 id="3-Uniswap-V2-Architecture">3. Uniswap V2 Architecture</h2>
+<h3 id="3-1-The-Three-Contract-Model">3.1 The Three-Contract Model</h3>
+<p>Uniswap V2 (and all compatible DEXs like PancakeSwap V2) use a three-layer contract architecture:</p>
+<svg viewBox="0 0 760 420" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;background:#1a1a2e;border-radius:8px;padding:8px">
+  <text x="380" y="28" text-anchor="middle" fill="#f97316" font-size="14" font-weight="bold" font-family="monospace">Uniswap V2 Contract Architecture</text>
+  <!-- User -->
+  <rect x="320" y="48" width="120" height="44" rx="6" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="380" y="67" text-anchor="middle" fill="#93c5fd" font-size="11" font-family="monospace">👤 User / DApp</text>
+  <text x="380" y="83" text-anchor="middle" fill="#60a5fa" font-size="10" font-family="monospace">msg.sender</text>
+  <!-- Arrow down to Router -->
+  <line x1="380" y1="92" x2="380" y2="128" stroke="#f97316" stroke-width="2" marker-end="url(#arrowOrange)"/>
+  <text x="395" y="115" fill="#f97316" font-size="10" font-family="monospace">calls</text>
+  <!-- Router -->
+  <rect x="240" y="130" width="280" height="68" rx="6" fill="#1a2e1a" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="380" y="152" text-anchor="middle" fill="#4ade80" font-size="12" font-family="monospace" font-weight="bold">Router Contract</text>
+  <text x="380" y="168" text-anchor="middle" fill="#86efac" font-size="10" font-family="monospace">addLiquidity / removeLiquidity</text>
+  <text x="380" y="184" text-anchor="middle" fill="#86efac" font-size="10" font-family="monospace">swapExactTokensForTokens / ...</text>
+  <!-- Arrow Router -> Factory -->
+  <line x1="310" y1="198" x2="200" y2="248" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrowPurple2)" stroke-dasharray="4,3"/>
+  <text x="220" y="228" fill="#a78bfa" font-size="9" font-family="monospace">getPair / createPair</text>
+  <!-- Arrow Router -> Pairs -->
+  <line x1="450" y1="198" x2="560" y2="248" stroke="#60a5fa" stroke-width="1.5" marker-end="url(#arrowBlue2)" stroke-dasharray="4,3"/>
+  <text x="510" y="228" fill="#60a5fa" font-size="9" font-family="monospace">mint / burn / swap</text>
+  <!-- Factory -->
+  <rect x="60" y="250" width="240" height="72" rx="6" fill="#2d1a2e" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="180" y="272" text-anchor="middle" fill="#c4b5fd" font-size="12" font-family="monospace" font-weight="bold">Factory Contract</text>
+  <text x="180" y="288" text-anchor="middle" fill="#ddd6fe" font-size="10" font-family="monospace">getPair(tokenA, tokenB)</text>
+  <text x="180" y="304" text-anchor="middle" fill="#ddd6fe" font-size="10" font-family="monospace">createPair → deploys Pair</text>
+  <!-- Pair contracts -->
+  <rect x="440" y="250" width="145" height="80" rx="6" fill="#1a2840" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="512" y="272" text-anchor="middle" fill="#93c5fd" font-size="11" font-family="monospace" font-weight="bold">Pair Contract #1</text>
+  <text x="512" y="288" text-anchor="middle" fill="#bfdbfe" font-size="9" font-family="monospace">TOKEN / WETH</text>
+  <text x="512" y="304" text-anchor="middle" fill="#bfdbfe" font-size="9" font-family="monospace">reserve0, reserve1</text>
+  <text x="512" y="318" text-anchor="middle" fill="#bfdbfe" font-size="9" font-family="monospace">ERC-20 LP Token</text>
+  <rect x="600" y="250" width="145" height="80" rx="6" fill="#1a2840" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="672" y="272" text-anchor="middle" fill="#93c5fd" font-size="11" font-family="monospace" font-weight="bold">Pair Contract #2</text>
+  <text x="672" y="288" text-anchor="middle" fill="#bfdbfe" font-size="9" font-family="monospace">TOKEN / USDT</text>
+  <text x="672" y="304" text-anchor="middle" fill="#bfdbfe" font-size="9" font-family="monospace">reserve0, reserve1</text>
+  <text x="672" y="318" text-anchor="middle" fill="#bfdbfe" font-size="9" font-family="monospace">ERC-20 LP Token</text>
+  <!-- Factory creates Pairs arrow -->
+  <line x1="300" y1="286" x2="435" y2="286" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrowPurple2)" stroke-dasharray="5,3"/>
+  <text x="368" y="280" fill="#a78bfa" font-size="9" font-family="monospace">creates via CREATE2</text>
+  <!-- Pair1 -> Pair2 connection note -->
+  <line x1="585" y1="290" x2="598" y2="290" stroke="#4b5563" stroke-width="1" stroke-dasharray="3,3"/>
+  <!-- Legend -->
+  <rect x="60" y="355" width="640" height="50" rx="4" fill="#111827" stroke="#374151" stroke-width="1"/>
+  <text x="380" y="373" text-anchor="middle" fill="#f97316" font-size="11" font-family="monospace" font-weight="bold">Contract Responsibilities</text>
+  <text x="100" y="393" fill="#4ade80" font-size="9" font-family="monospace">Router: Safe user-facing entry point, slippage + deadline protection</text>
+  <text x="430" y="393" fill="#c4b5fd" font-size="9" font-family="monospace">Factory: Pair registry, one pair per token combo</text>
+  <text x="100" y="406" fill="#93c5fd" font-size="9" font-family="monospace">Pair: Holds reserves, mints/burns LP tokens, executes swaps</text>
+  <defs>
+    <marker id="arrowOrange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#f97316"/>
+    </marker>
+    <marker id="arrowPurple2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#a78bfa"/>
+    </marker>
+    <marker id="arrowBlue2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#60a5fa"/>
+    </marker>
+  </defs>
+</svg>
+<h3 id="3-2-Factory-Contract-—-Pool-Registry">3.2 Factory Contract — Pool Registry</h3>
+<p>The Factory contract is the <strong>registry</strong> for all pools on a DEX. It has two critical jobs:</p>
+<ol>
+<li><strong><code>getPair(tokenA, tokenB)</code></strong> — Returns the pair contract address, or <code>address(0)</code> if not yet created</li>
+<li><strong><code>createPair(tokenA, tokenB)</code></strong> — Deploys a new pair contract using <code>CREATE2</code>; reverts if already exists</li>
+</ol>
+<p>The factory normalizes token ordering (<code>token0 &lt; token1</code> by address) so <code>getPair(A, B)</code> and <code>getPair(B, A)</code> always return the same pool.</p>
+<h3 id="3-3-Pair-Contract-—-The-Pool">3.3 Pair Contract — The Pool</h3>
+<p>Each pair contract is an <strong>ERC-20 LP token contract</strong> that also holds the pool’s token reserves. It exposes:</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mint(to)</code></td>
+<td>Called after tokens are transferred in; mints LP tokens</td>
+</tr>
+<tr>
+<td><code>burn(to)</code></td>
+<td>Burns LP tokens, sends proportional reserves out</td>
+</tr>
+<tr>
+<td><code>swap(amount0Out, amount1Out, to, data)</code></td>
+<td>Executes a swap after tokens are sent in</td>
+</tr>
+<tr>
+<td><code>getReserves()</code></td>
+<td>Returns <code>(reserve0, reserve1, blockTimestampLast)</code></td>
+</tr>
+<tr>
+<td><code>token0()</code>, <code>token1()</code></td>
+<td>The two token addresses</td>
+</tr>
+<tr>
+<td><code>totalSupply()</code></td>
+<td>Total LP token supply across all holders</td>
+</tr>
+<tr>
+<td><code>balanceOf(address)</code></td>
+<td>LP tokens held by a specific address</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-4-Router-Contract-—-User-Interface">3.4 Router Contract — User Interface</h3>
+<p>The Router is the <strong>safe user-facing entry point</strong>. Users should always interact with the Router, not the Pair directly. The Router:</p>
+<ul>
+<li>Validates slippage tolerances (<code>amountMin</code> parameters)</li>
+<li>Enforces transaction deadlines</li>
+<li>Handles <code>ETH ↔ WETH</code> wrapping transparently</li>
+<li>Performs multi-hop routing across multiple pools</li>
+<li>Handles the <code>createPair</code> flow if pool doesn’t exist</li>
+</ul>
+<hr>
+<h2 id="4-Pool-Uniqueness-and-Deterministic-Addresses">4. Pool Uniqueness and Deterministic Addresses</h2>
+<h3 id="4-1-What-Makes-a-Pool-Unique">4.1 What Makes a Pool Unique</h3>
+<p>A pool is uniquely identified by exactly <strong>three factors</strong>. Wallet address is NOT one of them.</p>
+<svg viewBox="0 0 720 310" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;background:#1a1a2e;border-radius:8px;padding:8px">
+  <text x="360" y="28" text-anchor="middle" fill="#f97316" font-size="14" font-weight="bold" font-family="monospace">Pool Identity: Three Required Factors</text>
+  <!-- Factor 1: Token Pair -->
+  <rect x="40" y="48" width="185" height="110" rx="6" fill="#1a2840" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="132" y="70" text-anchor="middle" fill="#60a5fa" font-size="12" font-family="monospace" font-weight="bold">① Token Pair</text>
+  <text x="132" y="92" text-anchor="middle" fill="#93c5fd" font-size="10" font-family="monospace">TOKEN_A + TOKEN_B</text>
+  <text x="132" y="110" text-anchor="middle" fill="#bfdbfe" font-size="9" font-family="monospace">Order doesn't matter:</text>
+  <text x="132" y="125" text-anchor="middle" fill="#bfdbfe" font-size="9" font-family="monospace">getPair(A,B) == getPair(B,A)</text>
+  <text x="132" y="142" text-anchor="middle" fill="#4ade80" font-size="9" font-family="monospace">✓ Normalized by address sort</text>
+  <!-- Plus sign -->
+  <text x="230" y="108" text-anchor="middle" fill="#f97316" font-size="22" font-family="monospace">+</text>
+  <!-- Factor 2: Factory -->
+  <rect x="248" y="48" width="200" height="110" rx="6" fill="#2d1a2e" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="348" y="70" text-anchor="middle" fill="#a78bfa" font-size="12" font-family="monospace" font-weight="bold">② DEX Factory</text>
+  <text x="348" y="92" text-anchor="middle" fill="#c4b5fd" font-size="10" font-family="monospace">PancakeSwap Factory</text>
+  <text x="348" y="108" text-anchor="middle" fill="#c4b5fd" font-size="10" font-family="monospace">vs  ApeSwap Factory</text>
+  <text x="348" y="124" text-anchor="middle" fill="#c4b5fd" font-size="10" font-family="monospace">vs  BiSwap Factory</text>
+  <text x="348" y="142" text-anchor="middle" fill="#fbbf24" font-size="9" font-family="monospace">→ Different factory = different pool</text>
+  <!-- Plus sign -->
+  <text x="454" y="108" text-anchor="middle" fill="#f97316" font-size="22" font-family="monospace">+</text>
+  <!-- Factor 3: Chain -->
+  <rect x="468" y="48" width="200" height="110" rx="6" fill="#1a2e1a" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="568" y="70" text-anchor="middle" fill="#22c55e" font-size="12" font-family="monospace" font-weight="bold">③ Blockchain</text>
+  <text x="568" y="92" text-anchor="middle" fill="#86efac" font-size="10" font-family="monospace">Ethereum (ChainID: 1)</text>
+  <text x="568" y="108" text-anchor="middle" fill="#86efac" font-size="10" font-family="monospace">BSC (ChainID: 56)</text>
+  <text x="568" y="124" text-anchor="middle" fill="#86efac" font-size="10" font-family="monospace">Polygon (ChainID: 137)</text>
+  <text x="568" y="142" text-anchor="middle" fill="#fbbf24" font-size="9" font-family="monospace">→ Different chain = different pool</text>
+  <!-- Equals and Result -->
+  <text x="360" y="182" text-anchor="middle" fill="#f97316" font-size="13" font-family="monospace">= ONE deterministic pool address</text>
+  <!-- NOT a factor -->
+  <rect x="40" y="200" width="640" height="90" rx="6" fill="#2d1a1a" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="360" y="222" text-anchor="middle" fill="#ef4444" font-size="12" font-family="monospace" font-weight="bold">❌ NOT a uniqueness factor: Wallet Address</text>
+  <text x="360" y="244" text-anchor="middle" fill="#fca5a5" font-size="10" font-family="monospace">Alice (0xAaaa...1111) and Bob (0xBbbb...2222) both share</text>
+  <text x="360" y="262" text-anchor="middle" fill="#fca5a5" font-size="10" font-family="monospace">the EXACT same TOKEN/WETH pool on the same factory + chain.</text>
+  <text x="360" y="280" text-anchor="middle" fill="#ef4444" font-size="9" font-family="monospace">Your wallet does NOT create a separate pool. You are always adding to the shared pool.</text>
+</svg>
+<h3 id="4-2-CREATE2-Deterministic-Deployment">4.2 CREATE2 Deterministic Deployment</h3>
+<p>Pool addresses are <strong>pre-computable</strong> — they don’t require a transaction to look up. The factory deploys pair contracts using the <code>CREATE2</code> opcode with a salt derived from the token pair:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">salt     = keccak256(abi.encodePacked(token0, token1))</span><br><span class="line">initHash = keccak256(pairBytecode)</span><br><span class="line"></span><br><span class="line">pairAddress = keccak256(0xff ++ factoryAddress ++ salt ++ initHash)[12:]</span><br></pre></td></tr></table></figure>
+<p>This means:</p>
+<ul>
+<li>The same token pair on the same factory <strong>always</strong> produces the same address</li>
+<li>Pair addresses can be computed off-chain before any transaction</li>
+<li>Two concurrent <code>createPair</code> calls for the same pair: the second will revert because the <code>CREATE2</code> target address is already occupied</li>
+</ul>
+<h3 id="4-3-One-Pool-Per-Pair-Per-Factory">4.3 One Pool Per Pair Per Factory</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">TOKEN/WBNB on PancakeSwap V2 = Pool 0xAAA... (ONE pool, shared by everyone)</span><br><span class="line">TOKEN/WBNB on ApeSwap        = Pool 0xBBB... (different DEX = different pool)</span><br><span class="line">TOKEN/WETH on Ethereum        = Pool 0xCCC... (different chain = different pool)</span><br><span class="line"></span><br><span class="line">getPair(TOKEN, WBNB)  → 0xAAA...</span><br><span class="line">getPair(WBNB, TOKEN)  → 0xAAA...  ← same! order normalized</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="5-LP-Tokens-—-Proof-of-Ownership">5. LP Tokens — Proof of Ownership</h2>
+<h3 id="5-1-LP-Token-Mechanics">5.1 LP Token Mechanics</h3>
+<p>When you add liquidity, the pair contract mints <strong>LP tokens</strong> to you. LP tokens are standard ERC-20 tokens representing your proportional claim on the pool’s reserves.</p>
+<svg viewBox="0 0 740 340" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;background:#1a1a2e;border-radius:8px;padding:8px">
+  <text x="370" y="28" text-anchor="middle" fill="#f97316" font-size="14" font-weight="bold" font-family="monospace">LP Token Minting Flow</text>
+  <!-- User -->
+  <rect x="40" y="50" width="130" height="55" rx="6" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="105" y="72" text-anchor="middle" fill="#93c5fd" font-size="11" font-family="monospace">User Wallet</text>
+  <text x="105" y="89" text-anchor="middle" fill="#60a5fa" font-size="10" font-family="monospace">1,000 TOKEN</text>
+  <text x="105" y="102" text-anchor="middle" fill="#60a5fa" font-size="10" font-family="monospace">10 WETH</text>
+  <!-- Arrow: transfer tokens -->
+  <path d="M 170 77 L 280 77" fill="none" stroke="#fbbf24" stroke-width="2" marker-end="url(#arrowYellow)"/>
+  <text x="225" y="68" text-anchor="middle" fill="#fbbf24" font-size="9" font-family="monospace">transfer</text>
+  <text x="225" y="82" text-anchor="middle" fill="#fbbf24" font-size="9" font-family="monospace">tokens in</text>
+  <!-- Pool / Pair Contract -->
+  <rect x="280" y="45" width="200" height="180" rx="6" fill="#111827" stroke="#f97316" stroke-width="2"/>
+  <text x="380" y="68" text-anchor="middle" fill="#f97316" font-size="12" font-family="monospace" font-weight="bold">Pair Contract</text>
+  <line x1="290" y1="75" x2="470" y2="75" stroke="#374151" stroke-width="1"/>
+  <text x="380" y="93" text-anchor="middle" fill="#9ca3af" font-size="10" font-family="monospace">Before:</text>
+  <text x="380" y="110" text-anchor="middle" fill="#60a5fa" font-size="10" font-family="monospace">reserve0: 9,000 TOKEN</text>
+  <text x="380" y="126" text-anchor="middle" fill="#34d399" font-size="10" font-family="monospace">reserve1: 90 WETH</text>
+  <text x="380" y="142" text-anchor="middle" fill="#9ca3af" font-size="10" font-family="monospace">totalSupply: 900 LP</text>
+  <line x1="290" y1="150" x2="470" y2="150" stroke="#374151" stroke-width="1"/>
+  <text x="380" y="168" text-anchor="middle" fill="#9ca3af" font-size="10" font-family="monospace">After:</text>
+  <text x="380" y="185" text-anchor="middle" fill="#60a5fa" font-size="10" font-family="monospace">reserve0: 10,000 TOKEN</text>
+  <text x="380" y="201" text-anchor="middle" fill="#34d399" font-size="10" font-family="monospace">reserve1: 100 WETH</text>
+  <text x="380" y="217" text-anchor="middle" fill="#fbbf24" font-size="10" font-family="monospace">totalSupply: 1,000 LP</text>
+  <!-- Arrow: mint LP tokens -->
+  <path d="M 480 100 L 580 100" fill="none" stroke="#4ade80" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <text x="530" y="92" text-anchor="middle" fill="#4ade80" font-size="9" font-family="monospace">mint</text>
+  <text x="530" y="106" text-anchor="middle" fill="#4ade80" font-size="9" font-family="monospace">100 LP</text>
+  <!-- User's LP tokens -->
+  <rect x="580" y="74" width="130" height="55" rx="6" fill="#1a2e1a" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="645" y="96" text-anchor="middle" fill="#4ade80" font-size="11" font-family="monospace">User gets</text>
+  <text x="645" y="112" text-anchor="middle" fill="#86efac" font-size="10" font-family="monospace">100 LP Tokens</text>
+  <text x="645" y="126" text-anchor="middle" fill="#86efac" font-size="9" font-family="monospace">(10% ownership)</text>
+  <!-- LP calculation -->
+  <rect x="40" y="250" width="680" height="72" rx="6" fill="#111827" stroke="#374151" stroke-width="1"/>
+  <text x="380" y="270" text-anchor="middle" fill="#f97316" font-size="11" font-family="monospace" font-weight="bold">LP Token Minting Formula</text>
+  <text x="380" y="290" text-anchor="middle" fill="#9ca3af" font-size="10" font-family="monospace">First mint:  LP = sqrt(amountA × amountB) − MINIMUM_LIQUIDITY</text>
+  <text x="380" y="308" text-anchor="middle" fill="#9ca3af" font-size="10" font-family="monospace">Subsequent: LP = min( amountA/reserveA, amountB/reserveB ) × totalSupply</text>
+  <defs>
+    <marker id="arrowYellow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#4ade80"/>
+    </marker>
+  </defs>
+</svg>
+<h3 id="5-2-Initial-Liquidity-and-Minimum-Lock">5.2 Initial Liquidity and Minimum Lock</h3>
+<p>On the <strong>first mint</strong>, Uniswap V2 burns a small amount of LP tokens (<code>MINIMUM_LIQUIDITY = 1000 wei</code>) by sending them to <code>address(0)</code>. This permanently locks a tiny amount of liquidity in the pool and prevents the total supply from ever reaching zero, protecting against division-by-zero and price manipulation attacks.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">First mint:</span><br><span class="line">  LP minted to provider  = sqrt(amount0 * amount1) - 1000</span><br><span class="line">  LP burned to address(0) = 1000   ← locked forever</span><br></pre></td></tr></table></figure>
+<h3 id="5-3-Proportional-Ownership">5.3 Proportional Ownership</h3>
+<p>Your LP tokens represent a <strong>proportional claim</strong> on the pool’s reserves:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Your share %  = yourLP / totalLP × 100</span><br><span class="line"></span><br><span class="line">Your TOKEN A  = reserve0 × (yourLP / totalLP)</span><br><span class="line">Your TOKEN B  = reserve1 × (yourLP / totalLP)</span><br></pre></td></tr></table></figure>
+<p>If the pool grows (from fees or others adding liquidity), the absolute value of your position grows even if your percentage changes.</p>
+<hr>
+<h2 id="6-Adding-Liquidity">6. Adding Liquidity</h2>
+<h3 id="6-1-First-Liquidity-—-Setting-the-Price">6.1 First Liquidity — Setting the Price</h3>
+<p>The first liquidity provider sets the pool’s <strong>initial price</strong> by choosing the ratio of tokens they deposit. This is a critical responsibility:</p>
+<blockquote>
+<p><strong>If you deposit 10,000 TOKEN and 1 WETH, you’ve set the price at 10,000 TOKEN per WETH.</strong><br>
+If the market price is 500 TOKEN per WETH, arbitrageurs will immediately buy WETH from your pool, causing you impermanent loss.</p>
+</blockquote>
+<p><strong>Best practice:</strong> Deposit at the current market price ratio.</p>
+<h3 id="6-2-Subsequent-Liquidity-—-Matching-the-Ratio">6.2 Subsequent Liquidity — Matching the Ratio</h3>
+<p>All liquidity added after pool creation must match the <strong>current reserve ratio</strong> (within the slippage tolerance you specify). The router calculates the optimal amounts:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Desired: add amountADesired of TokenA</span><br><span class="line">→ Required TokenB = amountADesired × reserveB / reserveA</span><br><span class="line">→ If you provide more TokenB than required, only reserveB/reserveA proportion is used</span><br><span class="line">→ Excess is returned to your wallet</span><br></pre></td></tr></table></figure>
+<p>This is why you always specify both <code>amountADesired</code> AND <code>amountBDesired</code> plus <code>amountAMin</code> / <code>amountBMin</code> — the router will use whichever side is the binding constraint.</p>
+<h3 id="6-3-Multi-User-Pool-Lifecycle">6.3 Multi-User Pool Lifecycle</h3>
+<svg viewBox="0 0 760 480" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;background:#1a1a2e;border-radius:8px;padding:8px">
+  <text x="380" y="28" text-anchor="middle" fill="#f97316" font-size="14" font-weight="bold" font-family="monospace">Pool Lifecycle: Three LPs Joining Over Time</text>
+  <!-- Step 1: Alice creates pool -->
+  <rect x="30" y="48" width="210" height="120" rx="6" fill="#111827" stroke="#f97316" stroke-width="1.5"/>
+  <text x="135" y="68" text-anchor="middle" fill="#f97316" font-size="11" font-family="monospace" font-weight="bold">① Alice Creates Pool</text>
+  <text x="135" y="86" text-anchor="middle" fill="#9ca3af" font-size="9" font-family="monospace">Deposits: 1,000 TOKEN + 10 WETH</text>
+  <text x="135" y="100" text-anchor="middle" fill="#9ca3af" font-size="9" font-family="monospace">Sets price: 100 TOKEN/WETH</text>
+  <line x1="40" y1="108" x2="230" y2="108" stroke="#374151" stroke-width="0.5"/>
+  <text x="135" y="122" text-anchor="middle" fill="#60a5fa" font-size="9" font-family="monospace">TOKEN: 1,000</text>
+  <text x="135" y="136" text-anchor="middle" fill="#34d399" font-size="9" font-family="monospace">WETH:  10</text>
+  <text x="135" y="150" text-anchor="middle" fill="#fbbf24" font-size="9" font-family="monospace">LP supply: 100 (Alice: 100%)</text>
+  <!-- Step 2: Bob adds -->
+  <rect x="270" y="48" width="210" height="120" rx="6" fill="#111827" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="375" y="68" text-anchor="middle" fill="#60a5fa" font-size="11" font-family="monospace" font-weight="bold">② Bob Adds Liquidity</text>
+  <text x="375" y="86" text-anchor="middle" fill="#9ca3af" font-size="9" font-family="monospace">Deposits: 500 TOKEN + 5 WETH</text>
+  <text x="375" y="100" text-anchor="middle" fill="#9ca3af" font-size="9" font-family="monospace">Matches existing ratio</text>
+  <line x1="280" y1="108" x2="470" y2="108" stroke="#374151" stroke-width="0.5"/>
+  <text x="375" y="122" text-anchor="middle" fill="#60a5fa" font-size="9" font-family="monospace">TOKEN: 1,500</text>
+  <text x="375" y="136" text-anchor="middle" fill="#34d399" font-size="9" font-family="monospace">WETH:  15</text>
+  <text x="375" y="150" text-anchor="middle" fill="#fbbf24" font-size="9" font-family="monospace">LP: 150 (Alice 67%, Bob 33%)</text>
+  <!-- Step 3: Carol adds -->
+  <rect x="510" y="48" width="220" height="120" rx="6" fill="#111827" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="620" y="68" text-anchor="middle" fill="#22c55e" font-size="11" font-family="monospace" font-weight="bold">③ Carol Adds Liquidity</text>
+  <text x="620" y="86" text-anchor="middle" fill="#9ca3af" font-size="9" font-family="monospace">Deposits: 1,500 TOKEN + 15 WETH</text>
+  <text x="620" y="100" text-anchor="middle" fill="#9ca3af" font-size="9" font-family="monospace">Matches existing ratio</text>
+  <line x1="520" y1="108" x2="720" y2="108" stroke="#374151" stroke-width="0.5"/>
+  <text x="620" y="122" text-anchor="middle" fill="#60a5fa" font-size="9" font-family="monospace">TOKEN: 3,000</text>
+  <text x="620" y="136" text-anchor="middle" fill="#34d399" font-size="9" font-family="monospace">WETH:  30</text>
+  <text x="620" y="150" text-anchor="middle" fill="#fbbf24" font-size="9" font-family="monospace">LP: 300 (A:33% B:17% C:50%)</text>
+  <!-- Arrows between steps -->
+  <path d="M 240 108 L 266 108" fill="none" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+  <path d="M 480 108 L 506 108" fill="none" stroke="#4b5563" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+  <!-- SAME POOL label -->
+  <text x="380" y="195" text-anchor="middle" fill="#ef4444" font-size="13" font-family="monospace" font-weight="bold">ALL THREE USE THE SAME POOL CONTRACT</text>
+  <!-- Final pool state visualization -->
+  <rect x="60" y="215" width="640" height="160" rx="6" fill="#111827" stroke="#f97316" stroke-width="2"/>
+  <text x="380" y="238" text-anchor="middle" fill="#f97316" font-size="12" font-family="monospace" font-weight="bold">Final Shared Pool State</text>
+  <!-- Ownership bars -->
+  <text x="80" y="262" fill="#9ca3af" font-size="10" font-family="monospace">Ownership</text>
+  <!-- Alice bar: 33.3% -->
+  <rect x="80" y="268" width="213" height="20" rx="2" fill="#f97316" opacity="0.8"/>
+  <text x="186" y="283" text-anchor="middle" fill="white" font-size="9" font-family="monospace">Alice: 100 LP (33.3%)</text>
+  <!-- Bob bar: 16.7% -->
+  <rect x="80" y="296" width="107" height="20" rx="2" fill="#3b82f6" opacity="0.8"/>
+  <text x="133" y="311" text-anchor="middle" fill="white" font-size="9" font-family="monospace">Bob: 50 LP (16.7%)</text>
+  <!-- Carol bar: 50% -->
+  <rect x="80" y="324" width="320" height="20" rx="2" fill="#22c55e" opacity="0.8"/>
+  <text x="240" y="339" text-anchor="middle" fill="white" font-size="9" font-family="monospace">Carol: 150 LP (50%)</text>
+  <!-- Total marker -->
+  <line x1="400" y1="260" x2="400" y2="350" stroke="#fbbf24" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="405" y="258" fill="#fbbf24" font-size="9" font-family="monospace">Total: 300 LP</text>
+  <!-- Stats -->
+  <text x="450" y="275" fill="#60a5fa" font-size="10" font-family="monospace">TOKEN reserve: 3,000</text>
+  <text x="450" y="292" fill="#34d399" font-size="10" font-family="monospace">WETH  reserve: 30</text>
+  <text x="450" y="309" fill="#9ca3af" font-size="10" font-family="monospace">Price: 100 TOKEN/WETH</text>
+  <text x="450" y="326" fill="#9ca3af" font-size="10" font-family="monospace">k = 3,000 × 30 = 90,000</text>
+  <text x="450" y="343" fill="#fbbf24" font-size="10" font-family="monospace">Fee rate: 0.3%</text>
+  <!-- Note at bottom -->
+  <text x="380" y="394" text-anchor="middle" fill="#6b7280" font-size="10" font-family="monospace">Each user's tokens are intermingled in the pool. Only LP tokens track individual ownership.</text>
+  <defs>
+    <marker id="arrowGray" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#4b5563"/>
+    </marker>
+  </defs>
+</svg>
+<hr>
+<h2 id="7-Swapping-—-How-Trades-Work">7. Swapping — How Trades Work</h2>
+<h3 id="7-1-The-Swap-Mechanics">7.1 The Swap Mechanics</h3>
+<p>A swap in Uniswap V2 follows this sequence:</p>
+<svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;background:#1a1a2e;border-radius:8px;padding:8px">
+  <text x="380" y="28" text-anchor="middle" fill="#f97316" font-size="14" font-weight="bold" font-family="monospace">Token Swap Flow</text>
+  <!-- Step boxes -->
+  <!-- 1 -->
+  <rect x="20" y="48" width="130" height="68" rx="6" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="85" y="68" text-anchor="middle" fill="#93c5fd" font-size="10" font-family="monospace" font-weight="bold">① User</text>
+  <text x="85" y="84" text-anchor="middle" fill="#bfdbfe" font-size="9" font-family="monospace">Calls router</text>
+  <text x="85" y="98" text-anchor="middle" fill="#bfdbfe" font-size="9" font-family="monospace">swapExactTokens</text>
+  <text x="85" y="112" text-anchor="middle" fill="#bfdbfe" font-size="9" font-family="monospace">ForTokens()</text>
+  <path d="M 152 82 L 175 82" fill="none" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrowO2)"/>
+  <!-- 2 -->
+  <rect x="178" y="48" width="140" height="68" rx="6" fill="#1a2e1a" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="248" y="68" text-anchor="middle" fill="#4ade80" font-size="10" font-family="monospace" font-weight="bold">② Router</text>
+  <text x="248" y="84" text-anchor="middle" fill="#86efac" font-size="9" font-family="monospace">Check amountOutMin</text>
+  <text x="248" y="98" text-anchor="middle" fill="#86efac" font-size="9" font-family="monospace">Verify deadline</text>
+  <text x="248" y="112" text-anchor="middle" fill="#86efac" font-size="9" font-family="monospace">Transfer tokenIn → pair</text>
+  <path d="M 320 82 L 345 82" fill="none" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrowO2)"/>
+  <!-- 3 -->
+  <rect x="348" y="48" width="160" height="68" rx="6" fill="#111827" stroke="#f97316" stroke-width="2"/>
+  <text x="428" y="68" text-anchor="middle" fill="#f97316" font-size="10" font-family="monospace" font-weight="bold">③ Pair Contract</text>
+  <text x="428" y="84" text-anchor="middle" fill="#fdba74" font-size="9" font-family="monospace">Detect tokenIn received</text>
+  <text x="428" y="98" text-anchor="middle" fill="#fdba74" font-size="9" font-family="monospace">Compute amountOut</text>
+  <text x="428" y="112" text-anchor="middle" fill="#fdba74" font-size="9" font-family="monospace">Update reserves</text>
+  <path d="M 510 82 L 534 82" fill="none" stroke="#f97316" stroke-width="1.5" marker-end="url(#arrowO2)"/>
+  <!-- 4 -->
+  <rect x="537" y="48" width="180" height="68" rx="6" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="627" y="68" text-anchor="middle" fill="#93c5fd" font-size="10" font-family="monospace" font-weight="bold">④ User Receives</text>
+  <text x="627" y="84" text-anchor="middle" fill="#bfdbfe" font-size="9" font-family="monospace">tokenOut transferred</text>
+  <text x="627" y="98" text-anchor="middle" fill="#bfdbfe" font-size="9" font-family="monospace">to user address</text>
+  <text x="627" y="112" text-anchor="middle" fill="#4ade80" font-size="9" font-family="monospace">≥ amountOutMin ✓</text>
+  <!-- Pair computation detail -->
+  <rect x="20" y="140" width="720" height="140" rx="6" fill="#111827" stroke="#374151" stroke-width="1"/>
+  <text x="380" y="162" text-anchor="middle" fill="#f97316" font-size="12" font-family="monospace" font-weight="bold">Pair Contract Computation (with 0.3% fee)</text>
+  <text x="40" y="185" fill="#9ca3af" font-size="10" font-family="monospace">Given:  amountIn = 10 WETH,  reserveIn = 100 WETH,  reserveOut = 10,000 TOKEN</text>
+  <text x="40" y="203" fill="#9ca3af" font-size="10" font-family="monospace">Step 1: amountInWithFee = amountIn × 997  →  10 × 997 = 9,970</text>
+  <text x="40" y="221" fill="#9ca3af" font-size="10" font-family="monospace">Step 2: numerator = amountInWithFee × reserveOut  →  9,970 × 10,000 = 99,700,000</text>
+  <text x="40" y="239" fill="#9ca3af" font-size="10" font-family="monospace">Step 3: denominator = reserveIn × 1000 + amountInWithFee  →  100,000 + 9,970 = 109,970</text>
+  <text x="40" y="257" fill="#fbbf24" font-size="11" font-family="monospace" font-weight="bold">Result: amountOut = 99,700,000 / 109,970 ≈ 906.6 TOKEN  (vs 1,000 TOKEN at spot — 9.3% price impact)</text>
+  <defs>
+    <marker id="arrowO2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#f97316"/>
+    </marker>
+  </defs>
+</svg>
+<h3 id="7-2-Fee-Collection-0-3">7.2 Fee Collection (0.3%)</h3>
+<p>Uniswap V2 charges <strong>0.3%</strong> on every swap. This fee is <strong>not sent anywhere</strong> — it is left in the pool’s reserves, increasing the <code>k</code> value slightly after each trade.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Every swap:  new_k = (reserveIn + amountIn × 0.997) × (reserveOut − amountOut)</span><br><span class="line">             new_k &gt; original_k  ← pool grows with each trade</span><br></pre></td></tr></table></figure>
+<p>LP token holders benefit because the <strong>reserves backing each LP token increase</strong> over time. There is no separate &quot;claim fees&quot; transaction — fees are automatically compounded into the reserve ratio.</p>
+<h3 id="7-3-Minimum-Output-and-Deadline">7.3 Minimum Output and Deadline</h3>
+<p>The Router enforces two critical protections:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>amountOutMin</code></td>
+<td>Minimum tokens you’ll accept (slippage protection)</td>
+</tr>
+<tr>
+<td><code>deadline</code></td>
+<td>Unix timestamp after which tx will revert (prevents stuck txs from executing at bad prices)</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Typical slippage: 0.5%</span></span><br><span class="line"><span class="keyword">const</span> amountOutMin = expectedOut * <span class="number">0.</span><span class="number">995n</span>;  <span class="comment">// accept up to 0.5% slippage</span></span><br><span class="line"><span class="keyword">const</span> deadline = <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Date</span>.<span class="title function_">now</span>() / <span class="number">1000</span>) + <span class="number">1200</span>; <span class="comment">// 20 minutes</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="8-Removing-Liquidity">8. Removing Liquidity</h2>
+<p>Removing liquidity burns your LP tokens and returns your proportional share of the <strong>current</strong> reserves:</p>
+<svg viewBox="0 0 760 280" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;background:#1a1a2e;border-radius:8px;padding:8px">
+  <text x="380" y="28" text-anchor="middle" fill="#f97316" font-size="14" font-weight="bold" font-family="monospace">Remove Liquidity Flow</text>
+  <!-- Before state -->
+  <rect x="30" y="48" width="220" height="120" rx="6" fill="#111827" stroke="#f97316" stroke-width="1.5"/>
+  <text x="140" y="68" text-anchor="middle" fill="#f97316" font-size="11" font-family="monospace" font-weight="bold">Pool Before</text>
+  <text x="140" y="86" text-anchor="middle" fill="#60a5fa" font-size="10" font-family="monospace">TOKEN: 10,000</text>
+  <text x="140" y="102" text-anchor="middle" fill="#34d399" font-size="10" font-family="monospace">WETH:  100</text>
+  <text x="140" y="118" text-anchor="middle" fill="#9ca3af" font-size="10" font-family="monospace">Total LP: 1,000</text>
+  <text x="140" y="134" text-anchor="middle" fill="#fbbf24" font-size="10" font-family="monospace">Your LP: 100 (10%)</text>
+  <text x="140" y="150" text-anchor="middle" fill="#9ca3af" font-size="9" font-family="monospace">Your share: 1,000 T + 10 W</text>
+  <!-- Arrow -->
+  <text x="285" y="108" text-anchor="middle" fill="#ef4444" font-size="11" font-family="monospace">burn</text>
+  <text x="285" y="122" text-anchor="middle" fill="#ef4444" font-size="11" font-family="monospace">100 LP</text>
+  <path d="M 254 110 L 330 110" fill="none" stroke="#ef4444" stroke-width="2" marker-end="url(#arrowRed)"/>
+  <!-- Process -->
+  <rect x="335" y="60" width="160" height="100" rx="6" fill="#2d1a1a" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="415" y="80" text-anchor="middle" fill="#ef4444" font-size="11" font-family="monospace" font-weight="bold">Pair.burn()</text>
+  <text x="415" y="98" text-anchor="middle" fill="#fca5a5" font-size="9" font-family="monospace">1. Burns 100 LP tokens</text>
+  <text x="415" y="114" text-anchor="middle" fill="#fca5a5" font-size="9" font-family="monospace">2. Calc proportional share</text>
+  <text x="415" y="130" text-anchor="middle" fill="#fca5a5" font-size="9" font-family="monospace">3. Transfer tokens to you</text>
+  <text x="415" y="146" text-anchor="middle" fill="#fca5a5" font-size="9" font-family="monospace">4. Update reserves</text>
+  <!-- Arrow -->
+  <path d="M 497 110 L 565 110" fill="none" stroke="#22c55e" stroke-width="2" marker-end="url(#arrowGreen2)"/>
+  <!-- After state -->
+  <rect x="568" y="48" width="165" height="120" rx="6" fill="#111827" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="650" y="68" text-anchor="middle" fill="#22c55e" font-size="11" font-family="monospace" font-weight="bold">You receive</text>
+  <text x="650" y="86" text-anchor="middle" fill="#60a5fa" font-size="10" font-family="monospace">~1,000 TOKEN</text>
+  <text x="650" y="102" text-anchor="middle" fill="#34d399" font-size="10" font-family="monospace">~10 WETH</text>
+  <text x="650" y="118" text-anchor="middle" fill="#fbbf24" font-size="9" font-family="monospace">(+ accumulated fees)</text>
+  <text x="650" y="134" text-anchor="middle" fill="#9ca3af" font-size="9" font-family="monospace">amounts may differ</text>
+  <text x="650" y="150" text-anchor="middle" fill="#9ca3af" font-size="9" font-family="monospace">from original deposit</text>
+  <!-- Pool after -->
+  <rect x="30" y="195" width="700" height="64" rx="6" fill="#111827" stroke="#374151" stroke-width="1"/>
+  <text x="380" y="215" text-anchor="middle" fill="#9ca3af" font-size="11" font-family="monospace">Pool After: TOKEN: 9,000 | WETH: 90 | Total LP: 900</text>
+  <text x="380" y="235" text-anchor="middle" fill="#6b7280" font-size="10" font-family="monospace">Pool continues to exist. Other LPs now own higher %. Pool is NOT deleted.</text>
+  <text x="380" y="252" text-anchor="middle" fill="#ef4444" font-size="10" font-family="monospace">Note: amounts received reflect current reserves, not original deposit amounts (impermanent loss / gain).</text>
+  <defs>
+    <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#ef4444"/>
+    </marker>
+    <marker id="arrowGreen2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#22c55e"/>
+    </marker>
+  </defs>
+</svg>
+<p><strong>Important:</strong> The tokens you receive when withdrawing are based on the <strong>current reserves</strong>, not what you deposited. If significant trading occurred, the ratio of tokens you get back will differ from what you put in — this is the essence of impermanent loss.</p>
+<hr>
+<h2 id="9-Impermanent-Loss-—-The-Hidden-Risk">9. Impermanent Loss — The Hidden Risk</h2>
+<h3 id="9-1-What-Is-Impermanent-Loss">9.1 What Is Impermanent Loss?</h3>
+<p><strong>Impermanent loss (IL)</strong> occurs because the AMM formula automatically rebalances the pool as prices change. When the price of one token rises relative to the other, the AMM sells the appreciating token and buys the depreciating one. This means LPs hold less of the token that went up, and more of the one that went down — compared to simply holding.</p>
+<p>The loss is &quot;impermanent&quot; because it disappears if prices return to the original ratio. But if prices do not revert, the loss becomes realized upon withdrawal.</p>
+<h3 id="9-2-The-Impermanent-Loss-Formula">9.2 The Impermanent Loss Formula</h3>
+<p>Let <code>r</code> = price change ratio (final price / initial price):</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IL(r) = 2√r / (1 + r) − 1</span><br></pre></td></tr></table></figure>
+<svg viewBox="0 0 720 360" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;background:#1a1a2e;border-radius:8px;padding:8px">
+  <text x="360" y="28" text-anchor="middle" fill="#f97316" font-size="14" font-weight="bold" font-family="monospace">Impermanent Loss vs Price Change</text>
+  <!-- Axes -->
+  <line x1="80" y1="300" x2="660" y2="300" stroke="#4b5563" stroke-width="1.5"/>
+  <line x1="80" y1="300" x2="80" y2="50" stroke="#4b5563" stroke-width="1.5"/>
+  <!-- Y axis labels (IL %) -->
+  <text x="30" y="302" fill="#6b7280" font-size="9" font-family="monospace" text-anchor="middle">0%</text>
+  <line x1="75" y1="300" x2="80" y2="300" stroke="#4b5563" stroke-width="1"/>
+  <text x="30" y="265" fill="#6b7280" font-size="9" font-family="monospace" text-anchor="middle">-1.2%</text>
+  <line x1="75" y1="265" x2="80" y2="265" stroke="#4b5563" stroke-width="1"/>
+  <text x="30" y="225" fill="#6b7280" font-size="9" font-family="monospace" text-anchor="middle">-3.8%</text>
+  <line x1="75" y1="225" x2="80" y2="225" stroke="#4b5563" stroke-width="1"/>
+  <text x="30" y="185" fill="#6b7280" font-size="9" font-family="monospace" text-anchor="middle">-5.7%</text>
+  <line x1="75" y1="185" x2="80" y2="185" stroke="#4b5563" stroke-width="1"/>
+  <text x="30" y="143" fill="#6b7280" font-size="9" font-family="monospace" text-anchor="middle">-11.1%</text>
+  <line x1="75" y1="143" x2="80" y2="143" stroke="#4b5563" stroke-width="1"/>
+  <text x="30" y="100" fill="#6b7280" font-size="9" font-family="monospace" text-anchor="middle">-20%</text>
+  <line x1="75" y1="100" x2="80" y2="100" stroke="#4b5563" stroke-width="1"/>
+  <!-- X axis labels (price ratio) -->
+  <text x="80" y="316" fill="#6b7280" font-size="9" font-family="monospace" text-anchor="middle">1x</text>
+  <text x="158" y="316" fill="#6b7280" font-size="9" font-family="monospace" text-anchor="middle">1.25x</text>
+  <text x="235" y="316" fill="#6b7280" font-size="9" font-family="monospace" text-anchor="middle">1.5x</text>
+  <text x="313" y="316" fill="#6b7280" font-size="9" font-family="monospace" text-anchor="middle">2x</text>
+  <text x="390" y="316" fill="#6b7280" font-size="9" font-family="monospace" text-anchor="middle">3x</text>
+  <text x="467" y="316" fill="#6b7280" font-size="9" font-family="monospace" text-anchor="middle">4x</text>
+  <text x="545" y="316" fill="#6b7280" font-size="9" font-family="monospace" text-anchor="middle">5x</text>
+  <text x="622" y="316" fill="#6b7280" font-size="9" font-family="monospace" text-anchor="middle">10x</text>
+  <text x="370" y="330" text-anchor="middle" fill="#9ca3af" font-size="10" font-family="monospace">Price Change Ratio (r)</text>
+  <text x="14" y="180" fill="#9ca3af" font-size="10" font-family="monospace" transform="rotate(-90,14,180)">IL %</text>
+  <!-- IL curve: IL = 2√r/(1+r) - 1, scaled to SVG coords -->
+  <!-- x_svg = 80 + (r-1)/9*580, y_svg = 300 - |IL|*250/42.5 -->
+  <!-- r=1:   x=80,   y=300  (IL=0%)    -->
+  <!-- r=1.25: x=96,   y=296  (IL=-0.6%) -->
+  <!-- r=1.5: x=112,  y=286  (IL=-2.0%) -->
+  <!-- r=2:   x=143,  y=260  (IL=-5.7%) -->
+  <!-- r=3:   x=195,  y=210  (IL=-13.4%) -->
+  <!-- r=4:   x=236,  y=183  (IL=-20.0%) -->
+  <!-- r=5:   x=270,  y=160  (IL=-25.5%) -->
+  <!-- r=7:   x=312,  y=143  (IL=-31.6%) -->
+  <!-- r=9:   x=380,  y=120  (IL=-38.2%) -->
+  <!-- r=12:  x=467,  y=100  (IL=-43.1%) -->
+  <!-- r=15:  x=545,  y=85   (IL=-46.8%) -->
+  <!-- r=10:  x=622,  y=60   (IL=-42.5%) -->
+  <polyline points="80,300 97,296 114,286 143,260 195,210 236,183 270,160 312,143 380,120 467,100 545,85 622,60" fill="none" stroke="#ef4444" stroke-width="3" shape-rendering="geometricPrecision"/>
+  <!-- Zero line (hold) -->
+  <line x1="80" y1="300" x2="660" y2="300" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="540" y="295" fill="#22c55e" font-size="10" font-family="monospace">HODL (0% loss)</text>
+  <!-- Annotations -->
+  <circle cx="143" cy="260" r="4" fill="#fbbf24"/>
+  <text x="150" y="255" fill="#fbbf24" font-size="9" font-family="monospace">2x: -5.7% IL</text>
+  <circle cx="312" cy="143" r="4" fill="#f97316"/>
+  <text x="319" y="138" fill="#f97316" font-size="9" font-family="monospace">4x: -20% IL</text>
+  <circle cx="622" cy="60" r="4" fill="#ef4444"/>
+  <text x="590" y="55" fill="#ef4444" font-size="9" font-family="monospace">10x: -42.5% IL</text>
+  <!-- Down price annotation -->
+  <text x="370" y="64" text-anchor="middle" fill="#9ca3af" font-size="10" font-family="monospace">Same curve applies for price decrease (r = 1/original)</text>
+  <text x="370" y="78" text-anchor="middle" fill="#9ca3af" font-size="9" font-family="monospace">e.g., price drops to 0.5x → same as 2x increase → -5.7% IL</text>
+</svg>
+<table>
+<thead>
+<tr>
+<th>Price Change</th>
+<th>Impermanent Loss</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>±0% (no change)</td>
+<td>0.00%</td>
+</tr>
+<tr>
+<td>±25%</td>
+<td>−0.6%</td>
+</tr>
+<tr>
+<td>±50%</td>
+<td>−2.0%</td>
+</tr>
+<tr>
+<td>±2x (doubles or halves)</td>
+<td>−5.7%</td>
+</tr>
+<tr>
+<td>±3x</td>
+<td>−13.4%</td>
+</tr>
+<tr>
+<td>±4x</td>
+<td>−20.0%</td>
+</tr>
+<tr>
+<td>±5x</td>
+<td>−25.5%</td>
+</tr>
+<tr>
+<td>±10x</td>
+<td>−42.5%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="9-3-Impermanent-Loss-vs-Fee-Income">9.3 Impermanent Loss vs Fee Income</h3>
+<p>IL is only one side of the equation. LPs earn <strong>0.3% fee on every swap</strong>. Whether LP-ing is profitable depends on which is larger:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Net LP return = Fee income − Impermanent loss</span><br><span class="line"></span><br><span class="line">Profitable when:</span><br><span class="line">  High trading volume (many swaps) → high fee income</span><br><span class="line">  Low price volatility → low IL</span><br><span class="line"></span><br><span class="line">Risky when:</span><br><span class="line">  Low volume → low fees</span><br><span class="line">  High volatility → large IL</span><br></pre></td></tr></table></figure>
+<p><strong>Stable pairs</strong> (e.g., USDC/USDT) have very low IL but also lower fee income. <strong>Volatile pairs</strong> have higher potential fees but also higher IL risk.</p>
+<hr>
+<h2 id="10-Fee-Accumulation-and-LP-Returns">10. Fee Accumulation and LP Returns</h2>
+<p>Fees accumulate <strong>inside the pool reserves</strong>. When you remove liquidity, you receive your proportional share of the grown reserves:</p>
+<svg viewBox="0 0 720 240" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;background:#1a1a2e;border-radius:8px;padding:8px">
+  <text x="360" y="28" text-anchor="middle" fill="#f97316" font-size="14" font-weight="bold" font-family="monospace">Fee Accumulation Over Time</text>
+  <!-- Timeline -->
+  <line x1="60" y1="140" x2="680" y2="140" stroke="#4b5563" stroke-width="2"/>
+  <!-- T0: Pool creation -->
+  <circle cx="80" cy="140" r="6" fill="#f97316"/>
+  <text x="80" y="130" text-anchor="middle" fill="#f97316" font-size="10" font-family="monospace">T0</text>
+  <text x="80" y="158" text-anchor="middle" fill="#9ca3af" font-size="9" font-family="monospace">Pool created</text>
+  <text x="80" y="170" text-anchor="middle" fill="#60a5fa" font-size="9" font-family="monospace">k = 100,000</text>
+  <!-- Swaps -->
+  <circle cx="220" cy="140" r="5" fill="#22c55e"/>
+  <text x="220" y="130" text-anchor="middle" fill="#22c55e" font-size="9" font-family="monospace">Swap #1</text>
+  <text x="220" y="158" text-anchor="middle" fill="#9ca3af" font-size="9" font-family="monospace">0.3% fee</text>
+  <text x="220" y="170" text-anchor="middle" fill="#60a5fa" font-size="9" font-family="monospace">k grows</text>
+  <circle cx="340" cy="140" r="5" fill="#22c55e"/>
+  <text x="340" y="130" text-anchor="middle" fill="#22c55e" font-size="9" font-family="monospace">Swap #2</text>
+  <text x="340" y="158" text-anchor="middle" fill="#9ca3af" font-size="9" font-family="monospace">0.3% fee</text>
+  <text x="340" y="170" text-anchor="middle" fill="#60a5fa" font-size="9" font-family="monospace">k grows</text>
+  <circle cx="460" cy="140" r="5" fill="#22c55e"/>
+  <text x="460" y="130" text-anchor="middle" fill="#22c55e" font-size="9" font-family="monospace">Swap #N</text>
+  <text x="460" y="158" text-anchor="middle" fill="#9ca3af" font-size="9" font-family="monospace">fees compound</text>
+  <text x="460" y="170" text-anchor="middle" fill="#60a5fa" font-size="9" font-family="monospace">k = 101,200</text>
+  <circle cx="620" cy="140" r="6" fill="#ef4444"/>
+  <text x="620" y="130" text-anchor="middle" fill="#ef4444" font-size="10" font-family="monospace">Withdraw</text>
+  <text x="620" y="158" text-anchor="middle" fill="#9ca3af" font-size="9" font-family="monospace">Get more tokens</text>
+  <text x="620" y="170" text-anchor="middle" fill="#fbbf24" font-size="9" font-family="monospace">than deposited!</text>
+  <!-- k growth arrow -->
+  <path d="M 80 105 Q 380 70 620 105" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="355" y="68" text-anchor="middle" fill="#fbbf24" font-size="10" font-family="monospace">k increases with each swap (fee auto-compounded)</text>
+  <!-- Key insight box -->
+  <rect x="60" y="188" width="600" height="40" rx="4" fill="#111827" stroke="#374151" stroke-width="1"/>
+  <text x="360" y="204" text-anchor="middle" fill="#9ca3af" font-size="10" font-family="monospace">Each LP token is backed by more reserves after fees. No separate claim needed.</text>
+  <text x="360" y="220" text-anchor="middle" fill="#fbbf24" font-size="10" font-family="monospace">Fee APR ≈ (daily volume / pool TVL) × 0.3% × 365</text>
+</svg>
+<p><strong>Protocol fee:</strong> Uniswap V2 can optionally enable a protocol fee of 0.05% (1/6 of the 0.3%), reducing LP fee income to 0.25%. CCBus-compatible DEXs like PancakeSwap V2 have their own fee structures, typically at 0.25% to LPs with a portion to treasury.</p>
+<hr>
+<h2 id="11-Multiple-Pools-for-the-Same-Pair">11. Multiple Pools for the Same Pair</h2>
+<h3 id="11-1-Cross-DEX-Arbitrage">11.1 Cross-DEX Arbitrage</h3>
+<p>When the same token pair exists on multiple DEXs, price differences create <strong>arbitrage opportunities</strong>:</p>
+<svg viewBox="0 0 760 320" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;background:#1a1a2e;border-radius:8px;padding:8px">
+  <text x="380" y="28" text-anchor="middle" fill="#f97316" font-size="14" font-weight="bold" font-family="monospace">Cross-DEX Arbitrage: Price Equalization</text>
+  <!-- DEX A -->
+  <rect x="30" y="48" width="280" height="110" rx="6" fill="#111827" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="170" y="68" text-anchor="middle" fill="#60a5fa" font-size="12" font-family="monospace" font-weight="bold">DEX Alpha (PancakeSwap)</text>
+  <text x="170" y="86" text-anchor="middle" fill="#9ca3af" font-size="10" font-family="monospace">Pool: 0xAAA...</text>
+  <text x="170" y="104" text-anchor="middle" fill="#60a5fa" font-size="10" font-family="monospace">TOKEN: 10,000  WBNB: 100</text>
+  <text x="170" y="120" text-anchor="middle" fill="#fbbf24" font-size="11" font-family="monospace" font-weight="bold">Price: 100 TOKEN/WBNB</text>
+  <text x="170" y="140" text-anchor="middle" fill="#22c55e" font-size="10" font-family="monospace">← CHEAPER TOKEN HERE</text>
+  <!-- DEX B -->
+  <rect x="450" y="48" width="280" height="110" rx="6" fill="#111827" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="590" y="68" text-anchor="middle" fill="#a78bfa" font-size="12" font-family="monospace" font-weight="bold">DEX Beta (ApeSwap)</text>
+  <text x="590" y="86" text-anchor="middle" fill="#9ca3af" font-size="10" font-family="monospace">Pool: 0xBBB... (DIFFERENT!)</text>
+  <text x="590" y="104" text-anchor="middle" fill="#60a5fa" font-size="10" font-family="monospace">TOKEN: 4,500  WBNB: 55</text>
+  <text x="590" y="120" text-anchor="middle" fill="#fbbf24" font-size="11" font-family="monospace" font-weight="bold">Price: 81.8 TOKEN/WBNB</text>
+  <text x="590" y="140" text-anchor="middle" fill="#ef4444" font-size="10" font-family="monospace">← MORE EXPENSIVE TOKEN HERE</text>
+  <!-- Arbitrage arrow -->
+  <path d="M 313 100 C 360 75 400 75 448 100" fill="none" stroke="#22c55e" stroke-width="2.5" marker-end="url(#arrowGreen3)"/>
+  <text x="380" y="72" text-anchor="middle" fill="#22c55e" font-size="10" font-family="monospace" font-weight="bold">Arbitrageur</text>
+  <text x="380" y="86" text-anchor="middle" fill="#86efac" font-size="9" font-family="monospace">buy TOKEN @ DEX A</text>
+  <text x="380" y="98" text-anchor="middle" fill="#86efac" font-size="9" font-family="monospace">sell TOKEN @ DEX B</text>
+  <!-- Result -->
+  <rect x="30" y="178" width="700" height="120" rx="6" fill="#111827" stroke="#374151" stroke-width="1"/>
+  <text x="380" y="198" text-anchor="middle" fill="#f97316" font-size="12" font-family="monospace" font-weight="bold">Arbitrage Effect: Prices Converge</text>
+  <text x="100" y="220" fill="#60a5fa" font-size="10" font-family="monospace" text-anchor="middle">DEX Alpha</text>
+  <text x="100" y="236" fill="#9ca3af" font-size="10" font-family="monospace" text-anchor="middle">TOKEN bought → TOKEN decreases</text>
+  <text x="100" y="252" fill="#9ca3af" font-size="10" font-family="monospace" text-anchor="middle">WBNB added → WBNB increases</text>
+  <text x="100" y="268" fill="#fbbf24" font-size="10" font-family="monospace" text-anchor="middle">Price rises ↑</text>
+  <text x="660" y="220" fill="#a78bfa" font-size="10" font-family="monospace" text-anchor="middle">DEX Beta</text>
+  <text x="660" y="236" fill="#9ca3af" font-size="10" font-family="monospace" text-anchor="middle">TOKEN sold → TOKEN increases</text>
+  <text x="660" y="252" fill="#9ca3af" font-size="10" font-family="monospace" text-anchor="middle">WBNB removed → WBNB decreases</text>
+  <text x="660" y="268" fill="#fbbf24" font-size="10" font-family="monospace" text-anchor="middle">Price falls ↓</text>
+  <text x="380" y="244" text-anchor="middle" fill="#22c55e" font-size="11" font-family="monospace">→ Prices equalize ←</text>
+  <text x="380" y="260" text-anchor="middle" fill="#6b7280" font-size="10" font-family="monospace">Arbitrage continues until prices match (minus fees and gas)</text>
+  <text x="380" y="276" text-anchor="middle" fill="#6b7280" font-size="9" font-family="monospace">This is how cross-DEX price discovery happens. LPs in both pools earn fees from arbitrage trades.</text>
+  <defs>
+    <marker id="arrowGreen3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#22c55e"/>
+    </marker>
+  </defs>
+</svg>
+<h3 id="11-2-Multi-DEX-Liquidity-Strategy">11.2 Multi-DEX Liquidity Strategy</h3>
+<p>You can hold positions in the same token pair across multiple DEXs simultaneously. Each position is independent:</p>
+<table>
+<thead>
+<tr>
+<th>Pool</th>
+<th>DEX</th>
+<th>Your LP</th>
+<th>Your %</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TOKEN/WBNB</td>
+<td>PancakeSwap V2</td>
+<td>100 LP</td>
+<td>5.0%</td>
+<td>Higher volume</td>
+</tr>
+<tr>
+<td>TOKEN/WBNB</td>
+<td>ApeSwap</td>
+<td>50 LP</td>
+<td>3.2%</td>
+<td>Lower TVL</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Advantages:</strong> Capture fees from multiple DEXs, reduce single-DEX risk<br>
+<strong>Considerations:</strong> More capital required, more transactions to manage</p>
+<hr>
+<h2 id="12-Uniswap-V2-vs-V3-—-Key-Differences">12. Uniswap V2 vs V3 — Key Differences</h2>
+<p>CCBus targets Uniswap V2-compatible DEXs. Here’s how V3 differs:</p>
+<svg viewBox="0 0 760 280" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;background:#1a1a2e;border-radius:8px;padding:8px">
+  <text x="380" y="28" text-anchor="middle" fill="#f97316" font-size="14" font-weight="bold" font-family="monospace">V2: Full Range  vs  V3: Concentrated Liquidity</text>
+  <!-- V2 -->
+  <rect x="30" y="42" width="335" height="220" rx="6" fill="#111827" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="197" y="62" text-anchor="middle" fill="#60a5fa" font-size="12" font-family="monospace" font-weight="bold">Uniswap V2 / PancakeSwap V2</text>
+  <text x="197" y="78" text-anchor="middle" fill="#9ca3af" font-size="10" font-family="monospace">Uniform liquidity across entire price range</text>
+  <!-- V2 price range visualization -->
+  <line x1="55" y1="130" x2="340" y2="130" stroke="#4b5563" stroke-width="1.5"/>
+  <text x="55" y="148" fill="#6b7280" font-size="9" font-family="monospace">0</text>
+  <text x="330" y="148" fill="#6b7280" font-size="9" font-family="monospace">∞</text>
+  <!-- Full range bar -->
+  <rect x="55" y="115" width="285" height="15" rx="2" fill="#3b82f6" opacity="0.7"/>
+  <text x="197" y="128" text-anchor="middle" fill="white" font-size="9" font-family="monospace">Liquidity spread across full range</text>
+  <!-- current price marker -->
+  <line x1="197" y1="108" x2="197" y2="135" stroke="#fbbf24" stroke-width="2"/>
+  <text x="197" y="104" text-anchor="middle" fill="#fbbf24" font-size="9" font-family="monospace">Current Price</text>
+  <text x="197" y="168" text-anchor="middle" fill="#86efac" font-size="10" font-family="monospace">✓ Simple — set and forget</text>
+  <text x="197" y="184" text-anchor="middle" fill="#86efac" font-size="10" font-family="monospace">✓ One pool per pair (no fee tiers)</text>
+  <text x="197" y="200" text-anchor="middle" fill="#86efac" font-size="10" font-family="monospace">✓ Lower gas, lower complexity</text>
+  <text x="197" y="216" text-anchor="middle" fill="#fca5a5" font-size="10" font-family="monospace">✗ Less capital efficient</text>
+  <text x="197" y="232" text-anchor="middle" fill="#fca5a5" font-size="10" font-family="monospace">✗ Most liquidity is idle at extremes</text>
+  <text x="197" y="248" text-anchor="middle" fill="#60a5fa" font-size="10" font-family="monospace">→ Supported by CCBus</text>
+  <!-- V3 -->
+  <rect x="395" y="42" width="335" height="220" rx="6" fill="#111827" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="562" y="62" text-anchor="middle" fill="#a78bfa" font-size="12" font-family="monospace" font-weight="bold">Uniswap V3</text>
+  <text x="562" y="78" text-anchor="middle" fill="#9ca3af" font-size="10" font-family="monospace">Concentrated liquidity in price ranges</text>
+  <!-- V3 price range visualization -->
+  <line x1="420" y1="130" x2="705" y2="130" stroke="#4b5563" stroke-width="1.5"/>
+  <text x="420" y="148" fill="#6b7280" font-size="9" font-family="monospace">$0</text>
+  <text x="697" y="148" fill="#6b7280" font-size="9" font-family="monospace">$∞</text>
+  <!-- LP1 range -->
+  <rect x="500" y="118" width="100" height="12" rx="2" fill="#22c55e" opacity="0.8"/>
+  <!-- LP2 range -->
+  <rect x="540" y="106" width="80" height="12" rx="2" fill="#f97316" opacity="0.8"/>
+  <!-- LP3 range -->
+  <rect x="480" y="94" width="140" height="12" rx="2" fill="#3b82f6" opacity="0.8"/>
+  <!-- current price -->
+  <line x1="562" y1="88" x2="562" y2="135" stroke="#fbbf24" stroke-width="2"/>
+  <text x="562" y="85" text-anchor="middle" fill="#fbbf24" font-size="9" font-family="monospace">Price</text>
+  <!-- LP labels -->
+  <text x="450" y="126" fill="#22c55e" font-size="8" font-family="monospace">LP1</text>
+  <text x="450" y="114" fill="#f97316" font-size="8" font-family="monospace">LP2</text>
+  <text x="450" y="102" fill="#3b82f6" font-size="8" font-family="monospace">LP3</text>
+  <text x="562" y="168" text-anchor="middle" fill="#86efac" font-size="10" font-family="monospace">✓ Up to 4000x capital efficiency</text>
+  <text x="562" y="184" text-anchor="middle" fill="#86efac" font-size="10" font-family="monospace">✓ Multiple fee tiers (0.01–1%)</text>
+  <text x="562" y="200" text-anchor="middle" fill="#fca5a5" font-size="10" font-family="monospace">✗ More complex, higher gas</text>
+  <text x="562" y="216" text-anchor="middle" fill="#fca5a5" font-size="10" font-family="monospace">✗ Requires active management</text>
+  <text x="562" y="232" text-anchor="middle" fill="#fca5a5" font-size="10" font-family="monospace">✗ Multiple pools per pair (fee tiers)</text>
+  <text x="562" y="248" text-anchor="middle" fill="#a78bfa" font-size="10" font-family="monospace">→ Not currently supported by CCBus</text>
+</svg>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>V2</th>
+<th>V3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Liquidity type</td>
+<td>Full range</td>
+<td>Concentrated ranges</td>
+</tr>
+<tr>
+<td>Pools per pair</td>
+<td>One per factory</td>
+<td>Multiple (per fee tier)</td>
+</tr>
+<tr>
+<td>LP complexity</td>
+<td>Simple</td>
+<td>Requires range management</td>
+</tr>
+<tr>
+<td>Capital efficiency</td>
+<td>Baseline</td>
+<td>Up to 4,000× higher</td>
+</tr>
+<tr>
+<td>Fee tiers</td>
+<td>0.3% fixed</td>
+<td>0.01%, 0.05%, 0.3%, 1%</td>
+</tr>
+<tr>
+<td>NFT positions</td>
+<td>No (ERC-20 LP)</td>
+<td>Yes (ERC-721)</td>
+</tr>
+<tr>
+<td>Supported by CCBus</td>
+<td><strong>Yes</strong></td>
+<td>Roadmap</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="13-Common-Misconceptions">13. Common Misconceptions</h2>
+<p><strong>❌ &quot;I created the pool so it’s mine&quot;</strong><br>
+✅ You were the first LP. Others can add liquidity. You own X% of a shared pool.</p>
+<p><strong>❌ &quot;My wallet address determines which pool I use&quot;</strong><br>
+✅ Pool address is derived from (token0, token1, factory). Wallet is irrelevant.</p>
+<p><strong>❌ &quot;Removing my liquidity deletes the pool&quot;</strong><br>
+✅ Pool persists as long as any LP tokens exist. Other users are unaffected by your exit.</p>
+<p><strong>❌ &quot;I’ll receive exactly what I deposited when I withdraw&quot;</strong><br>
+✅ You receive your proportional share of the <em>current</em> reserves, adjusted for trading fees and impermanent loss.</p>
+<p><strong>❌ &quot;Pool address is random every time it’s created&quot;</strong><br>
+✅ CREATE2 makes pool addresses deterministic and pre-computable from (token0, token1, factory, initCodeHash).</p>
+<p><strong>❌ &quot;Fees are collected separately&quot;</strong><br>
+✅ Fees accumulate directly in pool reserves. They are automatically realized when you remove liquidity.</p>
+<hr>
+<h2 id="14-Best-Practices">14. Best Practices</h2>
+<h3 id="For-Liquidity-Providers">For Liquidity Providers</h3>
+<ol>
+<li><strong>Check if pool exists first</strong> — <code>factory.getPair(tokenA, tokenB)</code> before any action</li>
+<li><strong>Verify pool address</strong> — Cross-check with factory, never trust user-provided addresses</li>
+<li><strong>Use market-rate ratios</strong> — When creating a new pool, match external price to avoid instant arbitrage loss</li>
+<li><strong>Set appropriate slippage</strong> — 0.5–1% for stable pairs, 1–3% for volatile pairs</li>
+<li><strong>Set deadline</strong> — Always use a deadline (20–30 minutes) to prevent stale tx execution</li>
+<li><strong>Understand IL before large positions</strong> — Model your IL exposure for the pair’s historical volatility</li>
+<li><strong>Monitor your LP %</strong> — Your percentage changes as others add/remove liquidity</li>
+</ol>
+<h3 id="For-Developers">For Developers</h3>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ✅ Always check pool existence before operations</span></span><br><span class="line"><span class="keyword">const</span> pairAddress = <span class="keyword">await</span> publicClient.<span class="title function_">readContract</span>(&#123;</span><br><span class="line">  <span class="attr">address</span>: factoryAddress,</span><br><span class="line">  <span class="attr">abi</span>: <span class="variable constant_">FACTORY_ABI</span>,</span><br><span class="line">  <span class="attr">functionName</span>: <span class="string">&#x27;getPair&#x27;</span>,</span><br><span class="line">  <span class="attr">args</span>: [tokenA, tokenB]</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> poolExists = pairAddress !== <span class="string">&#x27;0x0000000000000000000000000000000000000000&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!poolExists) &#123;</span><br><span class="line">  <span class="comment">// Inform user: they will SET the initial price</span></span><br><span class="line">  <span class="comment">// Warn: check market price carefully</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ✅ Always verify the pool address from factory</span></span><br><span class="line"><span class="keyword">const</span> expectedPair = <span class="keyword">await</span> factory.<span class="title function_">getPair</span>(tokenA, tokenB);</span><br><span class="line"><span class="keyword">if</span> (userInput.<span class="title function_">toLowerCase</span>() !== expectedPair.<span class="title function_">toLowerCase</span>()) &#123;</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;Pool address mismatch — possible scam&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ✅ Always include slippage and deadline</span></span><br><span class="line"><span class="keyword">const</span> deadline = <span class="title class_">BigInt</span>(<span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Date</span>.<span class="title function_">now</span>() / <span class="number">1000</span>) + <span class="number">1200</span>); <span class="comment">// 20 min</span></span><br><span class="line"><span class="keyword">const</span> amountOutMin = (expectedOutput * <span class="number">995n</span>) / <span class="number">1000n</span>; <span class="comment">// 0.5% slippage</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ✅ Calculate ownership % correctly</span></span><br><span class="line"><span class="keyword">const</span> lpBalance = <span class="keyword">await</span> pair.<span class="title function_">balanceOf</span>(userAddress);</span><br><span class="line"><span class="keyword">const</span> totalSupply = <span class="keyword">await</span> pair.<span class="title function_">totalSupply</span>();</span><br><span class="line"><span class="keyword">const</span> ownershipPct = (<span class="title class_">Number</span>(lpBalance) * <span class="number">100</span>) / <span class="title class_">Number</span>(totalSupply);</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="15-FAQ">15. FAQ</h2>
+<p><strong>Q: Can I create a private liquidity pool?</strong></p>
+<p>Standard Uniswap V2-style DEXs have fully public pools — anyone can add liquidity, remove liquidity, or trade. A private/permissioned pool requires a custom factory contract. CCBus works with public DEX infrastructure.</p>
+<p><strong>Q: What happens when two transactions simultaneously try to create the same pool?</strong></p>
+<p>CREATE2 ensures the address is deterministic. The first transaction deploys the contract; the second will revert because a contract already exists at that address. Standard routers handle this by calling <code>getPair</code> first and falling back to <code>createPair</code> only when needed.</p>
+<p><strong>Q: Does my LP token percentage change over time?</strong></p>
+<p>Yes:</p>
+<ul>
+<li>Others add liquidity → your % decreases (dilution)</li>
+<li>Others remove liquidity → your % increases</li>
+<li>You add → your % increases</li>
+<li>You remove → your % decreases</li>
+<li>Swaps happen → your % stays the same (but absolute reserves backing each LP token grow due to fees)</li>
+</ul>
+<p><strong>Q: Can I transfer my LP tokens?</strong></p>
+<p>Yes. LP tokens are standard ERC-20 tokens and can be transferred, sold, or staked in yield farming contracts. Whoever holds LP tokens can redeem them for pool reserves.</p>
+<p><strong>Q: What’s the minimum liquidity locked in a pool?</strong></p>
+<p><code>MINIMUM_LIQUIDITY = 1000</code> (in the smallest unit of LP tokens) is minted to <code>address(0)</code> on the first mint. This cannot be redeemed. It prevents the pool from being completely drained and protects against certain price manipulation attacks.</p>
+<p><strong>Q: How do I calculate the current price from reserves?</strong></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [reserve0, reserve1] = <span class="keyword">await</span> pair.<span class="title function_">getReserves</span>();</span><br><span class="line"><span class="comment">// token0 &lt; token1 by address sort</span></span><br><span class="line"><span class="comment">// price of token0 in terms of token1:</span></span><br><span class="line"><span class="keyword">const</span> priceToken0 = <span class="title class_">Number</span>(reserve1) / <span class="title class_">Number</span>(reserve0);</span><br><span class="line"><span class="comment">// price of token1 in terms of token0:</span></span><br><span class="line"><span class="keyword">const</span> priceToken1 = <span class="title class_">Number</span>(reserve0) / <span class="title class_">Number</span>(reserve1);</span><br></pre></td></tr></table></figure>
+<p><strong>Q: Why does <code>addLiquidity</code> sometimes return fewer tokens than I sent?</strong></p>
+<p>The router enforces ratio matching. If your provided amounts don’t perfectly match the current reserve ratio, one side is used in full and the excess of the other side is returned to your wallet. The <code>amountAMin</code> / <code>amountBMin</code> parameters protect you from excessive slippage in the refunded amounts.</p>
+<p><strong>Q: Can I use ETH (native BNB) directly in liquidity operations?</strong></p>
+<p>Yes, via <code>addLiquidityETH</code> / <code>removeLiquidityETH</code> on the Router. The Router automatically wraps your native token (BNB → WBNB, ETH → WETH) before interacting with the pool, which always holds the wrapped version.</p>
+<hr>
+<h2 id="See-Also">See Also</h2>
+<ul>
+<li><a href="./evm-gas-and-tokens-guide.md">EVM Gas, Fees &amp; Tokens — A Complete Guide</a></li>
+<li><a target="_blank" rel="noopener" href="https://uniswap.org/whitepaper.pdf">Uniswap V2 Core Whitepaper</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.pancakeswap.finance/">PancakeSwap Documentation</a></li>
+<li><a target="_blank" rel="noopener" href="https://dailydefi.org/tools/impermanent-loss-calculator/">Impermanent Loss Calculator — Daily DeFi</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/AMM/" rel="tag"><i class="fa fa-tag"></i> AMM</a>
+              <a href="/tags/Uniswap-V2/" rel="tag"><i class="fa fa-tag"></i> Uniswap V2</a>
+              <a href="/tags/EVM/" rel="tag"><i class="fa fa-tag"></i> EVM</a>
+              <a href="/tags/Solidity/" rel="tag"><i class="fa fa-tag"></i> Solidity</a>
+              <a href="/tags/DeFi/" rel="tag"><i class="fa fa-tag"></i> DeFi</a>
+              <a href="/tags/PancakeSwap/" rel="tag"><i class="fa fa-tag"></i> PancakeSwap</a>
+              <a href="/tags/DEX/" rel="tag"><i class="fa fa-tag"></i> DEX</a>
+              <a href="/tags/Liquidity/" rel="tag"><i class="fa fa-tag"></i> Liquidity</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/29/evm-gas-fees-tokens-complete-guide-CN/" rel="prev" title="EVM Gas、费用与代币 — 完整指南">
+                  <i class="fa fa-angle-left"></i> EVM Gas、费用与代币 — 完整指南
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/03/31/liquidity-pool-deep-dive-CN/" rel="next" title="流动性池深度解析 — 从 AMM 原理到生产级 DeFi">
+                  流动性池深度解析 — 从 AMM 原理到生产级 DeFi <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+
+    
+    
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+  <div class="languages">
+    <label class="lang-select-label">
+      <i class="fa fa-language"></i>
+      <span>English</span>
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </label>
+    <select class="lang-select" data-canonical="" aria-label="Select language">
+      
+        <option value="zh-CN" data-href="/2026/03/31/liquidity-pool-deep-dive-EN/" selected="">
+          简体中文
+        </option>
+      
+        <option value="en" data-href="/en/2026/03/31/liquidity-pool-deep-dive-EN/" selected="">
+          English
+        </option>
+      
+    </select>
+  </div>
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">CCBus Lab</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+<aside class="post-crypto-sidebar">
+  
+  <div class="crypto-news-widget">
+    <h3 class="widget-title">
+      <i class="fa fa-newspaper"></i>Latest News
+    </h3>
+    <div class="news-list" id="crypto-news-list">
+      <div class="news-item">
+        <a href="https://cointelegraph.com" target="_blank" rel="noopener">
+          <span class="news-title">Bitcoin Reaches New All-Time High</span>
+          <span class="news-source">Cointelegraph</span>
+        </a>
+      </div>
+      <div class="news-item">
+        <a href="https://www.coindesk.com" target="_blank" rel="noopener">
+          <span class="news-title">Ethereum 2.0 Staking Surpasses Milestone</span>
+          <span class="news-source">CoinDesk</span>
+        </a>
+      </div>
+      <div class="news-item">
+        <a href="https://decrypt.co" target="_blank" rel="noopener">
+          <span class="news-title">DeFi Protocol Launches New Features</span>
+          <span class="news-source">Decrypt</span>
+        </a>
+      </div>
+      <div class="news-item">
+        <a href="https://www.theblockcrypto.com" target="_blank" rel="noopener">
+          <span class="news-title">Regulatory Updates in Digital Assets</span>
+          <span class="news-source">The Block</span>
+        </a>
+      </div>
+      <div class="news-item">
+        <a href="https://cryptoslate.com" target="_blank" rel="noopener">
+          <span class="news-title">NFT Market Shows Strong Growth</span>
+          <span class="news-source">CryptoSlate</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="crypto-price-widget">
+    <h3 class="widget-title">
+      <i class="fa fa-line-chart"></i>Live Prices
+    </h3>
+    <div class="price-list" id="crypto-price-list">
+      <div class="price-item">
+        <span class="crypto-name">BTC</span>
+        <span class="crypto-price" data-coin="bitcoin">Loading...</span>
+        <span class="crypto-change" data-coin="bitcoin-change">--</span>
+      </div>
+      <div class="price-item">
+        <span class="crypto-name">ETH</span>
+        <span class="crypto-price" data-coin="ethereum">Loading...</span>
+        <span class="crypto-change" data-coin="ethereum-change">--</span>
+      </div>
+      <div class="price-item">
+        <span class="crypto-name">BNB</span>
+        <span class="crypto-price" data-coin="binancecoin">Loading...</span>
+        <span class="crypto-change" data-coin="binancecoin-change">--</span>
+      </div>
+      <div class="price-item">
+        <span class="crypto-name">SOL</span>
+        <span class="crypto-price" data-coin="solana">Loading...</span>
+        <span class="crypto-change" data-coin="solana-change">--</span>
+      </div>
+      <div class="price-item">
+        <span class="crypto-name">ADA</span>
+        <span class="crypto-price" data-coin="cardano">Loading...</span>
+        <span class="crypto-change" data-coin="cardano-change">--</span>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<script>
+// Fetch cryptocurrency prices from CoinGecko API
+async function fetchCryptoPrices() {
+  try {
+    const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,solana,cardano&vs_currencies=usd&include_24hr_change=true');
+    const data = await response.json();
+
+    // Update prices
+    document.querySelectorAll('[data-coin]').forEach(element => {
+      const coinId = element.getAttribute('data-coin');
+
+      if (coinId.includes('-change')) {
+        const baseCoin = coinId.replace('-change', '');
+        if (data[baseCoin]) {
+          const change = data[baseCoin].usd_24h_change;
+          element.textContent = change >= 0 ? `+${change.toFixed(2)}%` : `${change.toFixed(2)}%`;
+          element.className = 'crypto-change ' + (change >= 0 ? 'positive' : 'negative');
+        }
+      } else {
+        if (data[coinId]) {
+          element.textContent = `$${data[coinId].usd.toLocaleString()}`;
+        }
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching crypto prices:', error);
+  }
+}
+
+// Fetch prices on load and every 60 seconds
+if (document.querySelector('.crypto-price-widget')) {
+  fetchCryptoPrices();
+  setInterval(fetchCryptoPrices, 60000);
+}
+</script>
+
+
+</body>
+</html>
