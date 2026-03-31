@@ -423,10 +423,13 @@ figure.highlight td.code pre {
   margin: 0 !important;
 }
 
-/* Ensure only outer figure has border */
+/* Ensure only outer figure has border - distinct from page background */
 figure.highlight {
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  box-shadow: none !important;
+  background-color: #0d1117 !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-left: 3px solid #4c9be8 !important;
+  border-radius: 6px !important;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4) !important;
 }
 
 .chapter-group {
